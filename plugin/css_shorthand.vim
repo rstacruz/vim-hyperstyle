@@ -1,7 +1,7 @@
 if exists("g:css_shorthand_loaded") | finish | endif
 let g:css_shorthand_loaded=1
 
-if !has("python")
+if !has("python") && !has("python3")
   echohl WarningMsg
   echomsg "vim-css-shorthand requires vim with python support."
   if has("nvim")
@@ -20,15 +20,17 @@ sys.path.insert(0, os.path.dirname(vim.eval("s:current_file")))
 import css_shorthand as cssx
 EOF
 
-" Expands carriage return
+" Expands carriage return (db => display: block;)
 function s:expand_cr(semi)
   return s:expand_thing('expand_expression', "\n", "\n", a:semi)
 endfunction
 
+" Expand spaces (fl_ => float:_)
 function s:expand_space()
   return s:expand_thing('expand_property', ' ', ' ', '')
 endfunction
 
+" Expand colons (fl: => float:)
 function s:expand_colon()
   return s:expand_thing('expand_property', ':', '', '')
 endfunction
@@ -39,7 +41,7 @@ endfunction
 " - key : the key that was pressed. If the line is not recognized, type that
 "   key again.
 " - suffix : usually same as the key. will be appended to the result
-" - semi : (String) if ;, then semicolon mode is on. Leave this blank for
+" - semi : (String) if ';', then semicolon mode is on. Leave this blank for
 "   indented syntaxes like Sass and Stylus.
 "
 "     expand_thing('expand_space', ' ')
