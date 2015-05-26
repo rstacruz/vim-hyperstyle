@@ -19,9 +19,9 @@ def expand_expression(line, semi = ';'):
     # Check if its a property with value
     (prop, value, unit) = split_value(snippet)
     expansion = properties.get(prop)
-    if prop and expansion and expansion.get("value") != None:
-        value = expand_value(value, unit, expansion.get("unit"))
-        return "%s%s: %s%s" % (indent, expansion["name"], value, semi)
+    if prop and expansion and expansion[1] and expansion[1].get("value"):
+        value = expand_value(value, unit, expansion[1].get("unit"))
+        return "%s%s: %s%s" % (indent, expansion[0], value, semi)
 
     # Else, nada
     return indent + snippet
@@ -72,8 +72,10 @@ def expand_property(line):
     (indent, snippet) = split_indent(line)
 
     expansion = properties.get(snippet)
-    if expansion:
-        return "%s%s:" % (indent, expansion["name"])
+    if isinstance(expansion, str):
+        return "%s%s:" % (indent, expansion)
+    if isinstance(expansion, tuple):
+        return "%s%s:" % (indent, expansion[0])
 
 """
 (Private) splits a line into its indentation and meat.
