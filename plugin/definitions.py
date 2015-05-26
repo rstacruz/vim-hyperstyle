@@ -51,6 +51,7 @@ properties_list = [
     ("tt", "text-transform", { "alias": ["ttransform"] }),
     ("td", "text-decoration", { "alias": ["tdecoration"] }),
     ("ti", "text-indent", { "unit": "px" }),
+    ("va", "vertical-align", { "unit": "px" }),
 
     ("tnd", "transition-duration", { "unit": "ms", "alias": ["tduration"] }),
 
@@ -87,6 +88,7 @@ properties_list = [
     ("pos", "position", {}),
     ("flex", "flex", {}),
     ("ws", "white-space", {}),
+    ("va", "vertical-align", { "alias": ["valign"] }),
 
     ("fg", "flex-grow", { "unit": "_", "alias": ["fgrow"] }),
     ("fsh", "flex-shrink", { "unit": "_", "alias": ["fshrink"] }),
@@ -167,6 +169,15 @@ expressions_list = [
     ("cuw", "cursor", "wait", {}),
     ("cub", "cursor", "busy", {}),
     ("cut", "cursor", "text", {}),
+
+    ("vam", "vertical-align", "middle", {}),
+    ("vat", "vertical-align", "top", {}),
+    ("vab", "vertical-align", "bottom", {}),
+    ("vasub", "vertical-align", "sub", {}),
+    ("vasuper", "vertical-align", "super", {}),
+    ("vabl", "vertical-align", "baseline", { "alias": [ "vabase", "baseline" ] }),
+    ("vatt", "vertical-align", "text-top", {}),
+    ("vatb", "vertical-align", "text-bottom", {}),
 
     ("cont", "content", "''", {}),
 
