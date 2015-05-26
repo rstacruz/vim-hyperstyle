@@ -8,6 +8,11 @@ properties = {
     "bo": { "name": "border", "value": "border" },
     "o":  { "name": "outline", "value": "border" },
 
+    "fl":  { "name": "float", "value": None },
+    "f":  { "name": "font", "value": None },
+    "fs":  { "name": "font-style", "value": None },
+    "fw":  { "name": "font-weight", "value": None },
+
     "br": { "name": "border-right", "value": "border" },
     "bl": { "name": "border-left", "value": "border" },
     "bt": { "name": "border-top", "value": "border" },
@@ -27,9 +32,17 @@ properties = {
 expressions = {
     "db": ("display", "block"),
     "di": ("display", "inline"),
+    "dib": ("display", "inline-block"),
+    "dn": ("display", "none"),
+
+    "fl": ("float", "left"),
+    "fr": ("float", "right"),
+    "fn": ("float", "none"),
+
     "bold": ("font-weight", "bold"),
     "italic": ("font-style", "italic"),
 
+    "fwb": ("font-weight", "bold"),
     "fw1": ("font-weight", "100"),
     "fw2": ("font-weight", "200"),
     "fw3": ("font-weight", "300"),
@@ -40,6 +53,7 @@ expressions = {
     "fw8": ("font-weight", "800"),
     "fw9": ("font-weight", "900"),
 
+    "fb": ("font-weight", "bold"),
     "f1": ("font-weight", "100"),
     "f2": ("font-weight", "200"),
     "f3": ("font-weight", "300"),

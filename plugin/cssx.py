@@ -2,6 +2,7 @@ import re
 from definitions import properties, expressions
 
 line_expr = re.compile(r'^(\s*)(.*?)$')
+value_expr = re.compile(r'^([^\.\d-]+)(-?\d*\.?\d+(?:p|x|m|px|em|%)?)$')
 
 """
 Expands a snippet.
@@ -9,12 +10,28 @@ Expands a snippet.
 def expand_expression(line):
     (indent, snippet) = split_line(line)
 
-    for shortcut in expressions:
-        if snippet == shortcut:
-            expansion = expressions[shortcut]
-            return "%s%s: %s;" % (indent, expansion[0], expansion[1])
+    # Check if its an expression
+    # (db => display: block)
+    if expressions.get(snippet):
+        expansion = expressions[snippet]
+        return "%s%s: %s;" % (indent, expansion[0], expansion[1])
+
+    # Check if its a property with value
+    (prop, value) = split_value(snippet)
+    if prop and properties.get(prop):
+        expansion = properties[prop]
+
+        if expansion["value"] != None:
+            return "%s%s: %s;" % (indent, expansion["name"], value)
 
     return indent + snippet
+
+def split_value(snippet):
+    m = value_expr.match(snippet)
+    if m:
+        return (m.group(1), m.group(2))
+    else:
+        return (None, None)
 
 """
 Expands a snippet.
