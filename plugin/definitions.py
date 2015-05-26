@@ -1,81 +1,89 @@
 from utils import fuzzify, apply_synonyms, apply_fuzzies
 
 """
-A list of CSS properties to expande.
+A list of CSS properties to expand.
+
+This will be indexed as `properties` (a dict). We define it as a list first
+because the order will matter in fuzzifying.
 """
-properties = {
-    "bg": ("background"),
-    "m": ("margin", { "unit": "px" }),
-    "w": ("width", { "unit": "px" }),
-    "h": ("height", { "unit": "px" }),
-    "mh": ("min-height", { "unit": "px" }),
-    "mw": ("min-width", { "unit": "px" }),
-    "p": ("padding", { "unit": "px", "nospace": True }),
-    "pa": ("padding", { "unit": "px" }),
-    "b": ("border"),
-    "o":  ("outline"),
-    "l": ("left", { "unit": "px" }),
-    "t": ("top", { "unit": "px" }),
-    "bot": ("bottom", { "unit": "px" }),
-    "r": ("right", { "unit": "px" }),
 
-    "ml": ("margin-left", { "unit": "px" }),
-    "mr": ("margin-right", { "unit": "px" }),
-    "mt": ("margin-top", { "unit": "px" }),
-    "mb": ("margin-bottom", { "unit": "px" }),
+properties_list = [
+    ("bg", "background", {}),
+    ("m", "margin", { "unit": "px" }),
+    ("w", "width", { "unit": "px" }),
+    ("h", "height", { "unit": "px" }),
+    ("mh", "min-height", { "unit": "px" }),
+    ("mw", "min-width", { "unit": "px" }),
+    ("p", "padding", { "unit": "px", "nospace": True }),
+    ("pa", "padding", { "unit": "px" }),
+    ("b", "border", {}),
+    ("o", "outline", {}),
+    ("l", "left", { "unit": "px" }),
+    ("t", "top", { "unit": "px" }),
+    ("bot", "bottom", { "unit": "px" }),
+    ("r", "right", { "unit": "px" }),
 
-    "pl": ("padding-left", { "unit": "px" }),
-    "pr": ("padding-right", { "unit": "px" }),
-    "pt": ("padding-top", { "unit": "px" }),
-    "pb": ("padding-bottom", { "unit": "px" }),
+    ("ml", "margin-left", { "unit": "px" }),
+    ("mr", "margin-right", { "unit": "px" }),
+    ("mt", "margin-top", { "unit": "px" }),
+    ("mb", "margin-bottom", { "unit": "px" }),
 
-    "d": ("display"),
-    "ta": ("text-align"),
+    ("pl", "padding-left", { "unit": "px" }),
+    ("pr", "padding-right", { "unit": "px" }),
+    ("pt", "padding-top", { "unit": "px" }),
+    ("pb", "padding-bottom", { "unit": "px" }),
 
-    "f": ("font"),
-    "fs": ("font-size", { "unit": "em" }),
-    "fst": ("font-style"),
-    "fw": ("font-weight", { "value": None }),
-    "lh": ("line-height", { "unit": "em" }),
-    "ls": ("letter-spacing", { "unit": "px" }),
+    ("d", "display", {}),
+    ("ta", "text-align", {}),
 
-    "tt": ("text-transform"),
-    "td": ("text-decoration"),
-    "ti": ("text-indent", { "unit": "px" }),
+    ("f", "font", {}),
+    ("fs", "font-size", { "unit": "em" }),
+    ("fst", "font-style", {}),
+    ("fw", "font-weight", { "value": None }),
+    ("lh", "line-height", { "unit": "em" }),
+    ("ls", "letter-spacing", { "unit": "px" }),
 
-    "fl": ("float"),
+    ("tt", "text-transform", {}),
+    ("td", "text-decoration", {}),
+    ("ti", "text-indent", { "unit": "px" }),
 
-    "br": ("border-right", { "value": "border" }),
-    "bl": ("border-left", { "value": "border" }),
-    "bt": ("border-top", { "value": "border" }),
-    "bb": ("border-bottom", { "value": "border" }),
+    ("fl", "float", {}),
 
-    "bw": ("border-width", { "unit": "px" }),
-    "brw": ("border-right-width", { "unit": "px" }),
-    "blw": ("border-left-width", { "unit": "px" }),
-    "btw": ("border-top-width", { "unit": "px" }),
-    "bbw": ("border-bottom-width", { "unit": "px" }),
+    ("br", "border-right", { "value": "border" }),
+    ("bl", "border-left", { "value": "border" }),
+    ("bt", "border-top", { "value": "border" }),
+    ("bb", "border-bottom", { "value": "border" }),
 
-    "brad": ("border-radius", { "unit": "px" }),
+    ("bw", "border-width", { "unit": "px" }),
+    ("brw", "border-right-width", { "unit": "px" }),
+    ("blw", "border-left-width", { "unit": "px" }),
+    ("btw", "border-top-width", { "unit": "px" }),
+    ("bbw", "border-bottom-width", { "unit": "px" }),
 
-    "con": ("content"),
-    "cur": ("cursor"),
-    "ani": ("animation"),
+    ("brad", "border-radius", { "unit": "px" }),
 
-    "bg": ("background"),
-    "bgc": ("background-color", { "alias": ["bgcolor"] }),
-    "bgs": ("background-size", { "alias": ["bgsize"] }),
-    "bgp": ("background-position", { "alias": ["bgposition"] }),
+    ("con", "content", {}),
+    ("cur", "cursor", {}),
+    ("ani", "animation", {}),
 
-    "c": ("color"),
-    "op": ("opacity"),
+    ("bg", "background", {}),
+    ("bgc", "background-color", { "alias": ["bgcolor"] }),
+    ("bgs", "background-size", { "alias": ["bgsize"] }),
+    ("bgp", "background-position", { "alias": ["bgposition"] }),
 
-    "bs": ("box-shadow"),
-    "bsize": ("box-sizing"),
+    ("c", "color", {}),
+    ("op", "opacity", {}),
 
-    "pos": ("position"),
-    "flex": ("flex"),
-}
+    ("bs", "box-shadow", {}),
+    ("bsize", "box-sizing", {}),
+
+    ("pos", "position", {}),
+    ("flex", "flex", {}),
+]
+
+properties = {}
+for (short, prop, options) in properties_list:
+    properties[short] = (prop, options)
 
 """
 A list of CSS expressions to expand.
@@ -175,5 +183,5 @@ expression_synonyms = {
     "cont": ["con", "cn"]
 }
 
-apply_fuzzies(properties)
+apply_fuzzies(properties_list, properties)
 apply_synonyms(expressions, expression_synonyms)

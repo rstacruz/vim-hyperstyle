@@ -12,23 +12,14 @@ def apply_synonyms(table, synonyms):
 """
 Mutates `properties` to apply fuzzy matches
 """
-def apply_fuzzies(properties):
-    # Simple iterator for properties
-    def each_property():
-        for prop in properties:
-            expansion = properties[prop]
-            if isinstance(expansion, tuple):
-                yield (prop, expansion[0], expansion[1])
-            else:
-                yield (prop, expansion, {})
+def apply_fuzzies(list, properties):
+    def iterate(property):
+        for key in fuzzify(property):
+            if not key in properties:
+                properties[key] = properties[short]
 
-    # For each prooperty, apply some of its fuzzy matches
-    new_properties = {}
-    for (short, prop, options) in each_property():
-        def iterate(property):
-            for key in fuzzify(property):
-                if not key in properties and not key in new_properties:
-                    new_properties[key] = properties[short]
+    # For each property, apply some of its fuzzy matches
+    for (short, prop, options) in list:
 
         # Create them for the property
         # ("box-sizing" => "boxsizing", "boxsizi", "boxsi", "boxs", "box"...)
@@ -37,12 +28,6 @@ def apply_fuzzies(properties):
         # Also add aliases ("bgcolor" => "bgcolo", "bgcol", "bgco", "bgc" ...)
         if options and "alias" in options:
             [iterate(alias) for alias in options["alias"]]
-
-    # Propagate the fuzzy matches back to properties
-    # We do this separately because we can't edit a dict while it's being
-    # iterated
-    for key in new_properties:
-        properties[key] = new_properties[key]
 
 """
 Returns a generator with fuzzy matches for a given string.
@@ -55,4 +40,3 @@ def fuzzify(str):
     if str:
         for i in xrange(1, len(str)+1):
             yield str[0:i]
-
