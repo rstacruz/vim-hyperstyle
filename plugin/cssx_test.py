@@ -70,7 +70,7 @@ class TestSpace(unittest.TestCase):
     def test_alias_fuzzying(self):
         self.expect('bgcolor', 'background-color:')
 
-    def _test_border(self):
+    def test_border(self):
         self.expect('bor', 'border:')
 
     def test_simple_2(self):

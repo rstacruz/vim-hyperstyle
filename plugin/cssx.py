@@ -19,7 +19,7 @@ language as an indented syntax (like Sass).
 "margin: 3em;"
 """
 def expand_expression(line, semi = ';'):
-    (indent, snippet) = split_indent(line)
+    indent, snippet = split_indent(line)
 
     # Check if its an expression
     # (db => display: block)
@@ -28,13 +28,15 @@ def expand_expression(line, semi = ';'):
         return "%s%s: %s%s" % (indent, expansion[0], expansion[1], semi)
 
     # Check if its a property with value
-    # (m10 => margin: 10px)
-    (prop, value, unit) = split_value(snippet)
-    expansion = properties.get(prop)
-    default_unit = expansion and expansion[1] and expansion[1].get('unit')
-    if prop and expansion and default_unit:
-        value = expand_value(value, unit, default_unit)
-        return "%s%s: %s%s" % (indent, expansion[0], value, semi)
+    # (m10em => margin: 10em)
+    short, value, unit = split_value(snippet) # "m", "10", "em"
+    expansion = properties.get(short) # ("margin", {"unit": "px"})
+    if expansion:
+        prop, options = expansion
+        default_unit = options.get('unit')
+        if default_unit:
+            value = expand_value(value, unit, default_unit)
+            return "%s%s: %s%s" % (indent, expansion[0], value, semi)
 
     # add semicolon if needed
     if semi == ';' and is_balanced_rule(snippet):
@@ -67,17 +69,12 @@ might pass a semicolon for it.
 "margin:"
 """
 def expand_property(line, _=None):
-    (indent, snippet) = split_indent(line)
+    indent, snippet = split_indent(line)
 
-    expansion = properties.get(snippet)
-
-    # For cases of "c": ("color")
-    if isinstance(expansion, str):
-        return "%s%s:" % (indent, expansion)
-
-    # For cases of "m": ("margin", { "unit": "px" })
-    if isinstance(expansion, tuple):
-        return "%s%s:" % (indent, expansion[0])
+    tuple = properties.get(snippet)
+    if tuple:
+        prop, options = tuple
+        return "%s%s:" % (indent, prop)
 
 """
 Expands a value
