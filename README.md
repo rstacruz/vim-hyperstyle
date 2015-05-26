@@ -2,6 +2,8 @@
 
 Type faster by shorthand.
 
+![](https://raw.githubusercontent.com/rstacruz/vim-css-shorthand/gh-pages/screencast.gif)
+
 ```
 dib        -> display: inline-block;
 m0         -> margin: 0;
