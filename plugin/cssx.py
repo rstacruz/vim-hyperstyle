@@ -19,34 +19,13 @@ def expand_expression(line, semi = ';'):
     # Check if its a property with value
     (prop, value, unit) = split_value(snippet)
     expansion = properties.get(prop)
-    if prop and expansion and expansion[1] and expansion[1].get("value"):
-        value = expand_value(value, unit, expansion[1].get("unit"))
+    default_unit = expansion and expansion[1] and expansion[1].get('unit')
+    if prop and expansion and default_unit:
+        value = expand_value(value, unit, default_unit)
         return "%s%s: %s%s" % (indent, expansion[0], value, semi)
 
     # Else, nada
     return indent + snippet
-
-"""
-Expands a value
-
->>> expand_value("10", "")
-"10px"
-
->>> expand_value("10", "m")
-"10em"
-"""
-def expand_value(value, unit, default_unit = None):
-    if value == "0":
-        return value
-
-    if unit == "p" or unit == "x":
-        unit = "px"
-    if unit == "m":
-        unit = "em"
-    if unit == "":
-        unit = (default_unit or "px")
-
-    return value + unit
 
 """
 Splits a snippet into property, value and unit
@@ -72,10 +51,36 @@ def expand_property(line):
     (indent, snippet) = split_indent(line)
 
     expansion = properties.get(snippet)
+
+    # For cases of "c": ("color")
     if isinstance(expansion, str):
         return "%s%s:" % (indent, expansion)
+
+    # For cases of "m": ("margin", { "unit": "px" })
     if isinstance(expansion, tuple):
         return "%s%s:" % (indent, expansion[0])
+
+"""
+Expands a value
+
+>>> expand_value("10", "")
+"10px"
+
+>>> expand_value("10", "m")
+"10em"
+"""
+def expand_value(value, unit, default_unit = None):
+    if value == "0":
+        return value
+
+    if unit == "p" or unit == "x":
+        unit = "px"
+    if unit == "m":
+        unit = "em"
+    if unit == "":
+        unit = (default_unit or "px")
+
+    return value + unit
 
 """
 (Private) splits a line into its indentation and meat.

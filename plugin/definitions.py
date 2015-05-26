@@ -9,55 +9,63 @@ def apply_synonyms(table, synonyms):
 A list of CSS properties to expande.
 """
 properties = {
-    "bg": ("background", { "value": "color" }),
-    "m": ("margin", { "value": "size", "unit": "em" }),
-    "w": ("width", { "value": "size" }),
-    "h": ("height", { "value": "size" }),
-    "mh": ("min-height", { "value": "size" }),
-    "mw": ("min-width", { "value": "size" }),
-    "p": ("padding", { "value": "size", "nospace": True }),
-    "pa": ("padding", { "value": "size" }),
-    "bo": ("border", { "value": "border" }),
-    "o":  ("outline", { "value": "border" }),
-    "l": ("left", { "value": "size" }),
-    "t": ("top", { "value": "size" }),
-    "bot": ("bottom", { "value": "size" }),
-    "r": ("right", { "value": "size" }),
+    "bg": ("background"),
+    "m": ("margin", { "unit": "px" }),
+    "w": ("width", { "unit": "px" }),
+    "h": ("height", { "unit": "px" }),
+    "mh": ("min-height", { "unit": "px" }),
+    "mw": ("min-width", { "unit": "px" }),
+    "p": ("padding", { "unit": "px", "nospace": True }),
+    "pa": ("padding", { "unit": "px" }),
+    "bo": ("border"),
+    "o":  ("outline"),
+    "l": ("left", { "unit": "px" }),
+    "t": ("top", { "unit": "px" }),
+    "bot": ("bottom", { "unit": "px" }),
+    "r": ("right", { "unit": "px" }),
+
+    "ml": ("margin-left", { "unit": "px" }),
+    "mr": ("margin-right", { "unit": "px" }),
+    "mt": ("margin-top", { "unit": "px" }),
+    "mb": ("margin-bottom", { "unit": "px" }),
+
+    "pl": ("padding-left", { "unit": "px" }),
+    "pr": ("padding-right", { "unit": "px" }),
+    "pt": ("padding-top", { "unit": "px" }),
+    "pb": ("padding-bottom", { "unit": "px" }),
 
     "d": ("display"),
+    "ta": ("text-align"),
 
-    "fl": ("float", { "value": None }),
-
-    "f": ("font", { "value": None }),
-    "fs": ("font-size", { "value": "size", "unit": "em" }),
+    "f": ("font"),
+    "fs": ("font-size", { "unit": "em" }),
     "fst": ("font-style"),
     "fw": ("font-weight", { "value": None }),
-    "lh": ("line-height", { "value": "size", "unit": "em" }),
-    "ls": ("letter-spacing", { "value": "size" }),
+    "lh": ("line-height", { "unit": "em" }),
+    "ls": ("letter-spacing", { "unit": "px" }),
+
     "tt": ("text-transform"),
+    "td": ("text-decoration"),
+    "ti": ("text-indent", { "unit": "px" }),
+
+    "fl": ("float"),
 
     "br": ("border-right", { "value": "border" }),
     "bl": ("border-left", { "value": "border" }),
     "bt": ("border-top", { "value": "border" }),
     "bb": ("border-bottom", { "value": "border" }),
 
-    "bw": ("border-width", { "value": "size" }),
-    "brw": ("border-right-width", { "value": "size" }),
-    "blw": ("border-left-width", { "value": "size" }),
-    "btw": ("border-top-width", { "value": "size" }),
-    "bbw": ("border-bottom-width", { "value": "size" }),
+    "bw": ("border-width", { "unit": "px" }),
+    "brw": ("border-right-width", { "unit": "px" }),
+    "blw": ("border-left-width", { "unit": "px" }),
+    "btw": ("border-top-width", { "unit": "px" }),
+    "bbw": ("border-bottom-width", { "unit": "px" }),
 
-    "bra": ("border-radius", { "value": "size" }),
-    "brad": ("border-radius", { "value": "size" }),
+    "brad": ("border-radius", { "unit": "px" }),
 
-    "ct": ("content"),
     "con": ("content"),
-    "cont": ("content"),
-
     "cur": ("cursor"),
-
     "ani": ("animation"),
-    "anim": ("animation"),
 
     "bg": ("background"),
     "bgc": ("background-color"),
@@ -68,6 +76,9 @@ properties = {
 
     "bs": ("box-shadow"),
     "bsize": ("box-sizing"),
+
+    "pos": ("position"),
+    "flex": ("flex"),
 }
 
 # uhh.. maybe auto fuzzy these at some point.
@@ -85,7 +96,10 @@ apply_synonyms(properties, {
     "bgc": ["bgcolor"],
     "bgp": ["bgpos"],
     "bgs": ["bgsize"],
+    "brad": ["bra"],
     "bsize": ["bsi", "bsz", "bsiz", "bsizing"],
+    "con": ["ct"],
+    "ani": ["an", "animat"],
 })
 
 """
@@ -99,13 +113,13 @@ expressions = {
     "dtc": ("display", "table-cell"),
     "dtr": ("display", "table-row"),
     "dn": ("display", "none"),
+    "df": ("display", "flex"),
 
     "fl": ("float", "left"),
     "fr": ("float", "right"),
     "fn": ("float", "none"),
 
     "bold": ("font-weight", "bold"),
-
     "fsi": ("font-style", "italic"),
     "fsn": ("font-style", "normal"),
 
@@ -144,6 +158,11 @@ expressions = {
     "ttu": ("text-transform", "uppercase"),
     "ttn": ("text-transform", "none"),
 
+    "tal": ("text-align", "left"),
+    "tar": ("text-align", "right"),
+    "tac": ("text-align", "center"),
+    "taj": ("text-align", "justify"),
+
     "under": ("text-decoration", "underline"),
     "tdu": ("text-decoration", "underline"),
     "tdn": ("text-decoration", "none"),
@@ -151,6 +170,15 @@ expressions = {
     "bsb": ("box-sizing", "border-box"),
     "bsp": ("box-sizing", "padding-box"),
     "bsc": ("box-sizing", "content-box"),
+
+    "ma": ("margin", "auto"),
+    "mla": ("margin-left", "auto"),
+    "mra": ("margin-right", "auto"),
+
+    "por": ("position", "relative"),
+    "pof": ("position", "fixed"),
+    "pos": ("position", "static"),
+    "poa": ("position", "absolute"),
 }
 
 apply_synonyms(expressions, {
@@ -167,6 +195,7 @@ apply_synonyms(expressions, {
     "f8": ["fw8"],
     "f9": ["fw9"],
     "dt": ["table"],
+    "df": ["flex"],
     "dtc": ["table-cell", "tablecell", "cell"],
     "dtr": ["table-row", "tablerow", "row"],
 })
