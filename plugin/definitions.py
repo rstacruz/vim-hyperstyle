@@ -112,10 +112,6 @@ properties_list = [
     ("q", "quotes", {}),
 ]
 
-properties = {}
-for (short, prop, options) in properties_list:
-    properties[short] = (prop, options)
-
 """
 A list of CSS expressions to expand.
 """
@@ -247,6 +243,11 @@ expressions_list = [
     ("rtl", "direction", "rtl", {}),
 ]
 
+# Index them
+properties = {}
+for (short, prop, options) in properties_list:
+    properties[short] = (prop, options)
+
 expressions = {}
 for (short, prop, value, options) in expressions_list:
     expressions[short] = (prop, value, options)
@@ -262,6 +263,6 @@ for (short, prop, value, options) in expressions_list:
 #
 # This is also important for indented syntaxes, where you might commonly
 # type `p` on its own line (in contrast to `p {`).
-for tag in ['a', 'p', 'br', 'b', 'i', 'li', 'ul', 'div', 'em']:
+for tag in ['a', 'p', 'br', 'b', 'i', 'li', 'ul', 'div', 'em', 'sup', 'big', 'small', 'sub']:
     expressions[tag] = None
     properties[tag] = None
