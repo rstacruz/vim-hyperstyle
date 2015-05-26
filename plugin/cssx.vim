@@ -1,12 +1,6 @@
-" heh
-if ! exists("$CSSX")
-  finish
-endif
-
-" if exists("g:cssx_loaded")
-"   finish
-" endif
-" let g:cssx_loaded=1
+" also see https://github.com/tpope/vim-endwise/blob/master/plugin/endwise.vim
+if exists("g:cssx_loaded") | finish | endif
+let g:cssx_loaded=1
 
 if !has("python")
   finish
@@ -19,11 +13,35 @@ sys.path.insert(0, os.path.dirname(vim.eval("s:current_file")))
 import cssx
 EOF
 
-function s:doexpand()
-  " https://github.com/tpope/vim-endwise/blob/master/plugin/endwise.vim
-  let line = getline('.')
-  exe 'normal 0C'
-  return pyeval("cssx.expand(vim.eval(\"line\"))") . "\n"
+" Expands carriage return
+function s:expand_cr()
+  return s:expand_thing('expand_expression', "\n", "\n")
 endfunction
 
-imap <CR> <C-R>=<SID>doexpand()<CR>
+function s:expand_space()
+  return s:expand_thing('expand_property', ' ', ' ')
+endfunction
+
+function s:expand_colon()
+  return s:expand_thing('expand_property', ':', '')
+endfunction
+
+" Expands something
+"     expand_thing('expand_space', ' ')
+function s:expand_thing(fn, key, suffix)
+  let output = pyeval("cssx." . a:fn . "(vim.eval(\"getline('.')\"))")
+  if output == "" | return a:key | endif
+  exe 'normal 0C'
+  return output . a:suffix
+endfunction
+
+function s:enable()
+  imap <CR> <C-R>=<SID>expand_cr()<CR>
+  imap <Space> <C-R>=<SID>expand_space()<CR>
+  imap : <C-R>=<SID>expand_colon()<CR>
+endfunction
+
+augroup css
+  au!
+  au BufNewFile,BufReadPost *.css call <SID>enable()
+augroup END
