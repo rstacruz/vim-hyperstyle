@@ -8,20 +8,19 @@ because the order will matter in fuzzifying.
 """
 
 properties_list = [
-    ("bg", "background", {}),
     ("m", "margin", { "unit": "px" }),
     ("w", "width", { "unit": "px" }),
     ("h", "height", { "unit": "px" }),
-    ("mh", "min-height", { "unit": "px" }),
-    ("mw", "min-width", { "unit": "px" }),
-    ("p", "padding", { "unit": "px", "nospace": True }),
-    ("pa", "padding", { "unit": "px" }),
+    ("p", "padding", { "unit": "px" }),
     ("b", "border", {}),
     ("o", "outline", {}),
     ("l", "left", { "unit": "px" }),
     ("t", "top", { "unit": "px" }),
     ("bot", "bottom", { "unit": "px" }),
     ("r", "right", { "unit": "px" }),
+    ("bg", "background", {}),
+    ("mh", "min-height", { "unit": "px" }),
+    ("mw", "min-width", { "unit": "px" }),
 
     ("ml", "margin-left", { "unit": "px" }),
     ("mr", "margin-right", { "unit": "px" }),
@@ -34,7 +33,11 @@ properties_list = [
     ("pb", "padding-bottom", { "unit": "px" }),
 
     ("d", "display", {}),
-    ("ta", "text-align", {}),
+    ("ta", "text-align", { "values": ["left", "right", "justify", "center", "inherit"] }),
+
+    ("of", "overflow", { "values": ["scroll", "hidden", "auto", "inherit"] }),
+    ("ofx", "overflow-x", { "alias": "ox", "values": ["scroll", "hidden", "auto", "inherit"] }),
+    ("ofy", "overflow-y", { "alias": "oy", "values": ["scroll", "hidden", "auto", "inherit"] }),
 
     ("f", "font", {}),
     ("fs", "font-size", { "unit": "em" }),
@@ -53,10 +56,10 @@ properties_list = [
 
     ("fl", "float", { "values": ["left", "right", "none", "inherit"] }),
 
-    ("br", "border-right", { "value": "border" }),
-    ("bl", "border-left", { "value": "border" }),
-    ("bt", "border-top", { "value": "border" }),
-    ("bb", "border-bottom", { "value": "border" }),
+    ("br", "border-right", {}),
+    ("bl", "border-left", {}),
+    ("bt", "border-top", {}),
+    ("bb", "border-bottom", {}),
 
     ("bw", "border-width", { "unit": "px" }),
     ("brw", "border-right-width", { "unit": "px" }),
@@ -120,7 +123,25 @@ expressions_list = [
     ("fsi", "font-style", "italic", { "alias": ["italic"] }),
     ("fsn", "font-style", "normal", {}),
 
+    ("b0", "border", "0", {}),
+    ("p0", "padding", "0", {}),
+    ("m0", "margin", "0", {}),
     ("m0a", "margin", "0 auto", {}),
+
+    ("oh", "overflow", "hidden", {}),
+    ("os", "overflow", "scroll", {}),
+    ("oa", "overflow", "auto", {}),
+    ("ov", "overflow", "visible", {}),
+
+    ("oxh", "overflow-x", "hidden", {}),
+    ("oxs", "overflow-x", "scroll", {}),
+    ("oxa", "overflow-x", "auto", {}),
+    ("oxv", "overflow-x", "visible", {}),
+
+    ("oyh", "overflow-y", "hidden", {}),
+    ("oys", "overflow-y", "scroll", {}),
+    ("oya", "overflow-y", "auto", {}),
+    ("oyv", "overflow-y", "visible", {}),
 
     ("f1", "font-weight", "100", { "alias": ["fw1"] }),
     ("f2", "font-weight", "200", { "alias": ["fw2"] }),
@@ -208,3 +229,12 @@ for (short, prop, options) in properties_list:
 
 for (short, prop, value, options) in expressions_list:
     apply_fuzzies(expressions, short, prop, options)
+
+# Workaround to stop tags from being expanded. This will allow you to type
+# `li:before` without `li:` being expanded to `line-height:`.
+#
+# This is also important for indented syntaxes, where you might commonly
+# type `p` on its own line (in contrast to `p {`).
+for tag in ['a', 'p', 'br', 'b', 'i', 'li', 'ul', 'div', 'em']:
+    expressions[tag] = None
+    properties[tag] = None

@@ -18,6 +18,14 @@ class TestCr(unittest.TestCase):
     def test_display_block_with_indent(self):
         self.expect('  db', '  display: block;')
 
+    def test_dont_expand_p(self):
+        self.expect('  p', '  p')
+
+    def test_mopobo(self):
+        self.expect('m0', 'margin: 0;')
+        self.expect('b0', 'border: 0;')
+        self.expect('p0', 'padding: 0;')
+
     def test_unparseables_with_indent(self):
         self.expect('  hi', '  hi')
 
