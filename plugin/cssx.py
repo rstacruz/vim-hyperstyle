@@ -3,9 +3,20 @@ from definitions import properties, expressions
 
 line_expr = re.compile(r'^(\s*)(.*?)$')
 value_expr = re.compile(r'^([^\.\d-]+)(-?\d*\.?\d+)(p|x|m|px|em|%|)$')
+rule_expr = re.compile(r'^([a-z]+-)*[a-z]+: +(.+)$')
 
 """
-Expands a snippet expression.
+Expands a snippet expression. If `semi` is a blank string, then treat the
+language as an indented syntax (like Sass).
+
+>>> expand_expression("db")
+"display: block;"
+
+>>> expand_expression("db", '')
+"display: block"
+
+>>> expand_expression("m3m")
+"margin: 3em;"
 """
 def expand_expression(line, semi = ';'):
     (indent, snippet) = split_indent(line)
@@ -17,12 +28,17 @@ def expand_expression(line, semi = ';'):
         return "%s%s: %s%s" % (indent, expansion[0], expansion[1], semi)
 
     # Check if its a property with value
+    # (m10 => margin: 10px)
     (prop, value, unit) = split_value(snippet)
     expansion = properties.get(prop)
     default_unit = expansion and expansion[1] and expansion[1].get('unit')
     if prop and expansion and default_unit:
         value = expand_value(value, unit, default_unit)
         return "%s%s: %s%s" % (indent, expansion[0], value, semi)
+
+    # add semicolon if needed
+    if semi == ';' and is_balanced_rule(snippet):
+        return "%s%s;" % (indent, snippet)
 
     # Else, nada
     return indent + snippet
@@ -44,10 +60,13 @@ def split_value(snippet):
 """
 Expands a property.
 
+The 2nd argument is there to keep the API same with expand_expression(). Vim
+might pass a semicolon for it.
+
 >>> expand_property("m")
 "margin:"
 """
-def expand_property(line):
+def expand_property(line, _=None):
     (indent, snippet) = split_indent(line)
 
     expansion = properties.get(snippet)
@@ -91,3 +110,25 @@ def expand_value(value, unit, default_unit = None):
 def split_indent(line):
     match = line_expr.match(line)
     return (match.group(1), match.group(2))
+
+"""
+Checks if a line is a balanced rule that can be auto-terminated with a
+semicolon.
+
+>>> is_balanced_rule("margin: 0")
+True
+>>> is_balanced_rule("margin: scaleX(3)")
+True
+>>> is_balanced_rule("margin: linear-gradient(to-bottom")
+True
+"""
+def is_balanced_rule(str):
+    if str and str[-1] == ';':
+        return False
+
+    m = rule_expr.match(str)
+    if not m:
+        return False
+
+    value = m.group(2)
+    return value.count('(') == value.count(')')

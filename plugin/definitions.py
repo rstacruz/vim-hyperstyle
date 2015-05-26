@@ -1,9 +1,4 @@
-def apply_synonyms(table, synonyms):
-    for key in synonyms:
-        for other_key in synonyms[key]:
-            if table.get(other_key):
-                raise IndexError("Key already taken: %s" % other_key)
-            table[other_key] = table[key]
+from utils import fuzzify, apply_synonyms, apply_fuzzies
 
 """
 A list of CSS properties to expande.
@@ -17,7 +12,7 @@ properties = {
     "mw": ("min-width", { "unit": "px" }),
     "p": ("padding", { "unit": "px", "nospace": True }),
     "pa": ("padding", { "unit": "px" }),
-    "bo": ("border"),
+    "b": ("border"),
     "o":  ("outline"),
     "l": ("left", { "unit": "px" }),
     "t": ("top", { "unit": "px" }),
@@ -68,11 +63,12 @@ properties = {
     "ani": ("animation"),
 
     "bg": ("background"),
-    "bgc": ("background-color"),
-    "bgs": ("background-size"),
-    "bgp": ("background-position"),
+    "bgc": ("background-color", { "alias": ["bgcolor"] }),
+    "bgs": ("background-size", { "alias": ["bgsize"] }),
+    "bgp": ("background-position", { "alias": ["bgposition"] }),
 
     "c": ("color"),
+    "op": ("opacity"),
 
     "bs": ("box-shadow"),
     "bsize": ("box-sizing"),
@@ -80,27 +76,6 @@ properties = {
     "pos": ("position"),
     "flex": ("flex"),
 }
-
-# uhh.. maybe auto fuzzy these at some point.
-apply_synonyms(properties, {
-    "d": ["di", "dis", "disp"],
-    "c": ["co", "col", "colo"],
-    "l": ["le", "lef"],
-    "t": ["to"],
-    "r": ["ri", "rig"],
-    "fl": ["flo", "floa"],
-    "ls": ["let", "lett", "lette", "letter"],
-    "mw": ["minw", "minwidth"],
-    "mh": ["minh", "minheight"],
-    "cur": ["curs", "curso"],
-    "bgc": ["bgcolor"],
-    "bgp": ["bgpos"],
-    "bgs": ["bgsize"],
-    "brad": ["bra"],
-    "bsize": ["bsi", "bsz", "bsiz", "bsizing"],
-    "con": ["ct"],
-    "ani": ["an", "animat"],
-})
 
 """
 A list of CSS expressions to expand.
@@ -137,6 +112,7 @@ expressions = {
     "f8": ("font-weight", "800"),
     "f9": ("font-weight", "900"),
 
+    "b0": ("border", "0"),
     "bcc": ("border-collapse", "collapse"),
     
     "brx": ("background-repeat", "repeat-x"),
@@ -152,8 +128,6 @@ expressions = {
     "cut": ("cursor", "text"),
 
     "cont": ("content", "''"),
-    "con": ("content", "''"),
-    "ct": ("content", "''"),
 
     "ttu": ("text-transform", "uppercase"),
     "ttn": ("text-transform", "none"),
@@ -181,7 +155,7 @@ expressions = {
     "poa": ("position", "absolute"),
 }
 
-apply_synonyms(expressions, {
+expression_synonyms = {
     "ttu": ["up"],
     "fsi": ["it", "ita", "ital", "italic"],
     "fwb": ["fb"],
@@ -198,4 +172,8 @@ apply_synonyms(expressions, {
     "df": ["flex"],
     "dtc": ["table-cell", "tablecell", "cell"],
     "dtr": ["table-row", "tablerow", "row"],
-})
+    "cont": ["con", "cn"]
+}
+
+apply_fuzzies(properties)
+apply_synonyms(expressions, expression_synonyms)
