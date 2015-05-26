@@ -1,6 +1,6 @@
 # vim-css-shorthand
 
-Type faster by shorthand that will auto-expand as you type.
+Type faster by shorthand that will auto-expand as you type. Supports less, sass, scss, stylus, and plain CSS.
 
 ![](https://raw.githubusercontent.com/rstacruz/vim-css-shorthand/gh-pages/screencast.gif)
 
