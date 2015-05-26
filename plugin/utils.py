@@ -15,23 +15,21 @@ def apply_synonyms(table, synonyms):
 """
 Mutates `properties` to apply fuzzy matches
 """
-def apply_fuzzies(list, properties):
+def apply_fuzzies(properties, short, prop, options):
     def iterate(property):
         for key in fuzzify(property):
             if not key in properties:
                 properties[key] = properties[short]
 
-    # For each property, apply some of its fuzzy matches
-    for (short, prop, options) in list:
+    # Create them for the property
+    # ("box-sizing" => "boxsizing", "boxsizi", "boxsi", "boxs", "box"...)
+    iterate(prop.replace('-', ''))
+    iterate(prop)
 
-        # Create them for the property
-        # ("box-sizing" => "boxsizing", "boxsizi", "boxsi", "boxs", "box"...)
-        iterate(prop.replace('-', ''))
-        iterate(prop)
-
-        # Also add aliases ("bgcolor" => "bgcolo", "bgcol", "bgco", "bgc" ...)
-        if options and "alias" in options:
-            [iterate(alias) for alias in options["alias"]]
+    # Also add aliases ("bgcolor" => "bgcolo", "bgcol", "bgco", "bgc" ...)
+    # This kinda sucks, because aliases should have lowest priority.
+    if options and "alias" in options:
+        [iterate(alias) for alias in options["alias"]]
 
 """
 Returns a generator with fuzzy matches for a given string.

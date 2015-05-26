@@ -101,125 +101,110 @@ for (short, prop, options) in properties_list:
 """
 A list of CSS expressions to expand.
 """
-expressions = {
-    "db": ("display", "block"),
-    "di": ("display", "inline"),
-    "dib": ("display", "inline-block"),
-    "dif": ("display", "inline-flex"),
-    "dt": ("display", "table"),
-    "dtc": ("display", "table-cell"),
-    "dtr": ("display", "table-row"),
-    "dn": ("display", "none"),
-    "df": ("display", "flex"),
+expressions_list = [
+    ("db", "display", "block", {}),
+    ("di", "display", "inline", {}),
+    ("dib", "display", "inline-block", {}),
+    ("dif", "display", "inline-flex", {}),
+    ("dt", "display", "table", { "alias": ["table"] }),
+    ("dtc", "display", "table-cell", { "alias": ["cell", "table-cell", "tablecell"] }),
+    ("dtr", "display", "table-row", { "alias": ["row", "table-row", "tablerow"] }),
+    ("dn", "display", "none", {}),
+    ("df", "display", "flex", { "alias": ["dflex", "flex"] }),
 
-    "fl": ("float", "left"),
-    "fr": ("float", "right"),
-    "fn": ("float", "none"),
+    ("fl", "float", "left", { "alias": ["fleft"] }),
+    ("fr", "float", "right", { "alias": ["fright"] }),
+    ("fn", "float", "none", { "alias": ["fnone"] }),
 
-    "fwb": ("font-weight", "bold"),
-    "fsi": ("font-style", "italic"),
-    "fsn": ("font-style", "normal"),
+    ("fwb", "font-weight", "bold", { "alias": ["bold"] }),
+    ("fsi", "font-style", "italic", { "alias": ["italic"] }),
+    ("fsn", "font-style", "normal", {}),
 
-    "m0a": ("margin", "0 auto"),
+    ("m0a", "margin", "0 auto", {}),
 
-    "f1": ("font-weight", "100"),
-    "f2": ("font-weight", "200"),
-    "f3": ("font-weight", "300"),
-    "f4": ("font-weight", "400"),
-    "f5": ("font-weight", "500"),
-    "f6": ("font-weight", "600"),
-    "f7": ("font-weight", "700"),
-    "f8": ("font-weight", "800"),
-    "f9": ("font-weight", "900"),
+    ("f1", "font-weight", "100", { "alias": ["fw1"] }),
+    ("f2", "font-weight", "200", { "alias": ["fw2"] }),
+    ("f3", "font-weight", "300", { "alias": ["fw3"] }),
+    ("f4", "font-weight", "400", { "alias": ["fw4"] }),
+    ("f5", "font-weight", "500", { "alias": ["fw5"] }),
+    ("f6", "font-weight", "600", { "alias": ["fw6"] }),
+    ("f7", "font-weight", "700", { "alias": ["fw7"] }),
+    ("f8", "font-weight", "800", { "alias": ["fw8"] }),
+    ("f9", "font-weight", "900", { "alias": ["fw9"] }),
 
-    "b0": ("border", "0"),
-    "bcc": ("border-collapse", "collapse"),
+    ("b0", "border", "0", {}),
+    ("bcc", "border-collapse", "collapse", {}),
     
-    "brx": ("background-repeat", "repeat-x"),
-    "bry": ("background-repeat", "repeat-y"),
-    "brn": ("background-repeat", "no-repeat"),
+    ("brx", "background-repeat", "repeat-x", { "alias": [ "repeatx", "bgrx", "rx" ] }),
+    ("bry", "background-repeat", "repeat-y", { "alias": [ "repeaty", "bgry", "ry" ] }),
+    ("brn", "background-repeat", "no-repeat", { "alias": ["norepeat"] }),
 
-    "cover": ("background-size", "cover"),
-    "contain": ("background-size", "contain"),
+    ("cover", "background-size", "cover", {}),
+    ("contain", "background-size", "contain", {}),
 
-    "cup": ("cursor", "pointer"),
-    "cuw": ("cursor", "wait"),
-    "cub": ("cursor", "busy"),
-    "cut": ("cursor", "text"),
+    ("cup", "cursor", "pointer", {}),
+    ("cuw", "cursor", "wait", {}),
+    ("cub", "cursor", "busy", {}),
+    ("cut", "cursor", "text", {}),
 
-    "cont": ("content", "''"),
+    ("cont", "content", "''", {}),
 
-    "ttu": ("text-transform", "uppercase"),
-    "ttn": ("text-transform", "none"),
+    ("ttu", "text-transform", "uppercase", {}),
+    ("ttn", "text-transform", "none", {}),
 
-    "tal": ("text-align", "left"),
-    "tar": ("text-align", "right"),
-    "tac": ("text-align", "center"),
-    "taj": ("text-align", "justify"),
+    ("tal", "text-align", "left", {}),
+    ("tar", "text-align", "right", {}),
+    ("tac", "text-align", "center", {}),
+    ("taj", "text-align", "justify", {}),
 
-    "under": ("text-decoration", "underline"),
-    "tdu": ("text-decoration", "underline"),
-    "tdn": ("text-decoration", "none"),
+    ("under", "text-decoration", "underline", {}),
+    ("tdu", "text-decoration", "underline", { "alias": ["underline"] }),
+    ("tdn", "text-decoration", "none", {}),
 
-    "bsb": ("box-sizing", "border-box"),
-    "bsp": ("box-sizing", "padding-box"),
-    "bsc": ("box-sizing", "content-box"),
+    ("bsb", "box-sizing", "border-box", {}),
+    ("bsp", "box-sizing", "padding-box", {}),
+    ("bsc", "box-sizing", "content-box", {}),
 
-    "ma": ("margin", "auto"),
-    "mla": ("margin-left", "auto"),
-    "mra": ("margin-right", "auto"),
+    ("ma", "margin", "auto", {}),
+    ("mla", "margin-left", "auto", {}),
+    ("mra", "margin-right", "auto", {}),
 
-    "por": ("position", "relative"),
-    "pof": ("position", "fixed"),
-    "pos": ("position", "static"),
-    "poa": ("position", "absolute"),
+    ("por", "position", "relative", {}),
+    ("pof", "position", "fixed", {}),
+    ("pos", "position", "static", {}),
+    ("poa", "position", "absolute", {}),
 
-    "nowrap": ("white-space", "nowrap"),
-    "ellip": ("text-overflow", "ellipsis"),
+    ("nowrap", "white-space", "nowrap", {}),
+    ("ellip", "text-overflow", "ellipsis", {}),
 
-    "fla": ("flex", "auto"),
+    ("fla", "flex", "auto", {}),
 
-    "ais": ("align-items", "flex-start"),
-    "aie": ("align-items", "flex-end"),
-    "aic": ("align-items", "center"),
-    "aistr": ("align-items", "stretch"),
+    ("ais", "align-items", "flex-start", {}),
+    ("aie", "align-items", "flex-end", {}),
+    ("aic", "align-items", "center", {}),
+    ("aistr", "align-items", "stretch", { "alias": ["aistretch"] }),
 
-    "fwrap": ("flex-wrap", "wrap"),
-    "fnowrap": ("flex-wrap", "nowrap"),
+    ("fwrap", "flex-wrap", "wrap", { "alias": ["flexwrap"] }),
+    ("fnowrap", "flex-wrap", "nowrap", {}),
 
-    "fdr": ("flex-direction", "row"),
-    "fdrr": ("flex-direction", "row-reverse"),
-    "fdc": ("flex-direction", "column"),
-    "fdcr": ("flex-direction", "column-reverse"),
+    ("fdr", "flex-direction", "row", {}),
+    ("fdrr", "flex-direction", "row-reverse", {}),
+    ("fdc", "flex-direction", "column", {}),
+    ("fdcr", "flex-direction", "column-reverse", {}),
 
-    "jcc": ("justify-content", "center"),
-    "jcstart": ("justify-content", "flex-start"),
-    "jcend": ("justify-content", "flex-end"),
-}
+    ("ellip", "text-overflow", "ellipsis", { "alias": ["elip", "ellipsis"] }),
 
-expression_synonyms = {
-    "ttu": ["up"],
-    "fsi": ["it", "ita", "ital", "italic"],
-    "fwb": ["fb", "bold"],
-    "f1": ["fw1"],
-    "f2": ["fw2"],
-    "f3": ["fw3"],
-    "f4": ["fw4"],
-    "f5": ["fw5"],
-    "f6": ["fw6"],
-    "f7": ["fw7"],
-    "f8": ["fw8"],
-    "f9": ["fw9"],
-    "dt": ["table"],
-    "df": ["flex"],
-    "dtc": ["table-cell", "tablecell", "cell"],
-    "dtr": ["table-row", "tablerow", "row"],
-    "dtr": ["table-row", "tablerow", "row"],
-    "cont": ["con", "cn"],
-    "ellip": ["elip", "ellipsis"],
-    "aistr": ["aistretch"],
-    "fwrap": ["flexwrap"],
-}
+    ("jcc", "justify-content", "center", {}),
+    ("jcstart", "justify-content", "flex-start", {}),
+    ("jcend", "justify-content", "flex-end", {}),
+]
 
-apply_fuzzies(properties_list, properties)
-apply_synonyms(expressions, expression_synonyms)
+expressions = {}
+for (short, prop, value, options) in expressions_list:
+    expressions[short] = (prop, value, options)
+
+for (short, prop, options) in properties_list:
+    apply_fuzzies(properties, short, prop, options)
+
+for (short, prop, value, options) in expressions_list:
+    apply_fuzzies(expressions, short, prop, options)
