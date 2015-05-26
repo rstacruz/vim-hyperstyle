@@ -7,21 +7,21 @@ value_expr = re.compile(r'^([^\.\d-]+)(-?\d*\.?\d+)(p|x|m|px|em|%|)$')
 """
 Expands a snippet expression.
 """
-def expand_expression(line):
+def expand_expression(line, semi = ';'):
     (indent, snippet) = split_indent(line)
 
     # Check if its an expression
     # (db => display: block)
     expansion = expressions.get(snippet)
     if expansion:
-        return "%s%s: %s;" % (indent, expansion[0], expansion[1])
+        return "%s%s: %s%s" % (indent, expansion[0], expansion[1], semi)
 
     # Check if its a property with value
     (prop, value, unit) = split_value(snippet)
     expansion = properties.get(prop)
     if prop and expansion and expansion.get("value") != None:
         value = expand_value(value, unit, expansion.get("unit"))
-        return "%s%s: %s;" % (indent, expansion["name"], value)
+        return "%s%s: %s%s" % (indent, expansion["name"], value, semi)
 
     # Else, nada
     return indent + snippet

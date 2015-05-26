@@ -65,6 +65,5 @@ class TestSpace(unittest.TestCase):
     def test_simple_2(self):
         self.expect('tt', 'text-transform:')
 
-
 if __name__ == '__main__':
     unittest.main()

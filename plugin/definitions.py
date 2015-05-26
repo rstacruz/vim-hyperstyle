@@ -1,6 +1,8 @@
 def apply_synonyms(table, synonyms):
     for key in synonyms:
         for other_key in synonyms[key]:
+            if table.get(other_key):
+                raise IndexError("Key already taken: %s" % other_key)
             table[other_key] = table[key]
 
 """
@@ -11,10 +13,16 @@ properties = {
     "m": { "name": "margin", "value": "size", "unit": "em" },
     "w": { "name": "width", "value": "size" },
     "h": { "name": "height", "value": "size" },
+    "mh": { "name": "min-height", "value": "size" },
+    "mw": { "name": "min-width", "value": "size" },
     "p": { "name": "padding", "value": "size", "nospace": True },
     "pa": { "name": "padding", "value": "size" },
     "bo": { "name": "border", "value": "border" },
     "o":  { "name": "outline", "value": "border" },
+    "l": { "name": "left", "value": "size" },
+    "t": { "name": "top", "value": "size" },
+    "bot": { "name": "bottom", "value": "size" },
+    "r": { "name": "right", "value": "size" },
 
     "d": { "name": "display" },
 
@@ -56,15 +64,28 @@ properties = {
     "bgs": { "name": "background-size" },
     "bgp": { "name": "background-position" },
 
-    "c": { "name": "color", "value": "color" },
+    "c": { "name": "color" },
+
+    "bs": { "name": "box-shadow" },
+    "bsize": { "name": "box-sizing" },
 }
 
+# uhh.. maybe auto fuzzy these at some point.
 apply_synonyms(properties, {
     "d": ["di", "dis", "disp"],
     "c": ["co", "col", "colo"],
+    "l": ["le", "lef"],
+    "t": ["to"],
+    "r": ["ri", "rig"],
+    "fl": ["flo", "floa"],
+    "ls": ["let", "lett", "lette", "letter"],
+    "mw": ["minw", "minwidth"],
+    "mh": ["minh", "minheight"],
+    "cur": ["curs", "curso"],
     "bgc": ["bgcolor"],
     "bgp": ["bgpos"],
     "bgs": ["bgsize"],
+    "bsize": ["bsi", "bsz", "bsiz", "bsizing"],
 })
 
 """
@@ -74,6 +95,9 @@ expressions = {
     "db": ("display", "block"),
     "di": ("display", "inline"),
     "dib": ("display", "inline-block"),
+    "dt": ("display", "table"),
+    "dtc": ("display", "table-cell"),
+    "dtr": ("display", "table-row"),
     "dn": ("display", "none"),
 
     "fl": ("float", "left"),
@@ -123,6 +147,10 @@ expressions = {
     "under": ("text-decoration", "underline"),
     "tdu": ("text-decoration", "underline"),
     "tdn": ("text-decoration", "none"),
+
+    "bsb": ("box-sizing", "border-box"),
+    "bsp": ("box-sizing", "padding-box"),
+    "bsc": ("box-sizing", "content-box"),
 }
 
 apply_synonyms(expressions, {
@@ -138,4 +166,7 @@ apply_synonyms(expressions, {
     "f7": ["fw7"],
     "f8": ["fw8"],
     "f9": ["fw9"],
+    "dt": ["table"],
+    "dtc": ["table-cell", "tablecell", "cell"],
+    "dtr": ["table-row", "tablerow", "row"],
 })
