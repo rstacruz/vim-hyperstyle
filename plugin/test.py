@@ -113,6 +113,9 @@ class TestSpace(unittest.TestCase):
     def test_simple_2(self):
         self.expect('tt', 'text-transform:')
 
+    def test_expansion_with_hyphens(self):
+        self.expect('border-co', 'border-color:')
+
 class TestBalanced(unittest.TestCase):
     def expect(self, input, expected):
         output = cssx.is_balanced_rule(input)

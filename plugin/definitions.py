@@ -47,6 +47,7 @@ properties_list = [
     ("fst", "font-style", {}),
     ("fw", "font-weight", {}),
     ("fv", "font-variant", {}),
+    ("ff", "font-family", {}),
     ("lh", "line-height", { "unit": "_" }),
     ("ls", "letter-spacing", { "unit": "px" }),
 
@@ -73,6 +74,7 @@ properties_list = [
     ("bbw", "border-bottom-width", { "unit": "px" }),
 
     ("brad", "border-radius", { "unit": "px" }),
+    ("boc", "border-color", { "unit": "px", "alias": ["bcolor"] }),
 
     ("con", "content", {}),
     ("cur", "cursor", {}),
