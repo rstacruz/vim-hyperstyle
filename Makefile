@@ -1,2 +1,4 @@
 test:
-	python plugin/cssx_test.py
+	python plugin/test.py
+
+.PHONY: test

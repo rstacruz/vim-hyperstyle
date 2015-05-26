@@ -1,8 +1,15 @@
-" also see https://github.com/tpope/vim-endwise/blob/master/plugin/endwise.vim
-if exists("g:cssx_loaded") | finish | endif
-let g:cssx_loaded=1
+if exists("g:css_shorthand_loaded") | finish | endif
+let g:css_shorthand_loaded=1
 
 if !has("python")
+  echohl WarningMsg
+  echomsg "vim-css-shorthand requires vim with python support."
+  if has("nvim")
+    echomsg "for Neovim, see `:help nvim-python`."
+  else
+    echomsg "you may need to rebuild vim with --with-python."
+  endif
+  echohl None
   finish
 endif
 
@@ -10,7 +17,7 @@ let s:current_file=expand("<sfile>")
 python << EOF
 import sys, os, vim
 sys.path.insert(0, os.path.dirname(vim.eval("s:current_file")))
-import cssx
+import css_shorthand as cssx
 EOF
 
 " Expands carriage return
