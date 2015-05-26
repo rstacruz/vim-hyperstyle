@@ -14,6 +14,10 @@ float left -> float: left;
 
 [![Status](https://travis-ci.org/rstacruz/vim-css-shorthand.svg?branch=master)](https://travis-ci.org/rstacruz/vim-css-shorthand)  
 
+## Reference
+
+[See the source](plugin/definitions.py) while I haven't put together something here yet.
+
 ## Installation
 
 Using [vim-plug]:
@@ -27,10 +31,9 @@ This requires vim with Python support.
  * Neovim: `:help nvim-python`
  * Howebrew: `brew install macvim --with-cscope --with-lua --override-system-vim --with-luajit --with-python3 --with-python` ([info](http://ricostacruz.com/til/use-macvim-with-lua.html))
 
-### Caveats
+Caveats:
 
-Not fully functional when [auto-pairs] is installed along with it (conflict in the `<Space>` binding). PR's welcome!
-
+* Not fully functional when [auto-pairs] is installed along with it (conflict in the `<Space>` binding). PR's welcome!
 
 ## Thanks
 
