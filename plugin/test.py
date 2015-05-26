@@ -32,6 +32,10 @@ class TestCr(unittest.TestCase):
     def test_numeric(self):
         self.expect('m0', 'margin: 0;')
 
+    def test_z_index(self):
+        self.expect('zi0', 'z-index: 0;')
+        self.expect('z0', 'z-index: 0;')
+
     def _test_multi_numeric(self):
         self.expect('m0 3px', 'margin: 0 3px;')
 
@@ -80,6 +84,9 @@ class TestCr(unittest.TestCase):
 
     def test_flex_grow_short(self):
         self.expect('fwrap', 'flex-wrap: wrap;')
+
+    def test_misc(self):
+        self.expect('rtl', 'direction: rtl;')
 
 class TestSpace(unittest.TestCase):
     def expect(self, source, expected):

@@ -32,6 +32,9 @@ properties_list = [
     ("pt", "padding-top", { "unit": "px" }),
     ("pb", "padding-bottom", { "unit": "px" }),
 
+    ("zi", "z-index", { "unit": "_" }),
+    ("dir", "direction", { "values": ["ltr", "rtl", "inherit"] }),
+
     ("d", "display", {}),
     ("ta", "text-align", { "values": ["left", "right", "justify", "center", "inherit"] }),
 
@@ -42,7 +45,8 @@ properties_list = [
     ("f", "font", {}),
     ("fs", "font-size", { "unit": "em" }),
     ("fst", "font-style", {}),
-    ("fw", "font-weight", { "value": None }),
+    ("fw", "font-weight", {}),
+    ("fv", "font-variant", {}),
     ("lh", "line-height", { "unit": "_" }),
     ("ls", "letter-spacing", { "unit": "px" }),
 
@@ -97,6 +101,13 @@ properties_list = [
     ("ai", "align-items", { "alias": ["aitems"] }),
     ("jc", "justify-content", { "alias": ["jcontent"] }),
     ("or", "order", {}),
+
+    ("pba", "page-break-after", {}),
+    ("pbb", "page-break-before", {}),
+    ("per", "perspective", {}),
+    ("porig", "perspective-origin", {}),
+    ("wb", "word-break", { "values": ["normal", "break-all", "keep-all", "inherit"] }),
+    ("q", "quotes", {}),
 ]
 
 properties = {}
@@ -229,6 +240,9 @@ expressions_list = [
     ("jcc", "justify-content", "center", {}),
     ("jcstart", "justify-content", "flex-start", {}),
     ("jcend", "justify-content", "flex-end", {}),
+
+    ("ltr", "direction", "ltr", {}),
+    ("rtl", "direction", "rtl", {}),
 ]
 
 expressions = {}
