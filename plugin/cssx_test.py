@@ -12,6 +12,9 @@ class TestCr(unittest.TestCase):
     def test_display_block(self):
         self.expect('db', 'display: block;')
 
+    def test_ms_units(self):
+        self.expect('tdur300', 'transition-duration: 300ms;')
+
     def test_display_block_with_indent(self):
         self.expect('  db', '  display: block;')
 
@@ -25,7 +28,13 @@ class TestCr(unittest.TestCase):
         self.expect('m0 3px', 'margin: 0 3px;')
 
     def test_numeric_with_em_as_default_unit(self):
-        self.expect('lh3', 'line-height: 3em;')
+        self.expect('fs3', 'font-size: 3em;')
+
+    def test_numeric_with_unitless_values(self):
+        self.expect('lh3', 'line-height: 3;');
+
+    def test_numeric_with_unitless_values_and_decimal_point(self):
+        self.expect('lh1.5', 'line-height: 1.5;');
 
     def test_numeric_with_implied_unit(self):
         self.expect('w10', 'width: 10px;')
@@ -42,14 +51,27 @@ class TestCr(unittest.TestCase):
     def test_numeric_em_short(self):
         self.expect('m2m', 'margin: 2em;')
 
-    def _test_numeric_em(self):
+    def test_numeric_em(self):
         self.expect('m2em', 'margin: 2em;')
 
-    def _test_numeric_decimal_em(self):
+    def test_numeric_decimal_em(self):
         self.expect('m2.5m', 'margin: 2.5em;')
 
-    def _test_auto_comma(self):
+    def test_auto_comma(self):
         self.expect('  font-weight: 400', '  font-weight: 400;')
+
+    def test_flex(self):
+        # should not mess with flex: property
+        self.expect('flex', 'display: flex;')
+
+    def test_flex_grow(self):
+        self.expect('fgrow1', 'flex-grow: 1;')
+
+    def test_flex_grow_short(self):
+        self.expect('fg1', 'flex-grow: 1;')
+
+    def test_flex_grow_short(self):
+        self.expect('fwrap', 'flex-wrap: wrap;')
 
 class TestSpace(unittest.TestCase):
     def expect(self, source, expected):
@@ -104,6 +126,11 @@ class TestBalanced(unittest.TestCase):
 
     def test_unbalanced(self):
         self.expect("background: linear-gradient(to bottom", False)
+
+# TODO:
+#   autocompleting values (float: l => float: left)
+#   auto-uniting values (margin: 3 => margin: 3px)
+#   multi numeric (m0 3 => margin: 0 3px)
 
 if __name__ == '__main__':
     unittest.main()

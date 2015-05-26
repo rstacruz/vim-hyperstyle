@@ -40,14 +40,18 @@ properties_list = [
     ("fs", "font-size", { "unit": "em" }),
     ("fst", "font-style", {}),
     ("fw", "font-weight", { "value": None }),
-    ("lh", "line-height", { "unit": "em" }),
+    ("lh", "line-height", { "unit": "_" }),
     ("ls", "letter-spacing", { "unit": "px" }),
 
-    ("tt", "text-transform", {}),
-    ("td", "text-decoration", {}),
+    ("tf", "transform", { "alias": ["tform", "xform"] }),
+    ("tn", "transition", { "alias": ["tsition"] }),
+    ("tt", "text-transform", { "alias": ["ttransform"] }),
+    ("td", "text-decoration", { "alias": ["tdecoration"] }),
     ("ti", "text-indent", { "unit": "px" }),
 
-    ("fl", "float", {}),
+    ("tnd", "transition-duration", { "unit": "ms", "alias": ["tduration"] }),
+
+    ("fl", "float", { "values": ["left", "right", "none", "inherit"] }),
 
     ("br", "border-right", { "value": "border" }),
     ("bl", "border-left", { "value": "border" }),
@@ -79,6 +83,15 @@ properties_list = [
 
     ("pos", "position", {}),
     ("flex", "flex", {}),
+    ("ws", "white-space", {}),
+
+    ("fg", "flex-grow", { "unit": "_", "alias": ["fgrow"] }),
+    ("fsh", "flex-shrink", { "unit": "_", "alias": ["fshrink"] }),
+    ("fdr", "flex-direction", { "alias": ["fdirection"] }),
+    ("fwr", "flex-wrap", { "alias": ["fwrap"] }),
+    ("ai", "align-items", { "alias": ["aitems"] }),
+    ("jc", "justify-content", { "alias": ["jcontent"] }),
+    ("or", "order", {}),
 ]
 
 properties = {}
@@ -92,6 +105,7 @@ expressions = {
     "db": ("display", "block"),
     "di": ("display", "inline"),
     "dib": ("display", "inline-block"),
+    "dif": ("display", "inline-flex"),
     "dt": ("display", "table"),
     "dtc": ("display", "table-cell"),
     "dtr": ("display", "table-row"),
@@ -159,6 +173,28 @@ expressions = {
     "pof": ("position", "fixed"),
     "pos": ("position", "static"),
     "poa": ("position", "absolute"),
+
+    "nowrap": ("white-space", "nowrap"),
+    "ellip": ("text-overflow", "ellipsis"),
+
+    "fla": ("flex", "auto"),
+
+    "ais": ("align-items", "flex-start"),
+    "aie": ("align-items", "flex-end"),
+    "aic": ("align-items", "center"),
+    "aistr": ("align-items", "stretch"),
+
+    "fwrap": ("flex-wrap", "wrap"),
+    "fnowrap": ("flex-wrap", "nowrap"),
+
+    "fdr": ("flex-direction", "row"),
+    "fdrr": ("flex-direction", "row-reverse"),
+    "fdc": ("flex-direction", "column"),
+    "fdcr": ("flex-direction", "column-reverse"),
+
+    "jcc": ("justify-content", "center"),
+    "jcstart": ("justify-content", "flex-start"),
+    "jcend": ("justify-content", "flex-end"),
 }
 
 expression_synonyms = {
@@ -179,7 +215,10 @@ expression_synonyms = {
     "dtc": ["table-cell", "tablecell", "cell"],
     "dtr": ["table-row", "tablerow", "row"],
     "dtr": ["table-row", "tablerow", "row"],
-    "cont": ["con", "cn"]
+    "cont": ["con", "cn"],
+    "ellip": ["elip", "ellipsis"],
+    "aistr": ["aistretch"],
+    "fwrap": ["flexwrap"],
 }
 
 apply_fuzzies(properties_list, properties)

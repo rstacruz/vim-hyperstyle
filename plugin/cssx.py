@@ -2,7 +2,7 @@ import re
 from definitions import properties, expressions
 
 line_expr = re.compile(r'^(\s*)(.*?)$')
-value_expr = re.compile(r'^([^\.\d-]+)(-?\d*\.?\d+)(p|x|m|px|em|%|)$')
+value_expr = re.compile(r'^([^\.\d-]+)(-?\d*\.?\d+)(p|x|m|px|em|s|ms|%|)$')
 rule_expr = re.compile(r'^([a-z]+-)*[a-z]+: +(.+)$')
 
 """
@@ -94,7 +94,10 @@ def expand_value(value, unit, default_unit = None):
     if unit == "m":
         unit = "em"
     if unit == "":
-        unit = (default_unit or "px")
+        if default_unit == "_":
+            unit = ""
+        else:
+            unit = (default_unit or px)
 
     return value + unit
 

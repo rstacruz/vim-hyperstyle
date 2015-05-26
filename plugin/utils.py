@@ -23,6 +23,7 @@ def apply_fuzzies(list, properties):
         # Create them for the property
         # ("box-sizing" => "boxsizing", "boxsizi", "boxsi", "boxs", "box"...)
         iterate(prop.replace('-', ''))
+        iterate(prop)
 
         # Also add aliases ("bgcolor" => "bgcolo", "bgcol", "bgco", "bgc" ...)
         if options and "alias" in options:
