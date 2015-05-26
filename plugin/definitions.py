@@ -1,34 +1,75 @@
+def apply_synonyms(table, synonyms):
+    for key in synonyms:
+        for other_key in synonyms[key]:
+            table[other_key] = table[key]
+
+"""
+A list of CSS properties to expande.
+"""
 properties = {
     "bg": { "name": "background", "value": "color" },
-    "m": { "name": "margin", "value": "distance" },
-    "w": { "name": "width", "value": "distance" },
-    "h": { "name": "height", "value": "distance" },
-    "p": { "name": "padding", "value": "distance", "nospace": True },
-    "pa": { "name": "padding", "value": "distance" },
+    "m": { "name": "margin", "value": "size", "unit": "em" },
+    "w": { "name": "width", "value": "size" },
+    "h": { "name": "height", "value": "size" },
+    "p": { "name": "padding", "value": "size", "nospace": True },
+    "pa": { "name": "padding", "value": "size" },
     "bo": { "name": "border", "value": "border" },
     "o":  { "name": "outline", "value": "border" },
 
-    "fl":  { "name": "float", "value": None },
-    "f":  { "name": "font", "value": None },
-    "fs":  { "name": "font-style", "value": None },
-    "fw":  { "name": "font-weight", "value": None },
+    "d": { "name": "display" },
+
+    "fl": { "name": "float", "value": None },
+
+    "f": { "name": "font", "value": None },
+    "fs": { "name": "font-size", "value": "size", "unit": "em" },
+    "fst": { "name": "font-style" },
+    "fw": { "name": "font-weight", "value": None },
+    "lh": { "name": "line-height", "value": "size", "unit": "em" },
+    "ls": { "name": "letter-spacing", "value": "size" },
+    "tt": { "name": "text-transform" },
 
     "br": { "name": "border-right", "value": "border" },
     "bl": { "name": "border-left", "value": "border" },
     "bt": { "name": "border-top", "value": "border" },
     "bb": { "name": "border-bottom", "value": "border" },
 
-    "bw": { "name": "border-width", "value": "border" },
+    "bw": { "name": "border-width", "value": "size" },
+    "brw": { "name": "border-right-width", "value": "size" },
+    "blw": { "name": "border-left-width", "value": "size" },
+    "btw": { "name": "border-top-width", "value": "size" },
+    "bbw": { "name": "border-bottom-width", "value": "size" },
 
-    "brw": { "name": "border-right-width", "value": "distance" },
-    "blw": { "name": "border-left-width", "value": "distance" },
-    "btw": { "name": "border-top-width", "value": "distance" },
-    "bbw": { "name": "border-bottom-width", "value": "distance" },
+    "bra": { "name": "border-radius", "value": "size" },
+    "brad": { "name": "border-radius", "value": "size" },
 
-    "bra": { "name": "border-radius", "value": "distance" },
-    "brad": { "name": "border-radius", "value": "distance" },
+    "ct": { "name": "content" },
+    "con": { "name": "content" },
+    "cont": { "name": "content" },
+
+    "cur": { "name": "cursor" },
+
+    "ani": { "name": "animation" },
+    "anim": { "name": "animation" },
+
+    "bg": { "name": "background" },
+    "bgc": { "name": "background-color" },
+    "bgs": { "name": "background-size" },
+    "bgp": { "name": "background-position" },
+
+    "c": { "name": "color", "value": "color" },
 }
 
+apply_synonyms(properties, {
+    "d": ["di", "dis", "disp"],
+    "c": ["co", "col", "colo"],
+    "bgc": ["bgcolor"],
+    "bgp": ["bgpos"],
+    "bgs": ["bgsize"],
+})
+
+"""
+A list of CSS expressions to expand.
+"""
 expressions = {
     "db": ("display", "block"),
     "di": ("display", "inline"),
@@ -40,20 +81,14 @@ expressions = {
     "fn": ("float", "none"),
 
     "bold": ("font-weight", "bold"),
-    "italic": ("font-style", "italic"),
+
+    "fsi": ("font-style", "italic"),
+    "fsn": ("font-style", "normal"),
+
+    "m0a": ("margin", "0 auto"),
 
     "fwb": ("font-weight", "bold"),
-    "fw1": ("font-weight", "100"),
-    "fw2": ("font-weight", "200"),
-    "fw3": ("font-weight", "300"),
-    "fw4": ("font-weight", "400"),
-    "fw5": ("font-weight", "500"),
-    "fw6": ("font-weight", "600"),
-    "fw7": ("font-weight", "700"),
-    "fw8": ("font-weight", "800"),
-    "fw9": ("font-weight", "900"),
 
-    "fb": ("font-weight", "bold"),
     "f1": ("font-weight", "100"),
     "f2": ("font-weight", "200"),
     "f3": ("font-weight", "300"),
@@ -63,4 +98,44 @@ expressions = {
     "f7": ("font-weight", "700"),
     "f8": ("font-weight", "800"),
     "f9": ("font-weight", "900"),
+
+    "bcc": ("border-collapse", "collapse"),
+    
+    "brx": ("background-repeat", "repeat-x"),
+    "bry": ("background-repeat", "repeat-y"),
+    "brn": ("background-repeat", "no-repeat"),
+
+    "cover": ("background-size", "cover"),
+    "contain": ("background-size", "contain"),
+
+    "cup": ("cursor", "pointer"),
+    "cuw": ("cursor", "wait"),
+    "cub": ("cursor", "busy"),
+    "cut": ("cursor", "text"),
+
+    "cont": ("content", "''"),
+    "con": ("content", "''"),
+    "ct": ("content", "''"),
+
+    "ttu": ("text-transform", "uppercase"),
+    "ttn": ("text-transform", "none"),
+
+    "under": ("text-decoration", "underline"),
+    "tdu": ("text-decoration", "underline"),
+    "tdn": ("text-decoration", "none"),
 }
+
+apply_synonyms(expressions, {
+    "ttu": ["up"],
+    "fsi": ["it", "ita", "ital", "italic"],
+    "fwb": ["fb"],
+    "f1": ["fw1"],
+    "f2": ["fw2"],
+    "f3": ["fw3"],
+    "f4": ["fw4"],
+    "f5": ["fw5"],
+    "f6": ["fw6"],
+    "f7": ["fw7"],
+    "f8": ["fw8"],
+    "f9": ["fw9"],
+})

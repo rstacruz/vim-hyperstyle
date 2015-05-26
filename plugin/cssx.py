@@ -2,53 +2,85 @@ import re
 from definitions import properties, expressions
 
 line_expr = re.compile(r'^(\s*)(.*?)$')
-value_expr = re.compile(r'^([^\.\d-]+)(-?\d*\.?\d+(?:p|x|m|px|em|%)?)$')
+value_expr = re.compile(r'^([^\.\d-]+)(-?\d*\.?\d+)(p|x|m|px|em|%|)$')
 
 """
-Expands a snippet.
+Expands a snippet expression.
 """
 def expand_expression(line):
-    (indent, snippet) = split_line(line)
+    (indent, snippet) = split_indent(line)
 
     # Check if its an expression
     # (db => display: block)
-    if expressions.get(snippet):
-        expansion = expressions[snippet]
+    expansion = expressions.get(snippet)
+    if expansion:
         return "%s%s: %s;" % (indent, expansion[0], expansion[1])
 
     # Check if its a property with value
-    (prop, value) = split_value(snippet)
-    if prop and properties.get(prop):
-        expansion = properties[prop]
+    (prop, value, unit) = split_value(snippet)
+    expansion = properties.get(prop)
+    if prop and expansion and expansion.get("value") != None:
+        value = expand_value(value, unit, expansion.get("unit"))
+        return "%s%s: %s;" % (indent, expansion["name"], value)
 
-        if expansion["value"] != None:
-            return "%s%s: %s;" % (indent, expansion["name"], value)
-
+    # Else, nada
     return indent + snippet
 
+"""
+Expands a value
+
+>>> expand_value("10", "")
+"10px"
+
+>>> expand_value("10", "m")
+"10em"
+"""
+def expand_value(value, unit, default_unit = None):
+    if value == "0":
+        return value
+
+    if unit == "p" or unit == "x":
+        unit = "px"
+    if unit == "m":
+        unit = "em"
+    if unit == "":
+        unit = (default_unit or "px")
+
+    return value + unit
+
+"""
+Splits a snippet into property, value and unit
+
+# margin: 10px
+>>> split_value("m10p")
+("m", "10", "p")
+"""
 def split_value(snippet):
     m = value_expr.match(snippet)
     if m:
-        return (m.group(1), m.group(2))
+        return (m.group(1), m.group(2), m.group(3))
     else:
-        return (None, None)
+        return (None, None, None)
 
 """
-Expands a snippet.
+Expands a property.
+
+>>> expand_property("m")
+"margin:"
 """
 def expand_property(line):
-    (indent, snippet) = split_line(line)
+    (indent, snippet) = split_indent(line)
 
-    for shortcut in properties:
-        if snippet == shortcut:
-            expansion = properties[shortcut]
-            return "%s%s:" % (indent, expansion["name"])
+    expansion = properties.get(snippet)
+    if expansion:
+        return "%s%s:" % (indent, expansion["name"])
 
 """
 (Private) splits a line into its indentation and meat.
 
-> (indent, snippet) = split_line("  db")
+>>> (indent, snippet) = split_indent("  db")
+("  ", "db")
 """
-def split_line(line):
+def split_indent(line):
     match = line_expr.match(line)
     return (match.group(1), match.group(2))
