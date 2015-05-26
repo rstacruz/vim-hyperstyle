@@ -1,6 +1,6 @@
 # vim-css-shorthand
 
-Type faster by shorthand.
+Type faster by shorthand that will auto-expand as you type.
 
 ![](https://raw.githubusercontent.com/rstacruz/vim-css-shorthand/gh-pages/screencast.gif)
 
