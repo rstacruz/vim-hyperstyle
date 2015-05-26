@@ -102,13 +102,11 @@ expressions = {
     "fr": ("float", "right"),
     "fn": ("float", "none"),
 
-    "bold": ("font-weight", "bold"),
+    "fwb": ("font-weight", "bold"),
     "fsi": ("font-style", "italic"),
     "fsn": ("font-style", "normal"),
 
     "m0a": ("margin", "0 auto"),
-
-    "fwb": ("font-weight", "bold"),
 
     "f1": ("font-weight", "100"),
     "f2": ("font-weight", "200"),
@@ -166,7 +164,7 @@ expressions = {
 expression_synonyms = {
     "ttu": ["up"],
     "fsi": ["it", "ita", "ital", "italic"],
-    "fwb": ["fb"],
+    "fwb": ["fb", "bold"],
     "f1": ["fw1"],
     "f2": ["fw2"],
     "f3": ["fw3"],
@@ -179,6 +177,7 @@ expression_synonyms = {
     "dt": ["table"],
     "df": ["flex"],
     "dtc": ["table-cell", "tablecell", "cell"],
+    "dtr": ["table-row", "tablerow", "row"],
     "dtr": ["table-row", "tablerow", "row"],
     "cont": ["con", "cn"]
 }

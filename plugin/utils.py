@@ -1,6 +1,5 @@
 """
 Yeah
-
 """
 def apply_synonyms(table, synonyms):
     for key in synonyms:
