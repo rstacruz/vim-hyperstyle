@@ -1,3 +1,7 @@
+import sys
+if sys.version_info < (3,):
+    range = xrange
+
 """
 Yeah
 """
@@ -38,5 +42,5 @@ Returns a generator with fuzzy matches for a given string.
 """
 def fuzzify(str):
     if str:
-        for i in xrange(1, len(str)+1):
+        for i in range(1, len(str)+1):
             yield str[0:i]
