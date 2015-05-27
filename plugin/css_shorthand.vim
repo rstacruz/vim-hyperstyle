@@ -71,9 +71,9 @@ endfunction
 
 augroup css
   au!
-  au BufNewFile,BufReadPost *.css call <SID>enable(';')
-  au BufNewFile,BufReadPost *.scss call <SID>enable(';')
-  au BufNewFile,BufReadPost *.less call <SID>enable(';')
-  au BufNewFile,BufReadPost *.sass call <SID>enable('')
-  au BufNewFile,BufReadPost *.styl call <SID>enable('')
+  au FileType css call <SID>enable(';')
+  au FileType scss call <SID>enable(';')
+  au FileType less call <SID>enable(';')
+  au FileType sass call <SID>enable('')
+  au FileType stylus call <SID>enable('')
 augroup END
