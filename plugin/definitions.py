@@ -182,7 +182,7 @@ statements_list = [
     ("fsn", "font-style", "normal", {}),
 
     ("b0", "border", "0", {}),
-    ("p0", "padding", "0", {}),
+    ("p0", "padding", "0", { "alias": ["po"] }),
     ("m0", "margin", "0", { "alias": ["mo"] }),
     ("m0a", "margin", "0 auto", { "alias": ["moa"] }),
 
@@ -302,6 +302,9 @@ statements_list = [
     ("rtl", "direction", "rtl", {}),
 
     ("tsn", "text-shadow", "none", {}),
+    ("tlf", "table-layout", "fixed", {}),
+    ("tla", "table-layout", "auto", {}),
+
     ("wa", "width", "auto", { "alias": ["wauto"] }),
     ("ha", "height", "auto", { "alias": ["hauto"] }),
 ]
