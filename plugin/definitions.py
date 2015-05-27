@@ -176,6 +176,7 @@ statements_list = [
     ("fr", "float", "right", { "alias": ["fright"] }),
     ("fn", "float", "none", { "alias": ["fnone"] }),
 
+    ("fwn", "font-weight", "normal", {}),
     ("fwb", "font-weight", "bold", { "alias": ["bold"] }),
     ("fsi", "font-style", "italic", { "alias": ["italic"] }),
     ("fsn", "font-style", "normal", {}),
