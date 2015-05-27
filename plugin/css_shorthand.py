@@ -3,24 +3,23 @@ from definitions import properties, statements, full_properties
 from utils import fuzzify
 
 # Also see http://www.w3.org/TR/css3-values/
-line_expr = re.compile(r'^(\s*)(.*?)$')
 value_expr = re.compile(r'^([^\.\d-]*)(-?\d*\.?\d+)(x|p[tcx]?|e[mx]?|s|m[ms]?|rem|ch|v[wh]|vmin|max|%|)$')
+line_expr = re.compile(r'^(\s*)(.*?)$')
 rule_expr = re.compile(r'^((?:[a-z]+-)*[a-z]+): *([^\s].*?);?$')
 
-"""
-Expands a statement line. Executed when pressing <Enter>. If `semi` is a blank
-string, then treat the language as an indented syntax (like Sass).
-
->>> expand_statement("db")
-"display: block;"
-
->>> expand_statement("db", '')
-"display: block"
-
->>> expand_statement("m3m")
-"margin: 3em;"
-"""
 def expand_statement(line, semi = ';'):
+    """Expands a statement line. Executed when pressing <Enter>. If `semi` is a
+    blank string, then treat the language as an indented syntax (like Sass).
+
+    >>> expand_statement("db")
+    "display: block;"
+
+    >>> expand_statement("db", '')
+    "display: block"
+
+    >>> expand_statement("m3m")
+    "margin: 3em;"
+    """
     indent, snippet = split_indent(line)
 
     # Check if its a simple statement
@@ -63,30 +62,28 @@ def expand_statement(line, semi = ';'):
         expand_unit_value() or \
         expand_semicolon()
 
-"""
-Splits a snippet into property, number and unit.
-
-# margin: 10px
->>> split_value("m10p")
-("m", "10", "p")
-"""
 def split_value(snippet):
+    """Splits a snippet into property, number and unit.
+
+    # margin: 10px
+    >>> split_value("m10p")
+    ("m", "10", "p")
+    """
     m = value_expr.match(snippet)
     if m:
         return (m.group(1), m.group(2), m.group(3))
     else:
         return (None, None, None)
 
-"""
-Expands a property.
-
-The 2nd argument is there to keep the API same with expand_statement(). Vim
-might pass a semicolon for it.
-
->>> expand_property("m")
-"margin:"
-"""
 def expand_property(line, semi=';'):
+    """Expands a property.
+
+    The 2nd argument is there to keep the API same with expand_statement(). Vim
+    might pass a semicolon for it.
+
+    >>> expand_property("m")
+    "margin:"
+    """
     indent, snippet = split_indent(line)
 
     tuple = properties.get(snippet)
@@ -98,22 +95,21 @@ def expand_property(line, semi=';'):
     # expr = expand_statement(line, semi)
     # if expr: return expr
 
-"""
-Expands a value of a given property `prop`. Returns the expanded value.
-
->>> e("3", "margin")
-"3px"
-
->>> e("3x", "margin")
-"3px"
-
->>> e("a", "margin")
-"auto"
-
->>> e("l", "float")
-"left"
-"""
 def expand_full_value(val, prop):
+    """Expands a value of a given property `prop`. Returns the expanded value.
+
+    >>> e("3", "margin")
+    "3px"
+
+    >>> e("3x", "margin")
+    "3px"
+
+    >>> e("a", "margin")
+    "auto"
+
+    >>> e("l", "float")
+    "left"
+    """
     options = full_properties.get(prop)
     if not options: return
 
@@ -131,31 +127,29 @@ def expand_full_value(val, prop):
     if values:
         return expand_keyword_value(val, values)
 
-"""
-Finds the closest match to a `value` given a list of `keywords`.
-
->>> expand_keyword_value('l', ['left', 'right', 'auto'])
-"left"
-
->>> expand_keyword_value('xxx', ['inherit', 'auto'])
-None
-"""
 def expand_keyword_value(value, keywords):
+    """Finds the closest match to a `value` given a list of `keywords`.
+
+    >>> expand_keyword_value('l', ['left', 'right', 'auto'])
+    "left"
+
+    >>> expand_keyword_value('xxx', ['inherit', 'auto'])
+    None
+    """
     for word in keywords:
         if re.match('^'+value, word): return word 
     for word in keywords:
         if re.match(value, word): return word
 
-"""
-Expands a single numeric value.
-
->>> expand_numeric_value("10", "", "px")
-"10px"
-
->>> expand_numeric_value("10", "m")
-"10em"
-"""
 def expand_numeric_value(number, unit, default_unit):
+    """Expands a single numeric value.
+
+    >>> expand_numeric_value("10", "", "px")
+    "10px"
+
+    >>> expand_numeric_value("10", "m")
+    "10em"
+    """
     if number == "0":
         return number
 
@@ -171,30 +165,28 @@ def expand_numeric_value(number, unit, default_unit):
 
     return number + unit
 
-"""
-(Private) splits a line into its indentation and meat.
-
->>> (indent, snippet) = split_indent("  db")
-("  ", "db")
-"""
 def split_indent(line):
+    """(Private) splits a line into its indentation and meat.
+
+    >>> (indent, snippet) = split_indent("  db")
+    ("  ", "db")
+    """
     match = line_expr.match(line)
     return (match.group(1), match.group(2))
 
-"""
-Checks if a line is a balanced rule that can be auto-terminated with a
-semicolon.
-
->>> is_balanced_rule("margin: 0")
-True
-
->>> is_balanced_rule("margin: scaleX(3)")
-True
-
->>> is_balanced_rule("margin: linear-gradient(to-bottom")
-False
-"""
 def is_balanced_rule(str):
+    """Checks if a line is a balanced rule that can be auto-terminated with a
+    semicolon.
+
+    >>> is_balanced_rule("margin: 0")
+    True
+
+    >>> is_balanced_rule("margin: scaleX(3)")
+    True
+
+    >>> is_balanced_rule("margin: linear-gradient(to-bottom")
+    False
+    """
     if str and str[-1] == ';':
         return False
 
