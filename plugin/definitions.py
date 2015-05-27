@@ -78,7 +78,9 @@ properties_list = [
     ("brad", "border-radius", { "unit": "px" }),
     ("boc", "border-color", { "unit": "px", "alias": ["bcolor"] }),
 
-    ("con", "content", {}),
+    ("c", "color", {}),
+    ("op", "opacity", {}),
+
     ("cur", "cursor", {}),
     ("ani", "animation", {}),
 
@@ -86,9 +88,6 @@ properties_list = [
     ("bgc", "background-color", { "alias": ["bgcolor"] }),
     ("bgs", "background-size", { "alias": ["bgsize"] }),
     ("bgp", "background-position", { "alias": ["bgposition"] }),
-
-    ("c", "color", {}),
-    ("op", "opacity", {}),
 
     ("bs", "box-shadow", {}),
     ("bsize", "box-sizing", {}),
@@ -112,6 +111,7 @@ properties_list = [
     ("porig", "perspective-origin", {}),
     ("wb", "word-break", { "values": ["normal", "break-all", "keep-all", "inherit"] }),
     ("q", "quotes", {}),
+    ("con", "content", {}),
 ]
 
 """
@@ -243,6 +243,8 @@ expressions_list = [
 
     ("ltr", "direction", "ltr", {}),
     ("rtl", "direction", "rtl", {}),
+
+    ("tsn", "text-shadow", "none", {}),
 ]
 
 # Index them
