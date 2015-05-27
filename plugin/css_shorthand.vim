@@ -49,7 +49,7 @@ endfunction
 function s:expand_thing(fn, key, suffix, semi)
   let out = pyeval("cssx.".a:fn."(vim.eval(\"getline('.')\"),'".a:semi."')")
   if out == '' | return a:key | endif
-  exe 'normal 0C'
+  exe 'normal 0"_C'
   return out . a:suffix
 endfunction
 

@@ -1,7 +1,8 @@
-## v0.2.4
+## [v0.2.4]
 
 * Fix `vertical-align:mid` not completing to `middle`.
 * Zoom now accepts a number. `zo1` will expand to `zoom: 1`.
+* Fixes polution of the clipboard.
 
 ## [v0.2.3] - May 27, 2015
 
@@ -35,3 +36,4 @@ Initial release.
 [v0.2.1]: https://github.com/rstacruz/vim-css-shorthand/compare/v0.2.0...v0.2.1
 [v0.2.2]: https://github.com/rstacruz/vim-css-shorthand/compare/v0.2.1...v0.2.2
 [v0.2.3]: https://github.com/rstacruz/vim-css-shorthand/compare/v0.2.2...v0.2.3
+[v0.2.4]: https://github.com/rstacruz/vim-css-shorthand/compare/v0.2.3...v0.2.4
