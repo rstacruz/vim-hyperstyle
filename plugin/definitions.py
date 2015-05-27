@@ -179,8 +179,8 @@ statements_list = [
 
     ("b0", "border", "0", {}),
     ("p0", "padding", "0", {}),
-    ("m0", "margin", "0", {}),
-    ("m0a", "margin", "0 auto", {}),
+    ("m0", "margin", "0", { "alias": ["mo"] }),
+    ("m0a", "margin", "0 auto", { "alias": ["moa"] }),
 
     ("oh", "overflow", "hidden", {}),
     ("os", "overflow", "scroll", {}),
