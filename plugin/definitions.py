@@ -78,11 +78,12 @@ properties_list = [
 
     ("tf", "transform", { "alias": ["tform", "xform"] }),
     ("tn", "transition", { "alias": ["tsition"] }),
-    ("tt", "text-transform", { "alias": ["ttransform"] }),
-    ("td", "text-decoration", { "alias": ["tdecoration"] }),
+    ("tt", "text-transform", { "alias": ["ttransform"], "values": ["uppercase", "none", "capitalize", "lowercase", "full-width", "inherit"] }),
+    ("td", "text-decoration", { "alias": ["tdecoration"], "values": ["underline", "none", "line-through", "overline"] }),
+    ("tdl", "text-decoration-line", { "values": ["underline", "none", "line-through", "overline", "inherit", "initial"] }),
     ("ti", "text-indent", { "unit": "px" }),
     ("ti", "text-indent", { "unit": "px" }),
-    ("ts", "text-shadow", {}),
+    ("ts", "text-shadow", { "values": ["none"] }),
     ("va", "vertical-align", { "unit": "px", "alias": ["valign"], "values": ["middle","top","bottom","baseline","text-top","text-bottom","sub","super"] }),
 
     ("tnd", "transition-duration", { "unit": "ms", "alias": ["tduration"] }),
