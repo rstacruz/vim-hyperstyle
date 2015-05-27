@@ -194,6 +194,8 @@ class TestSpace(unittest.TestCase):
         self.expect('te', 'text-align:')
         self.expect('tf', 'transform:')
         self.expect('tg', None)
+        self.expect('tr', 'transition:')
+        self.expect('tf', 'transform:')
 
 class TestBalanced(unittest.TestCase):
     def expect(self, input, expected):

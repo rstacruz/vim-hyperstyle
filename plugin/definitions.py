@@ -76,8 +76,8 @@ properties_list = [
     ("lh", "line-height", { "unit": "_" }),
     ("ls", "letter-spacing", { "alias": ["lespacing", "lspacing"], "unit": "px" }),
 
-    ("tf", "transform", { "alias": ["tform", "xform"] }),
     ("tn", "transition", { "alias": ["tsition"] }),
+    ("tf", "transform", { "alias": ["tform", "xform"] }),
     ("tt", "text-transform", { "alias": ["ttransform"], "values": ["uppercase", "none", "capitalize", "lowercase", "full-width", "inherit"] }),
     ("td", "text-decoration", { "alias": ["tdecoration"], "values": ["underline", "none", "line-through", "overline"] }),
     ("tdl", "text-decoration-line", { "values": ["underline", "none", "line-through", "overline", "inherit", "initial"] }),
