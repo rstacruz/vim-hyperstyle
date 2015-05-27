@@ -6,14 +6,29 @@ Type faster by shorthand that will auto-expand as you type. Supports less, sass,
 
 [![Status](https://travis-ci.org/rstacruz/vim-css-shorthand.svg?branch=master)](https://travis-ci.org/rstacruz/vim-css-shorthand)  
 
+<br>
+
 ## Expansions
 
-* Properties will be auto-completed: `m ` → `margin: `
-* Values will be auto-completed: `float:l` → `float: left`
-* Default units will be added: `border-radius: 4⏎` → `border-radius: 4px;`
-* Shortcuts for common statements are available: `fl⏎` → `float: left;`
-* Semicolons are inserted automatically so you can write CSS in one go: `dib` `⏎` `m0a` `⏎`
-* ...and more
+* Properties will be auto-completed:<br>`m ` → `margin: `
+
+* You can put numeric next to property shortcuts:<br>`z1⏎` → `z-index: 1;`
+ 
+* Values will be auto-completed:<br>`float:l` → `float: left`
+ 
+* Default units will be added:<br>`border-radius: 4⏎` → `border-radius: 4px;`
+ 
+* Shortcuts for common statements are available:<br>`fl⏎` → `float: left;`
+ 
+* Semicolons are inserted automatically so you can write CSS in one go:<br>`dib` `⏎` `m0a` `⏎`
+
+* Semicolons are omitted for `.styl` and `.sass`
+
+* ...and lots more goodies
+
+<br>
+
+## Examples
 
 | Shortcut     | Expansion              |
 | ---          | ---                    |
@@ -25,9 +40,9 @@ Type faster by shorthand that will auto-expand as you type. Supports less, sass,
 | `fle 1 auto` | flex: 1 auto;          |
 | `float left` | float: left;           |
 
-## Reference
+**[See the source](plugin/definitions.py)** for a reference while I haven't put together something here yet.
 
-[See the source](plugin/definitions.py) while I haven't put together something here yet.
+<br>
 
 ## Installation
 
@@ -37,14 +52,24 @@ Using [vim-plug]:
 Plug 'rstacruz/vim-css-shorthand'
 ```
 
-This requires vim with Python support.
+Vim with Python support is required. For Neovim:
 
- * Neovim: `:help nvim-python`
- * Howebrew: `brew install macvim --with-cscope --with-lua --override-system-vim --with-luajit --with-python3 --with-python` ([info](http://ricostacruz.com/til/use-macvim-with-lua.html))
+    :help nvim-python
 
-Caveats:
+For OSX/Homebrew: ([info](http://ricostacruz.com/til/use-macvim-with-lua.html))
+
+```
+brew install macvim --with-cscope --with-lua --override-system-vim \
+  --with-luajit --with-python3 --with-python
+```
+
+<br>
+
+## Caveats
 
 * Not fully functional when [auto-pairs] is installed along with it (conflict in the `<Space>` binding). PR's welcome!
+
+<br>
 
 ## Thanks
 
