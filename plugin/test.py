@@ -88,6 +88,10 @@ class TestCr(unittest.TestCase):
     def test_expand_units(self):
         self.expect('width: 3', 'width: 3px;')
 
+    def test_position(self):
+        self.expect('abs', 'position: absolute;')
+        self.expect('rel', 'position: relative;')
+
     def test_misc(self):
         self.expect('rtl', 'direction: rtl;')
 

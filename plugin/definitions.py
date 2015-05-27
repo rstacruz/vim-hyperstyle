@@ -210,10 +210,10 @@ expressions_list = [
     ("mla", "margin-left", "auto", {}),
     ("mra", "margin-right", "auto", {}),
 
-    ("por", "position", "relative", {}),
+    ("por", "position", "relative", { "alias": ["relative"] }),
     ("pof", "position", "fixed", {}),
     ("pos", "position", "static", {}),
-    ("poa", "position", "absolute", {}),
+    ("poa", "position", "absolute", { "alias": ["absolute"] }),
 
     ("nowrap", "white-space", "nowrap", {}),
     ("ellip", "text-overflow", "ellipsis", {}),
