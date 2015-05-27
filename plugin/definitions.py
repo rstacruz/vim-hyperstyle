@@ -236,8 +236,8 @@ statements_list = [
     ("vatb", "vertical-align", "text-bottom", {}),
 
     ("vv", "visibility", "visible", { "alias": ["visible"] }),
-    ("vh", "visibility", "hidden", { "alias": ["hidden", "hide"] }),
-    ("vc", "visibility", "collapse", {}),
+    ("vh", "visibility", "hidden", { "alias": ["vishidden", "vihidden", "hidden", "hide"] }),
+    ("vc", "visibility", "collapse", { "alias": ["viscollapse", "vicollapse", "vcillapse", "hide"] }),
 
     ("cb", "clear", "both", {}),
     ("cr", "clear", "right", {}),
