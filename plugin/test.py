@@ -63,6 +63,9 @@ class TestCr(unittest.TestCase):
     def test_numeric_em_short(self):
         self.expect('m2m', 'margin: 2em;')
 
+    def test_numeric_em_short(self):
+        self.expect('m2e', 'margin: 2em;')
+
     def test_numeric_em(self):
         self.expect('m2em', 'margin: 2em;')
 

@@ -3,6 +3,8 @@
 * Fix `vertical-align:mid` not completing to `middle`.
 * Zoom now accepts a number. `zo1` will expand to `zoom: 1`.
 * Fixes polution of the clipboard.
+* More shortcuts.
+* `e` now expands to 'em', eg: `m:3e` is `margin: 3em`.
 
 ## [v0.2.3] - May 27, 2015
 

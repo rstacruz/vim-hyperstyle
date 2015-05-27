@@ -3,7 +3,7 @@ from definitions import properties, statements, full_properties
 from utils import fuzzify
 
 line_expr = re.compile(r'^(\s*)(.*?)$')
-value_expr = re.compile(r'^([^\.\d-]*)(-?\d*\.?\d+)(p|x|m|px|em|s|ms|%|)$')
+value_expr = re.compile(r'^([^\.\d-]*)(-?\d*\.?\d+)(p|x|m|px|e|em|s|ms|%|)$')
 rule_expr = re.compile(r'^((?:[a-z]+-)*[a-z]+): *([^\s].*);?$')
 
 """
@@ -160,7 +160,7 @@ def expand_numeric_value(number, unit, default_unit):
 
     if unit == "p" or unit == "x":
         unit = "px"
-    if unit == "m":
+    if unit == "m" or unit == "e":
         unit = "em"
     if unit == "":
         if default_unit == "_":
