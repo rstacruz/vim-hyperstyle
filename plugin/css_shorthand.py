@@ -3,7 +3,7 @@ from definitions import properties, expressions, full_properties
 
 line_expr = re.compile(r'^(\s*)(.*?)$')
 value_expr = re.compile(r'^([^\.\d-]*)(-?\d*\.?\d+)(p|x|m|px|em|s|ms|%|)$')
-rule_expr = re.compile(r'^((?:[a-z]+-)*[a-z]+): +(.+);?$')
+rule_expr = re.compile(r'^((?:[a-z]+-)*[a-z]+): *([^\s].*);?$')
 
 """
 Expands a snippet expression. If `semi` is a blank string, then treat the

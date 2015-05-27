@@ -2,6 +2,7 @@
 
 * Add `jcs` as `justify-column: flex-start`.
 * Add `jce` as `justify-column: flex-end`.
+* Spaces after `:` are now optional: `mar:3⏎` will now expand to `margin: 3px;`.
 
 ## [v0.2.1] - Wed, May 27
 

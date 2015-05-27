@@ -72,6 +72,9 @@ class TestCr(unittest.TestCase):
     def test_auto_comma(self):
         self.expect('  font-weight: 400', '  font-weight: 400;')
 
+    def test_auto_comma_no_space(self):
+        self.expect('  font-weight:400', '  font-weight:400;')
+
     def test_flex(self):
         # should not mess with flex: property
         self.expect('flex', 'display: flex;')
@@ -87,6 +90,9 @@ class TestCr(unittest.TestCase):
 
     def test_expand_units(self):
         self.expect('width: 3', 'width: 3px;')
+
+    def test_expand_units_no_space(self):
+        self.expect('width:3', 'width: 3px;')
 
     def test_position(self):
         self.expect('abs', 'position: absolute;')
