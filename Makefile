@@ -4,9 +4,9 @@ redirect := >/dev/null
 
 test: test-python test-vim
 
-test-python:
-	@which python  >/dev/null && python  plugin/test.py
-	@which python3 >/dev/null && python3 plugin/test.py
+test-python: plugin/test.py
+	@if which python  >/dev/null; then python  --version; python  $<; fi
+	@if which python3 >/dev/null; then python3 --version; python3 $<; fi
 
 autotest:
 	find plugin | entr make test-python
@@ -24,4 +24,4 @@ test-vim: vendor/vader.vim
 vendor/vader.vim:
 	@mkdir -p ${pwd}/vendor
 	@git clone https://github.com/junegunn/vader.vim ${pwd}/vendor/vader.vim
-.PHONY: test test-vim
+.PHONY: test test-vim test-python
