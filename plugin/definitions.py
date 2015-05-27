@@ -172,9 +172,9 @@ statements_list = [
     ("dn", "display", "none", {}),
     ("df", "display", "flex", { "alias": ["dflex", "flex"] }),
 
-    ("fl", "float", "left", { "alias": ["fleft"] }),
-    ("fr", "float", "right", { "alias": ["fright"] }),
-    ("fn", "float", "none", { "alias": ["fnone"] }),
+    ("fl", "float", "left", { "alias": ["fleft", "flleft", "floleft"] }),
+    ("fr", "float", "right", { "alias": ["fright", "flright", "floright"] }),
+    ("fn", "float", "none", { "alias": ["fnone", "flnone", "flonone"] }),
 
     ("fwn", "font-weight", "normal", {}),
     ("fwb", "font-weight", "bold", { "alias": ["bold"] }),
@@ -257,7 +257,6 @@ statements_list = [
     ("tac", "text-align", "center", {}),
     ("taj", "text-align", "justify", {}),
 
-    ("under", "text-decoration", "underline", {}),
     ("tdu", "text-decoration", "underline", { "alias": ["underline"] }),
     ("tdn", "text-decoration", "none", {}),
 

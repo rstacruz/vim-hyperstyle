@@ -130,6 +130,7 @@ class TestCr(unittest.TestCase):
         self.expect('fw1', 'font-weight: 100;')
         self.expect('fw100', 'font-weight: 100;')
         self.expect('f100', 'font-weight: 100;')
+        self.expect('under', 'text-decoration: underline;')
 
 class TestSpace(unittest.TestCase):
     def expect(self, source, expected):
