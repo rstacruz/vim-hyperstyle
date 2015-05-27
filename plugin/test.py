@@ -72,8 +72,11 @@ class TestCr(unittest.TestCase):
     def test_auto_comma(self):
         self.expect('  font-weight: 400', '  font-weight: 400;')
 
+    def test_auto_space(self):
+        self.expect('  font-weight:400', '  font-weight: 400;')
+
     def test_auto_comma_no_space(self):
-        self.expect('  font-weight:400', '  font-weight:400;')
+        self.expect('  font-weight:xyz', '  font-weight:xyz;')
 
     def test_autocomplete_values(self):
         self.expect('  float: l', '  float: left;')

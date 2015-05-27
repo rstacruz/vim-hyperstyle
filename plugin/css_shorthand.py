@@ -1,5 +1,6 @@
 import re
 from definitions import properties, expressions, full_properties
+from utils import fuzzify
 
 line_expr = re.compile(r'^(\s*)(.*?)$')
 value_expr = re.compile(r'^([^\.\d-]*)(-?\d*\.?\d+)(p|x|m|px|em|s|ms|%|)$')

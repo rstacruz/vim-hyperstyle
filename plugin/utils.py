@@ -3,16 +3,6 @@ if sys.version_info < (3,):
     range = xrange
 
 """
-Yeah
-"""
-def apply_synonyms(table, synonyms):
-    for key in synonyms:
-        for other_key in synonyms[key]:
-            if table.get(other_key):
-                raise IndexError("Key already taken: %s" % other_key)
-            table[other_key] = table[key]
-
-"""
 Mutates `properties` to apply fuzzy matches
 """
 def apply_fuzzies(properties, short, prop, options):

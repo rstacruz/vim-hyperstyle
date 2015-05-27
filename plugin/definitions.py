@@ -1,4 +1,4 @@
-from utils import fuzzify, apply_synonyms, apply_fuzzies
+from utils import apply_fuzzies
 
 """
 A list of CSS properties to expand.
@@ -60,7 +60,7 @@ properties_list = [
 
     ("zi", "z-index", { "unit": "_" }),
 
-    ("d", "display", {}),
+    ("d", "display", { "values": ["none", "block", "inline", "inline-block", "table", "table-cell", "table-row"] }),
     ("ta", "text-align", { "values": ["left", "right", "justify", "center", "inherit"] }),
 
     ("of", "overflow", { "values": ["scroll", "hidden", "auto", "inherit"] }),
@@ -69,8 +69,8 @@ properties_list = [
 
     ("f", "font", {}),
     ("fs", "font-size", { "unit": "em" }),
-    ("fst", "font-style", {}),
-    ("fw", "font-weight", {}),
+    ("fst", "font-style", { "values": ["italic", "normal", "inherit"] }),
+    ("fw", "font-weight", { "values": ["100","200","300","400","500","600","700","800","900","bold","normal"] }),
     ("fv", "font-variant", {}),
     ("ff", "font-family", {}),
     ("lh", "line-height", { "unit": "_" }),
@@ -83,7 +83,7 @@ properties_list = [
     ("ti", "text-indent", { "unit": "px" }),
     ("ti", "text-indent", { "unit": "px" }),
     ("ts", "text-shadow", {}),
-    ("va", "vertical-align", { "unit": "px" }),
+    ("va", "vertical-align", { "unit": "px", "values": ["middle","top","bottom","baseline","text-top","text-bottom","sub","super"] }),
 
     ("tnd", "transition-duration", { "unit": "ms", "alias": ["tduration"] }),
 
@@ -117,7 +117,7 @@ properties_list = [
     ("bs", "box-shadow", {}),
     ("bsize", "box-sizing", {}),
 
-    ("pos", "position", {}),
+    ("pos", "position", { "values": ["absolute", "relative", "fixed", "static", "inherit"] }),
     ("flex", "flex", {}),
     ("ws", "white-space", {}),
     ("va", "vertical-align", { "alias": ["valign"] }),
