@@ -30,6 +30,12 @@ Expect (display: inline-block;):
   display: inline-block;
   _
 
+Do (aoeuaoeu<Enter>):
+  aoeuaoeu\<Enter>_
+Expect (safely lets enter through):
+  oeuaoeu
+  _
+
 Given sass:
   .div
     _

@@ -13,15 +13,6 @@ if !has("python") && !has("python3")
   finish
 endif
 
-try
-  call pyeval("1")
-catch /./
-  echohl WarningMsg
-  echomsg "vim-css-shorthand: pyeval() not found."
-  echohl None
-  finish
-endtry
-
 let s:current_file=expand("<sfile>")
 python << EOF
 import sys, os, vim
@@ -61,11 +52,25 @@ endfunction
 "     expand_thing('expand_space', ' ')
 "
 function s:expand_thing(fn, key, suffix, semi)
-  let out = pyeval("cssx.".a:fn."(vim.eval(\"getline('.')\"),'".a:semi."')")
+  let out = s:pyeval("cssx.".a:fn."(vim.eval(\"getline('.')\"),'".a:semi."')")
   if out == '' | return a:key | endif
   exe 'normal 0"_C'
   return out . a:suffix
 endfunction
+
+" pyeval() polyfill
+try
+  call pyeval('1')
+  function s:pyeval(code)
+    return pyeval(a:code)
+  endfunction
+catch /./
+  function s:pyeval(code)
+    python import json
+    python result = eval(vim.eval('a:code'))
+    python if result: vim.command('return ' + repr(result))
+  endfunction
+endtry
 
 " Enables for the current buffer.
 " If `semi` is 1, semicolons will be added.
