@@ -1,0 +1,41 @@
+Given css:
+Do (di:):
+  adi:_
+Expect (expands the property):
+  display:_
+
+Do (m:a;):
+  am:a;
+Expect (expands property and the value):
+  margin: auto;
+
+Do (margin:auto;):
+  amargin:auto;
+Expect (inserts a space after :):
+  margin: auto;
+
+Do (dib;):
+  adib;
+Expect (expands a full statement after ;):
+  display: inline-block;
+
+Do (brad4):
+  abrad4;
+Expect (expands numeric values):
+  border-radius: 4px;
+
+Do (dib;<Enter>):
+  adib\<Enter>_
+Expect (display: inline-block;):
+  display: inline-block;
+  _
+
+Given sass:
+  .div
+    _
+Do (dib;<Enter>):
+  Gxadib\<Enter>_
+Expect (display: inline-block):
+  .div
+    display: inline-block
+    _
