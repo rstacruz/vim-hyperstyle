@@ -56,6 +56,8 @@ properties_list = [
     ("tt", "text-transform", { "alias": ["ttransform"] }),
     ("td", "text-decoration", { "alias": ["tdecoration"] }),
     ("ti", "text-indent", { "unit": "px" }),
+    ("ti", "text-indent", { "unit": "px" }),
+    ("ts", "text-shadow", {}),
     ("va", "vertical-align", { "unit": "px" }),
 
     ("tnd", "transition-duration", { "unit": "ms", "alias": ["tduration"] }),
