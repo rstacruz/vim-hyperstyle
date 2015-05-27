@@ -170,12 +170,24 @@ class TestSpace(unittest.TestCase):
         self.expect('fvar', 'font-variant:')
 
     def test_border_shortcuts(self):
+        self.expect('bc', 'border-color:')
+        self.expect('boc', 'border-color:')
         self.expect('bbo', 'border-bottom:')
         self.expect('bbot', 'border-bottom:')
         self.expect('bto', 'border-top:')
         self.expect('btop', 'border-top:')
         self.expect('bri', 'border-right:')
         self.expect('brig', 'border-right:')
+
+    def test_misc_shortcuts(self):
+        self.expect('tl', 'table-layout:')
+        self.expect('ta', 'text-align:')
+        self.expect('tb', None)
+        self.expect('tc', None)
+        self.expect('td', 'text-decoration:')
+        self.expect('te', 'text-align:')
+        self.expect('tf', 'transform:')
+        self.expect('tg', None)
 
 class TestBalanced(unittest.TestCase):
     def expect(self, input, expected):

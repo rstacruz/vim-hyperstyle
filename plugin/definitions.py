@@ -84,6 +84,7 @@ properties_list = [
     ("ti", "text-indent", { "unit": "px" }),
     ("ti", "text-indent", { "unit": "px" }),
     ("ts", "text-shadow", { "values": ["none"] }),
+    ("tl", "table-layout", { "values": ["fixed", "auto", "inherit"] }),
     ("va", "vertical-align", { "unit": "px", "alias": ["valign"], "values": ["middle","top","bottom","baseline","text-top","text-bottom","sub","super"] }),
 
     ("tnd", "transition-duration", { "unit": "ms", "alias": ["tduration"] }),
@@ -103,6 +104,7 @@ properties_list = [
 
     ("brad", "border-radius", { "unit": "px" }),
     ("boc", "border-color", { "unit": "px", "alias": ["bcolor"] }),
+    ("bocoll", "border-collapse", { "alias": ["bcollapse"], "values": ["collapse","separate","inherit"] }),
 
     ("c", "color", {}),
     ("op", "opacity", { "unit": "_" }),
@@ -210,6 +212,7 @@ statements_list = [
 
     ("b0", "border", "0", {}),
     ("bcc", "border-collapse", "collapse", {}),
+    ("bcs", "border-collapse", "separate", {}),
     
     ("brx", "background-repeat", "repeat-x", { "alias": [ "repeatx", "bgrx", "rx" ] }),
     ("bry", "background-repeat", "repeat-y", { "alias": [ "repeaty", "bgry", "ry" ] }),
