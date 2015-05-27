@@ -5,8 +5,34 @@ A list of CSS properties to expand.
 
 This will be indexed as `properties` (a dict). We define it as a list first
 because the order will matter in fuzzifying.
-"""
 
+Each entry is in this format:
+
+    (short, property, { options })
+
+Where:
+
+- short : the canonical shortcut for this property. This will always expand to
+  the property.
+- property : the full CSS property name.
+- options : defines some optional behavior for this shortcut.
+
+These options are available:
+
+- unit : (String) when defined, assumes that the property has a value with a
+  unit. When the value is numberless (eg, `margin:12`), the given unit will
+  be assumed (`12px`). Set this to `_` for unitless numbers (eg, line-height).
+- alias : (String list) a list of aliases for this shortcut.
+- values : (String list) possible values for this property.
+
+Each property will be accessible through these ways:
+
+- the primary `short` (eg: m)
+- fuzzy matches of the property name, no dashes(eg: mi, min, minh, minhe,
+  minhei...)
+- fuzzy matches with dashes (eg: min-h, min-hei, min-heig...)
+- fuzzy matches of aliases defined (eg: td, tde, tdec, tdeco, tdecor, tdecora...)
+"""
 properties_list = [
     ("m", "margin", { "unit": "px" }),
     ("w", "width", { "unit": "px" }),
@@ -120,7 +146,19 @@ properties_list = [
 
 """
 A list of CSS expressions to expand.
+
+This differs from `property_list` as this defines shortcuts for an entire statement.
+For instance, `dib<Enter>` will expand to `display: inline-block`.
+
+Each line is in this format:
+
+    (short, property, value, options)
+
+The following options are available:
+
+- alias : (String list) see `property_list` on how aliases work.
 """
+
 expressions_list = [
     ("db", "display", "block", {}),
     ("di", "display", "inline", {}),
