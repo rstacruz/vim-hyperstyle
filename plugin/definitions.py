@@ -68,13 +68,13 @@ properties_list = [
     ("ofy", "overflow-y", { "alias": "oy", "values": ["visible", "scroll", "hidden", "auto", "inherit"] }),
 
     ("f", "font", {}),
-    ("fs", "font-size", { "unit": "em" }),
-    ("fst", "font-style", { "values": ["italic", "normal", "inherit"] }),
-    ("fw", "font-weight", { "values": ["100","200","300","400","500","600","700","800","900","bold","normal"] }),
-    ("fv", "font-variant", {}),
-    ("ff", "font-family", {}),
+    ("fs", "font-size", { "alias": ["fosize", "fsize"], "unit": "em" }),
+    ("fst", "font-style", { "alias": ["fostyle", "fstyle"], "values": ["italic", "normal", "inherit"] }),
+    ("fw", "font-weight", { "alias": ["foweight", "fweight"], "values": ["100","200","300","400","500","600","700","800","900","bold","normal"] }),
+    ("fv", "font-variant", { "alias": ["fovariant", "fvariant"] }),
+    ("ff", "font-family", { "alias": ["fofamily", "ffamily"] }),
     ("lh", "line-height", { "unit": "_" }),
-    ("ls", "letter-spacing", { "unit": "px" }),
+    ("ls", "letter-spacing", { "alias": ["lespacing", "lspacing"], "unit": "px" }),
 
     ("tf", "transform", { "alias": ["tform", "xform"] }),
     ("tn", "transition", { "alias": ["tsition"] }),
@@ -91,9 +91,9 @@ properties_list = [
     ("fl", "float", { "values": ["left", "right", "none", "inherit"] }),
 
     ("bri", "border-right", { "alias": ["bright"] }),
-    ("bl", "border-left", {}),
-    ("bt", "border-top", {}),
-    ("bb", "border-bottom", {}),
+    ("bl", "border-left", { "alias": ["bleft"] }),
+    ("bt", "border-top", { "alias": ["btop"] }),
+    ("bb", "border-bottom", { "alias": ["bbottom"] }),
 
     ("bw", "border-width", { "unit": "px" }),
     ("brw", "border-right-width", { "unit": "px" }),

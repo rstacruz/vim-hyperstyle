@@ -154,6 +154,26 @@ class TestSpace(unittest.TestCase):
     def test_expansion_with_hyphens(self):
         self.expect('border-co', 'border-color:')
 
+    def test_font_shortcuts(self):
+        self.expect('fow', 'font-weight:')
+        self.expect('fw', 'font-weight:')
+        self.expect('fos', 'font-size:')
+        self.expect('fs', 'font-size:')
+        self.expect('fost', 'font-style:')
+        self.expect('fst', 'font-style:')
+        self.expect('fova', 'font-variant:')
+        self.expect('fov', 'font-variant:')
+        self.expect('fv', 'font-variant:')
+        self.expect('fvar', 'font-variant:')
+
+    def test_border_shortcuts(self):
+        self.expect('bbo', 'border-bottom:')
+        self.expect('bbot', 'border-bottom:')
+        self.expect('bto', 'border-top:')
+        self.expect('btop', 'border-top:')
+        self.expect('bri', 'border-right:')
+        self.expect('brig', 'border-right:')
+
 class TestBalanced(unittest.TestCase):
     def expect(self, input, expected):
         output = cssx.is_balanced_rule(input)
