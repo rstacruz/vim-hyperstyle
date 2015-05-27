@@ -268,10 +268,10 @@ statements_list = [
     ("mla", "margin-left", "auto", {}),
     ("mra", "margin-right", "auto", {}),
 
-    ("por", "position", "relative", { "alias": ["relative"] }),
-    ("pof", "position", "fixed", {}),
-    ("pos", "position", "static", {}),
-    ("poa", "position", "absolute", { "alias": ["absolute"] }),
+    ("por", "position", "relative", { "alias": ["porelative", "prelative", "relative"] }),
+    ("pof", "position", "fixed", { "alias": ["pofixed", "pfixed", "fixed"] }),
+    ("pos", "position", "static", { "alias": ["postatic", "pstatic", "static"] }),
+    ("poa", "position", "absolute", { "alias": ["poabsolute", "pabsolute", "absolute"] }),
 
     ("nowrap", "white-space", "nowrap", {}),
     ("ellip", "text-overflow", "ellipsis", {}),
@@ -302,6 +302,7 @@ statements_list = [
 
     ("tsn", "text-shadow", "none", {}),
     ("wa", "width", "auto", { "alias": ["wauto"] }),
+    ("ha", "height", "auto", { "alias": ["hauto"] }),
 ]
 
 # Index them
