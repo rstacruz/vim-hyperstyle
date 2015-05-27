@@ -10,7 +10,9 @@ Type faster by shorthand that will auto-expand as you type. Supports less, sass,
 
 ## Expansions
 
-* Properties will be auto-completed:<br>`m ` → `margin: `
+Expansions intelligently happen as you type, no hotkeys required.
+
+* Properties will be auto-completed:<br>`m:` → `margin:`
 
 * You can put numeric next to property shortcuts:<br>`z1⏎` → `z-index: 1;`
  
