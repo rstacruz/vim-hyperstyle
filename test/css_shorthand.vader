@@ -30,7 +30,11 @@ Expect (display: inline-block;):
   display: inline-block;
   _
 
-Given css:
+Do (m:a; dib;<Enter>):
+  am:a; dib;
+Expect (multiple statements don't stack on the same line):
+  margin: auto; dib;
+
 Do (123<Enter>):
   a123\<Enter>_
 Expect (safely lets enter through):
