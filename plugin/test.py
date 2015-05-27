@@ -75,6 +75,9 @@ class TestCr(unittest.TestCase):
     def test_auto_comma_no_space(self):
         self.expect('  font-weight:400', '  font-weight:400;')
 
+    def test_autocomplete_values(self):
+        self.expect('  float: l', '  float: left;')
+
     def test_flex(self):
         # should not mess with flex: property
         self.expect('flex', 'display: flex;')
@@ -158,8 +161,33 @@ class TestBalanced(unittest.TestCase):
     def test_unbalanced(self):
         self.expect("background: linear-gradient(to bottom", False)
 
+class TestExpanders(unittest.TestCase):
+    def keyword(self, a, b):
+        return cssx.expand_keyword_value(a, b)
+
+    def full(self, prop, val):
+        return cssx.expand_full_value(prop, val)
+
+    def test_simple(self):
+        self.assertEqual(self.keyword('l', ['left', 'right']), 'left')
+
+    def test_prioritize_prefixes(self):
+        self.assertEqual(self.keyword('r', ['lefrt', 'right']), 'right')
+
+    def test_no_matches(self):
+        self.assertEqual(self.keyword('x', ['lert', 'right']), None)
+
+    def test_auto_unit(self):
+        self.assertEqual(self.full('3', 'margin'), '3px')
+
+    def test_expand_unit(self):
+        self.assertEqual(self.full('3x', 'margin'), '3px')
+
+    def test_leave_alone(self):
+        self.assertEqual(self.full('aoeuaoeu', 'margin'), None)
+
 # TODO:
-# - [ ] autocompleting values (float: l => float: left)
+# - [x] autocompleting values (float: l => float: left)
 # - [x] auto-uniting values (margin: 3 => margin: 3px)
 # - [ ] multi numeric (m0 3 => margin: 0 3px)
 

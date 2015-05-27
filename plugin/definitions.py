@@ -34,7 +34,7 @@ Each property will be accessible through these ways:
 - fuzzy matches of aliases defined (eg: td, tde, tdec, tdeco, tdecor, tdecora...)
 """
 properties_list = [
-    ("m", "margin", { "unit": "px" }),
+    ("m", "margin", { "unit": "px", "values": ["auto"] }),
     ("w", "width", { "unit": "px" }),
     ("h", "height", { "unit": "px" }),
     ("p", "padding", { "unit": "px" }),

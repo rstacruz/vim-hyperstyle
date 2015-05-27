@@ -1,3 +1,7 @@
+## v0.2.3
+
+* Keyword values are expanded now as well. `fl:l⏎` should expand to `float: left`.
+
 ## [v0.2.2] - May 27, 2015
 
 * Add `jcs` as `justify-column: flex-start`.

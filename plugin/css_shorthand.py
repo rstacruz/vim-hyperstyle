@@ -33,34 +33,22 @@ def expand_expression(line, semi = ';'):
     # Check if its a property with value
     # (m10em => margin: 10em)
     def expand_property_with_value():
-        short, value, unit = split_value(snippet) # "m", "10", "em"
+        short, value, unit = split_value(snippet) # ("m","10","em")
         expansion = properties.get(short) # ("margin", {"unit": "px"})
         if not expansion: return
 
         prop, options = expansion
-        default_unit = options.get('unit')
-        if not default_unit: return
-
-        value = expand_value(value, unit, default_unit)
-        return "%s%s: %s%s" % (indent, prop, value, semi)
+        value = expand_full_value(value + unit, prop)
+        if value: return "%s%s: %s%s" % (indent, prop, value, semi)
 
     # (margin: 3 => margin: 3px)
     def expand_unit_value():
-        m = rule_expr.match(snippet)
+        m = rule_expr.match(snippet) # ("margin", "3")
         if not m: return
 
-        prop = m.group(1)
-        options = full_properties.get(m.group(1))
-        if not options: return
-
-        short, value, unit = split_value(m.group(2))
-        if not value: return
-
-        default_unit = options.get('unit')
-        if not default_unit: return
-
-        value = expand_value(value, unit, default_unit)
-        return "%s%s: %s%s" % (indent, prop, value, semi)
+        prop, value = m.group(1), m.group(2)
+        value = expand_full_value(value, prop)
+        if value: return "%s%s: %s%s" % (indent, prop, value, semi)
 
     # add semicolon if needed
     def expand_semicolon():
@@ -109,17 +97,63 @@ def expand_property(line, semi=';'):
     #     return expr
 
 """
-Expands a value
+Expands a value of a given property `prop`. Returns the expanded value.
 
->>> expand_value("10", "")
+>>> e("3", "margin")
+"3px"
+
+>>> e("3x", "margin")
+"3px"
+
+>>> e("l", "float")
+"left"
+"""
+def expand_full_value(val, prop):
+    options = full_properties.get(prop)
+    if not options: return
+
+    # Account for default units
+    # ('margin', '3') => '3px'
+    default_unit = options.get('unit')
+    if default_unit:
+        _, number, unit = split_value(val)
+        if not number: return
+
+        return expand_scalar_value(number, unit, default_unit)
+
+    # Account for preset value keywords
+    # ('float', 'l') => 'left'
+    values = options.get('values')
+    if values:
+        return expand_keyword_value(val, values)
+
+"""
+Finds the closest match to a `value` given a list of `keywords`.
+
+>>> expand_keyword_value('l', ['left', 'right', 'auto'])
+"left"
+
+>>> expand_keyword_value('xxx', ['inherit', 'auto'])
+None
+"""
+def expand_keyword_value(value, keywords):
+    for word in keywords:
+        if re.match('^'+value, word): return word 
+    for word in keywords:
+        if re.match(value, word): return word
+
+"""
+Expands a single scalar value.
+
+>>> expand_scalar_value("10", "", "px")
 "10px"
 
->>> expand_value("10", "m")
+>>> expand_scalar_value("10", "m")
 "10em"
 """
-def expand_value(value, unit, default_unit = None):
-    if value == "0":
-        return value
+def expand_scalar_value(number, unit, default_unit):
+    if number == "0":
+        return number
 
     if unit == "p" or unit == "x":
         unit = "px"
@@ -131,7 +165,7 @@ def expand_value(value, unit, default_unit = None):
         else:
             unit = (default_unit or px)
 
-    return value + unit
+    return number + unit
 
 """
 (Private) splits a line into its indentation and meat.
