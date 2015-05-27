@@ -1,4 +1,4 @@
-vim := /usr/bin/vim
+vim := vim
 plugins = ${HOME}/.vim/plugged
 redirect := >/dev/null
 
