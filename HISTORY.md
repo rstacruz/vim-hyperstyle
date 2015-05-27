@@ -1,6 +1,9 @@
 ## v0.2.5
 
 * `boxs` now expands to `box-shadow` instead of box-sizing.
+* `cursor` values are now supported.
+* Updated shortcuts for `position`.
+* Added `ha` for `height: auto`.
 
 ## [v0.2.4] - May 27, 2015
 
