@@ -64,7 +64,7 @@ try
   function s:pyeval(code)
     return pyeval('(' . a:code . ') or ""')
   endfunction
-catch /./
+catch /E117/ " Unknown function
   function s:pyeval(code)
     python result = eval(vim.eval('a:code'))
     python if isinstance(result, str): vim.command('return ' + repr(result))
