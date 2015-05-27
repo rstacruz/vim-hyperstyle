@@ -116,6 +116,9 @@ class TestCr(unittest.TestCase):
     def test_rtl(self):
         self.expect('rtl', 'direction: rtl;')
 
+    def test_zoom_number(self):
+        self.expect('zo1', 'zoom: 1;')
+
 class TestSpace(unittest.TestCase):
     def expect(self, source, expected):
         output = cssx.expand_property(source)
@@ -126,6 +129,13 @@ class TestSpace(unittest.TestCase):
 
     def test_display(self):
         self.expect('d', 'display:')
+
+    def test_border_right(self):
+        self.expect('bri', 'border-right:')
+
+    def test_blacklist_of_br(self):
+        # Because `br` is a tag. Use `bri`.
+        self.expect('br', None)
 
     def test_display_fuzzying(self):
         self.expect('dis', 'display:')

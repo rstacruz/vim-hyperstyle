@@ -1,6 +1,7 @@
 ## v0.2.4
 
 * Fix `vertical-align:mid` not completing to `middle`.
+* Zoom now accepts a number. `zo1` will expand to `zoom: 1`.
 
 ## [v0.2.3] - May 27, 2015
 

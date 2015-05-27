@@ -38,11 +38,11 @@ properties_list = [
     ("w", "width", { "unit": "px", "values": ["auto"] }),
     ("h", "height", { "unit": "px", "values": ["auto"] }),
     ("p", "padding", { "unit": "px" }),
-    ("b", "border", {}),
+    ("bo", "border", {}), # because `b` is for bold.
     ("o", "outline", {}),
     ("l", "left", { "unit": "px" }),
     ("t", "top", { "unit": "px" }),
-    ("bot", "bottom", { "unit": "px" }),
+    ("bot", "bottom", { "unit": "px" }), # because `b` and `bo` are taken.
     ("r", "right", { "unit": "px" }),
     ("bg", "background", { "values": ["transparent"] }),
     ("mh", "min-height", { "unit": "px", "values": ["auto"] }),
@@ -89,7 +89,7 @@ properties_list = [
 
     ("fl", "float", { "values": ["left", "right", "none", "inherit"] }),
 
-    ("br", "border-right", {}),
+    ("bri", "border-right", { "alias": ["bright"] }),
     ("bl", "border-left", {}),
     ("bt", "border-top", {}),
     ("bb", "border-bottom", {}),
@@ -139,7 +139,7 @@ properties_list = [
     ("q", "quotes", {}),
     ("con", "content", {}),
     ("cl", "clear", { "values": ["left", "right", "both", "inherit"]}),
-    ("zo", "zoom", {}),
+    ("zo", "zoom", { "unit": "_" }),
     ("dir", "direction", { "values": ["ltr", "rtl", "inherit"] }),
 ]
 
