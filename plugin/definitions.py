@@ -109,7 +109,7 @@ properties_list = [
     ("c", "color", {}),
     ("op", "opacity", { "unit": "_" }),
 
-    ("cur", "cursor", {}),
+    ("cur", "cursor", { "values": ["wait", "pointer", "auto", "default", "help", "progress", "cell", "crosshair", "text", "vertical-text", "alias", "copy", "move", "not-allowed", "no-drop", "all-scroll", "col-resize", "row-resize", "n-resize", "e-resize", "s-resize", "w-resize", "nw-resize", "ne-resize", "sw-resize", "se-resize", "ew-resize", "ns-resize", "zoom-in", "zoom-out", "grab", "grabbing" ] }),
     ("ani", "animation", {}),
 
     ("bg", "background", {}),
