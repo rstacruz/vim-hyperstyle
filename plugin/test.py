@@ -132,6 +132,12 @@ class TestCr(unittest.TestCase):
         self.expect('f100', 'font-weight: 100;')
         self.expect('under', 'text-decoration: underline;')
 
+    def test_leave_selectors_alone(self):
+        self.expect('p:before', None)
+        self.expect('p:hover', None)
+        self.expect('p::placeholder', None)
+        self.expect('cursor:w{', None)
+
 class TestSpace(unittest.TestCase):
     def expect(self, source, expected):
         output = cssx.expand_property(source)

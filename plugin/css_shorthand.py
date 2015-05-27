@@ -7,6 +7,8 @@ semicolon_expr = re.compile(r';\s*$')
 value_expr = re.compile(r'^([^\.\d-]*)(-?\d*\.?\d+)(x|p[tcx]?|e[mx]?|s|m[ms]?|rem|ch|v[wh]|vmin|max|%|)$')
 line_expr = re.compile(r'^(\s*)(.*?)$')
 rule_expr = re.compile(r'^((?:[a-z]+-)*[a-z]+): *([^\s].*?);?$')
+selectorlike_expr = re.compile(r'.*(before|placeholder|root|after|focus|hover|active|checked|selected).*')
+ends_in_brace_expr = re.compile(r'.*\{\s*$')
 
 def expand_statement(line, semi = ';'):
     """Expands a statement line. Executed when pressing <Enter>. If `semi` is a
@@ -44,17 +46,22 @@ def expand_statement(line, semi = ';'):
         if value: return "%s%s: %s%s" % (indent, prop, value, semi)
 
     # (margin: 3 => margin: 3px)
+    # skip it if it's say 'p:before' or anything selector-like
     def expand_unit_value():
         m = rule_expr.match(snippet) # ("margin", "3")
         if not m: return
 
         prop, value = m.group(1), m.group(2)
+        if is_selectorlike(value): return
+
         new_value = expand_full_value(value, prop)
         return "%s%s: %s%s" % (indent, prop, new_value or value, semi)
 
     # add semicolon if needed
     def expand_semicolon():
-        if semi == ';' and is_balanced_rule(snippet) and not semicolon_expr.match(snippet):
+        if semi == ';' and is_balanced_rule(snippet) and \
+           not is_selectorlike(snippet) and \
+           not semicolon_expr.match(snippet):
             return "%s%s;" % (indent, snippet)
 
     return \
@@ -204,3 +211,8 @@ def is_balanced_rule(str):
 
     value = m.group(2)
     return value.count('(') == value.count(')')
+
+def is_selectorlike(value):
+    if selectorlike_expr.match(value) or ends_in_brace_expr.match(value):
+        return True
+

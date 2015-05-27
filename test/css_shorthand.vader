@@ -41,6 +41,24 @@ Expect (safely lets enter through):
   123
   _
 
+Do:
+  ap:before\<Enter>_
+Expect (don't expand :before):
+  p:before
+  _
+
+Do:
+  ap:before\<Enter>_
+Expect (don't expand :before):
+  p:before
+  _
+
+Do:
+  acursor:w{\<Enter>\<Esc>0a_
+Expect (don't expand open braces):
+  cursor:w{
+  _
+
 Given sass:
   .div
     _

@@ -9,7 +9,7 @@ test-python: plugin/test.py
 	@if which python3 >/dev/null; then python3 --version; python3 $<; fi
 
 autotest:
-	find plugin | entr make test-python
+	find plugin test | entr make test
 
 # Automated vim testing via vader.vim
 test-vim: vendor/vimrc
