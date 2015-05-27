@@ -84,7 +84,7 @@ properties_list = [
     ("ti", "text-indent", { "unit": "px" }),
     ("ti", "text-indent", { "unit": "px" }),
     ("ts", "text-shadow", { "values": ["none"] }),
-    ("tl", "table-layout", { "values": ["fixed", "auto", "inherit"] }),
+    ("tl", "table-layout", { "alias": ["talayout", "tlayout"], "values": ["fixed", "auto", "inherit"] }),
     ("va", "vertical-align", { "unit": "px", "alias": ["valign"], "values": ["middle","top","bottom","baseline","text-top","text-bottom","sub","super"] }),
 
     ("tnd", "transition-duration", { "unit": "ms", "alias": ["tduration"] }),
