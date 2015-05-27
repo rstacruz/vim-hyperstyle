@@ -144,7 +144,7 @@ properties_list = [
 ]
 
 """
-A list of CSS expressions to expand.
+A list of CSS statements to expand.
 
 This differs from `property_list` as this defines shortcuts for an entire statement.
 For instance, `dib<Enter>` will expand to `display: inline-block`.
@@ -158,7 +158,7 @@ The following options are available:
 - alias : (String list) see `property_list` on how aliases work.
 """
 
-expressions_list = [
+statements_list = [
     ("db", "display", "block", {}),
     ("di", "display", "inline", {}),
     ("dib", "display", "inline-block", {}),
@@ -303,15 +303,15 @@ for (short, prop, options) in properties_list:
     properties[short] = (prop, options)
     full_properties[prop] = options
 
-expressions = {}
-for (short, prop, value, options) in expressions_list:
-    expressions[short] = (prop, value, options)
+statements = {}
+for (short, prop, value, options) in statements_list:
+    statements[short] = (prop, value, options)
 
 for (short, prop, options) in properties_list:
     apply_fuzzies(properties, short, prop, options)
 
-for (short, prop, value, options) in expressions_list:
-    apply_fuzzies(expressions, short, prop, options)
+for (short, prop, value, options) in statements_list:
+    apply_fuzzies(statements, short, prop, options)
 
 # Workaround to stop tags from being expanded. This will allow you to type
 # `li:before` without `li:` being expanded to `line-height:`.
@@ -319,5 +319,5 @@ for (short, prop, value, options) in expressions_list:
 # This is also important for indented syntaxes, where you might commonly
 # type `p` on its own line (in contrast to `p {`).
 for tag in ['a', 'p', 'br', 'b', 'i', 'li', 'ul', 'div', 'em', 'sup', 'big', 'small', 'sub']:
-    expressions[tag] = None
+    statements[tag] = None
     properties[tag] = None

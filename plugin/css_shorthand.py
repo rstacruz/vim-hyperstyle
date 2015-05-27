@@ -1,5 +1,5 @@
 import re
-from definitions import properties, expressions, full_properties
+from definitions import properties, statements, full_properties
 from utils import fuzzify
 
 line_expr = re.compile(r'^(\s*)(.*?)$')
@@ -7,25 +7,25 @@ value_expr = re.compile(r'^([^\.\d-]*)(-?\d*\.?\d+)(p|x|m|px|em|s|ms|%|)$')
 rule_expr = re.compile(r'^((?:[a-z]+-)*[a-z]+): *([^\s].*);?$')
 
 """
-Expands a snippet expression. If `semi` is a blank string, then treat the
-language as an indented syntax (like Sass).
+Expands a statement line. Executed when pressing <Enter>. If `semi` is a blank
+string, then treat the language as an indented syntax (like Sass).
 
->>> expand_expression("db")
+>>> expand_statement("db")
 "display: block;"
 
->>> expand_expression("db", '')
+>>> expand_statement("db", '')
 "display: block"
 
->>> expand_expression("m3m")
+>>> expand_statement("m3m")
 "margin: 3em;"
 """
-def expand_expression(line, semi = ';'):
+def expand_statement(line, semi = ';'):
     indent, snippet = split_indent(line)
 
-    # Check if its a simple expression
+    # Check if its a simple statement
     # (db => display: block)
-    def expand_simple_expression():
-        expansion = expressions.get(snippet)
+    def expand_simple_statement():
+        expansion = statements.get(snippet)
         if not expansion: return
 
         key, value, _ = expansion
@@ -57,13 +57,13 @@ def expand_expression(line, semi = ';'):
             return "%s%s;" % (indent, snippet)
 
     return \
-        expand_simple_expression() or \
+        expand_simple_statement() or \
         expand_property_with_value() or \
         expand_unit_value() or \
         expand_semicolon()
 
 """
-Splits a snippet into property, value and unit
+Splits a snippet into property, number and unit.
 
 # margin: 10px
 >>> split_value("m10p")
@@ -79,7 +79,7 @@ def split_value(snippet):
 """
 Expands a property.
 
-The 2nd argument is there to keep the API same with expand_expression(). Vim
+The 2nd argument is there to keep the API same with expand_statement(). Vim
 might pass a semicolon for it.
 
 >>> expand_property("m")
@@ -93,9 +93,9 @@ def expand_property(line, semi=';'):
         prop, options = tuple
         return "%s%s:" % (indent, prop)
 
-    # expr = expand_expression(line, semi)
-    # if expr:
-    #     return expr
+    # Not recommend,d but this will expand "dib_" into "display: inline-block;_"
+    # expr = expand_statement(line, semi)
+    # if expr: return expr
 
 """
 Expands a value of a given property `prop`. Returns the expanded value.
@@ -122,7 +122,7 @@ def expand_full_value(val, prop):
     if default_unit:
         _, number, unit = split_value(val)
         if number:
-            return expand_scalar_value(number, unit, default_unit)
+            return expand_numeric_value(number, unit, default_unit)
 
     # Account for preset value keywords
     # ('float', 'l') => 'left'
@@ -146,15 +146,15 @@ def expand_keyword_value(value, keywords):
         if re.match(value, word): return word
 
 """
-Expands a single scalar value.
+Expands a single numeric value.
 
->>> expand_scalar_value("10", "", "px")
+>>> expand_numeric_value("10", "", "px")
 "10px"
 
->>> expand_scalar_value("10", "m")
+>>> expand_numeric_value("10", "m")
 "10em"
 """
-def expand_scalar_value(number, unit, default_unit):
+def expand_numeric_value(number, unit, default_unit):
     if number == "0":
         return number
 
@@ -186,10 +186,12 @@ semicolon.
 
 >>> is_balanced_rule("margin: 0")
 True
+
 >>> is_balanced_rule("margin: scaleX(3)")
 True
+
 >>> is_balanced_rule("margin: linear-gradient(to-bottom")
-True
+False
 """
 def is_balanced_rule(str):
     if str and str[-1] == ';':
