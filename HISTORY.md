@@ -1,5 +1,6 @@
-## v0.2.5
+## v0.3.0
 
+* Vim 7.3 uspport!
 * `boxs` now expands to `box-shadow` instead of box-sizing.
 * `cursor` values are now supported.
 * Updated shortcuts for `position`.
