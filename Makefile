@@ -14,7 +14,7 @@ autotest:
 # Automated vim testing via vader.vim
 pwd = $(shell pwd)
 test-vim: vendor/vader.vim
-	@bash -c 'env HOME=/dev/null ${vim} -Nu <( \
+	@bash -c 'env HOME=/dev/null ${vim} --nofork -Nu <( \
 		echo "filetype off"; \
 		echo "set rtp+=${pwd}/$<"; \
 		echo "set rtp+=${pwd}"; \
