@@ -243,7 +243,10 @@ statements_list = [
     ("cont", "content", "''", {}),
 
     ("ttu", "text-transform", "uppercase", {}),
+    ("ttl", "text-transform", "lowercase", {}),
     ("ttn", "text-transform", "none", {}),
+    ("ttc", "text-transform", "capitalize", {}),
+    ("ttf", "text-transform", "full-width", {}),
 
     ("tal", "text-align", "left", {}),
     ("tar", "text-align", "right", {}),
