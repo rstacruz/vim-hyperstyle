@@ -91,10 +91,10 @@ properties_list = [
 
     ("fl", "float", { "values": ["left", "right", "none", "inherit"] }),
 
-    ("bri", "border-right", { "alias": ["bright"] }),
-    ("bl", "border-left", { "alias": ["bleft"] }),
-    ("bt", "border-top", { "alias": ["btop"] }),
-    ("bb", "border-bottom", { "alias": ["bbottom"] }),
+    ("bri", "border-right", { "alias": ["bright", "borright"] }),
+    ("bl", "border-left", { "alias": ["bleft", "borleft"] }),
+    ("bt", "border-top", { "alias": ["btop", "bortop"] }),
+    ("bb", "border-bottom", { "alias": ["bbottom", "borbottom"] }),
 
     ("bw", "border-width", { "unit": "px" }),
     ("brw", "border-right-width", { "unit": "px" }),
@@ -102,9 +102,9 @@ properties_list = [
     ("btw", "border-top-width", { "unit": "px" }),
     ("bbw", "border-bottom-width", { "unit": "px" }),
 
-    ("brad", "border-radius", { "unit": "px" }),
-    ("boc", "border-color", { "unit": "px", "alias": ["bcolor"] }),
-    ("bocoll", "border-collapse", { "alias": ["bcollapse"], "values": ["collapse","separate","inherit"] }),
+    ("brad", "border-radius", { "unit": "px", "alias": ["bradius", "borradius"] }),
+    ("boc", "border-color", { "unit": "px", "alias": ["bcolor", "borcolor"] }),
+    ("bocoll", "border-collapse", { "alias": ["bcollapse", "borcollapse"], "values": ["collapse","separate","inherit"] }),
 
     ("c", "color", {}),
     ("op", "opacity", { "unit": "_" }),
@@ -117,7 +117,7 @@ properties_list = [
     ("bgs", "background-size", { "alias": ["bgsize"] }),
     ("bgp", "background-position", { "alias": ["bgposition"] }),
 
-    ("bs", "box-shadow", { "values": ["none"] }),
+    ("bs", "box-shadow", { "values": ["none"], "alias": ["boshadow", "bshadow"] }),
     ("bsize", "box-sizing", { "values": ["border-box", "content-box", "padding-box"] }),
 
     ("pos", "position", { "values": ["absolute", "relative", "fixed", "static", "inherit"] }),

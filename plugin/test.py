@@ -162,6 +162,7 @@ class TestSpace(unittest.TestCase):
 
     def test_expansion_with_hyphens(self):
         self.expect('border-co', 'border-color:')
+        self.expect('borco', 'border-color:')
 
     def test_font_shortcuts(self):
         self.expect('fow', 'font-weight:')
@@ -184,6 +185,16 @@ class TestSpace(unittest.TestCase):
         self.expect('btop', 'border-top:')
         self.expect('bri', 'border-right:')
         self.expect('brig', 'border-right:')
+        self.expect('borr', 'border-right:')
+        self.expect('bs', 'box-shadow:')
+        self.expect('bos', 'box-shadow:')
+        self.expect('bot', 'bottom:')
+        self.expect('bott', 'bottom:')
+        self.expect('borr', 'border-right:')
+        self.expect('borl', 'border-left:')
+        self.expect('borb', 'border-bottom:')
+        self.expect('bortop', 'border-top:')
+        self.expect('bort', 'border-top:')
 
     def test_misc_shortcuts(self):
         self.expect('tl', 'table-layout:')
@@ -195,7 +206,6 @@ class TestSpace(unittest.TestCase):
         self.expect('tf', 'transform:')
         self.expect('tg', None)
         self.expect('tr', 'transition:')
-        self.expect('tf', 'transform:')
 
 class TestBalanced(unittest.TestCase):
     def expect(self, input, expected):
