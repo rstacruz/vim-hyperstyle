@@ -54,16 +54,20 @@ Using [vim-plug]:
 Plug 'rstacruz/vim-css-shorthand'
 ```
 
-Vim with Python support is required. For Neovim:
+NeoVim is required for now. http://neovim.org/
+
+Python support is required. For Neovim:
 
     :help nvim-python
 
+<!--
 For OSX/Homebrew: ([info](http://ricostacruz.com/til/use-macvim-with-lua.html))
 
 ```
 brew install macvim --with-cscope --with-lua --override-system-vim \
   --with-luajit --with-python3 --with-python
 ```
+-->
 
 <br>
 
