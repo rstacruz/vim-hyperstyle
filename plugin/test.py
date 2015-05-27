@@ -176,6 +176,28 @@ class TestSpace(unittest.TestCase):
         self.expect('fv', 'font-variant:')
         self.expect('fvar', 'font-variant:')
 
+    def test_padding_shortcuts(self):
+        self.expect('pad', 'padding:')
+        self.expect('padt', 'padding-top:')
+        self.expect('padl', 'padding-left:')
+        self.expect('padb', 'padding-bottom:')
+        self.expect('padr', 'padding-right:')
+        self.expect('padt', 'padding-top:')
+        self.expect('padl', 'padding-left:')
+        self.expect('padb', 'padding-bottom:')
+        self.expect('padr', 'padding-right:')
+
+    def test_margin_shortcuts(self):
+        self.expect('mar', 'margin:')
+        self.expect('mart', 'margin-top:')
+        self.expect('marl', 'margin-left:')
+        self.expect('marb', 'margin-bottom:')
+        self.expect('marr', 'margin-right:')
+        self.expect('mt', 'margin-top:')
+        self.expect('ml', 'margin-left:')
+        self.expect('mb', 'margin-bottom:')
+        self.expect('mr', 'margin-right:')
+
     def test_border_shortcuts(self):
         self.expect('bc', 'border-color:')
         self.expect('boc', 'border-color:')

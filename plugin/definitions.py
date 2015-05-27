@@ -48,15 +48,15 @@ properties_list = [
     ("mh", "min-height", { "unit": "px", "values": ["auto"] }),
     ("mw", "min-width", { "unit": "px", "values": ["auto"] }),
 
-    ("ml", "margin-left", { "unit": "px", "values": ["auto"] }),
-    ("mr", "margin-right", { "unit": "px", "values": ["auto"] }),
-    ("mt", "margin-top", { "unit": "px", "values": ["auto"] }),
-    ("mb", "margin-bottom", { "unit": "px", "values": ["auto"] }),
+    ("ml", "margin-left", { "unit": "px", "values": ["auto"], "alias": ["mleft", "marleft"] }),
+    ("mr", "margin-right", { "unit": "px", "values": ["auto"], "alias": ["mright", "marright"] }),
+    ("mt", "margin-top", { "unit": "px", "values": ["auto"], "alias": ["mtop", "martop"] }),
+    ("mb", "margin-bottom", { "unit": "px", "values": ["auto"], "alias": ["mbottom", "marbottom"] }),
 
-    ("pl", "padding-left", { "unit": "px" }),
-    ("pr", "padding-right", { "unit": "px" }),
-    ("pt", "padding-top", { "unit": "px" }),
-    ("pb", "padding-bottom", { "unit": "px" }),
+    ("pl", "padding-left", { "unit": "px", "alias": ["padleft", "pleft"] }),
+    ("pr", "padding-right", { "unit": "px", "alias": ["padright", "pright"] }),
+    ("pt", "padding-top", { "unit": "px", "alias": ["padtop", "ptop"] }),
+    ("pb", "padding-bottom", { "unit": "px", "alias": ["padbottom", "pbottom"] }),
 
     ("zi", "z-index", { "unit": "_" }),
 
