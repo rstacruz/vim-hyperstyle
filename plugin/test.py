@@ -217,6 +217,10 @@ class TestSpace(unittest.TestCase):
         self.expect('borb', 'border-bottom:')
         self.expect('bortop', 'border-top:')
         self.expect('bort', 'border-top:')
+        self.expect('bsh', 'box-shadow:')
+        self.expect('bs', 'box-shadow:')
+        self.expect('bsi', 'box-sizing:')
+        self.expect('bsize', 'box-sizing:')
 
     def test_misc_shortcuts(self):
         self.expect('tl', 'table-layout:')

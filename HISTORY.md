@@ -1,3 +1,7 @@
+## v0.2.5
+
+* `boxs` now expands to `box-shadow` instead of box-sizing.
+
 ## [v0.2.4] - May 27, 2015
 
 * Fix `vertical-align:mid` not completing to `middle`.

@@ -117,8 +117,8 @@ properties_list = [
     ("bgs", "background-size", { "alias": ["bgsize"] }),
     ("bgp", "background-position", { "alias": ["bgposition"] }),
 
+    ("bsize", "box-sizing", { "values": ["border-box", "content-box", "padding-box"], "alias": ["bsizing", "bsize","boxsize"] }),
     ("bs", "box-shadow", { "values": ["none"], "alias": ["boshadow", "bshadow"] }),
-    ("bsize", "box-sizing", { "values": ["border-box", "content-box", "padding-box"] }),
 
     ("pos", "position", { "values": ["absolute", "relative", "fixed", "static", "inherit"] }),
     ("flex", "flex", {}),
