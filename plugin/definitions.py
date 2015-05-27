@@ -33,7 +33,6 @@ properties_list = [
     ("pb", "padding-bottom", { "unit": "px" }),
 
     ("zi", "z-index", { "unit": "_" }),
-    ("dir", "direction", { "values": ["ltr", "rtl", "inherit"] }),
 
     ("d", "display", {}),
     ("ta", "text-align", { "values": ["left", "right", "justify", "center", "inherit"] }),
@@ -116,6 +115,7 @@ properties_list = [
     ("con", "content", {}),
     ("cl", "clear", { "values": ["left", "right", "both", "inherit"]}),
     ("zo", "zoom", {}),
+    ("dir", "direction", { "values": ["ltr", "rtl", "inherit"] }),
 ]
 
 """
