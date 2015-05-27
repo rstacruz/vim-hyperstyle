@@ -5,7 +5,7 @@ from utils import fuzzify
 # Also see http://www.w3.org/TR/css3-values/
 line_expr = re.compile(r'^(\s*)(.*?)$')
 value_expr = re.compile(r'^([^\.\d-]*)(-?\d*\.?\d+)(x|p[tcx]?|e[mx]?|s|m[ms]?|rem|ch|v[wh]|vmin|max|%|)$')
-rule_expr = re.compile(r'^((?:[a-z]+-)*[a-z]+): *([^\s].*);?$')
+rule_expr = re.compile(r'^((?:[a-z]+-)*[a-z]+): *([^\s].*?);?$')
 
 """
 Expands a statement line. Executed when pressing <Enter>. If `semi` is a blank
@@ -54,7 +54,7 @@ def expand_statement(line, semi = ';'):
 
     # add semicolon if needed
     def expand_semicolon():
-        if semi == ';' and is_balanced_rule(snippet):
+        if semi == ';' and is_balanced_rule(snippet) and not re.match(r';\s*$', snippet):
             return "%s%s;" % (indent, snippet)
 
     return \

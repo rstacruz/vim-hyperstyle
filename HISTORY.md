@@ -4,6 +4,7 @@
 * `cursor` values are now supported.
 * Updated shortcuts for `position`.
 * Added `ha` for `height: auto`.
+* Fix double semicolon problem.
 
 ## [v0.2.4] - May 27, 2015
 

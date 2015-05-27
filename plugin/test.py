@@ -18,6 +18,9 @@ class TestCr(unittest.TestCase):
     def test_display_block_with_indent(self):
         self.expect('  db', '  display: block;')
 
+    def test_double_semicolon(self):
+        self.expect('  position: fixed;', '  position: fixed;')
+
     def test_dont_expand_p(self):
         self.expect('  p', None)
 
