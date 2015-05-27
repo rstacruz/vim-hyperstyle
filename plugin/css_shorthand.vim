@@ -35,6 +35,11 @@ function s:expand_colon(semi)
   return s:expand_thing('expand_property', ':', '', a:semi)
 endfunction
 
+" Expand semicolons (display: b; => display: block;)
+function s:expand_semicolon(semi)
+  return s:expand_thing('expand_statement', ';', '', a:semi)
+endfunction
+
 " Expands the current line via Python bindings. It takes the current line and
 " passes it onto python function `fn`.
 "
@@ -59,6 +64,9 @@ function s:enable(semi)
   exe 'imap <buffer> <CR> <C-R>=<SID>expand_cr("'.a:semi.'")<CR>'
   exe 'imap <buffer> <Space> <C-R>=<SID>expand_space("'.a:semi.'")<CR>'
   exe 'imap <buffer> : <C-R>=<SID>expand_colon("'.a:semi.'")<CR>'
+  if a:semi == ';'
+    exe 'imap <buffer> ; <C-R>=<SID>expand_semicolon("'.a:semi.'")<CR>'
+  endif
 endfunction
 
 augroup css
