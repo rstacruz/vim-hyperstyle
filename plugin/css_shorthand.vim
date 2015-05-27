@@ -62,13 +62,12 @@ endfunction
 try
   call pyeval('1')
   function s:pyeval(code)
-    return pyeval(a:code)
+    return pyeval('(' . a:code . ') or ""')
   endfunction
 catch /./
   function s:pyeval(code)
-    python import json
     python result = eval(vim.eval('a:code'))
-    python if result: vim.command('return ' + repr(result))
+    python if isinstance(result, str): vim.command('return ' + repr(result))
   endfunction
 endtry
 

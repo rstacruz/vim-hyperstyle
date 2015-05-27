@@ -30,10 +30,11 @@ Expect (display: inline-block;):
   display: inline-block;
   _
 
-Do (aoeuaoeu<Enter>):
-  aoeuaoeu\<Enter>_
+Given css:
+Do (123<Enter>):
+  a123\<Enter>_
 Expect (safely lets enter through):
-  oeuaoeu
+  123
   _
 
 Given sass:
