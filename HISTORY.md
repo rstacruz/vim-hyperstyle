@@ -1,3 +1,8 @@
+## v0.2.2
+
+* Add `jcs` as `justify-column: flex-start`.
+* Add `jce` as `justify-column: flex-end`.
+
 ## [v0.2.1] - Wed, May 27
 
 * `co` will now expand to *color* instead of *content*.

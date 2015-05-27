@@ -250,8 +250,8 @@ expressions_list = [
     ("ellip", "text-overflow", "ellipsis", { "alias": ["elip", "ellipsis"] }),
 
     ("jcc", "justify-content", "center", {}),
-    ("jcstart", "justify-content", "flex-start", {}),
-    ("jcend", "justify-content", "flex-end", {}),
+    ("jcs", "justify-content", "flex-start", {}),
+    ("jce", "justify-content", "flex-end", {}),
 
     ("ltr", "direction", "ltr", {}),
     ("rtl", "direction", "rtl", {}),
