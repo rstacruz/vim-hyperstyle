@@ -75,8 +75,11 @@ class TestCr(unittest.TestCase):
     def test_auto_space(self):
         self.expect('  font-weight:400', '  font-weight: 400;')
 
-    def test_auto_comma_no_space(self):
-        self.expect('  font-weight:xyz', '  font-weight:xyz;')
+    def test_auto_space_2(self):
+        self.expect('  opacity:1', '  opacity: 1;')
+
+    def test_auto_space_unknown_property(self):
+        self.expect('  x-y:1', '  x-y: 1;')
 
     def test_autocomplete_values(self):
         self.expect('  float: l', '  float: left;')
@@ -183,6 +186,9 @@ class TestExpanders(unittest.TestCase):
     def test_auto_unit(self):
         self.assertEqual(self.full('3', 'margin'), '3px')
 
+    def test_keyword_for_margin(self):
+        self.assertEqual(self.full('a', 'margin'), 'auto')
+
     def test_expand_unit(self):
         self.assertEqual(self.full('3x', 'margin'), '3px')
 
@@ -192,6 +198,7 @@ class TestExpanders(unittest.TestCase):
 # TODO:
 # - [x] autocompleting values (float: l => float: left)
 # - [x] auto-uniting values (margin: 3 => margin: 3px)
+# - [ ] better autocompleting values (jc:s => justify-content: flex-start)
 # - [ ] multi numeric (m0 3 => margin: 0 3px)
 
 if __name__ == '__main__':

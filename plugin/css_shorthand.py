@@ -48,8 +48,8 @@ def expand_expression(line, semi = ';'):
         if not m: return
 
         prop, value = m.group(1), m.group(2)
-        value = expand_full_value(value, prop)
-        if value: return "%s%s: %s%s" % (indent, prop, value, semi)
+        new_value = expand_full_value(value, prop)
+        return "%s%s: %s%s" % (indent, prop, new_value or value, semi)
 
     # add semicolon if needed
     def expand_semicolon():
@@ -106,6 +106,9 @@ Expands a value of a given property `prop`. Returns the expanded value.
 >>> e("3x", "margin")
 "3px"
 
+>>> e("a", "margin")
+"auto"
+
 >>> e("l", "float")
 "left"
 """
@@ -118,9 +121,8 @@ def expand_full_value(val, prop):
     default_unit = options.get('unit')
     if default_unit:
         _, number, unit = split_value(val)
-        if not number: return
-
-        return expand_scalar_value(number, unit, default_unit)
+        if number:
+            return expand_scalar_value(number, unit, default_unit)
 
     # Account for preset value keywords
     # ('float', 'l') => 'left'

@@ -35,8 +35,8 @@ Each property will be accessible through these ways:
 """
 properties_list = [
     ("m", "margin", { "unit": "px", "values": ["auto"] }),
-    ("w", "width", { "unit": "px" }),
-    ("h", "height", { "unit": "px" }),
+    ("w", "width", { "unit": "px", "values": ["auto"] }),
+    ("h", "height", { "unit": "px", "values": ["auto"] }),
     ("p", "padding", { "unit": "px" }),
     ("b", "border", {}),
     ("o", "outline", {}),
@@ -44,14 +44,14 @@ properties_list = [
     ("t", "top", { "unit": "px" }),
     ("bot", "bottom", { "unit": "px" }),
     ("r", "right", { "unit": "px" }),
-    ("bg", "background", {}),
-    ("mh", "min-height", { "unit": "px" }),
-    ("mw", "min-width", { "unit": "px" }),
+    ("bg", "background", { "values": ["transparent"] }),
+    ("mh", "min-height", { "unit": "px", "values": ["auto"] }),
+    ("mw", "min-width", { "unit": "px", "values": ["auto"] }),
 
-    ("ml", "margin-left", { "unit": "px" }),
-    ("mr", "margin-right", { "unit": "px" }),
-    ("mt", "margin-top", { "unit": "px" }),
-    ("mb", "margin-bottom", { "unit": "px" }),
+    ("ml", "margin-left", { "unit": "px", "values": ["auto"] }),
+    ("mr", "margin-right", { "unit": "px", "values": ["auto"] }),
+    ("mt", "margin-top", { "unit": "px", "values": ["auto"] }),
+    ("mb", "margin-bottom", { "unit": "px", "values": ["auto"] }),
 
     ("pl", "padding-left", { "unit": "px" }),
     ("pr", "padding-right", { "unit": "px" }),
@@ -63,9 +63,9 @@ properties_list = [
     ("d", "display", { "values": ["none", "block", "inline", "inline-block", "table", "table-cell", "table-row"] }),
     ("ta", "text-align", { "values": ["left", "right", "justify", "center", "inherit"] }),
 
-    ("of", "overflow", { "values": ["scroll", "hidden", "auto", "inherit"] }),
-    ("ofx", "overflow-x", { "alias": "ox", "values": ["scroll", "hidden", "auto", "inherit"] }),
-    ("ofy", "overflow-y", { "alias": "oy", "values": ["scroll", "hidden", "auto", "inherit"] }),
+    ("of", "overflow", { "values": ["visible", "scroll", "hidden", "auto", "inherit"] }),
+    ("ofx", "overflow-x", { "alias": "ox", "values": ["visible", "scroll", "hidden", "auto", "inherit"] }),
+    ("ofy", "overflow-y", { "alias": "oy", "values": ["visible", "scroll", "hidden", "auto", "inherit"] }),
 
     ("f", "font", {}),
     ("fs", "font-size", { "unit": "em" }),
@@ -114,22 +114,22 @@ properties_list = [
     ("bgs", "background-size", { "alias": ["bgsize"] }),
     ("bgp", "background-position", { "alias": ["bgposition"] }),
 
-    ("bs", "box-shadow", {}),
-    ("bsize", "box-sizing", {}),
+    ("bs", "box-shadow", { "values": ["none"] }),
+    ("bsize", "box-sizing", { "values": ["border-box", "content-box", "padding-box"] }),
 
     ("pos", "position", { "values": ["absolute", "relative", "fixed", "static", "inherit"] }),
     ("flex", "flex", {}),
-    ("ws", "white-space", {}),
+    ("ws", "white-space", { "values": ["nowrap", "normal", "pre", "pre-wrap", "pre-line", "inherit"] }),
     ("va", "vertical-align", { "alias": ["valign"] }),
 
-    ("vis", "visibility", { "values": ["visible", "hidden",  "collapse", "inherit"] }),
+    ("vis", "visibility", { "values": ["visible", "hidden", "collapse", "inherit"] }),
 
     ("fg", "flex-grow", { "unit": "_", "alias": ["fgrow"] }),
     ("fsh", "flex-shrink", { "unit": "_", "alias": ["fshrink"] }),
     ("fdr", "flex-direction", { "alias": ["fdirection"] }),
     ("fwr", "flex-wrap", { "alias": ["fwrap"] }),
     ("ai", "align-items", { "alias": ["aitems"] }),
-    ("jc", "justify-content", { "alias": ["jcontent"] }),
+    ("jc", "justify-content", { "alias": ["jcontent"], "values": ["center", "flex-start", "flex-end"] }),
     ("or", "order", {}),
 
     ("pba", "page-break-after", {}),
