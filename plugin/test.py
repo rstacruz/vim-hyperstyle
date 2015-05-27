@@ -122,6 +122,12 @@ class TestCr(unittest.TestCase):
     def test_zoom_number(self):
         self.expect('zo1', 'zoom: 1;')
 
+    def test_font_weights(self):
+        self.expect('f1', 'font-weight: 100;')
+        self.expect('fw1', 'font-weight: 100;')
+        self.expect('fw100', 'font-weight: 100;')
+        self.expect('f100', 'font-weight: 100;')
+
 class TestSpace(unittest.TestCase):
     def expect(self, source, expected):
         output = cssx.expand_property(source)

@@ -200,15 +200,15 @@ statements_list = [
     ("oya", "overflow-y", "auto", {}),
     ("oyv", "overflow-y", "visible", {}),
 
-    ("f1", "font-weight", "100", { "alias": ["fw1"] }),
-    ("f2", "font-weight", "200", { "alias": ["fw2"] }),
-    ("f3", "font-weight", "300", { "alias": ["fw3"] }),
-    ("f4", "font-weight", "400", { "alias": ["fw4"] }),
-    ("f5", "font-weight", "500", { "alias": ["fw5"] }),
-    ("f6", "font-weight", "600", { "alias": ["fw6"] }),
-    ("f7", "font-weight", "700", { "alias": ["fw7"] }),
-    ("f8", "font-weight", "800", { "alias": ["fw8"] }),
-    ("f9", "font-weight", "900", { "alias": ["fw9"] }),
+    ("f1", "font-weight", "100", { "alias": ["f100", "fw100"] }),
+    ("f2", "font-weight", "200", { "alias": ["f200", "fw200"] }),
+    ("f3", "font-weight", "300", { "alias": ["f300", "fw300"] }),
+    ("f4", "font-weight", "400", { "alias": ["f400", "fw400"] }),
+    ("f5", "font-weight", "500", { "alias": ["f500", "fw500"] }),
+    ("f6", "font-weight", "600", { "alias": ["f600", "fw600"] }),
+    ("f7", "font-weight", "700", { "alias": ["f700", "fw700"] }),
+    ("f8", "font-weight", "800", { "alias": ["f800", "fw800"] }),
+    ("f9", "font-weight", "900", { "alias": ["f900", "fw900"] }),
 
     ("b0", "border", "0", {}),
     ("bcc", "border-collapse", "collapse", {}),
@@ -301,6 +301,7 @@ statements_list = [
     ("rtl", "direction", "rtl", {}),
 
     ("tsn", "text-shadow", "none", {}),
+    ("wa", "width", "auto", { "alias": ["wauto"] }),
 ]
 
 # Index them
