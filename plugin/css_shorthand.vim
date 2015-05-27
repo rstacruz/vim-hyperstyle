@@ -26,13 +26,13 @@ function s:expand_cr(semi)
 endfunction
 
 " Expand spaces (fl_ => float:_)
-function s:expand_space()
-  return s:expand_thing('expand_property', ' ', ' ', '')
+function s:expand_space(semi)
+  return s:expand_thing('expand_property', ' ', ' ', a:semi)
 endfunction
 
 " Expand colons (fl: => float:)
-function s:expand_colon()
-  return s:expand_thing('expand_property', ':', '', '')
+function s:expand_colon(semi)
+  return s:expand_thing('expand_property', ':', '', a:semi)
 endfunction
 
 " Expands the current line via Python bindings. It takes the current line and
@@ -48,7 +48,7 @@ endfunction
 "
 function s:expand_thing(fn, key, suffix, semi)
   let out = pyeval("cssx.".a:fn."(vim.eval(\"getline('.')\"),'".a:semi."')")
-  if out == "" | return a:key | endif
+  if out == '' | return a:key | endif
   exe 'normal 0C'
   return out . a:suffix
 endfunction
@@ -57,8 +57,8 @@ endfunction
 " If `semi` is 1, semicolons will be added.
 function s:enable(semi)
   exe 'imap <buffer> <CR> <C-R>=<SID>expand_cr("'.a:semi.'")<CR>'
-  exe 'imap <buffer> <Space> <C-R>=<SID>expand_space()<CR>'
-  exe 'imap <buffer> : <C-R>=<SID>expand_colon()<CR>'
+  exe 'imap <buffer> <Space> <C-R>=<SID>expand_space("'.a:semi.'")<CR>'
+  exe 'imap <buffer> : <C-R>=<SID>expand_colon("'.a:semi.'")<CR>'
 endfunction
 
 augroup css

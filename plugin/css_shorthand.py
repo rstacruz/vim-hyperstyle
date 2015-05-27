@@ -42,9 +42,6 @@ def expand_expression(line, semi = ';'):
     if semi == ';' and is_balanced_rule(snippet):
         return "%s%s;" % (indent, snippet)
 
-    # Else, nada
-    return indent + snippet
-
 """
 Splits a snippet into property, value and unit
 
@@ -68,13 +65,17 @@ might pass a semicolon for it.
 >>> expand_property("m")
 "margin:"
 """
-def expand_property(line, _=None):
+def expand_property(line, semi=';'):
     indent, snippet = split_indent(line)
 
     tuple = properties.get(snippet)
     if tuple:
         prop, options = tuple
         return "%s%s:" % (indent, prop)
+
+    # expr = expand_expression(line, semi)
+    # if expr:
+    #     return expr
 
 """
 Expands a value

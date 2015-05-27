@@ -7,7 +7,7 @@ class TestCr(unittest.TestCase):
         self.assertEqual(output, expected)
 
     def test_unparseables(self):
-        self.expect('hi', 'hi')
+        self.expect('hi', None)
 
     def test_display_block(self):
         self.expect('db', 'display: block;')
@@ -19,7 +19,7 @@ class TestCr(unittest.TestCase):
         self.expect('  db', '  display: block;')
 
     def test_dont_expand_p(self):
-        self.expect('  p', '  p')
+        self.expect('  p', None)
 
     def test_mopobo(self):
         self.expect('m0', 'margin: 0;')
@@ -27,7 +27,7 @@ class TestCr(unittest.TestCase):
         self.expect('p0', 'padding: 0;')
 
     def test_unparseables_with_indent(self):
-        self.expect('  hi', '  hi')
+        self.expect('  hi', None)
 
     def test_numeric(self):
         self.expect('m0', 'margin: 0;')
@@ -55,7 +55,7 @@ class TestCr(unittest.TestCase):
         self.expect('b0', 'border: 0;')
 
     def test_skip_non_numeric_properties(self):
-        self.expect('fw0', 'fw0')
+        self.expect('fw0', None)
 
     def test_numeric_negative_with_implied_value(self):
         self.expect('w-10', 'width: -10px;')
