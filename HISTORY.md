@@ -1,6 +1,7 @@
 ## v0.3.0
 
 * `co` will now expand to *color* instead of *content*.
+* Added *visibility*, *zoom* and *clear* shortcuts.
 
 ## v0.2.0 - May 27, 2015
 

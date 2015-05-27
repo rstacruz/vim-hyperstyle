@@ -7,7 +7,7 @@ class TestCr(unittest.TestCase):
         self.assertEqual(output, expected)
 
     def test_unparseables(self):
-        self.expect('hi', None)
+        self.expect('aoeu', None)
 
     def test_display_block(self):
         self.expect('db', 'display: block;')
@@ -27,7 +27,7 @@ class TestCr(unittest.TestCase):
         self.expect('p0', 'padding: 0;')
 
     def test_unparseables_with_indent(self):
-        self.expect('  hi', None)
+        self.expect('  aoeu', None)
 
     def test_numeric(self):
         self.expect('m0', 'margin: 0;')

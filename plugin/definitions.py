@@ -97,6 +97,8 @@ properties_list = [
     ("ws", "white-space", {}),
     ("va", "vertical-align", { "alias": ["valign"] }),
 
+    ("vis", "visibility", { "values": ["visible", "hidden",  "collapse", "inherit"] }),
+
     ("fg", "flex-grow", { "unit": "_", "alias": ["fgrow"] }),
     ("fsh", "flex-shrink", { "unit": "_", "alias": ["fshrink"] }),
     ("fdr", "flex-direction", { "alias": ["fdirection"] }),
@@ -112,6 +114,8 @@ properties_list = [
     ("wb", "word-break", { "values": ["normal", "break-all", "keep-all", "inherit"] }),
     ("q", "quotes", {}),
     ("con", "content", {}),
+    ("cl", "clear", { "values": ["left", "right", "both", "inherit"]}),
+    ("zo", "zoom", {}),
 ]
 
 """
@@ -189,6 +193,14 @@ expressions_list = [
     ("vabl", "vertical-align", "baseline", { "alias": [ "vabase", "baseline" ] }),
     ("vatt", "vertical-align", "text-top", {}),
     ("vatb", "vertical-align", "text-bottom", {}),
+
+    ("vv", "visibility", "visible", { "alias": ["visible"] }),
+    ("vh", "visibility", "hidden", { "alias": ["hidden", "hide"] }),
+    ("vc", "visibility", "collapse", {}),
+
+    ("cb", "clear", "both", {}),
+    ("cr", "clear", "right", {}),
+    ("cl", "clear", "left", {}),
 
     ("cont", "content", "''", {}),
 
