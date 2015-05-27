@@ -14,13 +14,13 @@ autotest:
 # Automated vim testing via vader.vim
 pwd = $(shell pwd)
 test-vim: vendor/vader.vim
-	@bash -c 'env HOME=/dev/null ${vim} --nofork -Nu <( \
+	@echo | bash -c 'env HOME=/dev/null ${vim} --nofork -Nu <( \
 		echo "filetype off"; \
 		echo "set rtp+=${pwd}/$<"; \
 		echo "set rtp+=${pwd}"; \
 		echo "filetype plugin indent on"; \
 		echo "syntax enable"; \
-		) +"Vader! test/*"' >/dev/null
+		) +"Vader! test/*" >/dev/null'
 vendor/vader.vim:
 	@mkdir -p ${pwd}/vendor
 	@git clone https://github.com/junegunn/vader.vim ${pwd}/vendor/vader.vim
