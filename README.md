@@ -4,15 +4,26 @@ Type faster by shorthand that will auto-expand as you type. Supports less, sass,
 
 ![](https://raw.githubusercontent.com/rstacruz/vim-css-shorthand/gh-pages/screencast.gif)
 
-```
-dib        -> display: inline-block;
-m0         -> margin: 0;
-m-15       -> margin: -15px;
-fle 1 auto -> flex: 1 auto;
-float left -> float: left;
-```
-
 [![Status](https://travis-ci.org/rstacruz/vim-css-shorthand.svg?branch=master)](https://travis-ci.org/rstacruz/vim-css-shorthand)  
+
+## Expansions
+
+* Properties will be auto-completed: `m ` → `margin: `
+* Values will be auto-completed: `float:l` → `float: left`
+* Default units will be added: `border-radius: 4⏎` → `border-radius: 4px;`
+* Shortcuts for common statements are available: `fl⏎` → `float: left;`
+* Semicolons are inserted automatically so you can write CSS in one go: `dib` `⏎` `m0a` `⏎`
+* ...and more
+
+| Shortcut     | Expansion              |
+| ---          | ---                    |
+| `dib`        | display: inline-block; |
+| `m0`         | margin: 0;             |
+| `m0a`        | margin: 0 auto;        |
+| `m-15`       | margin: -15px;         |
+| `m:auto`     | margin: auto;          |
+| `fle 1 auto` | flex: 1 auto;          |
+| `float left` | float: left;           |
 
 ## Reference
 
