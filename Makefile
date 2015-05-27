@@ -13,7 +13,7 @@ autotest:
 
 # Automated vim testing via vader.vim
 test-vim: vendor/vimrc
-	@${vim} -Nu $< +"Vader! test/*"
+	@env HOME=$(shell pwd)/vendor ${vim} -Nu $< +"Vader! test/*"
 
 vendor/vimrc: vendor/vader.vim
 	@mkdir -p ./vendor
