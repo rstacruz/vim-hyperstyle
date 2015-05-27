@@ -1,4 +1,4 @@
-## [v0.2.4]
+## [v0.2.4] - May 27, 2015
 
 * Fix `vertical-align:mid` not completing to `middle`.
 * Zoom now accepts a number. `zo1` will expand to `zoom: 1`.
@@ -8,8 +8,9 @@
 * Add explicit support for more units like *ch, vmin, ex*.
 * `trans` now defaults to `transition` and not `transform` (use `tf` for transform).
 * Add `wa` for width: auto.
+* Add `mart`, `padt`, and `bort` for margin, padding and bottom-top (and its cousins).
 
-## [v0.2.3] - May 27, 2015
+## [v0.2.3]
 
 * Keyword values are expanded now as well. `fl:l⏎` should expand to `float: left`.
 * Improve rules on auto-spacing after `:`. For instance, `opacity:1` should automatically insert a space after `:` now.
