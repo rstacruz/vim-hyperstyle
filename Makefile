@@ -1,5 +1,6 @@
-vim := vim
+vim := /usr/bin/vim
 plugins = ${HOME}/.vim/plugged
+redirect := >/dev/null
 
 test: test-python test-vim
 
@@ -10,14 +11,17 @@ test-python:
 autotest:
 	find plugin | entr make test-python
 
-# Install https://github.com/junegunn/vader.vim via vim-plug
-test-vim:
-	bash -c 'env HOME=/dev/null ${vim} -Nu <( \
+# Automated vim testing via vader.vim
+pwd = $(shell pwd)
+test-vim: vendor/vader.vim
+	@bash -c 'env HOME=/dev/null ${vim} -Nu <( \
 		echo "filetype off"; \
-		echo "set rtp+=${plugins}/vader.vim"; \
-		echo "set rtp+=$(shell pwd)"; \
+		echo "set rtp+=${pwd}/$<"; \
+		echo "set rtp+=${pwd}"; \
 		echo "filetype plugin indent on"; \
 		echo "syntax enable"; \
-		) +"Vader! test/*"'
-
-.PHONY: test
+		) +"Vader! test/*"' >/dev/null
+vendor/vader.vim:
+	@mkdir -p ${pwd}/vendor
+	@git clone https://github.com/junegunn/vader.vim ${pwd}/vendor/vader.vim
+.PHONY: test test-vim
