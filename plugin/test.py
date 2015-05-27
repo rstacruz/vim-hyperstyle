@@ -107,7 +107,13 @@ class TestCr(unittest.TestCase):
         self.expect('abs', 'position: absolute;')
         self.expect('rel', 'position: relative;')
 
-    def test_misc(self):
+    def test_z_index_number(self):
+        self.expect('z9', 'z-index: 9;')
+
+    def test_opacity_number(self):
+        self.expect('op0.5', 'opacity: 0.5;')
+
+    def test_rtl(self):
         self.expect('rtl', 'direction: rtl;')
 
 class TestSpace(unittest.TestCase):

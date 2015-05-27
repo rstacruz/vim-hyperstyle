@@ -104,7 +104,7 @@ properties_list = [
     ("boc", "border-color", { "unit": "px", "alias": ["bcolor"] }),
 
     ("c", "color", {}),
-    ("op", "opacity", {}),
+    ("op", "opacity", { "unit": "_" }),
 
     ("cur", "cursor", {}),
     ("ani", "animation", {}),
