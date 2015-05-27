@@ -85,6 +85,9 @@ class TestCr(unittest.TestCase):
     def test_flex_grow_short(self):
         self.expect('fwrap', 'flex-wrap: wrap;')
 
+    def test_expand_units(self):
+        self.expect('width: 3', 'width: 3px;')
+
     def test_misc(self):
         self.expect('rtl', 'direction: rtl;')
 
@@ -146,9 +149,9 @@ class TestBalanced(unittest.TestCase):
         self.expect("background: linear-gradient(to bottom", False)
 
 # TODO:
-#   autocompleting values (float: l => float: left)
-#   auto-uniting values (margin: 3 => margin: 3px)
-#   multi numeric (m0 3 => margin: 0 3px)
+# - [ ] autocompleting values (float: l => float: left)
+# - [x] auto-uniting values (margin: 3 => margin: 3px)
+# - [ ] multi numeric (m0 3 => margin: 0 3px)
 
 if __name__ == '__main__':
     unittest.main()

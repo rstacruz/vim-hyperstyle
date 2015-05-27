@@ -244,9 +244,11 @@ expressions_list = [
 ]
 
 # Index them
-properties = {}
+properties = {} # indexed by shorthand
+full_properties = {} # indexed by long property name
 for (short, prop, options) in properties_list:
     properties[short] = (prop, options)
+    full_properties[prop] = options
 
 expressions = {}
 for (short, prop, value, options) in expressions_list:
