@@ -195,6 +195,12 @@ class TestExpanders(unittest.TestCase):
     def test_keyword_for_margin(self):
         self.assertEqual(self.full('a', 'margin'), 'auto')
 
+    def test_keyword_for_text_align(self):
+        self.assertEqual(self.full('le', 'text-align'), 'left')
+
+    def test_keyword_for_vertical_align(self):
+        self.assertEqual(self.full('mid', 'vertical-align'), 'middle')
+
     def test_expand_unit(self):
         self.assertEqual(self.full('3x', 'margin'), '3px')
 

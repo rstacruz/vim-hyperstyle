@@ -1,3 +1,7 @@
+## v0.2.4
+
+* Fix `vertical-align:mid` not completing to `middle`.
+
 ## [v0.2.3] - May 27, 2015
 
 * Keyword values are expanded now as well. `fl:l⏎` should expand to `float: left`.

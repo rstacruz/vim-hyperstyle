@@ -83,7 +83,7 @@ properties_list = [
     ("ti", "text-indent", { "unit": "px" }),
     ("ti", "text-indent", { "unit": "px" }),
     ("ts", "text-shadow", {}),
-    ("va", "vertical-align", { "unit": "px", "values": ["middle","top","bottom","baseline","text-top","text-bottom","sub","super"] }),
+    ("va", "vertical-align", { "unit": "px", "alias": ["valign"], "values": ["middle","top","bottom","baseline","text-top","text-bottom","sub","super"] }),
 
     ("tnd", "transition-duration", { "unit": "ms", "alias": ["tduration"] }),
 
@@ -120,7 +120,6 @@ properties_list = [
     ("pos", "position", { "values": ["absolute", "relative", "fixed", "static", "inherit"] }),
     ("flex", "flex", {}),
     ("ws", "white-space", { "values": ["nowrap", "normal", "pre", "pre-wrap", "pre-line", "inherit"] }),
-    ("va", "vertical-align", { "alias": ["valign"] }),
 
     ("vis", "visibility", { "values": ["visible", "hidden", "collapse", "inherit"] }),
 
@@ -298,8 +297,8 @@ expressions_list = [
 ]
 
 # Index them
-properties = {} # indexed by shorthand
-full_properties = {} # indexed by long property name
+properties = {} # indexed by shorthand ("bg")
+full_properties = {} # indexed by long property name ("margin")
 for (short, prop, options) in properties_list:
     properties[short] = (prop, options)
     full_properties[prop] = options
