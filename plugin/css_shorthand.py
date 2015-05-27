@@ -3,6 +3,7 @@ from definitions import properties, statements, full_properties
 from utils import fuzzify
 
 # Also see http://www.w3.org/TR/css3-values/
+semicolon_expr = re.compile(r';\s*$')
 value_expr = re.compile(r'^([^\.\d-]*)(-?\d*\.?\d+)(x|p[tcx]?|e[mx]?|s|m[ms]?|rem|ch|v[wh]|vmin|max|%|)$')
 line_expr = re.compile(r'^(\s*)(.*?)$')
 rule_expr = re.compile(r'^((?:[a-z]+-)*[a-z]+): *([^\s].*?);?$')
@@ -53,7 +54,7 @@ def expand_statement(line, semi = ';'):
 
     # add semicolon if needed
     def expand_semicolon():
-        if semi == ';' and is_balanced_rule(snippet) and not re.match(r';\s*$', snippet):
+        if semi == ';' and is_balanced_rule(snippet) and not semicolon_expr.match(snippet):
             return "%s%s;" % (indent, snippet)
 
     return \
@@ -63,11 +64,17 @@ def expand_statement(line, semi = ';'):
         expand_semicolon()
 
 def split_value(snippet):
-    """Splits a snippet into property, number and unit.
+    """Splits a snippet into `property`, `number` and `unit`. Property and unit are optional.
 
-    # margin: 10px
+    >>> # margin: 10px
     >>> split_value("m10p")
     ("m", "10", "p")
+
+    >>> split_value("10p")
+    ("", "10", "p")
+
+    >>> split_value("10")
+    ("", "10", "")
     """
     m = value_expr.match(snippet)
     if m:
@@ -78,8 +85,8 @@ def split_value(snippet):
 def expand_property(line, semi=';'):
     """Expands a property.
 
-    The 2nd argument is there to keep the API same with expand_statement(). Vim
-    might pass a semicolon for it.
+    The 2nd argument is not used, but is there to keep the API compatible with
+    `expand_statement()`.
 
     >>> expand_property("m")
     "margin:"
@@ -91,7 +98,7 @@ def expand_property(line, semi=';'):
         prop, options = tuple
         return "%s%s:" % (indent, prop)
 
-    # Not recommend,d but this will expand "dib_" into "display: inline-block;_"
+    # Not recommended, but this will expand "dib_" into "display: inline-block;_"
     # expr = expand_statement(line, semi)
     # if expr: return expr
 
@@ -142,7 +149,8 @@ def expand_keyword_value(value, keywords):
         if re.match(value, word): return word
 
 def expand_numeric_value(number, unit, default_unit):
-    """Expands a single numeric value.
+    """Expands a single `number` + `unit` value. If the unit is absent (blank
+    string), the `default_unit` will be used instead.
 
     >>> expand_numeric_value("10", "", "px")
     "10px"
