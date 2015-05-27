@@ -13,6 +13,15 @@ if !has("python") && !has("python3")
   finish
 endif
 
+try
+  call pyeval("1")
+catch /./
+  echohl WarningMsg
+  echomsg "vim-css-shorthand: pyeval() not found."
+  echohl None
+  finish
+endtry
+
 let s:current_file=expand("<sfile>")
 python << EOF
 import sys, os, vim
