@@ -22,7 +22,7 @@ EOF
 
 " Expands carriage return (db => display: block;)
 function s:expand_cr(semi)
-  return s:expand_thing('expand_expression', "\n", "\n", a:semi)
+  return s:expand_thing('expand_statement', "\n", "\n", a:semi)
 endfunction
 
 " Expand spaces (fl_ => float:_)
