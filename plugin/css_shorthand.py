@@ -2,8 +2,9 @@ import re
 from definitions import properties, statements, full_properties
 from utils import fuzzify
 
+# Also see http://www.w3.org/TR/css3-values/
 line_expr = re.compile(r'^(\s*)(.*?)$')
-value_expr = re.compile(r'^([^\.\d-]*)(-?\d*\.?\d+)(p|x|m|px|e|em|s|ms|%|)$')
+value_expr = re.compile(r'^([^\.\d-]*)(-?\d*\.?\d+)(x|p[tcx]?|e[mx]?|s|m[ms]?|rem|ch|v[wh]|vmin|max|%|)$')
 rule_expr = re.compile(r'^((?:[a-z]+-)*[a-z]+): *([^\s].*);?$')
 
 """

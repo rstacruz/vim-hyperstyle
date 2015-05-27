@@ -5,6 +5,7 @@
 * Fixes polution of the clipboard.
 * More shortcuts.
 * `e` now expands to 'em', eg: `m:3e` is `margin: 3em`.
+* Add explicit support for more units like *ch, vmin, ex*.
 
 ## [v0.2.3] - May 27, 2015
 
