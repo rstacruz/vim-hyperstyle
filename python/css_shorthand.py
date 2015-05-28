@@ -23,13 +23,13 @@ def expand_statement(line):
     indent, snippet = split_indent(line)
 
     out = \
-        expand_simple_statement(snippet) or \
-        expand_property_with_value(snippet) or \
-        expand_unit_value(snippet)
+        expand_statement_simple(snippet) or \
+        expand_statement_with_property(snippet) or \
+        expand_statement_value(snippet)
 
     if out: return indent + out
 
-def expand_simple_statement(snippet):
+def expand_statement_simple(snippet):
     """Check if its a simple statement. (Internal)
 
         "db"  => "display: block"
@@ -39,8 +39,8 @@ def expand_simple_statement(snippet):
         key, value, _ = expansion
         return "%s: %s" % (key, value)
 
-def expand_property_with_value(snippet):
-    """Check if its a property with value. (Internal)
+def expand_statement_with_property(snippet):
+    """Expands a statement with both shorthand property and value. (Internal)
 
         "m10em"  => "margin: 10em"
         "pad10"  => "padding: 10px"
@@ -53,8 +53,8 @@ def expand_property_with_value(snippet):
     value = expand_full_value(value + unit, prop)
     if value: return "%s: %s" % (prop, value)
 
-def expand_unit_value(snippet):
-    """Expands a rule's unit value. (Internal)
+def expand_statement_value(snippet):
+    """Expands a statement's unit value. (Internal)
 
         "margin: 3"    => "margin: 3px"
         "margin: 3px"  => "margin: 3px"
@@ -152,11 +152,8 @@ def expand_numeric_value(number, unit, default_unit):
     """Expands a single `number` + `unit` value. If the unit is absent (blank
     string), the `default_unit` will be used instead.
 
-    >>> expand_numeric_value("10", "", "px")
-    "10px"
-
-    >>> expand_numeric_value("10", "m")
-    "10em"
+        ("10", "", "px")  => "10px"
+        ("10", "m")       => "10em"
     """
     if number == "0":
         return number
