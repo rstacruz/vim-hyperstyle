@@ -7,72 +7,82 @@ semicolon_expr = re.compile(r';\s*$')
 value_expr = re.compile(r'^([^\.\d-]*)(-?\d*\.?\d+)(x|p[tcx]?|e[mx]?|s|m[ms]?|rem|ch|v[wh]|vmin|max|%|)$')
 line_expr = re.compile(r'^(\s*)(.*?)$')
 rule_expr = re.compile(r'^((?:[a-z]+-)*[a-z]+): *([^\s].*?);?$')
-selectorlike_expr = re.compile(r'.*(before|placeholder|root|after|focus|hover|active|checked|selected).*')
+selectorlike_expr = re.compile(r'.*(link|visited|before|placeholder|root|after|focus|hover|active|checked|selected).*')
 ends_in_brace_expr = re.compile(r'.*\{\s*$')
 
 def expand_statement(line):
-    """Expands a statement line. Executed when pressing <Enter>. If `semi` is a
-    blank string, then treat the language as an indented syntax (like Sass).
+    """Expands a statement line. Executed when pressing <Enter>.
 
-    >>> expand_statement("db")
-    "display: block;"
-
-    >>> expand_statement("db", '')
-    "display: block"
-
-    >>> expand_statement("m3m")
-    "margin: 3em;"
+        "db"          => "display: block"
+        "m3m"         => "margin: 3em"
+        "pad10"       => "padding: 10px"
+        "margin: 3"   => "margin: 3px"
+        "margin: 3px" => "margin: 3px"
+        "margin:3px"  => "margin: 3px"
     """
     indent, snippet = split_indent(line)
 
-    # Check if its a simple statement
-    # (db => display: block)
-    def expand_simple_statement():
-        expansion = statements.get(snippet)
-        if not expansion: return
+    out = \
+        expand_simple_statement(snippet) or \
+        expand_property_with_value(snippet) or \
+        expand_unit_value(snippet)
 
+    if out: return indent + out
+
+def expand_simple_statement(snippet):
+    """Check if its a simple statement. (Internal)
+
+        "db"  => "display: block"
+    """
+    expansion = statements.get(snippet)
+    if expansion:
         key, value, _ = expansion
-        return "%s%s: %s" % (indent, key, value)
+        return "%s: %s" % (key, value)
 
-    # Check if its a property with value
-    # (m10em => margin: 10em)
-    def expand_property_with_value():
-        short, value, unit = split_value(snippet) # ("m","10","em")
-        expansion = properties.get(short) # ("margin", {"unit": "px"})
-        if not expansion: return
+def expand_property_with_value(snippet):
+    """Check if its a property with value. (Internal)
 
-        prop, options = expansion
-        value = expand_full_value(value + unit, prop)
-        if value: return "%s%s: %s" % (indent, prop, value)
+        "m10em"  => "margin: 10em"
+        "pad10"  => "padding: 10px"
+    """
+    short, value, unit = split_value(snippet) # ("m","10","em")
+    expansion = properties.get(short) # ("margin", {"unit": "px"})
+    if not expansion: return
 
-    # (margin: 3 => margin: 3px)
-    # skip it if it's say 'p:before' or anything selector-like.
-    # this will also return the same thing for "complete" rules
-    # (eg: "margin: auto"), thereby adding semicolons to them.
-    def expand_unit_value():
-        # skip non-rules (must match "x: y")
-        m = rule_expr.match(snippet)
-        if not m: return
+    prop, options = expansion
+    value = expand_full_value(value + unit, prop)
+    if value: return "%s: %s" % (prop, value)
 
-        # skip "complete" rules ("...;")
-        if semicolon_expr.match(snippet): return
+def expand_unit_value(snippet):
+    """Expands a rule's unit value. (Internal)
 
-        prop, value = m.group(1), m.group(2) # ("margin", "3")
-        if is_selectorlike(value): return
+        "margin: 3"    => "margin: 3px"
+        "margin: 3px"  => "margin: 3px"
+        "margin:3px"   => "margin: 3px"
 
-        # skip imbalanced rules (eg, opening of `scaleX(`)
-        if value.count('(') != value.count(')'): return
+    skip it if it's say 'p:before' or anything selector-like.
+    this will also return the same thing for "complete" rules
+    (eg: "margin: auto"), thereby adding semicolons to them.
+    """
+    # skip non-rules (must match "x: y")
+    m = rule_expr.match(snippet)
+    if not m: return
 
-        new_value = expand_full_value(value, prop)
-        return "%s%s: %s" % (indent, prop, new_value or value)
+    # skip "complete" rules ("...;")
+    if semicolon_expr.match(snippet): return
 
-    return \
-        expand_simple_statement() or \
-        expand_property_with_value() or \
-        expand_unit_value()
+    prop, value = m.group(1), m.group(2) # ("margin", "3")
+    if is_selectorlike(value): return
+
+    # skip imbalanced rules (eg, opening of `scaleX(`)
+    if value.count('(') != value.count(')'): return
+
+    new_value = expand_full_value(value, prop)
+    return "%s: %s" % (prop, new_value or value)
 
 def split_value(snippet):
-    """Splits a snippet into `property`, `number` and `unit`. Property and unit are optional.
+    """Splits a snippet into `property`, `number` and `unit`. Property and unit
+    are optional.
 
     >>> # margin: 10px
     >>> split_value("m10p")
@@ -186,30 +196,13 @@ def split_indent(line):
     match = line_expr.match(line)
     return (match.group(1), match.group(2))
 
-def is_balanced_rule(str):
-    """Checks if a line is a balanced rule that can be auto-terminated with a
-    semicolon.
-
-    >>> is_balanced_rule("margin: 0")
-    True
-
-    >>> is_balanced_rule("margin: scaleX(3)")
-    True
-
-    >>> is_balanced_rule("margin: linear-gradient(to-bottom")
-    False
-    """
-    if str and str[-1] == ';':
-        return False
-
-    m = rule_expr.match(str)
-    if not m:
-        return False
-
-    value = m.group(2)
-    return value.count('(') == value.count(')')
-
 def is_selectorlike(value):
+    """Checks if a line looks like a selector. This is used to prevent
+    expansion on things that seem like rules, but are actually selectors.
+
+        "pad:10"    => False
+        "p:10"      => False
+        "p:before"  => True
+    """
     if selectorlike_expr.match(value) or ends_in_brace_expr.match(value):
         return True
-

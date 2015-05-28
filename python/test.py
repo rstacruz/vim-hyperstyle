@@ -243,34 +243,19 @@ class TestSpace(unittest.TestCase):
         self.expect('tg', None)
         self.expect('tr', 'transition:')
 
-class TestBalanced(unittest.TestCase):
+class TestSelectorLike(unittest.TestCase):
     def expect(self, input, expected):
-        output = cssx.is_balanced_rule(input)
-        self.assertEqual(output, expected)
+        output = cssx.is_selectorlike(input)
+        self.assertEqual(not not output, expected)
 
     def test_simple(self):
-        self.expect("margin: 0", True)
+        self.expect("pad:10", False)
 
-    def test_scale(self):
-        self.expect("transform: scaleX(3)", True)
+    def test_simple_2(self):
+        self.expect("p:10", False)
 
-    def test_dont_double_semicolon(self):
-        self.expect("font-weight: 400;", False)
-
-    def test_hyphens(self):
-        self.expect("font-weight: 400", True)
-
-    def test_empty(self):
-        self.expect("", False)
-
-    def test_word(self):
-        self.expect("xxx", False)
-
-    def test_no_values(self):
-        self.expect("font-weight: ", False)
-
-    def test_unbalanced(self):
-        self.expect("background: linear-gradient(to bottom", False)
+    def test_before(self):
+        self.expect("p:before", True)
 
 class TestExpanders(unittest.TestCase):
     def keyword(self, a, b):
