@@ -105,10 +105,6 @@ def expand_property(line, semi=';'):
         prop, options = tuple
         return "%s%s:" % (indent, prop)
 
-    # Not recommended, but this will expand "dib_" into "display: inline-block;_"
-    # expr = expand_statement(line, semi)
-    # if expr: return expr
-
 def expand_full_value(val, prop):
     """Expands a value of a given property `prop`. Returns the expanded value.
 

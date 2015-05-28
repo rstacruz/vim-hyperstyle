@@ -1,70 +1,114 @@
-Given css:
-Do (di:):
-  adi:_
-Expect (expands the property):
+Given css;
+Do (di:);
+a  di:_
+Expect (expands the property);
   display:_
 
-Do (m:a;):
-  am:a;
-Expect (expands property and the value):
+Do (m:a;);
+a  m:a;
+Expect (expands property and the value);
   margin: auto;
 
-Do (margin:auto;):
-  amargin:auto;
-Expect (inserts a space after :):
+Do (margin:auto;);
+a  margin:auto;
+Expect (inserts a space after :);
   margin: auto;
 
-Do (dib;):
-  adib;
-Expect (expands a full statement after ;):
+Do (dib;);
+a  dib;
+Expect (expands a full statement after ;);
   display: inline-block;
 
-Do (brad4):
-  abrad4;
-Expect (expands numeric values):
+Do (brad4);
+a  brad4;
+Expect (expands numeric values);
   border-radius: 4px;
 
-Do (dib;<Enter>):
-  adib\<Enter>_
-Expect (display: inline-block;):
+Do (dib;<Enter>);
+a  dib\<Enter>_
+Expect (display: inline-block;);
   display: inline-block;
   _
 
-Do (m:a; dib;<Enter>):
-  am:a; dib;
-Expect (multiple statements don't stack on the same line):
+Do (m:a; dib;<Enter>);
+a  m:a; dib;
+Expect (multiple statements don't stack on the same line);
   margin: auto; dib;
 
-Do (123<Enter>):
-  a123\<Enter>_
-Expect (safely lets enter through):
+Do (123<Enter>);
+a  123\<Enter>_
+Expect (safely lets enter through);
   123
   _
 
-Do:
-  ap:before\<Enter>_
-Expect (don't expand :before):
+Do;
+a  p:before\<Enter>_
+Expect (don't expand :before);
   p:before
   _
 
-Do:
-  ap:before\<Enter>_
-Expect (don't expand :before):
+Do;
+a  p:before\<Enter>_
+Expect (don't expand :before);
   p:before
   _
 
-Do:
-  acursor:w{\<Enter>\<Esc>0a_
-Expect (don't expand open braces):
+Do;
+a  di\<Tab>_
+Expect (expands properties via tab);
+  display: _
+
+Do;
+a  m0a\<Tab>_
+Expect (expands statements via tab);
+  margin: 0 auto;_
+
+Execute:
+  set sts=2 sw=2 ex
+Do;
+a  cursor:w{\<Enter>_
+Expect (don't expand open braces);
   cursor:w{
+    _
+
+Given sass;
+.div
+  _
+Do (dib;<Enter>);
+Gxadib\<Enter>_
+Expect (display: inline-block);
+.div
+  display: inline-block
   _
 
-Given sass:
-  .div
-    _
-Do (dib;<Enter>):
-  Gxadib\<Enter>_
-Expect (display: inline-block):
-  .div
-    display: inline-block
-    _
+Given stylus;
+Execute:
+  set sw=2
+  set sts=2
+  set ex
+Do;
+adiv\<Enter>  di\<Tab>_
+Expect (stylus: expands properties via tab);
+div
+  display: _
+
+Given stylus;
+Do;
+adiv\<Enter>  moa\<Tab>_
+Expect (stylus: expands statements via tab);
+div
+  margin: 0 auto_
+
+Given stylus;
+Do;
+amoa\<Tab>_
+Expect (don't expand tabs when there's no indentation);
+moa _
+
+Given css;
+Execute:
+  set sts=2 sw=2 ex
+Do;
+a  xxxxxx\<Tab>_
+Expect (keeps tabs working);
+  xxxxxx  _

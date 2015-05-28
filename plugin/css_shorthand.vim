@@ -22,22 +22,39 @@ EOF
 
 " Expands carriage return (db => display: block;)
 function s:expand_cr(semi)
-  return s:expand_thing('expand_statement', "\n", "\n", a:semi)
+  return s:run_expand('expand_statement', "\n", "\n", a:semi)
 endfunction
 
 " Expand spaces (fl_ => float:_)
 function s:expand_space(semi)
-  return s:expand_thing('expand_property', ' ', ' ', a:semi)
+  return s:run_expand('expand_property', ' ', ' ', a:semi)
 endfunction
 
 " Expand colons (fl: => float:)
 function s:expand_colon(semi)
-  return s:expand_thing('expand_property', ':', '', a:semi)
+  return s:run_expand('expand_property', ':', '', a:semi)
 endfunction
 
 " Expand semicolons (display: b; => display: block;)
 function s:expand_semicolon(semi)
-  return s:expand_thing('expand_statement', ';', '', a:semi)
+  return s:run_expand('expand_statement', ';', '', a:semi)
+endfunction
+
+function s:expand_tab(semi)
+  let line = getline('.')
+  if ! (line =~ '^\s') | return "\t" | endif
+
+  let out = s:expand_line('expand_property', a:semi)
+  if out != ''
+    exe 'normal 0"_C'
+    return ''.out.' '
+  endif
+  let out = s:expand_line('expand_statement', a:semi)
+  if out != ''
+    exe 'normal 0"_C'
+    return '' . out
+  endif
+  return "\t"
 endfunction
 
 " Expands the current line via Python bindings. It takes the current line and
@@ -49,13 +66,29 @@ endfunction
 " - semi : (String) if ';', then semicolon mode is on. Leave this blank for
 "   indented syntaxes like Sass and Stylus.
 "
-"     expand_thing('expand_space', ' ')
+"     run_expand('expand_property', ' ')
 "
-function s:expand_thing(fn, key, suffix, semi)
-  let out = s:pyeval("cssx.".a:fn."(vim.eval(\"getline('.')\"),'".a:semi."')")
+function s:run_expand(fn, key, suffix, semi)
+  let out = s:expand_line(a:fn, a:semi)
   if out == '' | return a:key | endif
   exe 'normal 0"_C'
   return out . a:suffix
+endfunction
+
+" (Internal) takes the current line and passes it onto a Python function.
+" Returns a string of the expanded version, or returns '' if it fails.
+"
+"     expand_line("expand_property")
+"     # 'd' returns 'display'
+"
+"     expand_line("expand_statement")
+"     # 'dib' returns 'display: inline-block'
+"
+"     expand_line("expand_property")
+"     # 'aoentuh' returns ''
+"
+function s:expand_line(fn, semi)
+  return s:pyeval("cssx.".a:fn."(vim.eval(\"getline('.')\"),'".a:semi."')")
 endfunction
 
 " pyeval() polyfill
@@ -76,6 +109,7 @@ endtry
 function s:enable(semi)
   exe 'imap <buffer> <CR> <C-R>=<SID>expand_cr("'.a:semi.'")<CR>'
   exe 'imap <buffer> <Space> <C-R>=<SID>expand_space("'.a:semi.'")<CR>'
+  exe 'imap <buffer> <Tab> <C-R>=<SID>expand_tab("'.a:semi.'")<CR>'
   exe 'imap <buffer> : <C-R>=<SID>expand_colon("'.a:semi.'")<CR>'
   if a:semi == ';'
     exe 'imap <buffer> ; <C-R>=<SID>expand_semicolon("'.a:semi.'")<CR>'
