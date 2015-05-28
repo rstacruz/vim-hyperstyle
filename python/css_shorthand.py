@@ -84,15 +84,11 @@ def split_value(snippet):
     """Splits a snippet into `property`, `number` and `unit`. Property and unit
     are optional.
 
-    >>> # margin: 10px
-    >>> split_value("m10p")
-    ("m", "10", "p")
-
-    >>> split_value("10p")
-    ("", "10", "p")
-
-    >>> split_value("10")
-    ("", "10", "")
+        # margin: 10px
+        "m10p" => ("m", "10", "p")
+        "10p"  => ("", "10", "p")
+        "10"   => ("", "10", "")
+        "??"   => (None, None, None)
     """
     m = value_expr.match(snippet)
     if m:
