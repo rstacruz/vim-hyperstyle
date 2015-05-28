@@ -1,4 +1,4 @@
-## [v0.4.1]
+## [v0.4.1] - May 29, 2015
 
 - Fix compatibility with auto-pairs
 - Fix compatibility with UltiSnips
