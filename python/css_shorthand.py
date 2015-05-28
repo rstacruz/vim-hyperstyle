@@ -10,7 +10,7 @@ rule_expr = re.compile(r'^((?:[a-z]+-)*[a-z]+): *([^\s].*?);?$')
 selectorlike_expr = re.compile(r'.*(before|placeholder|root|after|focus|hover|active|checked|selected).*')
 ends_in_brace_expr = re.compile(r'.*\{\s*$')
 
-def expand_statement(line, semi = ';'):
+def expand_statement(line):
     """Expands a statement line. Executed when pressing <Enter>. If `semi` is a
     blank string, then treat the language as an indented syntax (like Sass).
 
@@ -32,7 +32,7 @@ def expand_statement(line, semi = ';'):
         if not expansion: return
 
         key, value, _ = expansion
-        return "%s%s: %s%s" % (indent, key, value, semi)
+        return "%s%s: %s" % (indent, key, value)
 
     # Check if its a property with value
     # (m10em => margin: 10em)
@@ -43,32 +43,33 @@ def expand_statement(line, semi = ';'):
 
         prop, options = expansion
         value = expand_full_value(value + unit, prop)
-        if value: return "%s%s: %s%s" % (indent, prop, value, semi)
+        if value: return "%s%s: %s" % (indent, prop, value)
 
     # (margin: 3 => margin: 3px)
-    # skip it if it's say 'p:before' or anything selector-like
+    # skip it if it's say 'p:before' or anything selector-like.
+    # this will also return the same thing for "complete" rules
+    # (eg: "margin: auto"), thereby adding semicolons to them.
     def expand_unit_value():
-        m = rule_expr.match(snippet) # ("margin", "3")
+        # skip non-rules (must match "x: y")
+        m = rule_expr.match(snippet)
         if not m: return
 
-        prop, value = m.group(1), m.group(2)
+        # skip "complete" rules ("...;")
+        if semicolon_expr.match(snippet): return
+
+        prop, value = m.group(1), m.group(2) # ("margin", "3")
         if is_selectorlike(value): return
 
-        new_value = expand_full_value(value, prop)
-        return "%s%s: %s%s" % (indent, prop, new_value or value, semi)
+        # skip imbalanced rules (eg, opening of `scaleX(`)
+        if value.count('(') != value.count(')'): return
 
-    # add semicolon if needed
-    def expand_semicolon():
-        if semi == ';' and is_balanced_rule(snippet) and \
-           not is_selectorlike(snippet) and \
-           not semicolon_expr.match(snippet):
-            return "%s%s;" % (indent, snippet)
+        new_value = expand_full_value(value, prop)
+        return "%s%s: %s" % (indent, prop, new_value or value)
 
     return \
         expand_simple_statement() or \
         expand_property_with_value() or \
-        expand_unit_value() or \
-        expand_semicolon()
+        expand_unit_value()
 
 def split_value(snippet):
     """Splits a snippet into `property`, `number` and `unit`. Property and unit are optional.
@@ -89,7 +90,7 @@ def split_value(snippet):
     else:
         return (None, None, None)
 
-def expand_property(line, semi=';'):
+def expand_property(line, semi=''):
     """Expands a property.
 
     The 2nd argument is not used, but is there to keep the API compatible with

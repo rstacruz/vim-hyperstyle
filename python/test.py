@@ -10,127 +10,127 @@ class TestCr(unittest.TestCase):
         self.expect('aoeu', None)
 
     def test_display_block(self):
-        self.expect('db', 'display: block;')
+        self.expect('db', 'display: block')
 
     def test_ms_units(self):
-        self.expect('tdur300', 'transition-duration: 300ms;')
+        self.expect('tdur300', 'transition-duration: 300ms')
 
     def test_display_block_with_indent(self):
-        self.expect('  db', '  display: block;')
+        self.expect('  db', '  display: block')
 
     def test_double_semicolon(self):
-        self.expect('  position: fixed;', '  position: fixed;')
+        self.expect('  position: fixed', '  position: fixed')
 
     def test_dont_expand_p(self):
         self.expect('  p', None)
 
     def test_mopobo(self):
-        self.expect('m0', 'margin: 0;')
-        self.expect('b0', 'border: 0;')
-        self.expect('p0', 'padding: 0;')
+        self.expect('m0', 'margin: 0')
+        self.expect('b0', 'border: 0')
+        self.expect('p0', 'padding: 0')
 
     def test_unparseables_with_indent(self):
         self.expect('  aoeu', None)
 
     def test_numeric(self):
-        self.expect('m0', 'margin: 0;')
+        self.expect('m0', 'margin: 0')
 
     def test_z_index(self):
-        self.expect('zi0', 'z-index: 0;')
-        self.expect('z0', 'z-index: 0;')
+        self.expect('zi0', 'z-index: 0')
+        self.expect('z0', 'z-index: 0')
 
     def _test_multi_numeric(self):
-        self.expect('m0 3px', 'margin: 0 3px;')
+        self.expect('m0 3px', 'margin: 0 3px')
 
     def test_numeric_with_em_as_default_unit(self):
-        self.expect('fs3', 'font-size: 3em;')
+        self.expect('fs3', 'font-size: 3em')
 
     def test_numeric_with_unitless_values(self):
-        self.expect('lh3', 'line-height: 3;');
+        self.expect('lh3', 'line-height: 3')
 
     def test_numeric_with_unitless_values_and_decimal_point(self):
-        self.expect('lh1.5', 'line-height: 1.5;');
+        self.expect('lh1.5', 'line-height: 1.5')
 
     def test_numeric_with_implied_unit(self):
-        self.expect('w10', 'width: 10px;')
+        self.expect('w10', 'width: 10px')
 
     def test_border_0(self):
-        self.expect('b0', 'border: 0;')
+        self.expect('b0', 'border: 0')
 
     def test_skip_non_numeric_properties(self):
         self.expect('fw0', None)
 
     def test_numeric_negative_with_implied_value(self):
-        self.expect('w-10', 'width: -10px;')
+        self.expect('w-10', 'width: -10px')
 
     def test_numeric_em_short(self):
-        self.expect('m2m', 'margin: 2em;')
+        self.expect('m2m', 'margin: 2em')
 
     def test_numeric_em_short(self):
-        self.expect('m2e', 'margin: 2em;')
+        self.expect('m2e', 'margin: 2em')
 
     def test_numeric_em(self):
-        self.expect('m2em', 'margin: 2em;')
+        self.expect('m2em', 'margin: 2em')
 
     def test_numeric_decimal_em(self):
-        self.expect('m2.5m', 'margin: 2.5em;')
+        self.expect('m2.5m', 'margin: 2.5em')
 
     def test_auto_comma(self):
-        self.expect('  font-weight: 400', '  font-weight: 400;')
+        self.expect('  font-weight: 400', '  font-weight: 400')
 
     def test_auto_space(self):
-        self.expect('  font-weight:400', '  font-weight: 400;')
+        self.expect('  font-weight:400', '  font-weight: 400')
 
     def test_auto_space_2(self):
-        self.expect('  opacity:1', '  opacity: 1;')
+        self.expect('  opacity:1', '  opacity: 1')
 
     def test_auto_space_unknown_property(self):
-        self.expect('  x-y:1', '  x-y: 1;')
+        self.expect('  x-y:1', '  x-y: 1')
 
     def test_autocomplete_values(self):
-        self.expect('  float: l', '  float: left;')
+        self.expect('  float: l', '  float: left')
 
     def test_flex(self):
         # should not mess with flex: property
-        self.expect('flex', 'display: flex;')
+        self.expect('flex', 'display: flex')
 
     def test_flex_grow(self):
-        self.expect('fgrow1', 'flex-grow: 1;')
+        self.expect('fgrow1', 'flex-grow: 1')
 
     def test_flex_grow_short(self):
-        self.expect('fg1', 'flex-grow: 1;')
+        self.expect('fg1', 'flex-grow: 1')
 
     def test_flex_grow_short(self):
-        self.expect('fwrap', 'flex-wrap: wrap;')
+        self.expect('fwrap', 'flex-wrap: wrap')
 
     def test_expand_units(self):
-        self.expect('width: 3', 'width: 3px;')
+        self.expect('width: 3', 'width: 3px')
 
     def test_expand_units_no_space(self):
-        self.expect('width:3', 'width: 3px;')
+        self.expect('width:3', 'width: 3px')
 
     def test_position(self):
-        self.expect('abs', 'position: absolute;')
-        self.expect('rel', 'position: relative;')
+        self.expect('abs', 'position: absolute')
+        self.expect('rel', 'position: relative')
 
     def test_z_index_number(self):
-        self.expect('z9', 'z-index: 9;')
+        self.expect('z9', 'z-index: 9')
 
     def test_opacity_number(self):
-        self.expect('op0.5', 'opacity: 0.5;')
+        self.expect('op0.5', 'opacity: 0.5')
 
     def test_rtl(self):
-        self.expect('rtl', 'direction: rtl;')
+        self.expect('rtl', 'direction: rtl')
 
     def test_zoom_number(self):
-        self.expect('zo1', 'zoom: 1;')
+        self.expect('zo1', 'zoom: 1')
 
     def test_font_weights(self):
-        self.expect('f1', 'font-weight: 100;')
-        self.expect('fw1', 'font-weight: 100;')
-        self.expect('fw100', 'font-weight: 100;')
-        self.expect('f100', 'font-weight: 100;')
-        self.expect('under', 'text-decoration: underline;')
+        self.expect('f1', 'font-weight: 100')
+        self.expect('fw1', 'font-weight: 100')
+        self.expect('fw100', 'font-weight: 100')
+        self.expect('f100', 'font-weight: 100')
+        self.expect('under', 'text-decoration: underline')
 
     def test_leave_selectors_alone(self):
         self.expect('p:before', None)

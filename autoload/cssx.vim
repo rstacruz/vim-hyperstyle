@@ -48,15 +48,15 @@ function! cssx#expand_tab()
     return "\t"
   endif
 
-  let out = s:expand_line('expand_property', b:cssx_semi)
+  let out = s:expand_line('expand_property')
   if out != ''
     exe 'normal 0"_C'
     return ''.out.' '
   endif
-  let out = s:expand_line('expand_statement', b:cssx_semi)
+  let out = s:expand_line('expand_statement')
   if out != ''
     exe 'normal 0"_C'
-    return '' . out
+    return '' . out . b:cssx_semi
   endif
 
   call s:run_old_mapping(b:cssx_oldmap.tab)
@@ -66,19 +66,22 @@ endfunction
 " Expands the current line via Python bindings. It takes the current line and
 " passes it onto python function! `fn`.
 "
-" - key : the key that was pressed. If the line is not recognized, type that
-"   key again.
-" - suffix : usually same as the key. will be appended to the result
-" - semi : (String) if ';', then semicolon mode is on. Leave this blank for
-"   indented syntaxes like Sass and Stylus.
+" - key : (String) the key that was pressed. If the line is not recognized,
+"   that key will be returned.
+" - suffix : (String) what to append to the result on success. usually same as
+"   the key.
 "
-"     run_expand('expand_property', ' ')
+"     run_expand('expand_property', ' ', ' ')
 "
 function! s:run_expand(fn, key, suffix)
-  let out = s:expand_line(a:fn, b:cssx_semi)
+  let out = s:expand_line(a:fn)
   if out == '' | return a:key | endif
   exe 'normal 0"_C'
-  return out . a:suffix
+  if a:fn == 'expand_statement'
+    return out . b:cssx_semi . a:suffix
+  else
+    return out . a:suffix
+  endif
 endfunction
 
 " (Internal) takes the current line and passes it onto a Python function.
@@ -96,8 +99,8 @@ endfunction
 "     expand_line("expand_property")
 "     # 'aoentuh' returns ''
 "
-function! s:expand_line(fn, semi)
-  return s:pyeval("cssx.".a:fn."(vim.eval(\"getline('.')\"),'".a:semi."')")
+function! s:expand_line(fn)
+  return s:pyeval("cssx.".a:fn."(vim.eval(\"getline('.')\"))")
 endfunction
 
 " pyeval() polyfill
