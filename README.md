@@ -10,7 +10,7 @@ Type faster by shorthand that will auto-expand as you type. Supports less, sass,
 
 ## Expansions
 
-Expansions intelligently happen as you type, no hotkeys required.
+Expansions intelligently happen as you type. Unlike [emmet], there are no hotkeys required—expansion will happen as you type whenever they make sense.
 
 * Properties will be auto-completed:<br>`m:` → `margin:`
 
@@ -88,3 +88,4 @@ Authored and maintained by Rico Sta. Cruz with help from contributors ([list][co
 [contributors]: http://github.com/rstacruz/vim-css-shorthard/contributors
 [auto-pairs]: https://github.com/jiangmiao/auto-pairs
 [vim-plug]: https://github.com/junegunn/vim-plug
+[emmet]: http://emmet.io/
