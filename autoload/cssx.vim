@@ -16,7 +16,7 @@ endif
 let s:current_file=expand("<sfile>")
 python << EOF
 import sys, os, vim
-path = os.path.dirname(vim.eval("s:current_file")) + '/../plugin'
+path = os.path.dirname(vim.eval("s:current_file")) + '/../python'
 sys.path.insert(0, path)
 import css_shorthand as cssx
 EOF

@@ -4,12 +4,12 @@ redirect := >/dev/null
 
 test: test-python test-vim
 
-test-python: plugin/test.py
+test-python: python/test.py
 	@if which python  >/dev/null; then python  --version; python  $<; fi
 	@if which python3 >/dev/null; then python3 --version; python3 $<; fi
 
 autotest:
-	find plugin test | entr make test
+	find plugin test python | entr make test
 
 # Automated vim testing via vader.vim
 test-vim: vendor/vimrc
