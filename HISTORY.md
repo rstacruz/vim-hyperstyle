@@ -1,6 +1,11 @@
+## [v0.4.0] - May 28, 2015
+
+* Support the tab key.
+* Don't expand lines when the line is not indented.
+
 ## [v0.3.0] - May 27, 2015
 
-* Vim 7.3 uspport!
+* Vim 7.3 support!
 * `boxs` now expands to `box-shadow` instead of box-sizing.
 * `cursor` values are now supported.
 * Updated shortcuts for `position`.
@@ -53,3 +58,4 @@ Initial release.
 [v0.2.3]: https://github.com/rstacruz/vim-css-shorthand/compare/v0.2.2...v0.2.3
 [v0.2.4]: https://github.com/rstacruz/vim-css-shorthand/compare/v0.2.3...v0.2.4
 [v0.3.0]: https://github.com/rstacruz/vim-css-shorthand/compare/v0.2.4...v0.3.0
+[v0.4.0]: https://github.com/rstacruz/vim-css-shorthand/compare/v0.3.0...v0.4.0
