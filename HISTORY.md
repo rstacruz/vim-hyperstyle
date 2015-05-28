@@ -1,3 +1,9 @@
+## [v0.4.1]
+
+- Fix compatibility with auto-pairs
+- Fix compatibility with UltiSnips
+- Internal changes
+
 ## [v0.4.0] - May 28, 2015
 
 * Support the tab key.
@@ -59,3 +65,4 @@ Initial release.
 [v0.2.4]: https://github.com/rstacruz/vim-css-shorthand/compare/v0.2.3...v0.2.4
 [v0.3.0]: https://github.com/rstacruz/vim-css-shorthand/compare/v0.2.4...v0.3.0
 [v0.4.0]: https://github.com/rstacruz/vim-css-shorthand/compare/v0.3.0...v0.4.0
+[v0.4.1]: https://github.com/rstacruz/vim-css-shorthand/compare/v0.4.0...v0.4.1

@@ -69,8 +69,6 @@ brew install macvim --with-cscope --with-lua --override-system-vim \
 
 ## Caveats
 
-* Not fully functional when [auto-pairs] is installed along with it (conflict in the `<Space>` binding). PR's welcome!
-
 * Stylus is assumed to be in indented syntax (no braces), and the use of `: ` is enforced.
 
 <br>
