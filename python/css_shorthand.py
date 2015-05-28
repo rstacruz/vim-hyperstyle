@@ -1,3 +1,14 @@
+"""Expands things.
+
+>>> expand_statement("m10m")
+"margin: 10em"
+
+>>> expand_statement("    m10m")
+"    margin: 10em"
+
+>>> expand_property("pad")
+"padding:"
+"""
 import re
 from definitions import properties, statements, full_properties
 from utils import fuzzify
@@ -97,7 +108,7 @@ def split_value(snippet):
         return (None, None, None)
 
 def expand_property(line):
-    """Expands a property.
+    """Expands a property. Used to expand on `:` or ` `.
 
     >>> expand_property("m")
     "margin:"
@@ -126,21 +137,21 @@ def expand_full_value(val, prop):
     if default_unit:
         _, number, unit = split_value(val)
         if number:
-            return expand_numeric_value(number, unit, default_unit)
+            return unitify(number, unit, default_unit)
 
     # Account for preset value keywords
     # ('float', 'l') => 'left'
     values = options.get('values')
     if values:
-        return expand_keyword_value(val, values)
+        return match_keyword(val, values)
 
-def expand_keyword_value(value, keywords):
+def match_keyword(value, keywords):
     """Finds the closest match to a `value` given a list of `keywords`.
 
-    >>> expand_keyword_value('l', ['left', 'right', 'auto'])
+    >>> match_keyword('l', ['left', 'right', 'auto'])
     "left"
 
-    >>> expand_keyword_value('xxx', ['inherit', 'auto'])
+    >>> match_keyword('xxx', ['inherit', 'auto'])
     None
     """
     for word in keywords:
@@ -148,7 +159,7 @@ def expand_keyword_value(value, keywords):
     for word in keywords:
         if re.match(value, word): return word
 
-def expand_numeric_value(number, unit, default_unit):
+def unitify(number, unit, default_unit):
     """Expands a single `number` + `unit` value. If the unit is absent (blank
     string), the `default_unit` will be used instead.
 

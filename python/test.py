@@ -259,7 +259,7 @@ class TestSelectorLike(unittest.TestCase):
 
 class TestExpanders(unittest.TestCase):
     def keyword(self, a, b):
-        return cssx.expand_keyword_value(a, b)
+        return cssx.match_keyword(a, b)
 
     def full(self, prop, val):
         return cssx.expand_full_value(prop, val)
