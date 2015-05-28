@@ -96,11 +96,8 @@ def split_value(snippet):
     else:
         return (None, None, None)
 
-def expand_property(line, semi=''):
+def expand_property(line):
     """Expands a property.
-
-    The 2nd argument is not used, but is there to keep the API compatible with
-    `expand_statement()`.
 
     >>> expand_property("m")
     "margin:"
@@ -115,17 +112,10 @@ def expand_property(line, semi=''):
 def expand_full_value(val, prop):
     """Expands a value of a given property `prop`. Returns the expanded value.
 
-    >>> e("3", "margin")
-    "3px"
-
-    >>> e("3x", "margin")
-    "3px"
-
-    >>> e("a", "margin")
-    "auto"
-
-    >>> e("l", "float")
-    "left"
+        e("3", "margin")  => "3px"
+        e("3x", "margin") => "3px"
+        e("a", "margin")  => "auto"
+        e("l", "float")   => "left"
     """
     options = full_properties.get(prop)
     if not options: return
