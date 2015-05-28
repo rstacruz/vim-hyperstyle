@@ -15,6 +15,9 @@ autotest:
 test-vim: vendor/vimrc
 	@env HOME=$(shell pwd)/vendor ${vim} -Nu $< +"Vader! test/*"
 
+vim: vendor/vimrc
+	@env HOME=$(shell pwd)/vendor ${vim} -Nu $< _test.css
+
 vendor/vimrc: vendor/vader.vim
 	@mkdir -p ./vendor
 	@echo "filetype off" > $@
