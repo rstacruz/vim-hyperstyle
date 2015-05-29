@@ -6,14 +6,15 @@ description: Style faster
 
 <script src='http://cdn.rawgit.com/rstacruz/typish/v0.2.1/index.js'></script>
 
+[View on GitHub](https://github.com/rstacruz/vim-hyperstyle){:.btn}
+{:.action-bar}
+
 # Hyperstyle <sup>vim</sup>
 
 Write styles faster. Like, much faster.
 
-[View on GitHub](https://github.com/rstacruz/vim-hyperstyle){:.btn}
-
 ### Properties
-Properties are expanded after you type `:` or `Tab ⇥` or `Spacebar`.
+Properties are expanded after you type `:` or `Tab ⇥` or `Spacebar`. They are fuzzy-matched, so just type them out however you feel like.
 
 <div class='code-box' id='properties-box'></div>
 <script>
@@ -218,7 +219,7 @@ repeat()
 
 ### Available for Vim
 
-[View on GitHub](https://github.com/rstacruz/vim-hyperstyle){:.btn}
+Because it's the best editor in the world.
 
 <div class='code-box' id='main-box'></div>
 <script>

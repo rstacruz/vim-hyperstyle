@@ -149,7 +149,7 @@ h3 {
   font-size: 0.8em;
   letter-spacing: 1px;
   font-family: montserrat, sans-serif;
-  color: $accent;
+  color: $black;
 }
 
 h3 + p {
@@ -165,4 +165,14 @@ code {
   box-shadow: inset 0 0 1px rgba($accent, 0.05);
   font-size: 0.8em;
   font-family: source sans pro, sans-serif;
+}
+
+.action-bar {
+  margin-bottom: 2em;
+
+  @media (min-width: 769px) {
+    position: fixed;
+    right: 70px;
+    top: 70px;
+  }
 }
