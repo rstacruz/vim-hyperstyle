@@ -4,9 +4,9 @@
 @import 'normalize';
 @import 'typish';
 
-@import url('//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400');
-@import url('//fonts.googleapis.com/css?family=Montserrat:700');
+@import url('//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700');
 @import url('//fonts.googleapis.com/css?family=Fira+Mono:400');
+@import url('//code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css');
 
 $text: #555;
 $black: #111;
@@ -45,27 +45,35 @@ h1 {
   color: $black;
 
   sup {
-    color: $black;
+    color: $accent;
     text-transform: uppercase;
-    font-size: 0.3em;
+    font-size: 0.4em;
     letter-spacing: 1px;
     font-weight: bold;
-    font-family: montserrat, sans-serif;
 
-    border-radius: 2px;
-    border: solid 2px $accent2;
+    border-radius: 3px;
+    // border: solid 2px $accent2;
     padding: 1px 2px 1px 3px;
 
     position: relative;
     top: -1.2em;
-    left: 3px;
+    left: -2px;
   }
 }
 
-h1 + p {
+/*
+ * Strapline
+ */
+
+.strap-line {
   font-size: 1.2em;
-  color: $gray;
+  margin-top: -8px;
+  color: $accent;
 }
+
+/*
+ * Code box
+ */
 
 .code-box {
   margin: 40px 0;
@@ -118,16 +126,15 @@ hr {
   height: 36px;
   line-height: 36px;
   background: white;
-  border: solid 2px $accent;
+  border: solid 1px $accent;
   color: $accent;
   cursor: pointer;
   transition: all 100ms linear;
   text-decoration: none;
   border-radius: 4px;
 
-  font-size: 0.7em;
+  font-size: 0.8em;
   font-weight: bold;
-  font-family: montserrat, sans-serif;
   text-transform: uppercase;
 
   &:hover, &:focus {
@@ -146,9 +153,8 @@ h3 {
 
   margin-bottom: 0;
   text-transform: uppercase;
-  font-size: 0.8em;
+  font-size: 0.9em;
   letter-spacing: 1px;
-  font-family: montserrat, sans-serif;
   color: $black;
 }
 
@@ -174,5 +180,22 @@ code {
     position: fixed;
     right: 70px;
     top: 70px;
+  }
+}
+
+.main-logo {
+  display: block;
+  margin-bottom: 3em;
+
+  &:before {
+    font-family: ionicons;
+    content: "\f3cd";
+
+    margin-top: 30px;
+    font-size: 100px;
+    color: $accent;
+    opacity: 0.5;
+    font-weight: 300;
+    display: inline-block;
   }
 }

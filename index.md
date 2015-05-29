@@ -9,9 +9,12 @@ description: Style faster
 [View on GitHub](https://github.com/rstacruz/vim-hyperstyle){:.btn}
 {:.action-bar}
 
+<div class='main-logo'></div>
+
 # Hyperstyle <sup>vim</sup>
 
-Write styles faster. Like, much faster.
+Write styles faster. Much faster.
+{:.strap-line}
 
 ### Properties
 Properties are expanded after you type `:` or `Tab ⇥` or `Spacebar`. They are fuzzy-matched, so just type them out however you feel like.
