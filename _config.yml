@@ -1,0 +1,40 @@
+# Markdown
+markdown: kramdown
+kramdown:
+  input: GFM
+  hard_wrap: false
+
+# Site settings
+permalink: /:title.html
+exclude:
+  - Makefile
+  - README.md
+  - EXTRAS.md
+  - Gemfile
+  - Gemfile.lock
+  - vendor
+  - CNAME
+sass:
+  style: compressed
+
+# Site info
+url: "http://siteurl.com"
+title: "Site name"
+
+# Google analytics
+analytics:
+  hostname: "siteurl.com"
+  id: "UA-XXXXXXXX-1"
+
+# Collections
+collections:
+  - authors
+
+# Default variables
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: "article"
+      tags: []
+      author: John Smith
