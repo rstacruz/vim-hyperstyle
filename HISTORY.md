@@ -1,8 +1,13 @@
+## [v0.5.0] - May 29, 2015
+
+- Rename project to `vim-hyperstyle`. (previously `vim-css-shorthand`)
+- Internal changes and cleanups.
+
 ## [v0.4.1] - May 29, 2015
 
-- Fix compatibility with auto-pairs
-- Fix compatibility with UltiSnips
-- Internal changes
+- Fix compatibility with auto-pairs.
+- Fix compatibility with UltiSnips.
+- Internal changes.
 
 ## [v0.4.0] - May 28, 2015
 
