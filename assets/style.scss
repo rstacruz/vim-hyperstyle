@@ -38,6 +38,10 @@ html {
 
 body {
   max-width: 500px;
+
+  @media (min-width: 769px) {
+    margin-left: 18%;
+  }
 }
 
 h1 {
