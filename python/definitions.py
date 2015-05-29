@@ -31,6 +31,7 @@ Each property will be accessible through these ways:
 - fuzzy matches with dashes (eg: min-h, min-hei, min-heig...)
 - fuzzy matches of aliases defined (eg: td, tde, tdec, tdeco, tdecor, tdecora...)
 """
+
 properties_list = [
     ("m", "margin", { "unit": "px", "values": ["auto"] }),
     ("w", "width", { "unit": "px", "values": ["auto"] }),
@@ -304,3 +305,5 @@ statements_list = [
     ("wa", "width", "auto", { "alias": ["wauto"] }),
     ("ha", "height", "auto", { "alias": ["hauto"] }),
 ]
+
+definitions = { "properties": properties_list, "statements": statements_list }

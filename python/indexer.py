@@ -4,27 +4,28 @@ if sys.version_info < (3,):
 
 class Indexer:
     """Indexes definitions
+
+    idx = Indexer()
+    idx.index(definitions)
     """
     def __init__(self):
-        pass
+        self.properties = {} # indexed by shorthand ("bg")
+        self.statements = {} # indexed by shorthand ("m0a")
+        self.full_properties = {} # indexed by long property name ("margin")
 
     def index(self, defs):
         # Index them
-        self.properties = {} # indexed by shorthand ("bg")
-        self.full_properties = {} # indexed by long property name ("margin")
-
-        for (short, prop, options) in defs.properties_list:
+        for (short, prop, options) in defs["properties"]:
             self.properties[short] = (prop, options)
             self.full_properties[prop] = options
 
-        self.statements = {}
-        for (short, prop, value, options) in defs.statements_list:
+        for (short, prop, value, options) in defs["statements"]:
             self.statements[short] = (prop, value, options)
 
-        for (short, prop, options) in defs.properties_list:
+        for (short, prop, options) in defs["properties"]:
             apply_fuzzies(self.properties, short, prop, options)
 
-        for (short, prop, value, options) in defs.statements_list:
+        for (short, prop, value, options) in defs["statements"]:
             apply_fuzzies(self.statements, short, prop, options)
 
         self.remove_tags()

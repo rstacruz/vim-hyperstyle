@@ -10,17 +10,18 @@
 "padding:"
 """
 import re
-import definitions
+from definitions import definitions
 from indexer import Indexer
 
+# Indexing
 index = Indexer()
 index.index(definitions)
 
 # Also see http://www.w3.org/TR/css3-values/
-semicolon_expr = re.compile(r';\s*$')
-value_expr = re.compile(r'^([^\.\d-]*)(-?\d*\.?\d+)(x|p[tcx]?|e[mx]?|s|m[ms]?|rem|ch|v[wh]|vmin|max|%|)$')
 line_expr = re.compile(r'^(\s*)(.*?)$')
 rule_expr = re.compile(r'^((?:[a-z]+-)*[a-z]+): *([^\s].*?);?$')
+value_expr = re.compile(r'^([^\.\d-]*)(-?\d*\.?\d+)(x|p[tcx]?|e[mx]?|s|m[ms]?|rem|ch|v[wh]|vmin|max|%|)$')
+semicolon_expr = re.compile(r';\s*$')
 selectorlike_expr = re.compile(r'.*(link|visited|before|placeholder|root|after|focus|hover|active|checked|selected).*')
 ends_in_brace_expr = re.compile(r'.*\{\s*$')
 
