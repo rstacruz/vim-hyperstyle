@@ -1,8 +1,8 @@
-# vim-hyperstyl
+# vim-hyperstyle
 
 Type faster by shorthand that will auto-expand as you type. Supports less, sass, scss, stylus, and plain CSS.
 
-![](https://raw.githubusercontent.com/rstacruz/vim-hyperstyle/gh-pages/screencast.gif)
+![](https://raw.githubusercontent.com/rstacruz/vim-hyperstyle/gh-pages/screencast.gif?2)
 
 [![Status](https://travis-ci.org/rstacruz/vim-hyperstyle.svg?branch=master)](https://travis-ci.org/rstacruz/vim-hyperstyle)  
 

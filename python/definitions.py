@@ -73,7 +73,7 @@ properties_list = [
     ("fst", "font-style", { "alias": ["fostyle", "fstyle"], "values": ["italic", "normal", "inherit"] }),
     ("fw", "font-weight", { "alias": ["foweight", "fweight"], "values": ["100","200","300","400","500","600","700","800","900","bold","normal"] }),
     ("fv", "font-variant", { "alias": ["fovariant", "fvariant"] }),
-    ("ff", "font-family", { "alias": ["fofamily", "ffamily"] }),
+    ("ff", "font-family", { "alias": ["fofamily", "ffamily", "family"] }),
     ("lh", "line-height", { "unit": "_" }),
     ("ls", "letter-spacing", { "alias": ["lespacing", "lspacing"], "unit": "px" }),
 
