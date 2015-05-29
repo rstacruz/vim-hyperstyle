@@ -3,10 +3,19 @@ if sys.version_info < (3,):
     range = xrange
 
 class Indexer:
-    """Indexes definitions
+    """Indexes CSS property and statement definitions.
 
-    idx = Indexer()
-    idx.index(definitions)
+    >>> idx = Indexer()
+    >>> idx.index(definitions)
+
+    >>> idx.properties.get("pad")
+    ("padding", { "unit": "px" })
+
+    >>> idx.full_properties.get("padding")
+    ("padding", { "unit": "px" })
+
+    >>> idx.statements.get("m0a")
+    ("margin", "0 auto", {})
     """
     def __init__(self):
         self.properties = {} # indexed by shorthand ("bg")
@@ -14,7 +23,10 @@ class Indexer:
         self.full_properties = {} # indexed by long property name ("margin")
 
     def index(self, defs):
-        # Index them
+        """Adds definitions to the index.
+
+        >>> idx.index({ "properties": [...], "definitions": [...] })
+        """
         for (short, prop, options) in defs["properties"]:
             self.properties[short] = (prop, options)
             self.full_properties[prop] = options
