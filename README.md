@@ -1,10 +1,10 @@
-# vim-css-shorthand
+# vim-hyperstyl
 
 Type faster by shorthand that will auto-expand as you type. Supports less, sass, scss, stylus, and plain CSS.
 
-![](https://raw.githubusercontent.com/rstacruz/vim-css-shorthand/gh-pages/screencast.gif)
+![](https://raw.githubusercontent.com/rstacruz/vim-hyperstyle/gh-pages/screencast.gif)
 
-[![Status](https://travis-ci.org/rstacruz/vim-css-shorthand.svg?branch=master)](https://travis-ci.org/rstacruz/vim-css-shorthand)  
+[![Status](https://travis-ci.org/rstacruz/vim-hyperstyle.svg?branch=master)](https://travis-ci.org/rstacruz/vim-hyperstyle)  
 
 <br>
 
@@ -51,7 +51,7 @@ Expansions intelligently happen as you type. Unlike [emmet], there are no hotkey
 Using [vim-plug]:
 
 ```vim
-Plug 'rstacruz/vim-css-shorthand'
+Plug 'rstacruz/vim-hyperstyle'
 ```
 
 Python support is required. For Neovim:
@@ -75,7 +75,7 @@ brew install macvim --with-cscope --with-lua --override-system-vim \
 
 ## Thanks
 
-**vim-css-shorthand** © 2015+, Rico Sta. Cruz. Released under the [MIT] License.<br>
+**vim-hyperstyle** © 2015+, Rico Sta. Cruz. Released under the [MIT] License.<br>
 Authored and maintained by Rico Sta. Cruz with help from contributors ([list][contributors]).
 
 > [ricostacruz.com](http://ricostacruz.com) &nbsp;&middot;&nbsp;
@@ -83,7 +83,6 @@ Authored and maintained by Rico Sta. Cruz with help from contributors ([list][co
 > Twitter [@rstacruz](https://twitter.com/rstacruz)
 
 [MIT]: http://mit-license.org/
-[contributors]: http://github.com/rstacruz/vim-css-shorthard/contributors
-[auto-pairs]: https://github.com/jiangmiao/auto-pairs
+[contributors]: http://github.com/rstacruz/vim-hyperstyle/contributors
 [vim-plug]: https://github.com/junegunn/vim-plug
 [emmet]: http://emmet.io/

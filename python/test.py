@@ -1,4 +1,4 @@
-import css_shorthand as cssx
+import hyperstyle as cssx
 import unittest
 
 class TestCr(unittest.TestCase):

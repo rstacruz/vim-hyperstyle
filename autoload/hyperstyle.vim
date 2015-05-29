@@ -1,5 +1,5 @@
-if exists("g:css_shorthand_autoloaded") | finish | endif
-let g:css_shorthand_autoloaded=1
+if exists("g:hyperstyle_autoloaded") | finish | endif
+let g:hyperstyle_autoloaded=1
 
 if !has("python") && !has("python3")
   echohl WarningMsg
@@ -18,33 +18,33 @@ python << EOF
 import sys, os, vim
 path = os.path.dirname(vim.eval("s:current_file")) + '/../python'
 sys.path.insert(0, path)
-import css_shorthand as cssx
+import hyperstyle as hyperstyle
 EOF
 
 " Expands carriage return (db => display: block;)
-function! cssx#expand_cr()
+function! hyperstyle#expand_cr()
   return s:run_expand('expand_statement', "\n", "\n")
 endfunction
 
 " Expand spaces (fl_ => float:_)
-function! cssx#expand_space()
+function! hyperstyle#expand_space()
   return s:run_expand('expand_property', ' ', ' ')
 endfunction
 
 " Expand colons (fl: => float:)
-function! cssx#expand_colon()
+function! hyperstyle#expand_colon()
   return s:run_expand('expand_property', ':', '')
 endfunction
 
 " Expand semicolons (display: b; => display: block;)
-function! cssx#expand_semicolon()
+function! hyperstyle#expand_semicolon()
   return s:run_expand('expand_statement', ';', '')
 endfunction
 
-function! cssx#expand_tab()
+function! hyperstyle#expand_tab()
   let line = getline('.')
   if ! (line =~ '^\s')
-    call s:run_old_mapping(b:cssx_oldmap.tab)
+    call s:run_old_mapping(b:hyperstyle_oldmap.tab)
     return "\t"
   endif
 
@@ -56,10 +56,10 @@ function! cssx#expand_tab()
   let out = s:expand_line('expand_statement')
   if out != ''
     exe 'normal 0"_C'
-    return '' . out . b:cssx_semi
+    return '' . out . b:hyperstyle_semi
   endif
 
-  call s:run_old_mapping(b:cssx_oldmap.tab)
+  call s:run_old_mapping(b:hyperstyle_oldmap.tab)
   return "\t"
 endfunction
 
@@ -78,7 +78,7 @@ function! s:run_expand(fn, key, suffix)
   if out == '' | return a:key | endif
   exe 'normal 0"_C'
   if a:fn == 'expand_statement'
-    return out . b:cssx_semi . a:suffix
+    return out . b:hyperstyle_semi . a:suffix
   else
     return out . a:suffix
   endif
@@ -100,7 +100,7 @@ endfunction
 "     # 'aoentuh' returns ''
 "
 function! s:expand_line(fn)
-  return s:pyeval("cssx.".a:fn."(vim.eval(\"getline('.')\"))")
+  return s:pyeval("hyperstyle.".a:fn."(vim.eval(\"getline('.')\"))")
 endfunction
 
 " pyeval() polyfill
