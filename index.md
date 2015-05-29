@@ -219,7 +219,7 @@ repeat()
 
 ### Available for Vim
 
-Because it's the best editor in the world.
+Supports CSS, Sass, Stylus and SCSS.
 
 <div class='code-box' id='main-box'></div>
 <script>
