@@ -12,60 +12,6 @@ Write styles faster. Like, much faster.
 
 [View on GitHub](https://github.com/rstacruz/vim-hyperstyle){:.btn}
 
-<script>
-(function(){
-function repeat() {
-  typish('#main-box')
-  .speed(80)
-  .type('div ', 'sel')
-  .type('{', 'sym')
-  .type('\n  ')
-  .wait(5)
-
-  .type('di', 'prop')
-  .wait(10)
-  .del(2, 0)
-  .type('display: ', 'prop', 0)
-  .wait(10)
-  .type('bl', 'val')
-  .wait(10)
-  .type('ock', 'val', 0)
-  .type(';', 'sym', 0)
-  .type('\n  ', 0)
-  .wait(10)
-
-  .type('m0a', 'prop')
-  .wait(10)
-  .del(3, 0)
-  .type('margin: ', 'prop', 0)
-  .type('0 auto', 'val', 0)
-  .type(';', 'sym', 0)
-  .type('\n  ', 0)
-  .wait(10)
-
-  .type('pad', 'prop')
-  .wait(5)
-  .del(3, 0)
-  .type('padding:', 'prop', 0)
-  .wait(5)
-  .type('300', 'val')
-  .wait(10)
-  .del(4, 0)
-  .type('g: ', 'prop', 0) /* what? */
-  .type('300px', 'val', 0)
-  .type(';', 'sym', 0)
-  .type('\n  ', 0)
-  .wait(10)
-
-  .del(2, 0)
-  .type('}', 'sym', 0)
-  .wait(50)
-  .then(repeat)
-}
-//repeat()
-})();
-</script>
-
 ### Properties
 Properties are expanded after you type `:` or `Tab ⇥` or `Spacebar`.
 
@@ -274,3 +220,23 @@ repeat()
 
 [View on GitHub](https://github.com/rstacruz/vim-hyperstyle){:.btn}
 
+<div class='code-box' id='main-box'></div>
+<script>
+(function(){
+function repeat() {
+  typish('#main-box')
+  .speed(80)
+  .type('" ~/.vimrc\n', 'sel', 0.5)
+  .type('" using vim-plug:', 'sel', 0.5)
+  .wait(10)
+  .type('\n\n')
+  .type('Plug ', 'prop')
+  .type("'rstacruz/vim-hyperstyle'", '<a href="https://github.com/rstacruz/vim-hyperstyle" class="val">')
+  .wait(50)
+
+  .clear(0)
+  .then(repeat)
+}
+repeat()
+})();
+</script>
