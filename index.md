@@ -4,65 +4,273 @@ title: vim-hyperstyle
 description: Style faster
 ---
 
+<script src='http://cdn.rawgit.com/rstacruz/typish/v0.2.1/index.js'></script>
+
 # Hyperstyle <sup>vim</sup>
 
 Write styles faster. Like, much faster.
 
-<div class='code-box'></div>
+[View on GitHub](https://github.com/rstacruz/vim-hyperstyle){:.btn}
+
+<script>
+(function(){
+function repeat() {
+  typish('#main-box')
+  .speed(80)
+  .type('div ', 'sel')
+  .type('{', 'sym')
+  .type('\n  ')
+  .wait(5)
+
+  .type('di', 'prop')
+  .wait(10)
+  .del(2, 0)
+  .type('display: ', 'prop', 0)
+  .wait(10)
+  .type('bl', 'val')
+  .wait(10)
+  .type('ock', 'val', 0)
+  .type(';', 'sym', 0)
+  .type('\n  ', 0)
+  .wait(10)
+
+  .type('m0a', 'prop')
+  .wait(10)
+  .del(3, 0)
+  .type('margin: ', 'prop', 0)
+  .type('0 auto', 'val', 0)
+  .type(';', 'sym', 0)
+  .type('\n  ', 0)
+  .wait(10)
+
+  .type('pad', 'prop')
+  .wait(5)
+  .del(3, 0)
+  .type('padding:', 'prop', 0)
+  .wait(5)
+  .type('300', 'val')
+  .wait(10)
+  .del(4, 0)
+  .type('g: ', 'prop', 0) /* what? */
+  .type('300px', 'val', 0)
+  .type(';', 'sym', 0)
+  .type('\n  ', 0)
+  .wait(10)
+
+  .del(2, 0)
+  .type('}', 'sym', 0)
+  .wait(50)
+  .then(repeat)
+}
+//repeat()
+})();
+</script>
+
+### Properties
+Properties are expanded after you type `:` or `Tab ⇥` or `Spacebar`.
+
+<div class='code-box' id='properties-box'></div>
+<script>
+(function(){
+function repeat() {
+  typish('#properties-box')
+  .speed(80)
+  .type('section ', 'sel')
+  .type('{', 'sym')
+  .type('\n  ')
+  .wait(5)
+
+  .type('di', 'prop')
+  .wait(5)
+  .del(2, 0)
+  .type('display:', 'prop -hl', 0)
+  .type(' ', 0)
+  .wait(5)
+  .type('block', 'val')
+  .type(';', 'sym')
+  .type('\n  ', 0)
+  .wait(5)
+
+  .type('pad', 'prop')
+  .wait(5)
+  .del(3, 0)
+  .type('padding:', 'prop -hl', 0)
+  .type(' ', 0)
+  .wait(5)
+  .type('3px', 'val')
+  .type(';', 'sym')
+  .type('\n  ', 0)
+  .wait(5)
+
+  .type('boxsh', 'prop')
+  .wait(5)
+  .del(5, 0)
+  .type('box-shadow:', 'prop -hl', 0)
+  .type(' ', 0)
+  .wait(5)
+  .type('1px 0 black', 'val')
+  .type(';', 'sym')
+  .type('\n  ', 0)
+  .wait(5)
+
+  .del(2, 0)
+  .type('}', 'sym', 0)
+  .wait(50)
+  .then(repeat)
+}
+repeat()
+})();
+</script>
+
+### Values
+Values are expanded after you type `;` or `Enter ⏎` or `Tab ⇥`. For numeric values without units, the unit will be auto-guessed.
+
+<div class='code-box' id='values-box'></div>
+<script>
+(function(){
+function repeat() {
+  typish('#values-box')
+  .speed(80)
+  .type('.heading ', 'sel')
+  .type('{', 'sym')
+  .type('\n  ')
+  .wait(5)
+
+  .type('float: ', 'prop')
+  .type('l', 'val')
+  .wait(5)
+  .del(1, 0)
+  .type('left', 'val -hl', 0)
+  .type(';', 'sym', 0)
+  .type('\n  ', 0)
+  .wait(5)
+
+  .type('font-size: ', 'prop')
+  .type('3', 'val')
+  .wait(5)
+  .del(1, 0)
+  .type('3em', 'val -hl', 0)
+  .type(';', 'sym', 0)
+  .wait(5)
+  .type('\n  ', 0)
+
+  .type('position: ', 'prop')
+  .type('re', 'val')
+  .wait(5)
+  .del(2, 0)
+  .type('relative', 'val -hl', 0)
+  .type(';', 'sym', 0)
+  .type('\n  ', 0)
+  .wait(5)
+
+  .del(2, 0)
+  .type('}', 'sym', 0)
+  .wait(50)
+  .then(repeat)
+}
+repeat()
+})();
+</script>
+
+### Shorthands
+Some common property:value pairs are expanded upon pressing `;` or `Enter ⏎` or `Tab ⇥`.
+
+<div class='code-box' id='statements-box'></div>
+<script>
+(function(){
+function repeat() {
+  typish('#statements-box')
+  .speed(80)
+  .type('.menu ', 'sel')
+  .type('{', 'sym')
+  .type('\n  ')
+  .wait(5)
+
+  .type('m0a', 'prop')
+  .wait(5)
+  .del(3, 0)
+  .type('margin: ', 'prop -hl', 0)
+  .type('0 auto', 'val -hl', 0)
+  .type(';', 'sym', 0)
+  .type('\n  ', 0)
+  .wait(5)
+
+  .type('bold', 'prop')
+  .wait(5)
+  .del(4, 0)
+  .type('font-weight: ', 'prop -hl', 0)
+  .type('bold', 'val -hl', 0)
+  .type(';', 'sym', 0)
+  .type('\n  ', 0)
+  .wait(5)
+
+  .type('dib', 'prop')
+  .wait(5)
+  .del(3, 0)
+  .type('display: ', 'prop -hl', 0)
+  .type('inline-block', 'val -hl', 0)
+  .type(';', 'sym', 0)
+  .type('\n  ', 0)
+  .wait(5)
+
+  .del(2, 0)
+  .type('}', 'sym', 0)
+  .wait(50)
+  .then(repeat)
+}
+repeat()
+})();
+</script>
+
+### Semicolons
+Semicolons for property:values are automatically inserted upon pressing `Enter ⏎`. This means you'll be able to keep typing shorthands like say, `poa` `⏎` `dib` `⏎`.
+
+<div class='code-box' id='semis-box'></div>
+<script>
+(function(){
+function repeat() {
+  typish('#semis-box')
+  .speed(80)
+  .type('.navigation ', 'sel')
+  .type('{', 'sym')
+  .type('\n  ')
+
+  .type('position: ', 'prop')
+  .type('abs', 'val')
+  .wait(5)
+  .del(3, 0)
+  .type('absolute', 'val -hl', 0)
+  .type(';', 'sym -hl', 0)
+  .type('\n  ', 0)
+  .wait(10)
+
+  .type('l', 'prop')
+  .type('eft: ', 'prop', 0)
+  .wait(5)
+  .type('30', 'val')
+  .del(2, 0)
+  .type('30px', 'val -hl', 0)
+  .type(';', 'sym -hl', 0)
+  .type('\n  ', 0)
+  .wait(10)
+
+  .type('top: ', 'prop')
+  .type('0', 'val')
+  .wait(5)
+  .type(';', 'sym -hl', 0)
+  .type('\n  ', 0)
+  .wait(10)
+
+  .del(2, 0)
+  .type('}', 'sym', 0)
+  .wait(50)
+  .then(repeat)
+}
+repeat()
+})();
+</script>
+
+### Available for Vim
 
 [View on GitHub](https://github.com/rstacruz/vim-hyperstyle){:.btn}
 
-<script src='http://cdn.rawgit.com/rstacruz/typish/v0.2.1/index.js'></script>
-<script>
-function repeat() {
-  typish('.code-box')
-    .speed(80)
-    .type('div ', 'sel')
-    .type('{', 'sym')
-    .type('\n  ')
-    .wait(5)
-
-    .type('di', 'prop')
-    .wait(10)
-    .del(2, 0)
-    .type('display: ', 'prop', 0)
-    .wait(10)
-    .type('bl', 'val')
-    .wait(10)
-    .type('ock', 'val', 0)
-    .type(';', 'sym', 0)
-    .type('\n  ', 0)
-    .wait(10)
-
-    .type('m0a', 'prop')
-    .wait(10)
-    .del(3, 0)
-    .type('margin: ', 'prop', 0)
-    .type('0 auto', 'val', 0)
-    .type(';', 'sym', 0)
-    .type('\n  ', 0)
-    .wait(10)
-
-    .type('pad', 'prop')
-    .wait(5)
-    .del(3, 0)
-    .type('padding:', 'prop', 0)
-    .wait(5)
-    .type('300', 'val')
-    .wait(10)
-    .del(4, 0)
-    .type('g: ', 'prop', 0) /* what? */
-    .type('300px', 'val', 0)
-    .type(';', 'sym', 0)
-    .type('\n  ', 0)
-    .wait(10)
-
-    .del(2, 0)
-    .type('}', 'sym', 0)
-    .wait(10)
-
-    .wait(50)
-    .then(repeat)
-}
-repeat()
-</script>

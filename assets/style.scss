@@ -10,8 +10,13 @@
 
 $text: #555;
 $black: #111;
-$accent: #1a8c9c;
+$gray: #808890;
+$accent: lighten(#1a8c9c, 10%);
 $accent2: #808fc4;
+
+html, body {
+  min-height: 100%;
+}
 
 html {
   line-height: 1.6em;
@@ -19,6 +24,7 @@ html {
 
   @media (min-width: 769px) {
     padding: 70px;
+    border: solid 10px rgba($accent2, 0.1);
   }
 
   font-family: source sans pro, sans-serif;
@@ -28,6 +34,10 @@ html {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  max-width: 500px;
 }
 
 h1 {
@@ -52,27 +62,42 @@ h1 {
   }
 }
 
+h1 + p {
+  font-size: 1.2em;
+  color: $gray;
+}
+
 .code-box {
   margin: 40px 0;
 
   @include typish-code;
-  @include typish-cursor($color: #ddd, $width: 2px, $left: 2px, $speed: 1000ms, $blinkontype: false, $top: -1px);
+  @include typish-cursor($color: #ddd, $width: 2px, $left: 2px, $speed: 500ms, $blinkontype: false, $top: -1px);
   font-family: fira mono, monaco, monospace;
   font-size: 10pt;
   line-height: 1.4;
-  padding: 30px;
-  border: solid 2px rgba($accent, 0.2);
-  border-radius: 4px;
-  max-width: 400px;
+  // padding: 30px;
+  // border: solid 2px rgba($accent2, 0.2);
+  // border-radius: 4px;
   height: 1.4em * 5;
   box-sizing: content-box;
 }
 
 .code-box {
-  .sym { color: #888; }
-  .sel { color: #555; }
+  .sym { color: #aaa; }
+  .sel { color: #aaa; }
   .prop { color: $accent; }
   .val { color: $accent2; }
+  // .-hl { background: rgba(#fefee0, 0.5); }
+  .-hl { box-shadow: inset 0 -3px white, inset 0 -10px rgba(#fefee0, 0.9); }
+}
+
+hr {
+  margin: 2em 0;
+  display: block;
+  height: 2px;
+  opacity: 0.2;
+  background: $accent2;
+  border: 0;
 }
 
 @include typish-keyframes($duration: 30%, $fade: 15%);
@@ -97,4 +122,34 @@ h1 {
   &:hover, &:focus {
     background: lighten($accent, 10%);
   }
+}
+
+h3 {
+  margin-top: 2em;
+
+  @media (min-width: 769px) { /* tablet, desktop */
+    margin-top: 10em;
+  }
+
+  margin-bottom: 0;
+  text-transform: uppercase;
+  font-size: 0.8em;
+  letter-spacing: 1px;
+  font-family: montserrat, sans-serif;
+  color: $accent;
+}
+
+h3 + p {
+  margin-top: 0.3em;
+}
+
+
+code {
+  background: #fdfdfd;
+  padding: 3px 6px;
+  margin: 0 2px;
+  border-radius: 2px;
+  box-shadow: inset 0 0 1px rgba($accent, 0.05);
+  font-size: 0.8em;
+  font-family: source sans pro, sans-serif;
 }
