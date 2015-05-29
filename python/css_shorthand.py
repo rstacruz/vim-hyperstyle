@@ -10,8 +10,11 @@
 "padding:"
 """
 import re
-from definitions import properties, statements, full_properties
-from utils import fuzzify
+import definitions
+from indexer import Indexer
+
+index = Indexer()
+index.index(definitions)
 
 # Also see http://www.w3.org/TR/css3-values/
 semicolon_expr = re.compile(r';\s*$')
@@ -45,7 +48,7 @@ def expand_statement_simple(snippet):
 
         "db"  => "display: block"
     """
-    expansion = statements.get(snippet)
+    expansion = index.statements.get(snippet)
     if expansion:
         key, value, _ = expansion
         return "%s: %s" % (key, value)
@@ -57,7 +60,7 @@ def expand_statement_with_property(snippet):
         "pad10"  => "padding: 10px"
     """
     short, value, unit = split_value(snippet) # ("m","10","em")
-    expansion = properties.get(short) # ("margin", {"unit": "px"})
+    expansion = index.properties.get(short) # ("margin", {"unit": "px"})
     if not expansion: return
 
     prop, options = expansion
@@ -115,7 +118,7 @@ def expand_property(line):
     """
     indent, snippet = split_indent(line)
 
-    tuple = properties.get(snippet)
+    tuple = index.properties.get(snippet)
     if tuple:
         prop, options = tuple
         return "%s%s:" % (indent, prop)
@@ -128,7 +131,7 @@ def expand_full_value(val, prop):
         e("a", "margin")  => "auto"
         e("l", "float")   => "left"
     """
-    options = full_properties.get(prop)
+    options = index.full_properties.get(prop)
     if not options: return
 
     # Account for default units

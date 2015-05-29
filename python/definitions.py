@@ -1,5 +1,3 @@
-from utils import apply_fuzzies
-
 """
 A list of CSS properties to expand.
 
@@ -306,29 +304,3 @@ statements_list = [
     ("wa", "width", "auto", { "alias": ["wauto"] }),
     ("ha", "height", "auto", { "alias": ["hauto"] }),
 ]
-
-# Index them
-properties = {} # indexed by shorthand ("bg")
-full_properties = {} # indexed by long property name ("margin")
-for (short, prop, options) in properties_list:
-    properties[short] = (prop, options)
-    full_properties[prop] = options
-
-statements = {}
-for (short, prop, value, options) in statements_list:
-    statements[short] = (prop, value, options)
-
-for (short, prop, options) in properties_list:
-    apply_fuzzies(properties, short, prop, options)
-
-for (short, prop, value, options) in statements_list:
-    apply_fuzzies(statements, short, prop, options)
-
-# Workaround to stop tags from being expanded. This will allow you to type
-# `li:before` without `li:` being expanded to `line-height:`.
-#
-# This is also important for indented syntaxes, where you might commonly
-# type `p` on its own line (in contrast to `p {`).
-for tag in ['a', 'p', 'br', 'b', 'i', 'li', 'ul', 'div', 'em', 'sup', 'big', 'small', 'sub']:
-    statements[tag] = None
-    properties[tag] = None
