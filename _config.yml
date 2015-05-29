@@ -19,7 +19,7 @@ sass:
 
 # Site info
 url: "http://siteurl.com"
-title: "Site name"
+title: "{{$sitename}}"
 
 # Google analytics
 analytics:

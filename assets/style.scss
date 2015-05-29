@@ -2,8 +2,98 @@
 ---
 
 @import 'normalize';
+@import 'typish';
+
+@import url('//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400');
+@import url('//fonts.googleapis.com/css?family=Montserrat:700');
+@import url('//fonts.googleapis.com/css?family=Fira+Mono:400');
+
+$text: #555;
+$black: #111;
+$accent: dodgerblue;
 
 html {
   line-height: 1.6em;
-  padding: 70px;
+  padding: 15px;
+
+  @media (min-width: 769px) {
+    padding: 70px;
+  }
+
+  font-family: source sans pro, sans-serif;
+  background: white;
+  color: $text; 
+
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1 {
+  font-weight: 300;
+  color: $black;
+
+  sup {
+    color: $black;
+    text-transform: uppercase;
+    font-size: 0.3em;
+    letter-spacing: 1px;
+    font-weight: bold;
+    font-family: montserrat, sans-serif;
+
+    border-radius: 2px;
+    border: solid 2px $black;
+    padding: 1px 2px 1px 3px;
+
+    position: relative;
+    top: -1.2em;
+    left: 3px;
+  }
+}
+
+.code-box {
+  margin: 40px 0;
+
+  @include typish-code;
+  @include typish-cursor($color: #ddd, $width: 2px, $left: 2px, $speed: 1000ms, $blinkontype: false, $top: -1px);
+  font-family: fira mono, monaco, monospace;
+  font-size: 10pt;
+  line-height: 1.4;
+  padding: 30px;
+  border: solid 2px rgba($accent, 0.2);
+  border-radius: 4px;
+  max-width: 400px;
+  height: 1.4em * 5;
+  box-sizing: content-box;
+}
+
+.code-box {
+  .sym { color: #888; }
+  .sel { color: #555; }
+  .prop { color: $accent; }
+  .val { color: lighten($accent, 15%); }
+}
+
+@include typish-keyframes($duration: 30%, $fade: 15%);
+
+.btn {
+  display: inline-block;
+  padding: 0 15px;
+  height: 36px;
+  line-height: 36px;
+  background: $accent;
+  color: white;
+  cursor: pointer;
+  transition: all 100ms linear;
+  text-decoration: none;
+  border-radius: 4px;
+
+  font-size: 0.7em;
+  font-weight: bold;
+  font-family: montserrat, sans-serif;
+  text-transform: uppercase;
+
+  &:hover, &:focus {
+    background: lighten($accent, 10%);
+  }
 }

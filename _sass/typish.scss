@@ -1,0 +1,77 @@
+// Turns on pre-wrap on a box to allow multiple spaces to work.
+//
+//     .box {
+//       @include typish-code;
+//       @include typish-cursor($color: #7bd);
+//     }
+//
+//     @include typish-keyframes;
+
+@mixin typish-code {
+  white-space: pre-wrap;
+}
+
+// Adds a cursor to a box. Be sure to also include `typish-keyframes`.
+// Available parameters are:
+//
+// - $color: The color
+// - $width: cursor width
+// - $height: cursor height
+// - $left: how much space to offset from the left
+// - $top: how much space to offset from the top
+// - $speed: speed of the blinking in milliseconds
+// - $blinkontype: set to false to disable blinking while typing
+//
+//     .box {
+//       @include typish-code;
+//       @include typish-cursor($color: #7bd, $width: 1px);
+//     }
+
+@mixin typish-cursor($color: #e74c3c, $width: 2px, $height: 1.4em, $left: 5px, $top: 1px, $speed: 500ms, $blinkontype: true) {
+  &:after {
+    content: '';
+    display: inline-block;
+    vertical-align: baseline;
+    height: $height;
+    width: $width;
+    background: $color;
+    margin-left: $left;
+    position: relative;
+    top: $top;
+    -webkit-animation: typish-blink $speed linear infinite;
+    animation: typish-blink $speed linear infinite;
+  }
+
+  @if ($blinkontype != true) {
+    &.-typish-typing:after {
+      -webkit-animation: none;
+      animation: none;
+    }
+  }
+
+  &.-nocursor:after {
+    display: none;
+  }
+}
+
+// Adds the blink animation keyframes. Include this at the top-level of your document.
+//
+//     @include typish-keyframes;
+
+@mixin typish-keyframes($duration: 30%, $fade: 10%) {
+  @-webkit-keyframes typish-blink {
+    0% { opacity: 1; }
+    #{$duration} { opacity: 1; }
+    #{$fade + $duration} { opacity: 0; }
+    #{100% - $fade} { opacity: 0; }
+    100% { opacity: 1; }
+  }
+
+  @keyframes typish-blink {
+    0% { opacity: 1; }
+    #{$duration} { opacity: 1; }
+    #{$fade + $duration} { opacity: 0; }
+    #{100% - $fade} { opacity: 0; }
+    100% { opacity: 1; }
+  }
+}
