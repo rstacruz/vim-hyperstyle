@@ -18,17 +18,13 @@ sass:
   style: compressed
 
 # Site info
-url: "http://siteurl.com"
-title: "{{$sitename}}"
+url: "http://ricostacruz.com/vim-hyperstyle"
+title: vim-yperstyle
 
 # Google analytics
 analytics:
-  hostname: "siteurl.com"
-  id: "UA-XXXXXXXX-1"
-
-# Collections
-collections:
-  - authors
+  hostname: "ricostacruz.com"
+  id: "UA-20473929-1"
 
 # Default variables
 defaults:
