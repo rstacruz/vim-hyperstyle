@@ -46,6 +46,8 @@ properties_list = [
     ("bg", "background", { "values": ["transparent"] }),
     ("mh", "min-height", { "unit": "px", "values": ["auto"] }),
     ("mw", "min-width", { "unit": "px", "values": ["auto"] }),
+    ("xh", "max-height", { "unit": "px", "values": ["auto"], "alias": ["xheight", "mxheight"] }),
+    ("xw", "max-width", { "unit": "px", "values": ["auto"], "alias": ["xwidth", "mxwidth"] }),
 
     ("ml", "margin-left", { "unit": "px", "values": ["auto"], "alias": ["mleft", "marleft"] }),
     ("mr", "margin-right", { "unit": "px", "values": ["auto"], "alias": ["mright", "marright"] }),
