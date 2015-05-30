@@ -1,0 +1,11 @@
+# Given css:
+#     display: block;
+# 
+# Execute:
+#   set sts=2 sw=2 ex
+# 
+# Do:
+#   A cur\<Space>pointer
+# 
+# Expect (expands after ;):
+#   display: block; cursor: pointer

@@ -104,7 +104,11 @@ endfunction
 "     # 'aoentuh' returns ''
 "
 function! s:expand_line(fn)
-  return s:pyeval("hyperstyle.".a:fn."(vim.eval(\"getline('.')\"))")
+  return s:expand(a:fn, "getline('.')")
+endfunction
+
+function! s:expand(fn, expr)
+  return s:pyeval("hyperstyle.".a:fn."(vim.eval(\"" . fnameescape(a:expr) . "\"))")
 endfunction
 
 " pyeval() polyfill

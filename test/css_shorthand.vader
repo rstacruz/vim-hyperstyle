@@ -87,57 +87,14 @@ Execute:
   set ex
 Do:
   a  background: linear-gradient(\<Enter>_
-Expect (supress automatic semicolon insertion);
-  background: linear-gradient(
-  _
-
-Given sass:
-  .div
+Expect (supress automatic semicolon insertion):
+    background: linear-gradient(
     _
-Do (dib;<Enter>):
-  Gxadib\<Enter>_
-Expect (display: inline-block):
-  .div
-    display: inline-block
-    _
-
-Given stylus:
-Execute:
-  set sw=2
-  set sts=2
-  set ex
-Do:
-  adiv\<Enter>  di\<Tab>_
-Expect (stylus: expands properties via tab);
-div
-  display: _
-
-Given stylus:
-Do:
-  adiv\<Enter>  moa\<Tab>_
-Expect (stylus: expands statements via tab);
-div
-  margin: 0 auto_
-
-Given stylus:
-Do:
-  amoa\<Tab>_
-Expect (don't expand tabs when there's no indentation);
-moa _
 
 Given css:
 Execute:
   set sts=2 sw=2 ex
 Do:
   a  xxxxxx\<Tab>_
-Expect (keeps tabs working);
-  xxxxxx  _
-
-Given css:
-Execute:
-  set sts=2 sw=2 ex
-Do:
-  a  display: block;color: blue;\<Esc>0f;a\<Enter>
-Expect (keeps tabs working);
-  display: block;
-  color: blue;
+Expect (keeps tabs working):
+    xxxxxx  _

@@ -1,0 +1,33 @@
+# Tests indented syntaxes and stuff.
+
+Given sass:
+  .div
+    _
+Do (dib;<Enter>):
+  Gxadib\<Enter>_
+Expect sass (display: inline-block):
+  .div
+    display: inline-block
+    _
+
+Given stylus:
+Execute:
+  set sw=2 sts=2 ex
+Do:
+  adiv\<Enter>  di\<Tab>_
+Expect stylus (stylus: expands properties via tab);
+div
+  display: _
+
+Given stylus:
+Do:
+  adiv\<Enter>  moa\<Tab>_
+Expect (stylus: expands statements via tab);
+div
+  margin: 0 auto_
+
+Given stylus:
+Do:
+  amoa\<Tab>_
+Expect (don't expand tabs when there's no indentation):
+  moa _
