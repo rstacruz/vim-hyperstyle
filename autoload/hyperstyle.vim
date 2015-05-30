@@ -23,24 +23,19 @@ EOF
 
 " Expands carriage return (db => display: block;)
 function! hyperstyle#expand_cr()
-  if ! hyperstyle#endofline()
-    return "\n"
-  endif
+  if ! s:at_eol() | return "\n" | endif
   return s:run_expand('expand_statement', "\n", "\n")
-endfunction
-
-" Checks if we're at the end of the line
-function hyperstyle#endofline()
-  return col('.') >= strlen(getline('.'))
 endfunction
 
 " Expand spaces (fl_ => float:_)
 function! hyperstyle#expand_space()
+  if ! s:at_eol() | return " " | endif
   return s:run_expand('expand_property', ' ', ' ')
 endfunction
 
 " Expand colons (fl: => float:)
 function! hyperstyle#expand_colon()
+  if ! s:at_eol() | return ":" | endif
   return s:run_expand('expand_property', ':', '')
 endfunction
 
@@ -50,12 +45,7 @@ function! hyperstyle#expand_semicolon()
 endfunction
 
 function! hyperstyle#expand_tab()
-  let line = getline('.')
-  if ! (line =~ '^\s')
-    if empty(b:hyperstyle_oldmap.tab) | return "\t" | endif
-    call s:run_old_mapping(b:hyperstyle_oldmap.tab)
-    return ""
-  endif
+  if ! s:at_indented_line() | return s:fallback('tab', "\t") | endif
 
   let out = s:expand_line('expand_property')
   if out != ''
@@ -68,8 +58,13 @@ function! hyperstyle#expand_tab()
     return '' . out . b:hyperstyle_semi
   endif
 
-  call s:run_old_mapping(b:hyperstyle_oldmap.tab)
-  return "\t"
+  return s:fallback('tab', "\t")
+endfunction
+
+function! s:fallback(key, str)
+    if empty(b:hyperstyle_oldmap[a:key]) | return a:str | endif
+    call s:run_old_mapping(b:hyperstyle_oldmap[a:key])
+    return ""
 endfunction
 
 " Expands the current line via Python bindings. It takes the current line and
@@ -134,3 +129,14 @@ function! s:run_old_mapping(mapping)
     normal! l
   endif
 endfunction
+
+" (internal) Checks if we're at the end of the line.
+function s:at_eol()
+  return col('.') >= strlen(getline('.'))
+endfunction
+
+" (internal) Checks if we're at a line that's indented
+function s:at_indented_line()
+  return getline('.') =~ '^\s'
+endfunction
+
