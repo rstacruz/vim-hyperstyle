@@ -13,7 +13,7 @@ Expect (expands the value);
   margin: auto;
 
 Given css;
-  margin: auto
+  margin:auto
 Do (pressing ;):
   A;
 Expect (inserts a space after : in the property);
