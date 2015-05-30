@@ -30,4 +30,7 @@ vendor/vader.vim:
 	@mkdir -p ./vendor
 	@git clone https://github.com/junegunn/vader.vim ./vendor/vader.vim
 
+REFERENCE.md: python/definitions.py
+	@python python/reference.py > $@
+
 .PHONY: test vendor/vimrc

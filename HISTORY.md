@@ -3,6 +3,7 @@
 - Fix compatilibity with UltiSnips.
 - Improve compatibilty with plugins that remap space.
 - Fix pressing <kbd>Enter</kbd> in the middle of a line.
+- Add `max-width` and `max-height`.
 
 ## [v0.5.0] - May 29, 2015
 

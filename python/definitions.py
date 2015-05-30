@@ -246,7 +246,7 @@ statements_list = [
 
     ("cont", "content", "''", {}),
 
-    ("ttu", "text-transform", "uppercase", {}),
+    ("ttu", "text-transform", "uppercase", { "alias": ["uppercase"] }),
     ("ttl", "text-transform", "lowercase", {}),
     ("ttn", "text-transform", "none", {}),
     ("ttc", "text-transform", "capitalize", {}),
@@ -254,8 +254,8 @@ statements_list = [
 
     ("tal", "text-align", "left", {}),
     ("tar", "text-align", "right", {}),
-    ("tac", "text-align", "center", {}),
-    ("taj", "text-align", "justify", {}),
+    ("tac", "text-align", "center", { "alias": ["center"] }),
+    ("taj", "text-align", "justify", { "alias": ["justify"] }),
 
     ("tdu", "text-decoration", "underline", { "alias": ["underline"] }),
     ("tdn", "text-decoration", "none", {}),

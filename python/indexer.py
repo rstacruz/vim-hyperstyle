@@ -28,10 +28,12 @@ class Indexer:
         >>> idx.index({ "properties": [...], "definitions": [...] })
         """
         for (short, prop, options) in defs["properties"]:
+            options["canonical"] = short
             self.properties[short] = (prop, options)
             self.full_properties[prop] = options
 
         for (short, prop, value, options) in defs["statements"]:
+            options["canonical"] = short
             self.statements[short] = (prop, value, options)
 
         for (short, prop, options) in defs["properties"]:
