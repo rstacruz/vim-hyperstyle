@@ -42,7 +42,7 @@ Expansions intelligently happen as you type. Unlike [emmet], there are no hotkey
 | `fle 1 auto` | flex: 1 auto;          |
 | `float left` | float: left;           |
 
-**[See the source](python/definitions.py)** for a reference while I haven't put together something here yet.
+**[View full reference →](REFERENCE.md)**
 
 <br>
 
