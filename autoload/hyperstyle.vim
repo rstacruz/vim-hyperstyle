@@ -23,7 +23,15 @@ EOF
 
 " Expands carriage return (db => display: block;)
 function! hyperstyle#expand_cr()
+  if ! hyperstyle#endofline()
+    return "\n"
+  endif
   return s:run_expand('expand_statement', "\n", "\n")
+endfunction
+
+" Checks if we're at the end of the line
+function hyperstyle#endofline()
+  return col('.') >= strlen(getline('.'))
 endfunction
 
 " Expand spaces (fl_ => float:_)
