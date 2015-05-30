@@ -1,0 +1,15 @@
+Given css:
+Execute:
+  set sw=2 sts=2 ex
+Do:
+  a  margin: 0 auto\<Enter>_
+Expect (automatic semicolon insertion);
+  margin: 0 auto;
+  _
+
+Do:
+  a  background: linear-gradient(\<Enter>_
+Expect (supress automatic semicolon insertion):
+    background: linear-gradient(
+    _
+

@@ -12,3 +12,12 @@ Do (pressing enter):
   A\<Space>_
 Expect (safely lets space through);
   123 _
+
+Given css (nothing in particular);
+  xxxxxx
+Execute:
+  set sts=2 sw=2 ex
+Do (pressing tab):
+  A\<Tab>_
+Expect (safely lets tab through);
+  xxxxxx  _
