@@ -1,33 +1,5 @@
 Given css:
-Do (dib;<Enter>);
-a  dib\<Enter>_
-Expect (display: inline-block;);
-  display: inline-block;
-  _
-
-Do (m:a; dib;<Enter>);
-a  m:a; dib;
+Do (m:a; dib;<Enter>):
+  a  m:a; dib;
 Expect (multiple statements don't stack on the same line);
   margin: auto; dib;
-
-Do (123<Enter>):
-  a  123\<Enter>_
-Expect (safely lets enter through);
-  123
-  _
-
-Execute:
-  set sts=2 sw=2 ex
-Do:
-  a  cursor:w{\<Enter>_
-Expect (don't expand open braces);
-  cursor:w{
-    _
-
-Given css:
-Execute:
-  set sts=2 sw=2 ex
-Do:
-  a  xxxxxx\<Tab>_
-Expect (keeps tabs working):
-    xxxxxx  _

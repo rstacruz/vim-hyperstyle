@@ -5,3 +5,13 @@ Do (pressing enter):
 Expect (doesn't expand :before);
   p:before
   _
+
+Given css (with a brace);
+  cursor:w{
+Execute:
+  set sts=2 sw=2 ex
+Do (pressing enter):
+  A\<Enter>_
+Expect (doesn't expand open braces);
+  cursor:w{
+    _
