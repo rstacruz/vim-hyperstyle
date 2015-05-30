@@ -1,5 +1,7 @@
 ## Properties
 
+These will expand when you press <kbd>:</kbd>, <kbd>Spacebar</kbd> or <kbd>Tab ⇥</kbd>.
+
 | Property | Shortcuts |
 | --- | --- |
 | `align-items` | **ai**, ait, aite, aitem, aitems, al, ali, alig, align, align-, align-i, align-it, align-ite, align-item, align-items, aligni, alignit, alignite, alignitem, alignitems, alit, alite, alitem, alitems |
@@ -93,6 +95,8 @@
 | `z-index` | **zi**, z, z-, z-i, z-in, z-ind, z-inde, z-index, zin, zind, zinde, zindex |
 | `zoom` | **zo**, zoo, zoom |
 ## Statements
+
+These will expand when you press <kbd>;</kbd>, <kbd>Enter ⏎</kbd> or <kbd>Tab ⇥</kbd>.
 
 | Statement | Shortcuts |
 | --- | --- |

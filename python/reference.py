@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # This code sucks
 # Really
 # Don't even look at it
@@ -26,6 +27,7 @@ def print_properties():
             props[prop]["aliases"].append(name)
 
     print_heading("Properties")
+    print "These will expand when you press <kbd>:</kbd>, <kbd>Spacebar</kbd> or <kbd>Tab ⇥</kbd>.\n"
     print_table(props, "Property")
 
 def print_statements():
@@ -41,6 +43,7 @@ def print_statements():
             props[key]["aliases"].append(name)
 
     print_heading("Statements")
+    print "These will expand when you press <kbd>;</kbd>, <kbd>Enter ⏎</kbd> or <kbd>Tab ⇥</kbd>.\n"
     print_table(props, "Statement")
 
 def print_heading(name):
