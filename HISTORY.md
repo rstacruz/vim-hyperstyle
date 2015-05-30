@@ -1,3 +1,9 @@
+## [v0.5.1] - May 30, 2015
+
+- Fix compatilibity with UltiSnips.
+- Improve compatibilty with plugins that remap space.
+- Fix pressing <kbd>Enter</kbd> in the middle of a line.
+
 ## [v0.5.0] - May 29, 2015
 
 - Rename project to `vim-hyperstyle`. (previously `vim-css-shorthand`)
@@ -71,3 +77,5 @@ Initial release.
 [v0.3.0]: https://github.com/rstacruz/vim-hyperstyle/compare/v0.2.4...v0.3.0
 [v0.4.0]: https://github.com/rstacruz/vim-hyperstyle/compare/v0.3.0...v0.4.0
 [v0.4.1]: https://github.com/rstacruz/vim-hyperstyle/compare/v0.4.0...v0.4.1
+[v0.5.0]: https://github.com/rstacruz/vim-hyperstyle/compare/v0.4.1...v0.5.0
+[v0.5.1]: https://github.com/rstacruz/vim-hyperstyle/compare/v0.5.0...v0.5.1
