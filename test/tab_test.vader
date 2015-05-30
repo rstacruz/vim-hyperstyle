@@ -1,0 +1,14 @@
+Given css (with a property shorthand);
+  di
+Do (pressing tab):
+  A\<Tab>_
+Expect (expands the property);
+  display: _
+
+Given css (with a statement shorthand);
+  m0a
+Do (pressing tab):
+  A\<Tab>_
+Expect (expands the statement);
+  margin: 0 auto;_
+

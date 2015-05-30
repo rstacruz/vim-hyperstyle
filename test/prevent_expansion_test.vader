@@ -1,0 +1,7 @@
+Given css (with a :before selector);
+  p:before
+Do (pressing enter):
+  A\<Enter>_
+Expect (doesn't expand :before);
+  p:before
+  _

@@ -1,0 +1,14 @@
+Given css (nothing in particular);
+  123
+Do (pressing enter):
+  A\<Enter>_
+Expect (safely lets enter through);
+  123
+  _
+
+Given css (nothing in particular);
+  123
+Do (pressing enter):
+  A\<Space>_
+Expect (safely lets space through);
+  123 _

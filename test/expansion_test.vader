@@ -1,0 +1,34 @@
+Given css (di);
+  di
+Do (pressing :):
+  A:_
+Expect (expands the property);
+  display:_
+
+Given css;
+  margin: a
+Do (pressing ;):
+  A;
+Expect (expands the value);
+  margin: auto;
+
+Given css;
+  margin: auto
+Do (pressing ;):
+  A;
+Expect (inserts a space after : in the property);
+  margin: auto;
+
+Given css;
+  dib
+Do (pressing ;):
+  A;
+Expect (expands a full statement);
+  display: inline-block;
+
+Given css;
+  brad4
+Do (pressing ;):
+  A;
+Expect (expands numeric values);
+  border-radius: 4px;

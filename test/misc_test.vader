@@ -1,29 +1,4 @@
-Given css;
-Do (di:);
-a  di:_
-Expect (expands the property);
-  display:_
-
-Do (m:a;);
-a  m:a;
-Expect (expands property and the value);
-  margin: auto;
-
-Do (margin:auto;);
-a  margin:auto;
-Expect (inserts a space after :);
-  margin: auto;
-
-Do (dib;);
-a  dib;
-Expect (expands a full statement after ;);
-  display: inline-block;
-
-Do (brad4);
-a  brad4;
-Expect (expands numeric values);
-  border-radius: 4px;
-
+Given css:
 Do (dib;<Enter>);
 a  dib\<Enter>_
 Expect (display: inline-block;);
@@ -41,28 +16,6 @@ Expect (safely lets enter through);
   123
   _
 
-Do:
-  a  p:before\<Enter>_
-Expect (don't expand :before);
-  p:before
-  _
-
-Do:
-  a  p:before\<Enter>_
-Expect (don't expand :before);
-  p:before
-  _
-
-Do:
-  a  di\<Tab>_
-Expect (expands properties via tab);
-  display: _
-
-Do:
-  a  m0a\<Tab>_
-Expect (expands statements via tab);
-  margin: 0 auto;_
-
 Execute:
   set sts=2 sw=2 ex
 Do:
@@ -72,9 +25,7 @@ Expect (don't expand open braces);
     _
 
 Execute:
-  set sw=2
-  set sts=2
-  set ex
+  set sw=2 sts=2 ex
 Do:
   a  margin: 0 auto\<Enter>_
 Expect (automatic semicolon insertion);

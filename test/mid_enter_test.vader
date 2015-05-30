@@ -1,0 +1,16 @@
+# In the line:
+#   display: block;| color: blue;
+# In v0.5.0, you used to not be able to press <Enter> to break them apart.
+
+Given css:
+    display: block;color: blue;
+
+Execute:
+  set sts=2 sw=2 ex
+
+Do:
+  0f;a\<Enter>
+
+Expect (keeps enter working in the middle of a line);
+  display: block;
+  color: blue;
