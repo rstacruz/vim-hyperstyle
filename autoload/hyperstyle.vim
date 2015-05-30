@@ -44,8 +44,9 @@ endfunction
 function! hyperstyle#expand_tab()
   let line = getline('.')
   if ! (line =~ '^\s')
+    if empty(b:hyperstyle_oldmap.tab) | return "\t" | endif
     call s:run_old_mapping(b:hyperstyle_oldmap.tab)
-    return "\t"
+    return ""
   endif
 
   let out = s:expand_line('expand_property')
