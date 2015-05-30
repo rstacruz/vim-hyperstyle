@@ -2,8 +2,8 @@
 #   display: block;| color: blue;
 # In v0.5.0, you used to not be able to press <Enter> to break them apart.
 
-Given css:
-    display: block;color: blue;
+Given css;
+  display: block;color: blue;
 
 Execute:
   set sts=2 sw=2 ex
