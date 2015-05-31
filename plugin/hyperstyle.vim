@@ -1,5 +1,17 @@
 " Enables for the current buffer.
-" If `semi` is 1, semicolons will be added.
+" If `semi` is 1, semicolons will be advim lolded.
+
+inoremap <silent>  <SID>(hyperstyle-cr) <C-R>=hyperstyle#expand_cr()<CR>
+imap     <script> <Plug>(hyperstyle-cr) <SID>(hyperstyle-cr)
+inoremap <silent>  <SID>(hyperstyle-tab) <C-R>=hyperstyle#expand_tab()<CR>
+imap     <script> <Plug>(hyperstyle-tab) <SID>(hyperstyle-tab)
+inoremap <silent>  <SID>(hyperstyle-space) <C-R>=hyperstyle#expand_space()<CR>
+imap     <script> <Plug>(hyperstyle-space) <SID>(hyperstyle-space)
+inoremap <silent>  <SID>(hyperstyle-colon) <C-R>=hyperstyle#expand_colon()<CR>
+imap     <script> <Plug>(hyperstyle-colon) <SID>(hyperstyle-colon)
+inoremap <silent>  <SID>(hyperstyle-semi) <C-R>=hyperstyle#expand_semicolon()<CR>
+imap     <script> <Plug>(hyperstyle-semi) <SID>(hyperstyle-semi)
+
 function! s:enable(semi)
   let b:hyperstyle = 1
   let b:hyperstyle_semi = a:semi
@@ -7,16 +19,23 @@ function! s:enable(semi)
   " Prevent double-mappings
   if maparg("<Tab>","i") =~ 'hyperstyle#' | return | endif
 
-  let b:hyperstyle_oldmap = {
-    \ "\t": maparg("<Tab>","i"),
-    \ " ":  maparg("<Space>","i")
-    \ }
+  call s:map_key("<CR>", "hyperstyle-cr")
+  call s:map_key("<Space>", "hyperstyle-space")
+  call s:map_key("<Tab>", "hyperstyle-tab")
+  call s:map_key(":", "hyperstyle-colon")
+  call s:map_key(";", "hyperstyle-semi")
+endfunction
 
-  exe 'inoremap <buffer> <CR> <C-R>=hyperstyle#expand_cr()<CR>'
-  exe 'inoremap <buffer> <Space> <C-R>=hyperstyle#expand_space()<CR>'
-  exe 'inoremap <buffer> <Tab> <C-R>=hyperstyle#expand_tab()<CR><Right>'
-  exe 'inoremap <buffer> : <C-R>=hyperstyle#expand_colon()<CR>'
-  exe 'inoremap <buffer> ; <C-R>=hyperstyle#expand_semicolon()<CR>'
+function! s:map_key(key, binding)
+  let oldmap = maparg(a:key, 'i')
+
+  if oldmap =~# "<Plug>(".a:binding.")"
+    " already mapped. maybe the user was playing with `set ft`
+  elseif oldmap != ""
+    exe "imap ".a:key." ".oldmap."<Plug>(".a:binding.")"
+  else
+    exe "imap <buffer> ".a:key." ".a:key."<Plug>(".a:binding.")"
+  endif
 endfunction
 
 augroup hyperstyle
@@ -29,20 +48,22 @@ augroup hyperstyle
 augroup END
 
 " Hacky fix to make things work with auto-pairs.
-" This will take away the <Space> binding from auto-pairs.
+" This will take away the bindings from auto-pairs.
 " Yes this is a terrible thing to do.
 if globpath(&rtp, 'plugin/auto-pairs.vim') != ''
-  function s:rescue_space()
+  function s:rescue_bindings()
     if exists('b:hyperstyle_ap_fix') | return | endif
     if ! exists('b:hyperstyle') | return | endif
 
     let oldmap = maparg("<space>", "i")
     if ! (oldmap =~ 'AutoPairsSpace') | return | endif
-    if (oldmap =~ 'hyperstyle#expand_space') | return | endif
+    if (oldmap =~ '(hyperstyle-space)') | return | endif
 
     let b:hyperstyle_ap_fix = 1
-    exe 'iunmap <buffer> <SPACE>'
-    exe 'inoremap <buffer> <SPACE> <C-R>=hyperstyle#expand_space()<CR>'
+    exe 'iunmap <buffer> <Space>'
+    exe 'imap <buffer> <Space> <Space><Plug>(hyperstyle-space)'
+    exe 'iunmap <buffer> <CR>'
+    exe 'imap <buffer> <CR> <CR><Plug>(hyperstyle-cr)'
   endfunction
-  au InsertEnter * :call s:rescue_space()
+  au InsertEnter * :call s:rescue_bindings()
 endif
