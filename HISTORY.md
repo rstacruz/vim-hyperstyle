@@ -1,6 +1,7 @@
 ## [v0.7.0] - May 31, 2015
 
 - Improve compatibility with other plugins: UltiSnips, auto-pairs, endwise, [vim-closer].
+- Improve compatibility with anything else I haven't seen, really (hopefully).
 
 [vim-closer]: https://github.com/rstacruz/vim-closer
 
