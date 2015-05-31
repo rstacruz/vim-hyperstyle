@@ -23,26 +23,36 @@ EOF
 
 " Expands carriage return (db => display: block;)
 function! hyperstyle#expand_cr()
-  " If it broke a line, don't
+  " If it broke in the middle of a line, don't.
   if match(getline('.'), '^\s*$') == -1 | return '' | endif
 
+  " Get previous line
   let ln = line('.') - 1
   let linetext = getline(ln)
-
   let indent = matchstr(linetext, '^\s*')
-  let linetext = linetext[strlen(indent):]
+  let shorthand = linetext[strlen(indent):]
 
-  let out = s:pyfn('expand_statement', linetext)
+  let out = s:pyfn('expand_statement', shorthand)
   if out == '' | return '' | endif
 
-  exec "normal dd^C"
+  " Move cursor back to previous line
+  exec 'normal "_dd^"_C'
   return indent . out . b:hyperstyle_semi . "\n"
 endfunction
 
 " Expand spaces (fl_ => float:_)
 function! hyperstyle#expand_space()
-  if ! s:at_eol() | return " " | endif
-  return s:run_expand('expand_property', ' ', ' ')
+  if ! s:at_eol() | return "" | endif
+
+  let linetext = getline('.') 
+  let shorthand = matchstr(linetext, '[a-z]\+\s*$')
+
+  let out = s:pyfn('expand_property', shorthand)
+  if out == '' | return '' | endif
+
+  " Delete current line and replace
+  exe 'normal F "_C'
+  return out . ' '
 endfunction
 
 " Expand colons (fl: => float:)
@@ -89,7 +99,7 @@ endfunction
 "     run_expand('expand_property', ' ', ' ')
 "
 function! s:run_expand(fn, key, suffix)
-  let out = s:expand_line(a:fn)
+  let out = s:pyfn(a:fn, getline('.'))
   if out == '' | return s:fallback(a:key) | endif
   exe 'normal 0"_C'
   if a:fn == 'expand_statement'

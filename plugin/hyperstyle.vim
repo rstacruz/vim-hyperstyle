@@ -1,7 +1,7 @@
 " Enables for the current buffer.
 " If `semi` is 1, semicolons will be advim lolded.
 
-inoremap   <SID>(hyperstyle-cr) <C-R>=hyperstyle#expand_cr()<CR>
+inoremap <silent>  <SID>(hyperstyle-cr) <C-R>=hyperstyle#expand_cr()<CR>
 imap     <script> <Plug>(hyperstyle-cr) <SID>(hyperstyle-cr)
 inoremap <silent>  <SID>(hyperstyle-tab) <C-R>=hyperstyle#expand_tab()<CR><right>
 imap     <script> <Plug>(hyperstyle-tab) <SID>(hyperstyle-tab)
@@ -27,7 +27,9 @@ function! s:enable(semi)
   else
     imap <buffer> <CR> <CR><Plug>(hyperstyle-cr)
   endif
-  imap <buffer> <Space> <Plug>(hyperstyle-space)
+
+  imap <buffer> <Space> <Space><Plug>(hyperstyle-space)
+
   imap <buffer> ; <Plug>(hyperstyle-semi)
   " imap <Tab> <Plug>(hyperstyle-tab)
   " exe 'inoremap <buffer> <Space> <C-R>=hyperstyle#expand_space()<CR>'
