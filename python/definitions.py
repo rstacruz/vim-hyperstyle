@@ -1,311 +1,298 @@
 """
 A list of CSS properties to expand.
+Format:
 
-This will be indexed as `properties` (a dict). We define it as a list first
-because the order will matter in fuzzifying.
+    (property, [aliases], unit, [values])
 
-Each entry is in this format:
-
-    (short, property, { options })
-
-Where:
-
-- short : the canonical shortcut for this property. This will always expand to
-  the property.
-- property : the full CSS property name.
-- options : defines some optional behavior for this shortcut.
-
-These options are available:
-
+- property : (String) the full CSS property name.
+- aliases : (String list) a list of aliases for this shortcut.
 - unit : (String) when defined, assumes that the property has a value with a
   unit. When the value is numberless (eg, `margin:12`), the given unit will
   be assumed (`12px`). Set this to `_` for unitless numbers (eg, line-height).
-- alias : (String list) a list of aliases for this shortcut.
 - values : (String list) possible values for this property.
 
 Each property will be accessible through these ways:
 
-- the primary `short` (eg: m)
-- fuzzy matches of the property name, no dashes(eg: mi, min, minh, minhe,
+- fuzzy matches of the aliases defined
+- fuzzy matches of the property name, no dashes (eg: mi, min, minh, minhe,
   minhei...)
 - fuzzy matches with dashes (eg: min-h, min-hei, min-heig...)
-- fuzzy matches of aliases defined (eg: td, tde, tdec, tdeco, tdecor, tdecora...)
 """
 
-properties_list = [
-    ("m", "margin", { "unit": "px", "values": ["auto"] }),
-    ("w", "width", { "unit": "px", "values": ["auto"] }),
-    ("h", "height", { "unit": "px", "values": ["auto"] }),
-    ("p", "padding", { "unit": "px" }),
-    ("bo", "border", {}), # because `b` is for bold.
-    ("o", "outline", {}),
-    ("l", "left", { "unit": "px" }),
-    ("t", "top", { "unit": "px" }),
-    ("bot", "bottom", { "unit": "px" }), # because `b` and `bo` are taken.
-    ("r", "right", { "unit": "px" }),
-    ("bg", "background", { "values": ["transparent"] }),
-    ("mh", "min-height", { "unit": "px", "values": ["auto"] }),
-    ("mw", "min-width", { "unit": "px", "values": ["auto"] }),
-    ("xh", "max-height", { "unit": "px", "values": ["auto"], "alias": ["xheight", "mxheight"] }),
-    ("xw", "max-width", { "unit": "px", "values": ["auto"], "alias": ["xwidth", "mxwidth"] }),
+properties = [
+    ("margin", [], "px", ["auto"]),
+    ("width", [], "px", ["auto"]),
+    ("height", [], "px", ["auto"]),
+    ("padding", [], "px", ["auto"]),
+    ("border", [], None, None),
+    ("outline", [], None, None),
+    ("left", [], "px", None),
+    ("top", [], "px", None),
+    ("bottom", [], "px", None),
+    ("right", [], "px", None),
+    ("background", ["bground"], None, ["transparent"]),
+    ("min-height", ["mheight"], "px", ["auto"]),
+    ("min-width", ["mwidth"], "px", ["auto"]),
+    ("max-height", ["xheight","mxheight"], "px", ["auto"]),
+    ("max-width", ["xwidth","mxheight"], "px", ["auto"]),
 
-    ("ml", "margin-left", { "unit": "px", "values": ["auto"], "alias": ["mleft", "marleft"] }),
-    ("mr", "margin-right", { "unit": "px", "values": ["auto"], "alias": ["mright", "marright"] }),
-    ("mt", "margin-top", { "unit": "px", "values": ["auto"], "alias": ["mtop", "martop"] }),
-    ("mb", "margin-bottom", { "unit": "px", "values": ["auto"], "alias": ["mbottom", "marbottom"] }),
+    ("margin-left", ["mleft","marleft"], "px", ["auto"]),
+    ("margin-right", ["mright","marright"], "px", ["auto"]),
+    ("margin-top", ["mtop","martop"], "px", ["auto"]),
+    ("margin-bottom", ["mbottom","marbottom"], "px", ["auto"]),
 
-    ("pl", "padding-left", { "unit": "px", "alias": ["padleft", "pleft"] }),
-    ("pr", "padding-right", { "unit": "px", "alias": ["padright", "pright"] }),
-    ("pt", "padding-top", { "unit": "px", "alias": ["padtop", "ptop"] }),
-    ("pb", "padding-bottom", { "unit": "px", "alias": ["padbottom", "pbottom"] }),
+    ("padding-left", ["pleft","padleft"], "px", None),
+    ("padding-right", ["pright","padright"], "px", None),
+    ("padding-top", ["ptop","padtop"], "px", None),
+    ("padding-bottom", ["pbottom","padbottom"], "px", None),
 
-    ("zi", "z-index", { "unit": "_" }),
+    ("z-index", [], "_", None),
 
-    ("d", "display", { "values": ["none", "block", "inline", "inline-block", "table", "table-cell", "table-row"] }),
-    ("ta", "text-align", { "values": ["left", "right", "justify", "center", "inherit"] }),
+    ("display", [], None, ["none", "block", "inline", "inline-block", "table", "table-cell", "table-row"]),
+    ("text-align", ["talign"], None, ["left", "right", "justify", "center", "inherit"]),
 
-    ("of", "overflow", { "values": ["visible", "scroll", "hidden", "auto", "inherit"] }),
-    ("ofx", "overflow-x", { "alias": ["ox"], "values": ["visible", "scroll", "hidden", "auto", "inherit"] }),
-    ("ofy", "overflow-y", { "alias": ["oy"], "values": ["visible", "scroll", "hidden", "auto", "inherit"] }),
+    ("overflow", ["oflow"], None, ["visible", "scroll", "hidden", "auto", "inherit"]),
+    ("overflow-x", ["ox"], None, ["visible", "scroll", "hidden", "auto", "inherit"]),
+    ("overflow-y", ["oy"], None, ["visible", "scroll", "hidden", "auto", "inherit"]),
 
-    ("f", "font", {}),
-    ("fs", "font-size", { "alias": ["fosize", "fsize"], "unit": "em" }),
-    ("fst", "font-style", { "alias": ["fostyle", "fstyle"], "values": ["italic", "normal", "inherit"] }),
-    ("fw", "font-weight", { "alias": ["foweight", "fweight"], "values": ["100","200","300","400","500","600","700","800","900","bold","normal"] }),
-    ("fv", "font-variant", { "alias": ["fovariant", "fvariant"] }),
-    ("ff", "font-family", { "alias": ["fofamily", "ffamily", "family"] }),
-    ("lh", "line-height", { "unit": "_" }),
-    ("ls", "letter-spacing", { "alias": ["lespacing", "lspacing"], "unit": "px" }),
+    ("font", [], None, None),
+    ("font-size", ["fsize", "fosize"], "em", None),
+    ("font-style", ["fstyle", "fostyle"], None, ["italic","normal","inherit"]),
+    ("font-weight", ["fweight", "foweight"], None, ["100","200","300","400","500","600","700","800","900","bold","normal","inherit"]),
+    ("font-variant", ["fvariant", "fovariant"], None, None),
+    ("font-family", ["ffamily", "family"], None, None),
+    ("line-height", ["lheight", "liheight"], "_", None),
+    ("letter-spacing", ["lspacing", "lespacing"], "px", None),
 
-    ("tn", "transition", { "alias": ["tsition"] }),
-    ("tf", "transform", { "alias": ["tform", "xform"] }),
-    ("tt", "text-transform", { "alias": ["ttransform"], "values": ["uppercase", "none", "capitalize", "lowercase", "full-width", "inherit"] }),
-    ("td", "text-decoration", { "alias": ["tdecoration"], "values": ["underline", "none", "line-through", "overline"] }),
-    ("tdl", "text-decoration-line", { "values": ["underline", "none", "line-through", "overline", "inherit", "initial"] }),
-    ("ti", "text-indent", { "alias": ["tindent", "texindent", "indent"], "unit": "px" }),
-    ("ts", "text-shadow", { "values": ["none"], "alias": ["teshadow", "tshadow"] }),
-    ("tl", "table-layout", { "alias": ["talayout", "tlayout"], "values": ["fixed", "auto", "inherit"] }),
-    ("va", "vertical-align", { "unit": "px", "alias": ["valign"], "values": ["middle","top","bottom","baseline","text-top","text-bottom","sub","super"] }),
+    ("transition", ["trans", "tn", "tsition"], None, None),
+    ("transform", ["tform", "xform"], None, None),
+    ("text-transform", ["ttransform"], None, ["uppercase", "lowercase", "capitalize", "none", "full-width", "inherit"]),
+    ("text-decoration", ["tdecoration"], None, ["underline", "none", "line-through", "overline", "inherit", "initial"]),
+    ("text-decoration-line", ["tdline"], None, ["underline", "none", "line-through", "overline", "inherit", "initial"]),
+    ("text-indent", ["tindent"], "px", None),
+    ("text-shadow", ["tshadow", "teshadow"], None, ["none"]),
+    ("table-layout", ["tlayout", "talayout"], None, ["fixed", "auto", "inherit"]),
+    ("vertical-align", ["valign"], None, ["middle","top","bottom","baseline","text-top","text-bottom","sub","super"]),
 
-    ("tnd", "transition-duration", { "unit": "ms", "alias": ["tduration"] }),
+    ("transition-duration", ["tduration"], "ms", None),
 
-    ("fl", "float", { "values": ["left", "right", "none", "inherit"] }),
+    ("float", [], None, ["left", "right", "none", "inherit"]),
+    ("color", [], None, None),
+    ("opacity", [], "_", None),
 
-    ("bri", "border-right", { "alias": ["bright", "borright"] }),
-    ("bl", "border-left", { "alias": ["bleft", "borleft"] }),
-    ("bt", "border-top", { "alias": ["btop", "bortop"] }),
-    ("bb", "border-bottom", { "alias": ["bbottom", "borbottom"] }),
+    ("border-right", ["bright", "borright"], None, None),
+    ("border-left", ["bleft", "borleft"], None, None),
+    ("border-top", ["btop", "bortop"], None, None),
+    ("border-bottom", ["bbottom", "borbottom"], None, None),
 
-    ("bw", "border-width", { "unit": "px", "alias": ["bwidth"] }),
-    ("brw", "border-right-width", { "unit": "px", "alias": ["brwidth"] }),
-    ("blw", "border-left-width", { "unit": "px", "alias": ["blwidth"] }),
-    ("btw", "border-top-width", { "unit": "px", "alias": ["btwidth"] }),
-    ("bbw", "border-bottom-width", { "unit": "px", "alias": ["bbwidth"] }),
+    ("border-width", ["bwidth"], "px", None),
+    ("border-right-width", ["brwidth"], "px", None),
+    ("border-left-width", ["blwidth"], "px", None),
+    ("border-top-width", ["btwidth"], "px", None),
+    ("border-bottom-width", ["bbwidth"], "px", None),
 
-    ("brad", "border-radius", { "unit": "px", "alias": ["borradius", "bradius"] }),
-    ("boc", "border-color", { "unit": "px", "alias": ["borcolor", "bcolor"] }),
-    ("bocoll", "border-collapse", { "alias": ["borcollapse", "bcollapse"], "values": ["collapse","separate","inherit"] }),
+    ("border-radius", ["bradius", "boradius"], "px", None),
+    ("border-color", ["bcolor", "bocolor", "borcolor"], "px", None),
+    ("border-collapse", ["bcollapse", "borcollapse", "collapse"], None, ["collapse","auto","inherit"]),
 
-    ("c", "color", {}),
-    ("op", "opacity", { "unit": "_" }),
+    ("cursor", [], None, ["wait", "pointer", "auto", "default", "help", "progress", "cell", "crosshair", "text", "vertical-text", "alias", "copy", "move", "not-allowed", "no-drop", "all-scroll", "col-resize", "row-resize", "n-resize", "e-resize", "s-resize", "w-resize", "nw-resize", "ne-resize", "sw-resize", "se-resize", "ew-resize", "ns-resize", "zoom-in", "zoom-out", "grab", "grabbing" ]),
+    ("animation", [], None, None),
 
-    ("cur", "cursor", { "values": ["wait", "pointer", "auto", "default", "help", "progress", "cell", "crosshair", "text", "vertical-text", "alias", "copy", "move", "not-allowed", "no-drop", "all-scroll", "col-resize", "row-resize", "n-resize", "e-resize", "s-resize", "w-resize", "nw-resize", "ne-resize", "sw-resize", "se-resize", "ew-resize", "ns-resize", "zoom-in", "zoom-out", "grab", "grabbing" ] }),
-    ("ani", "animation", {}),
+    ("background", [], None, None),
+    ("background-color", ["bgcolor", "backcolor"], None, None),
+    ("background-size", ["bgsize", "backsize"], None, None),
+    ("background-position", ["bgposition", "backposition"], None, ["center", "top", "left", "middle", "bottom", "right"]),
 
-    ("bg", "background", {}),
-    ("bgc", "background-color", { "alias": ["backcolor", "bgcolor"] }),
-    ("bgs", "background-size", { "alias": ["backsize", "bgsize"] }),
-    ("bgp", "background-position", { "alias": ["backposition", "bgposition"] }),
+    ("box-shadow", ["bshadow", "boshadow"], None, ["none"]),
+    ("box-sizing", ["bsizing", "bsize", "boxsize"], None, ["border-box", "content-box", "padding-box"]),
 
-    ("bsize", "box-sizing", { "values": ["border-box", "content-box", "padding-box"], "alias": ["bsizing", "bsize","boxsize"] }),
-    ("bs", "box-shadow", { "values": ["none"], "alias": ["boshadow", "bshadow"] }),
+    ("position", [], None, ["absolute", "relative", "fixed", "static", "inherit"]),
+    ("flex", [], None, None),
+    ("white-space", ["wspace", "whispace", "whspace", "wispace"], None, ["nowrap", "normal", "pre", "pre-wrap", "pre-line", "inherit"]),
 
-    ("pos", "position", { "values": ["absolute", "relative", "fixed", "static", "inherit"] }),
-    ("flex", "flex", {}),
-    ("ws", "white-space", { "values": ["nowrap", "normal", "pre", "pre-wrap", "pre-line", "inherit"], "alias": ["whispace", "whspace", "wispace", "wspace"] }),
+    ("visibility", [], None, ["visible", "hidden", "collapse", "inherit"]),
 
-    ("vis", "visibility", { "values": ["visible", "hidden", "collapse", "inherit"] }),
+    ("flex-grow", ["fgrow", "flgrow", "flegrow"], "_", None),
+    ("flex-shrink", ["fshrink", "flshrink", "fleshrink"], "_", None),
+    ("flex-direction", ["fdirection", "fldirection", "fledirection"], None, None),
+    ("flex-wrap", ["fwrap", "flwrap", "flewrap"], None, None),
+    ("align-items", ["aitems", "alitems"], None, ["flex-start", "flex-end", "center", "baseline", "stretch", "inherit"]),
+    ("justify-content", ["jcontent", "jucontent", "juscontent", "justcontent"], None, ["flex-start", "flex-end", "center", "space-around", "space-between", "inherit"]),
+    ("order", [], "_", None),
 
-    ("fg", "flex-grow", { "unit": "_", "alias": ["flegrow", "flgrow", "fgrow"] }),
-    ("fsh", "flex-shrink", { "unit": "_", "alias": ["fleshrink", "flshrink", "fshrink"] }),
-    ("fdr", "flex-direction", { "alias": ["fledirection", "fldirection", "fdirection"] }),
-    ("fwr", "flex-wrap", { "alias": ["flewrap", "flwrap", "fwrap"] }),
-    ("ai", "align-items", { "alias": ["alitems", "aitems"] }),
-    ("jc", "justify-content", { "alias": ["justcontent", "juscontent", "jucontent", "jcontent"], "values": ["center", "flex-start", "flex-end"] }),
-    ("or", "order", {}),
-
-    ("pba", "page-break-after", {}),
-    ("pbb", "page-break-before", {}),
-    ("per", "perspective", {}),
-    ("porig", "perspective-origin", {}),
-    ("wb", "word-break", { "alias": ["worbreak", "wobreak", "wbreak"], "values": ["normal", "break-all", "keep-all", "inherit"] }),
-    ("q", "quotes", {}),
-    ("con", "content", {}),
-    ("cl", "clear", { "values": ["left", "right", "both", "inherit"]}),
-    ("zo", "zoom", { "unit": "_" }),
-    ("dir", "direction", { "values": ["ltr", "rtl", "inherit"] }),
+    ("page-break-after", ["pbafter"], None, ["always", "auto", "avoid", "left", "right", "inherit"]),
+    ("page-break-before", ["pbbefore"], None, ["always", "auto", "avoid", "left", "right", "inherit"]),
+    ("perspective", [], None, None),
+    ("perspective-origin", ["porigin"], None, None),
+    ("word-break", ["wbreak"], None, []),
+    ("quotes", [], None, None),
+    ("content", [], None, None),
+    ("clear", [], None, ["left", "right", "both", "inherit"]),
+    ("zoom", [], "_", None),
+    ("direction", [], None, ["ltr", "rtl", "inherit"]),
 ]
 
 """
 A list of CSS statements to expand.
 
-This differs from `property_list` as this defines shortcuts for an entire statement.
+This differs from `properties` as this defines shortcuts for an entire statement.
 For instance, `dib<Enter>` will expand to `display: inline-block`.
 
 Each line is in this format:
 
-    (short, property, value, options)
+    (property, value, alias)
 
 The following options are available:
 
 - alias : (String list) see `property_list` on how aliases work.
 """
 
-statements_list = [
-    ("db", "display", "block", {}),
-    ("di", "display", "inline", {}),
-    ("dib", "display", "inline-block", {}),
-    ("dif", "display", "inline-flex", {}),
-    ("dt", "display", "table", { "alias": ["table"] }),
-    ("dtc", "display", "table-cell", { "alias": ["cell", "table-cell", "tablecell"] }),
-    ("dtr", "display", "table-row", { "alias": ["row", "table-row", "tablerow"] }),
-    ("dn", "display", "none", {}),
-    ("df", "display", "flex", { "alias": ["dflex", "flex"] }),
+statements = [
+    ("display", "block", ["dblock"]),
+    ("display", "inline", ["dinline"]),
+    ("display", "inline-block", ["diblock"]),
+    ("display", "inline-flex", ["diflex"]),
+    ("display", "table", ["dtable", "table"]),
+    ("display", "table-cell", ["dtcell","cell","tablecell","table-cell"]),
+    ("display", "table-row", ["dtrow","row","tablerow","table-row"]),
 
-    ("fl", "float", "left", { "alias": ["fleft", "flleft", "floleft"] }),
-    ("fr", "float", "right", { "alias": ["fright", "flright", "floright"] }),
-    ("fn", "float", "none", { "alias": ["fnone", "flnone", "flonone"] }),
+    ("float", "left", ["fleft", "flleft", "floleft"]),
+    ("float", "right", ["fright", "flright", "floright"]),
+    ("float", "none", ["fnone", "flnone", "flonone"]),
 
-    ("fwn", "font-weight", "normal", {}),
-    ("fwb", "font-weight", "bold", { "alias": ["bold"] }),
-    ("fsi", "font-style", "italic", { "alias": ["italic"] }),
-    ("fsn", "font-style", "normal", {}),
+    ("display", "none", ["dnone"]),
+    ("display", "flex", ["dflex", "flex"]),
 
-    ("b0", "border", "0", {}),
-    ("p0", "padding", "0", { "alias": ["po"] }),
-    ("m0", "margin", "0", { "alias": ["mo"] }),
-    ("m0a", "margin", "0 auto", { "alias": ["moa"] }),
+    ("font-weight", "normal", ["fwnormal"]),
+    ("font-weight", "bold", ["fwbold", "bold"]),
+    ("font-style", "italic", ["fsitalic", "italic"]),
+    ("font-style", "normal", ["fnormal"]),
 
-    ("oh", "overflow", "hidden", {}),
-    ("os", "overflow", "scroll", {}),
-    ("oa", "overflow", "auto", {}),
-    ("ov", "overflow", "visible", {}),
+    ("border", "0", ["b0"]),
+    ("padding", "0", ["p0","po"]),
+    ("margin", "0", ["m0","mo"]),
+    ("margin", "0 auto", ["m0a", "moa"]),
 
-    ("oxh", "overflow-x", "hidden", {}),
-    ("oxs", "overflow-x", "scroll", {}),
-    ("oxa", "overflow-x", "auto", {}),
-    ("oxv", "overflow-x", "visible", {}),
+    ("overflow", "hidden", ["ohidden"]),
+    ("overflow", "scroll", ["oscroll"]),
+    ("overflow", "auto", ["oauto"]),
+    ("overflow", "visible", ["ovisible"]),
 
-    ("oyh", "overflow-y", "hidden", {}),
-    ("oys", "overflow-y", "scroll", {}),
-    ("oya", "overflow-y", "auto", {}),
-    ("oyv", "overflow-y", "visible", {}),
+    ("overflow-x", "hidden", ["oxhidden"]),
+    ("overflow-x", "scroll", ["oxscroll"]),
+    ("overflow-x", "auto", ["oxauto"]),
+    ("overflow-x", "visible", ["oxvisible"]),
 
-    ("f1", "font-weight", "100", { "alias": ["f100", "fw100"] }),
-    ("f2", "font-weight", "200", { "alias": ["f200", "fw200"] }),
-    ("f3", "font-weight", "300", { "alias": ["f300", "fw300"] }),
-    ("f4", "font-weight", "400", { "alias": ["f400", "fw400"] }),
-    ("f5", "font-weight", "500", { "alias": ["f500", "fw500"] }),
-    ("f6", "font-weight", "600", { "alias": ["f600", "fw600"] }),
-    ("f7", "font-weight", "700", { "alias": ["f700", "fw700"] }),
-    ("f8", "font-weight", "800", { "alias": ["f800", "fw800"] }),
-    ("f9", "font-weight", "900", { "alias": ["f900", "fw900"] }),
+    ("overflow-y", "hidden", ["oyhidden"]),
+    ("overflow-y", "scroll", ["oyscroll"]),
+    ("overflow-y", "auto", ["oyauto"]),
+    ("overflow-y", "visible", ["oyvisible"]),
 
-    ("b0", "border", "0", {}),
-    ("bcc", "border-collapse", "collapse", { "alias": ["bccollapse"] }),
-    ("bcs", "border-collapse", "separate", { "alias": ["bcseparate"] }),
+    ("font-weight", "100", ["f100", "fw100"]),
+    ("font-weight", "200", ["f200", "fw200"]),
+    ("font-weight", "300", ["f300", "fw300"]),
+    ("font-weight", "400", ["f400", "fw400"]),
+    ("font-weight", "500", ["f500", "fw500"]),
+    ("font-weight", "600", ["f600", "fw600"]),
+    ("font-weight", "700", ["f700", "fw700"]),
+    ("font-weight", "800", ["f800", "fw800"]),
+    ("font-weight", "900", ["f900", "fw900"]),
+
+    ("border", "0", ["b0"]),
+    ("border-collapse", "collapse", ["bccollapse"]),
+    ("border-collapse", "separate", ["bcseparate"]),
     
-    ("brx", "background-repeat", "repeat-x", { "alias": [ "repeatx", "bgrx", "rx" ] }),
-    ("bry", "background-repeat", "repeat-y", { "alias": [ "repeaty", "bgry", "ry" ] }),
-    ("brn", "background-repeat", "no-repeat", { "alias": ["norepeat"] }),
+    ("background-repeat", "repeat-x", [ "brx", "repeatx", "bgrx", "rx" ]),
+    ("background-repeat", "repeat-y", [ "bry", "repeaty", "bgry", "ry" ]),
+    ("background-repeat", "no-repeat", [ "brnorepeat", "norepeat"]),
 
-    ("cover", "background-size", "cover", { "alias": ["cover"] }),
-    ("contain", "background-size", "contain", { "alias": ["contain"] }),
+    ("background-size", "cover", ["cover"]),
+    ("background-size", "contain", ["contain"]),
 
-    ("cup", "cursor", "pointer", { "alias": ["cupointer"] }),
-    ("cuw", "cursor", "wait", { "alias": ["cuwait"] }),
-    ("cub", "cursor", "busy", { "alias": ["cubusy"] }),
-    ("cut", "cursor", "text", { "alias": ["cutext"] }),
+    ("cursor", "pointer", ["cupointer"]),
+    ("cursor", "wait", ["cuwait"]),
+    ("cursor", "busy", ["cubusy"]),
+    ("cursor", "text", ["cutext"]),
 
-    ("vam", "vertical-align", "middle", { "alias": ["vamiddle"] }),
-    ("vat", "vertical-align", "top", { "alias": ["vatop"] }),
-    ("vab", "vertical-align", "bottom", { "alias": ["vabottom"] }),
-    ("vasub", "vertical-align", "sub", { "alias": ["vasub"] }),
-    ("vasuper", "vertical-align", "super", { "alias": ["vasuper"] }),
-    ("vabl", "vertical-align", "baseline", { "alias": ["vabline", "vabaseline", "baseline"] }),
-    ("vatt", "vertical-align", "text-top", { "alias": ["vattop"] }),
-    ("vatb", "vertical-align", "text-bottom", { "alias": ["vattbottom"] }),
+    ("vertical-align", "middle", ["vamiddle"]),
+    ("vertical-align", "top", ["vatop"]),
+    ("vertical-align", "bottom", ["vabottom"]),
+    ("vertical-align", "sub", ["vasub"]),
+    ("vertical-align", "super", ["vasuper"]),
+    ("vertical-align", "baseline", ["vabline", "vabaseline", "baseline"]),
+    ("vertical-align", "text-top", ["vattop"]),
+    ("vertical-align", "text-bottom", ["vattbottom"]),
 
-    ("vv", "visibility", "visible", { "alias": ["visible"] }),
-    ("vh", "visibility", "hidden", { "alias": ["vishidden", "vihidden", "hidden", "hide"] }),
-    ("vc", "visibility", "collapse", { "alias": ["viscollapse", "vicollapse", "vcillapse", "hide"] }),
+    ("visibility", "visible", ["vvisible","visible"]),
+    ("visibility", "hidden", ["vhidden", "vishidden", "vihidden", "hidden", "hide"]),
+    ("visibility", "collapse", ["vcollapse", "viscollapse", "vicollapse"]),
 
-    ("cb", "clear", "both", { "alias": ["cboth"] }),
-    ("cr", "clear", "right", { "alias": ["cright"] }),
-    ("cl", "clear", "left", { "alias": ["cleft"] }),
+    ("clear", "both", ["cboth"]),
+    ("clear", "right", ["cright"]),
+    ("clear", "left", ["cleft"]),
 
-    ("cont", "content", "''", { "alias": ["content"] }),
+    ("content", "''", ["content"]),
 
-    ("ttu", "text-transform", "uppercase", { "alias": ["ttupper", "uppercase"] }),
-    ("ttl", "text-transform", "lowercase", { "alias": ["ttlower"] }),
-    ("ttn", "text-transform", "none", { "alias": ["ttnone"] }),
-    ("ttc", "text-transform", "capitalize", { "alias": ["ttcap"] }),
-    ("ttf", "text-transform", "full-width", { "alias": ["ttfull"] }),
+    ("text-transform", "uppercase", ["ttupper", "uppercase"]),
+    ("text-transform", "lowercase", ["ttlower"]),
+    ("text-transform", "none", ["ttnone"]),
+    ("text-transform", "capitalize", ["ttcap"]),
+    ("text-transform", "full-width", ["ttfull"]),
 
-    ("tal", "text-align", "left", { "alias": ["taleft"] }),
-    ("tar", "text-align", "right", { "alias": ["taright"] }),
-    ("tac", "text-align", "center", { "alias": ["tacenter", "center"] }),
-    ("taj", "text-align", "justify", { "alias": ["tajustify", "justify"] }),
+    ("text-align", "left", ["taleft"]),
+    ("text-align", "right", ["taright"]),
+    ("text-align", "center", ["tacenter", "center"]),
+    ("text-align", "justify", ["tajustify", "justify"]),
 
-    ("tdu", "text-decoration", "underline", { "alias": ["tdunderline", "underline"] }),
-    ("tdn", "text-decoration", "none", { "alias": ["tdnone"] }),
+    ("text-decoration", "underline", ["tdunderline", "underline"]),
+    ("text-decoration", "none", ["tdnone"]),
 
-    ("bsb", "box-sizing", "border-box", { "alias": ["bsbox"] }),
-    ("bsp", "box-sizing", "padding-box", { "alias": ["bspadding"] }),
-    ("bsc", "box-sizing", "content-box", { "alias": ["bscontent"] }),
+    ("box-sizing", "border-box", ["bsbox"]),
+    ("box-sizing", "padding-box", ["bspadding"]),
+    ("box-sizing", "content-box", ["bscontent"]),
 
-    ("ma", "margin", "auto", { "alias": ["mauto"] }),
-    ("mla", "margin-left", "auto", { "alias": ["mlauto"] }),
-    ("mra", "margin-right", "auto", { "alias": ["mrauto"] }),
+    ("margin", "auto", ["mauto"]),
+    ("margin-left", "auto", ["mlauto"]),
+    ("margin-right", "auto", ["mrauto"]),
 
-    ("por", "position", "relative", { "alias": ["porelative", "prelative", "relative"] }),
-    ("pof", "position", "fixed", { "alias": ["pofixed", "pfixed", "fixed"] }),
-    ("pos", "position", "static", { "alias": ["postatic", "pstatic", "static"] }),
-    ("poa", "position", "absolute", { "alias": ["poabsolute", "pabsolute", "absolute"] }),
+    ("position", "relative", ["porelative", "prelative", "relative"]),
+    ("position", "fixed", ["pofixed", "pfixed", "fixed"]),
+    ("position", "static", ["postatic", "pstatic", "static"]),
+    ("position", "absolute", ["poabsolute", "pabsolute", "absolute"]),
 
-    ("nowrap", "white-space", "nowrap", { "alias": ["nowrap"] }),
-    ("ellip", "text-overflow", "ellipsis", { "alias": ["ellipsis"] }),
+    ("white-space", "nowrap", ["nowrap"]),
+    ("text-overflow", "ellipsis", ["ellipsis"]),
 
-    ("fla", "flex", "auto", { "alias": ["flauto"] }),
+    ("flex", "auto", ["flauto"]),
 
-    ("ais", "align-items", "flex-start", { "alias": ["aistart"] }),
-    ("aie", "align-items", "flex-end", { "alias": ["aiend"] }),
-    ("aic", "align-items", "center", { "alias": ["aicenter"] }),
-    ("aistr", "align-items", "stretch", { "alias": ["aistretch"] }),
+    ("align-items", "flex-start", ["aistart"]),
+    ("align-items", "flex-end", ["aiend"]),
+    ("align-items", "center", ["aicenter"]),
+    ("align-items", "stretch", ["aistretch"]),
 
-    ("fwrap", "flex-wrap", "wrap", { "alias": ["flexwrap"] }),
-    ("fnowrap", "flex-wrap", "nowrap", { "alias": ["fnowrap"] }),
+    ("flex-wrap", "wrap", ["fwrap","flexwrap"]),
+    ("flex-wrap", "nowrap", ["fnowrap"]),
 
-    ("fdr", "flex-direction", "row", { "alias": ["fdrow"] }),
-    ("fdrr", "flex-direction", "row-reverse", { "alias": ["fdrreverse"] }),
-    ("fdc", "flex-direction", "column", { "alias": ["fdcolumn"]}),
-    ("fdcr", "flex-direction", "column-reverse", { "alias": ["fdcreverse"] }),
+    ("flex-direction", "row", ["fdrow"]),
+    ("flex-direction", "row-reverse", ["fdrreverse"]),
+    ("flex-direction", "column", ["fdcolumn"]),
+    ("flex-direction", "column-reverse", ["fdcreverse"]),
 
-    ("toe", "text-overflow", "ellipsis", { "alias": ["elip", "ellipsis", "toellipsis"] }),
+    ("text-overflow", "ellipsis", ["elip", "ellipsis", "toellipsis"]),
 
-    ("jcc", "justify-content", "center", { "alias": ["jccenter"] }),
-    ("jcs", "justify-content", "flex-start", { "alias": ["jcstart"] }),
-    ("jce", "justify-content", "flex-end", { "alias": ["jcend"] }),
+    ("justify-content", "center", ["jccenter"]),
+    ("justify-content", "flex-start", ["jcstart"]),
+    ("justify-content", "flex-end", ["jcend"]),
 
-    ("ltr", "direction", "ltr", { "alias": [ "dirltr" ]}),
-    ("rtl", "direction", "rtl", { "alias": [ "dirrtl" ]}),
+    ("direction", "ltr", ["ltr","dirltr"]),
+    ("direction", "rtl", ["rtl","dirrtl"]),
 
-    ("tsn", "text-shadow", "none", { "alias": [ "tsnone", "teshnone" ]}),
-    ("tlf", "table-layout", "fixed", { "alias": [ "tlfixed" ] }),
-    ("tla", "table-layout", "auto", { "alias": [ "tlauto" ] }),
+    ("text-shadow", "none", ["tsnone", "teshnone"]),
+    ("table-layout", "fixed", ["tlfixed"]),
+    ("table-layout", "auto", ["tlauto"]),
 
-    ("wa", "width", "auto", { "alias": ["wauto"] }),
-    ("ha", "height", "auto", { "alias": ["hauto"] }),
+    ("width", "auto", ["wauto"]),
+    ("height", "auto", ["hauto"]),
 ]
 
-definitions = { "properties": properties_list, "statements": statements_list }
+definitions = { "properties": properties, "statements": statements }

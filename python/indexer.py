@@ -9,41 +9,64 @@ class Indexer:
     >>> idx.index(definitions)
 
     >>> idx.properties.get("pad")
-    ("padding", { "unit": "px" })
+    {
+      "property": "padding",
+      "values": ["auto"],
+      "unit": "px"
+    })
 
     >>> idx.full_properties.get("padding")
-    ("padding", { "unit": "px" })
+    # same as above
 
     >>> idx.statements.get("m0a")
-    ("margin", "0 auto", {})
+    {
+      "property": "margin",
+      "value": "auto"
+    }
     """
     def __init__(self):
         self.properties = {} # indexed by shorthand ("bg")
         self.statements = {} # indexed by shorthand ("m0a")
         self.full_properties = {} # indexed by long property name ("margin")
+        self.full_statements = {} # indexed by long property name ("margin: auto")
 
     def index(self, defs):
         """Adds definitions to the index.
 
         >>> idx.index({ "properties": [...], "definitions": [...] })
         """
-        for (short, prop, options) in defs["properties"]:
-            options["canonical"] = short
-            update_aliases(short, prop, options)
 
-            self.properties[short] = (prop, options)
+        self.index_full_props(defs)
+        self.index_aliases(defs)
+
+    def index_full_props(self, defs):
+        for (prop, aliases, unit, values) in defs["properties"]:
+            options = {}
+            options["property"] = prop
+            options["aliases"] = aliases
+            options["unit"] = unit
+            options["values"] = values
+            update_aliases(options, index_props=True)
             self.full_properties[prop] = options
 
-        for (short, prop, value, options) in defs["statements"]:
-            options["canonical"] = short
-            update_aliases(short, None, options)
-            self.statements[short] = (prop, value, options)
+        for (prop, value, aliases) in defs["statements"]:
+            options = {}
+            options["property"] = prop
+            options["value"] = value
+            options["aliases"] = aliases
+            key = "%s: %s" % (options["property"], options["value"])
+            update_aliases(options, index_props=False)
+            self.full_statements[key] = options
 
-        for (short, prop, options) in defs["properties"]:
-            apply_fuzzies(self.properties, short, prop, options)
+    def index_aliases(self, defs):
+        for (prop, _, __, ___) in defs["properties"]:
+            options = self.full_properties[prop]
+            index_property(self.properties, options)
 
-        for (short, prop, value, options) in defs["statements"]:
-            apply_fuzzies(self.statements, short, prop, options)
+        for (prop, value, __) in defs["statements"]:
+            key = "%s: %s" % (prop, value)
+            options = self.full_statements[key]
+            index_property(self.statements, options)
 
         self.remove_tags()
 
@@ -60,17 +83,6 @@ class Indexer:
             self.statements[tag] = None
             self.properties[tag] = None
 
-def apply_fuzzies(properties, short, prop, options):
-    """Propagates 'alias' into the `properties` index
-    """
-    def iterate(property):
-        for key in fuzzify(property):
-            if not key in properties:
-                properties[key] = properties[short]
-
-    if options and "alias" in options:
-        [iterate(alias) for alias in options["alias"]]
-
 def fuzzify(str):
     """Returns a generator with fuzzy matches for a given string.
 
@@ -82,20 +94,22 @@ def fuzzify(str):
         for i in range(1, len(str)+1):
             yield str[0:i]
 
-def update_aliases(short, prop, options):
+def update_aliases(options, index_props=False):
     if not "alias" in options:
         options["alias"] = []
 
-    if prop != None:
-        # Insert the property itself
-        options["alias"].append(prop)
+    prop = options.get('property')
 
+    if index_props:
         # If the property has dashes, addd non-dashed versions
         if '-' in prop:
-            options["alias"].append(prop.replace('-', ''))
+            options["aliases"].append(prop.replace('-', ''))
 
-    # Add the short, but only if there's nothing like it
-    # TODO deprecate this
-    likeit = [a for a in options["alias"] if a[0:len(short)] == short]
-    if len(likeit) == 0:
-        options["alias"].insert(0, short)
+        # Insert the property itself
+        options["aliases"].append(prop)
+
+def index_property(properties, options):
+    for alias in options["aliases"]:
+        for key in fuzzify(alias):
+            if not key in properties:
+                properties[key] = options

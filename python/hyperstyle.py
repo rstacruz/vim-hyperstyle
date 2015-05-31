@@ -49,10 +49,10 @@ def expand_statement_simple(snippet):
 
         "db"  => "display: block"
     """
-    expansion = index.statements.get(snippet)
-    if expansion:
-        key, value, _ = expansion
-        return "%s: %s" % (key, value)
+    options = index.statements.get(snippet)
+    if not options: return
+
+    return "%s: %s" % (options["property"], options["value"])
 
 def expand_statement_with_property(snippet):
     """Expands a statement with both shorthand property and value. (Internal)
@@ -61,12 +61,11 @@ def expand_statement_with_property(snippet):
         "pad10"  => "padding: 10px"
     """
     short, value, unit = split_value(snippet) # ("m","10","em")
-    expansion = index.properties.get(short) # ("margin", {"unit": "px"})
-    if not expansion: return
+    options = index.properties.get(short) # ("margin", {"unit": "px"})
+    if not options: return
 
-    prop, options = expansion
-    value = expand_full_value(value + unit, prop)
-    if value: return "%s: %s" % (prop, value)
+    xvalue = expand_full_value(value + unit, options["property"])
+    if xvalue: return "%s: %s" % (options["property"], xvalue)
 
 def expand_statement_value(snippet):
     """Expands a statement's unit value. (Internal)
@@ -119,10 +118,10 @@ def expand_property(line):
     """
     indent, snippet = split_indent(line)
 
-    tuple = index.properties.get(snippet)
-    if tuple:
-        prop, options = tuple
-        return "%s%s:" % (indent, prop)
+    options = index.properties.get(snippet)
+    if not options: return
+
+    return "%s%s:" % (indent, options["property"])
 
 def expand_full_value(val, prop):
     """Expands a value of a given property `prop`. Returns the expanded value.

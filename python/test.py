@@ -2,13 +2,13 @@ import hyperstyle as cssx
 from definitions import definitions
 import unittest
 
-class TestDefinitions(unittest.TestCase):
-    def test_defs(self):
-        for item in definitions["properties"]:
-            short, prop, options = item
-            if "alias" in options:
-                if not isinstance(options["alias"], list):
-                    self.fail("'%s' has weird aliases" % prop)
+# class TestDefinitions(unittest.TestCase):
+#     def test_defs(self):
+#         for item in definitions["properties"]:
+#             short, prop, options = item
+#             if "alias" in options:
+#                 if not isinstance(options["alias"], list):
+#                     self.fail("'%s' has weird aliases" % prop)
 
 class TestCr(unittest.TestCase):
     def expect(self, source, expected):
@@ -140,6 +140,14 @@ class TestCr(unittest.TestCase):
         self.expect('fw100', 'font-weight: 100')
         self.expect('f100', 'font-weight: 100')
         self.expect('under', 'text-decoration: underline')
+
+    def test_misc(self):
+        self.expect('oh', 'overflow: hidden')
+        self.expect('os', 'overflow: scroll')
+        self.expect('mo', 'margin: 0')
+        self.expect('moa', 'margin: 0 auto')
+        self.expect('fn', 'float: none')
+        self.expect('fl', 'float: left')
 
     def test_leave_selectors_alone(self):
         self.expect('p:before', None)

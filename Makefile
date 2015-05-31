@@ -33,4 +33,7 @@ vendor/vader.vim:
 REFERENCE.md: python/definitions.py
 	@python python/reference.py > $@
 
+doc/hyperstyle.txt:
+	@python python/reference.py > $@
+
 .PHONY: test vendor/vimrc
