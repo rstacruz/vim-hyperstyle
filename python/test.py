@@ -9,9 +9,13 @@ class TestDoc(unittest.TestCase):
 
         f = open('doc/hyperstyle.txt', 'r')
         expected = f.read()
+        f.close()
+
         actual = reference.VimPrinter().to_s() + "\n"
-        f = open('doc/hyperstyle.txt.new', 'w')
-        f.write(actual)
+        ff = open('doc/hyperstyle.txt.new', 'w')
+        ff.write(actual)
+        ff.close()
+
         if expected.strip() != actual.strip():
             self.fail(
                 "Documentation is not up to date.\n" +
