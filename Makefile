@@ -30,10 +30,12 @@ vendor/vader.vim:
 	@mkdir -p ./vendor
 	@git clone https://github.com/junegunn/vader.vim ./vendor/vader.vim
 
-REFERENCE.md: python/definitions.py
-	@python python/reference.py > $@
+all: REFERENCE.md doc/hyperstyle.txt
 
-doc/hyperstyle.txt:
-	@python python/reference.py > $@
+REFERENCE.md: python/definitions.py
+	@python python/reference.py --md > $@
+
+doc/hyperstyle.txt: python/definitions.py
+	@python python/reference.py --vim > $@
 
 .PHONY: test vendor/vimrc

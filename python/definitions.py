@@ -255,6 +255,9 @@ statements = [
     ("margin-left", "auto", ["mlauto"]),
     ("margin-right", "auto", ["mrauto"]),
 
+    ("width", "auto", ["wauto"]),
+    ("height", "auto", ["hauto"]),
+
     ("position", "relative", ["porelative", "prelative", "relative"]),
     ("position", "fixed", ["pofixed", "pfixed", "fixed"]),
     ("position", "static", ["postatic", "pstatic", "static"]),
@@ -270,6 +273,8 @@ statements = [
     ("align-items", "center", ["aicenter"]),
     ("align-items", "stretch", ["aistretch"]),
 
+    ("text-overflow", "ellipsis", ["elip", "ellipsis", "toellipsis"]),
+
     ("flex-wrap", "wrap", ["fwrap","flexwrap"]),
     ("flex-wrap", "nowrap", ["fnowrap"]),
 
@@ -277,8 +282,6 @@ statements = [
     ("flex-direction", "row-reverse", ["fdrreverse"]),
     ("flex-direction", "column", ["fdcolumn"]),
     ("flex-direction", "column-reverse", ["fdcreverse"]),
-
-    ("text-overflow", "ellipsis", ["elip", "ellipsis", "toellipsis"]),
 
     ("justify-content", "center", ["jccenter"]),
     ("justify-content", "flex-start", ["jcstart"]),
@@ -290,9 +293,6 @@ statements = [
     ("text-shadow", "none", ["tsnone", "teshnone"]),
     ("table-layout", "fixed", ["tlfixed"]),
     ("table-layout", "auto", ["tlauto"]),
-
-    ("width", "auto", ["wauto"]),
-    ("height", "auto", ["hauto"]),
 ]
 
 definitions = { "properties": properties, "statements": statements }

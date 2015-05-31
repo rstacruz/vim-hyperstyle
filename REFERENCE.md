@@ -1,207 +1,211 @@
-Properties:
+## Properties
 
-    *align-items*                  `ai`[tems] al[items] al[ignitems] al[ign-items]
-    *animation*                    `an`[imation]
-    *background*                   `ba`[ckground]
-    *background-color*             `bg`[color] backc[olor] backgroundc[olor] background-[color]
-    *background-position*          `bgp`[osition] backp[osition] backgroundp[osition] background-p[osition]
-    *background-size*              `bgs`[ize] backs[ize] backgrounds[ize] background-s[ize]
-    *border*                       `bo`[rder]
-    *border-bottom*                `bb`[ottom] borb[ottom] borderb[ottom] border-b[ottom]
-    *border-bottom-width*          `bbw`[idth] borderbottomw[idth] border-bottom-[width]
-    *border-collapse*              `bcoll`[apse] borcoll[apse] coll[apse] bordercoll[apse] border-coll[apse]
-    *border-color*                 `bc`[olor] boc[olor] borc[olor] borderc[olor] border-c[olor]
-    *border-left*                  `bl`[eft] borl[eft] borderl[eft] border-l[eft]
-    *border-left-width*            `blw`[idth] borderleftw[idth] border-left-[width]
-    *border-radius*                `bra`[dius] bora[dius] borderra[dius] border-ra[dius]
-    *border-right*                 `bri`[ght] borr[ight] borderr[ight] border-[right]
-    *border-right-width*           `brw`[idth] borderrightw[idth] border-right-[width]
-    *border-top*                   `bt`[op] bort[op] bordert[op] border-t[op]
-    *border-top-width*             `btw`[idth] bordertopw[idth] border-top-[width]
-    *border-width*                 `bw`[idth] borderw[idth] border-w[idth]
-    *bottom*                       `bot`[tom]
-    *box-shadow*                   `bs`[hadow] bos[hadow] box[shadow] box[-shadow]
-    *box-sizing*                   `bsi`[zing] bsi[ze] boxsi[ze] boxsi[zing] box-si[zing]
-    *clear*                        `cl`[ear]
-    *color*                        `c`[olor]
-    *content*                      `con`[tent]
-    *cursor*                       `cu`[rsor]
-    *direction*                    `dir`[ection]
-    *display*                      `d`[isplay]
-    *flex*                         `fle`[x]
-    *flex-direction*               `fd`[irection] fld[irection] fled[irection] flexd[irection] flex-d[irection]
-    *flex-grow*                    `fg`[row] flg[row] fleg[row] flexg[row] flex-[grow]
-    *flex-shrink*                  `fsh`[rink] fls[hrink] fles[hrink] flexs[hrink] flex-s[hrink]
-    *flex-wrap*                    `fwr`[ap] flw[rap] flew[rap] flexw[rap] flex-w[rap]
-    *float*                        `fl`[oat]
-    *font*                         `f`[ont]
-    *font-family*                  `ff`[amily] fa[mily] fontf[amily] font-f[amily]
-    *font-size*                    `fs`[ize] fos[ize] fonts[ize] font-[size]
-    *font-style*                   `fst`[yle] fost[yle] fontst[yle] font-st[yle]
-    *font-variant*                 `fv`[ariant] fov[ariant] fontv[ariant] font-v[ariant]
-    *font-weight*                  `fw`[eight] fow[eight] fontw[eight] font-w[eight]
-    *height*                       `h`[eight]
-    *justify-content*              `j`[content] j[ucontent] j[uscontent] j[ustcontent] j[ustifycontent] j[ustify-content]
-    *left*                         `l`[eft]
-    *letter-spacing*               `ls`[pacing] les[pacing] let[terspacing] let[ter-spacing]
-    *line-height*                  `lh`[eight] lih[eight] lin[eheight] lin[e-height]
-    *margin*                       `m`[argin]
-    *margin-bottom*                `mb`[ottom] marb[ottom] marginb[ottom] margin-b[ottom]
-    *margin-left*                  `ml`[eft] marl[eft] marginl[eft] margin-[left]
-    *margin-right*                 `mr`[ight] marr[ight] marginr[ight] margin-r[ight]
-    *margin-top*                   `mt`[op] mart[op] margint[op] margin-t[op]
-    *max-height*                   `x`[height] mx[height] max[height] max[-height]
-    *max-width*                    `xw`[idth] m[xheight] maxw[idth] max-w[idth]
-    *min-height*                   `mh`[eight] mi[nheight] mi[n-height]
-    *min-width*                    `mw`[idth] minw[idth] min-w[idth]
-    *opacity*                      `op`[acity]
-    *order*                        `or`[der]
-    *outline*                      `o`[utline]
-    *overflow*                     `of`[low] ov[erflow]
-    *overflow-x*                   `ox` overflowx overflow-[x]
-    *overflow-y*                   `oy` overflowy overflow-y
-    *padding*                      `pa`[dding]
-    *padding-bottom*               `pb`[ottom] padb[ottom] paddingb[ottom] padding-b[ottom]
-    *padding-left*                 `pl`[eft] padl[eft] paddingl[eft] padding-[left]
-    *padding-right*                `pr`[ight] padr[ight] paddingr[ight] padding-r[ight]
-    *padding-top*                  `pt`[op] padt[op] paddingt[op] padding-t[op]
-    *page-break-after*             `pba`[fter] pag[ebreakafter] pag[e-break-after]
-    *page-break-before*            `pbb`[efore] pagebreakb[efore] page-break-b[efore]
-    *perspective*                  `pe`[rspective]
-    *perspective-origin*           `por`[igin] perspectiveo[rigin] perspective-[origin]
-    *position*                     `po`[sition]
-    *quotes*                       `q`[uotes]
-    *right*                        `r`[ight]
-    *table-layout*                 `tl`[ayout] tala[yout] tab[lelayout] tab[le-layout]
-    *text-align*                   `ta`[lign] te[xtalign] te[xt-align]
-    *text-decoration*              `td`[ecoration] textd[ecoration] text-d[ecoration]
-    *text-decoration-line*         `tdl`[ine] textdecorationl[ine] text-decoration-[line]
-    *text-indent*                  `ti`[ndent] texti[ndent] text-i[ndent]
-    *text-shadow*                  `tsh`[adow] tes[hadow] texts[hadow] text-s[hadow]
-    *text-transform*               `tt`[ransform] textt[ransform] text-t[ransform]
-    *top*                          `t`[op]
-    *transform*                    `tf`[orm] xf[orm] transf[orm]
-    *transition*                   `tr`[ans] tn ts[ition] tr[ansition]
-    *transition-duration*          `tdu`[ration] transitiond[uration] transition-[duration]
-    *vertical-align*               `v`[align] v[erticalalign] v[ertical-align]
-    *visibility*                   `vi`[sibility]
-    *white-space*                  `ws`[pace] wh[ispace] wh[space] wis[pace] wh[itespace] wh[ite-space]
-    *width*                        `w`[idth]
-    *word-break*                   `wb`[reak] wo[rdbreak] wo[rd-break]
-    *z-index*                      `z`[index] z[-index]
-    *zoom*                         `zo`[om]
+| Expansion                           | Shortcuts                                                    |
+| --- | --- |
+ | `align-items`                       | **ai**[tems] al[items] al[ignitems] al[ign-items]            |
+ | `animation`                         | **an**[imation]                                              |
+ | `background`                        | **ba**[ckground]                                             |
+ | `background-color`                  | **bg**[color] backc[olor] backgroundc[olor] background-[color] |
+ | `background-position`               | **bgp**[osition] backp[osition] backgroundp[osition] background-p[osition] |
+ | `background-size`                   | **bgs**[ize] backs[ize] backgrounds[ize] background-s[ize]   |
+ | `border`                            | **bo**[rder]                                                 |
+ | `border-bottom`                     | **bb**[ottom] borb[ottom] borderb[ottom] border-b[ottom]     |
+ | `border-bottom-width`               | **bbw**[idth] borderbottomw[idth] border-bottom-[width]      |
+ | `border-collapse`                   | **bcoll**[apse] borcoll[apse] coll[apse] bordercoll[apse] border-coll[apse] |
+ | `border-color`                      | **bc**[olor] boc[olor] borc[olor] borderc[olor] border-c[olor] |
+ | `border-left`                       | **bl**[eft] borl[eft] borderl[eft] border-l[eft]             |
+ | `border-left-width`                 | **blw**[idth] borderleftw[idth] border-left-[width]          |
+ | `border-radius`                     | **bra**[dius] bora[dius] borderra[dius] border-ra[dius]      |
+ | `border-right`                      | **bri**[ght] borr[ight] borderr[ight] border-[right]         |
+ | `border-right-width`                | **brw**[idth] borderrightw[idth] border-right-[width]        |
+ | `border-top`                        | **bt**[op] bort[op] bordert[op] border-t[op]                 |
+ | `border-top-width`                  | **btw**[idth] bordertopw[idth] border-top-[width]            |
+ | `border-width`                      | **bw**[idth] borderw[idth] border-w[idth]                    |
+ | `bottom`                            | **bot**[tom]                                                 |
+ | `box-shadow`                        | **bs**[hadow] bos[hadow] box[shadow] box[-shadow]            |
+ | `box-sizing`                        | **bsi**[zing] bsi[ze] boxsi[ze] boxsi[zing] box-si[zing]     |
+ | `clear`                             | **cl**[ear]                                                  |
+ | `color`                             | **c**[olor]                                                  |
+ | `content`                           | **con**[tent]                                                |
+ | `cursor`                            | **cu**[rsor]                                                 |
+ | `direction`                         | **dir**[ection]                                              |
+ | `display`                           | **d**[isplay]                                                |
+ | `flex`                              | **fle**[x]                                                   |
+ | `flex-direction`                    | **fd**[irection] fld[irection] fled[irection] flexd[irection] flex-d[irection] |
+ | `flex-grow`                         | **fg**[row] flg[row] fleg[row] flexg[row] flex-[grow]        |
+ | `flex-shrink`                       | **fsh**[rink] fls[hrink] fles[hrink] flexs[hrink] flex-s[hrink] |
+ | `flex-wrap`                         | **fwr**[ap] flw[rap] flew[rap] flexw[rap] flex-w[rap]        |
+ | `float`                             | **fl**[oat]                                                  |
+ | `font`                              | **f**[ont]                                                   |
+ | `font-family`                       | **ff**[amily] fa[mily] fontf[amily] font-f[amily]            |
+ | `font-size`                         | **fs**[ize] fos[ize] fonts[ize] font-[size]                  |
+ | `font-style`                        | **fst**[yle] fost[yle] fontst[yle] font-st[yle]              |
+ | `font-variant`                      | **fv**[ariant] fov[ariant] fontv[ariant] font-v[ariant]      |
+ | `font-weight`                       | **fw**[eight] fow[eight] fontw[eight] font-w[eight]          |
+ | `height`                            | **h**[eight]                                                 |
+ | `justify-content`                   | **j**[content] j[ucontent] j[uscontent] j[ustcontent] j[ustifycontent] j[ustify-content] |
+ | `left`                              | **l**[eft]                                                   |
+ | `letter-spacing`                    | **ls**[pacing] les[pacing] let[terspacing] let[ter-spacing]  |
+ | `line-height`                       | **lh**[eight] lih[eight] lin[eheight] lin[e-height]          |
+ | `margin`                            | **m**[argin]                                                 |
+ | `margin-bottom`                     | **mb**[ottom] marb[ottom] marginb[ottom] margin-b[ottom]     |
+ | `margin-left`                       | **ml**[eft] marl[eft] marginl[eft] margin-[left]             |
+ | `margin-right`                      | **mr**[ight] marr[ight] marginr[ight] margin-r[ight]         |
+ | `margin-top`                        | **mt**[op] mart[op] margint[op] margin-t[op]                 |
+ | `max-height`                        | **x**[height] mx[height] max[height] max[-height]            |
+ | `max-width`                         | **xw**[idth] m[xheight] maxw[idth] max-w[idth]               |
+ | `min-height`                        | **mh**[eight] mi[nheight] mi[n-height]                       |
+ | `min-width`                         | **mw**[idth] minw[idth] min-w[idth]                          |
+ | `opacity`                           | **op**[acity]                                                |
+ | `order`                             | **or**[der]                                                  |
+ | `outline`                           | **o**[utline]                                                |
+ | `overflow`                          | **of**[low] ov[erflow]                                       |
+ | `overflow-x`                        | **ox** overflowx overflow-[x]                                |
+ | `overflow-y`                        | **oy** overflowy overflow-y                                  |
+ | `padding`                           | **pa**[dding]                                                |
+ | `padding-bottom`                    | **pb**[ottom] padb[ottom] paddingb[ottom] padding-b[ottom]   |
+ | `padding-left`                      | **pl**[eft] padl[eft] paddingl[eft] padding-[left]           |
+ | `padding-right`                     | **pr**[ight] padr[ight] paddingr[ight] padding-r[ight]       |
+ | `padding-top`                       | **pt**[op] padt[op] paddingt[op] padding-t[op]               |
+ | `page-break-after`                  | **pba**[fter] pag[ebreakafter] pag[e-break-after]            |
+ | `page-break-before`                 | **pbb**[efore] pagebreakb[efore] page-break-b[efore]         |
+ | `perspective`                       | **pe**[rspective]                                            |
+ | `perspective-origin`                | **por**[igin] perspectiveo[rigin] perspective-[origin]       |
+ | `position`                          | **po**[sition]                                               |
+ | `quotes`                            | **q**[uotes]                                                 |
+ | `right`                             | **r**[ight]                                                  |
+ | `table-layout`                      | **tl**[ayout] tala[yout] tab[lelayout] tab[le-layout]        |
+ | `text-align`                        | **ta**[lign] te[xtalign] te[xt-align]                        |
+ | `text-decoration`                   | **td**[ecoration] textd[ecoration] text-d[ecoration]         |
+ | `text-decoration-line`              | **tdl**[ine] textdecorationl[ine] text-decoration-[line]     |
+ | `text-indent`                       | **ti**[ndent] texti[ndent] text-i[ndent]                     |
+ | `text-shadow`                       | **tsh**[adow] tes[hadow] texts[hadow] text-s[hadow]          |
+ | `text-transform`                    | **tt**[ransform] textt[ransform] text-t[ransform]            |
+ | `top`                               | **t**[op]                                                    |
+ | `transform`                         | **tf**[orm] xf[orm] transf[orm]                              |
+ | `transition`                        | **tr**[ans] tn ts[ition] tr[ansition]                        |
+ | `transition-duration`               | **tdu**[ration] transitiond[uration] transition-[duration]   |
+ | `vertical-align`                    | **v**[align] v[erticalalign] v[ertical-align]                |
+ | `visibility`                        | **vi**[sibility]                                             |
+ | `white-space`                       | **ws**[pace] wh[ispace] wh[space] wis[pace] wh[itespace] wh[ite-space] |
+ | `width`                             | **w**[idth]                                                  |
+ | `word-break`                        | **wb**[reak] wo[rdbreak] wo[rd-break]                        |
+ | `z-index`                           | **z**[index] z[-index]                                       |
+ | `zoom`                              | **zo**[om]                                                   |
 
-Statements:
+## Statements
 
-    *align-items: center*          `aic`[enter]
-    *align-items: flex-end*        `aie`[nd]
-    *align-items: flex-start*      `ai`[start]
-    *align-items: stretch*         `aistr`[etch]
-    *background-repeat: no-repeat* `brn`[orepeat] n[orepeat]
-    *background-repeat: repeat-x*  `brx` re[peatx] bg[rx] rx
-    *background-repeat: repeat-y*  `bry` repeaty bgry ry
-    *background-size: contain*     `con`[tain]
-    *background-size: cover*       `co`[ver]
-    *border-collapse: collapse*    `bc`[collapse]
-    *border-collapse: separate*    `bcs`[eparate]
-    *border: 0*                    `b0`
-    *box-sizing: border-box*       `bs`[box]
-    *box-sizing: content-box*      `bsc`[ontent]
-    *box-sizing: padding-box*      `bsp`[adding]
-    *clear: both*                  `cb`[oth]
-    *clear: left*                  `cl`[eft]
-    *clear: right*                 `cr`[ight]
-    *content: ''*                  `conte`[nt]
-    *cursor: busy*                 `cub`[usy]
-    *cursor: pointer*              `cu`[pointer]
-    *cursor: text*                 `cut`[ext]
-    *cursor: wait*                 `cuw`[ait]
-    *direction: ltr*               `l`[tr] dir[ltr]
-    *direction: rtl*               `rt`[l] dirr[tl]
-    *display: block*               `d`[block]
-    *display: flex*                `df`[lex] flex
-    *display: inline*              `di`[nline]
-    *display: inline-block*        `dib`[lock]
-    *display: inline-flex*         `dif`[lex]
-    *display: none*                `dn`[one]
-    *display: table*               `dt`[able] t[able]
-    *display: table-cell*          `dtc`[ell] c[ell] tablec[ell] table-[cell]
-    *display: table-row*           `dtr`[ow] r[ow] tabler[ow] table-r[ow]
-    *flex-direction: column*       `fdc`[olumn]
-    *flex-direction: column-reverse* `fdcr`[everse]
-    *flex-direction: row*          `fd`[row]
-    *flex-direction: row-reverse*  `fdrr`[everse]
-    *flex-wrap: nowrap*            `fnow`[rap]
-    *flex-wrap: wrap*              `fwr`[ap] flexw[rap]
-    *flex: auto*                   `fla`[uto]
-    *float: left*                  `f`[left] f[lleft] f[loleft]
-    *float: none*                  `fn`[one] fln[one] flon[one]
-    *float: right*                 `fr`[ight] flr[ight] flor[ight]
-    *font-style: italic*           `fs`[italic] it[alic]
-    *font-style: normal*           `fnor`[mal]
-    *font-weight: 100*             `f1`[00] fw1[00]
-    *font-weight: 200*             `f2`[00] fw2[00]
-    *font-weight: 300*             `f3`[00] fw3[00]
-    *font-weight: 400*             `f4`[00] fw4[00]
-    *font-weight: 500*             `f5`[00] fw5[00]
-    *font-weight: 600*             `f6`[00] fw6[00]
-    *font-weight: 700*             `f7`[00] fw7[00]
-    *font-weight: 800*             `f8`[00] fw8[00]
-    *font-weight: 900*             `f9`[00] fw9[00]
-    *font-weight: bold*            `fwb`[old] bo[ld]
-    *font-weight: normal*          `fw`[normal]
-    *height: auto*                 `ha`[uto]
-    *justify-content: center*      `jc`[center]
-    *justify-content: flex-end*    `jce`[nd]
-    *justify-content: flex-start*  `jcs`[tart]
-    *margin-left: auto*            `ml`[auto]
-    *margin-right: auto*           `mr`[auto]
-    *margin: 0*                    `m`[0] m[o]
-    *margin: 0 auto*               `m0a` moa
-    *margin: auto*                 `ma`[uto]
-    *overflow-x: auto*             `oxa`[uto]
-    *overflow-x: hidden*           `ox`[hidden]
-    *overflow-x: scroll*           `oxs`[croll]
-    *overflow-x: visible*          `oxv`[isible]
-    *overflow-y: auto*             `oya`[uto]
-    *overflow-y: hidden*           `oy`[hidden]
-    *overflow-y: scroll*           `oys`[croll]
-    *overflow-y: visible*          `oyv`[isible]
-    *overflow: auto*               `oa`[uto]
-    *overflow: hidden*             `o`[hidden]
-    *overflow: scroll*             `os`[croll]
-    *overflow: visible*            `ov`[isible]
-    *padding: 0*                   `p0` po
-    *position: absolute*           `poa`[bsolute] pa[bsolute] ab[solute]
-    *position: fixed*              `pof`[ixed] pf[ixed] fi[xed]
-    *position: relative*           `por`[elative] pr[elative] rel[ative]
-    *position: static*             `pos`[tatic] ps[tatic] s[tatic]
-    *table-layout: auto*           `tla`[uto]
-    *table-layout: fixed*          `tl`[fixed]
-    *text-align: center*           `tac`[enter] cen[ter]
-    *text-align: justify*          `taj`[ustify] j[ustify]
-    *text-align: left*             `tal`[eft]
-    *text-align: right*            `tar`[ight]
-    *text-decoration: none*        `tdn`[one]
-    *text-decoration: underline*   `td`[underline] un[derline]
-    *text-overflow: ellipsis*      `e`[lip] e[llipsis] to[ellipsis]
-    *text-shadow: none*            `ts`[none] te[shnone]
-    *text-transform: capitalize*   `ttc`[ap]
-    *text-transform: full-width*   `ttf`[ull]
-    *text-transform: lowercase*    `ttl`[ower]
-    *text-transform: none*         `ttn`[one]
-    *text-transform: uppercase*    `tt`[upper] u[ppercase]
-    *vertical-align: baseline*     `vabl`[ine] vaba[seline] ba[seline]
-    *vertical-align: bottom*       `vab`[ottom]
-    *vertical-align: middle*       `v`[amiddle]
-    *vertical-align: sub*          `vas`[ub]
-    *vertical-align: super*        `vasup`[er]
-    *vertical-align: text-bottom*  `vattb`[ottom]
-    *vertical-align: text-top*     `vatt`[op]
-    *vertical-align: top*          `vat`[op]
-    *visibility: collapse*         `vc`[ollapse] visc[ollapse] vic[ollapse]
-    *visibility: hidden*           `vh`[idden] vish[idden] vih[idden] h[idden] h[ide]
-    *visibility: visible*          `vv`[isible] vi[sible]
-    *white-space: nowrap*          `now`[rap]
-    *width: auto*                  `w`[auto]
+| Expansion                           | Shortcuts                                                    |
+| --- | --- |
+ | `align-items: center`               | **aic**[enter]                                               |
+ | `align-items: flex-end`             | **aie**[nd]                                                  |
+ | `align-items: flex-start`           | **ai**[start]                                                |
+ | `align-items: stretch`              | **aistr**[etch]                                              |
+ | `background-repeat: no-repeat`      | **brn**[orepeat] n[orepeat]                                  |
+ | `background-repeat: repeat-x`       | **brx** re[peatx] bg[rx] rx                                  |
+ | `background-repeat: repeat-y`       | **bry** repeaty bgry ry                                      |
+ | `background-size: contain`          | **con**[tain]                                                |
+ | `background-size: cover`            | **co**[ver]                                                  |
+ | `border-collapse: collapse`         | **bc**[collapse]                                             |
+ | `border-collapse: separate`         | **bcs**[eparate]                                             |
+ | `border: 0`                         | **b0**                                                       |
+ | `box-sizing: border-box`            | **bs**[box]                                                  |
+ | `box-sizing: content-box`           | **bsc**[ontent]                                              |
+ | `box-sizing: padding-box`           | **bsp**[adding]                                              |
+ | `clear: both`                       | **cb**[oth]                                                  |
+ | `clear: left`                       | **cl**[eft]                                                  |
+ | `clear: right`                      | **cr**[ight]                                                 |
+ | `content: ''`                       | **conte**[nt]                                                |
+ | `cursor: busy`                      | **cub**[usy]                                                 |
+ | `cursor: pointer`                   | **cu**[pointer]                                              |
+ | `cursor: text`                      | **cut**[ext]                                                 |
+ | `cursor: wait`                      | **cuw**[ait]                                                 |
+ | `direction: ltr`                    | **l**[tr] dir[ltr]                                           |
+ | `direction: rtl`                    | **rt**[l] dirr[tl]                                           |
+ | `display: block`                    | **d**[block]                                                 |
+ | `display: flex`                     | **df**[lex] flex                                             |
+ | `display: inline`                   | **di**[nline]                                                |
+ | `display: inline-block`             | **dib**[lock]                                                |
+ | `display: inline-flex`              | **dif**[lex]                                                 |
+ | `display: none`                     | **dn**[one]                                                  |
+ | `display: table`                    | **dt**[able] t[able]                                         |
+ | `display: table-cell`               | **dtc**[ell] c[ell] tablec[ell] table-[cell]                 |
+ | `display: table-row`                | **dtr**[ow] r[ow] tabler[ow] table-r[ow]                     |
+ | `flex-direction: column`            | **fdc**[olumn]                                               |
+ | `flex-direction: column-reverse`    | **fdcr**[everse]                                             |
+ | `flex-direction: row`               | **fd**[row]                                                  |
+ | `flex-direction: row-reverse`       | **fdrr**[everse]                                             |
+ | `flex-wrap: nowrap`                 | **fnow**[rap]                                                |
+ | `flex-wrap: wrap`                   | **fwr**[ap] flexw[rap]                                       |
+ | `flex: auto`                        | **fla**[uto]                                                 |
+ | `float: left`                       | **f**[left] f[lleft] f[loleft]                               |
+ | `float: none`                       | **fn**[one] fln[one] flon[one]                               |
+ | `float: right`                      | **fr**[ight] flr[ight] flor[ight]                            |
+ | `font-style: italic`                | **fs**[italic] it[alic]                                      |
+ | `font-style: normal`                | **fnor**[mal]                                                |
+ | `font-weight: 100`                  | **f1**[00] fw1[00]                                           |
+ | `font-weight: 200`                  | **f2**[00] fw2[00]                                           |
+ | `font-weight: 300`                  | **f3**[00] fw3[00]                                           |
+ | `font-weight: 400`                  | **f4**[00] fw4[00]                                           |
+ | `font-weight: 500`                  | **f5**[00] fw5[00]                                           |
+ | `font-weight: 600`                  | **f6**[00] fw6[00]                                           |
+ | `font-weight: 700`                  | **f7**[00] fw7[00]                                           |
+ | `font-weight: 800`                  | **f8**[00] fw8[00]                                           |
+ | `font-weight: 900`                  | **f9**[00] fw9[00]                                           |
+ | `font-weight: bold`                 | **fwb**[old] bo[ld]                                          |
+ | `font-weight: normal`               | **fw**[normal]                                               |
+ | `height: auto`                      | **ha**[uto]                                                  |
+ | `justify-content: center`           | **jc**[center]                                               |
+ | `justify-content: flex-end`         | **jce**[nd]                                                  |
+ | `justify-content: flex-start`       | **jcs**[tart]                                                |
+ | `margin-left: auto`                 | **ml**[auto]                                                 |
+ | `margin-right: auto`                | **mr**[auto]                                                 |
+ | `margin: 0`                         | **m**[0] m[o]                                                |
+ | `margin: 0 auto`                    | **m0a** moa                                                  |
+ | `margin: auto`                      | **ma**[uto]                                                  |
+ | `overflow-x: auto`                  | **oxa**[uto]                                                 |
+ | `overflow-x: hidden`                | **ox**[hidden]                                               |
+ | `overflow-x: scroll`                | **oxs**[croll]                                               |
+ | `overflow-x: visible`               | **oxv**[isible]                                              |
+ | `overflow-y: auto`                  | **oya**[uto]                                                 |
+ | `overflow-y: hidden`                | **oy**[hidden]                                               |
+ | `overflow-y: scroll`                | **oys**[croll]                                               |
+ | `overflow-y: visible`               | **oyv**[isible]                                              |
+ | `overflow: auto`                    | **oa**[uto]                                                  |
+ | `overflow: hidden`                  | **o**[hidden]                                                |
+ | `overflow: scroll`                  | **os**[croll]                                                |
+ | `overflow: visible`                 | **ov**[isible]                                               |
+ | `padding: 0`                        | **p0** po                                                    |
+ | `position: absolute`                | **poa**[bsolute] pa[bsolute] ab[solute]                      |
+ | `position: fixed`                   | **pof**[ixed] pf[ixed] fi[xed]                               |
+ | `position: relative`                | **por**[elative] pr[elative] rel[ative]                      |
+ | `position: static`                  | **pos**[tatic] ps[tatic] s[tatic]                            |
+ | `table-layout: auto`                | **tla**[uto]                                                 |
+ | `table-layout: fixed`               | **tl**[fixed]                                                |
+ | `text-align: center`                | **tac**[enter] cen[ter]                                      |
+ | `text-align: justify`               | **taj**[ustify] j[ustify]                                    |
+ | `text-align: left`                  | **tal**[eft]                                                 |
+ | `text-align: right`                 | **tar**[ight]                                                |
+ | `text-decoration: none`             | **tdn**[one]                                                 |
+ | `text-decoration: underline`        | **td**[underline] un[derline]                                |
+ | `text-overflow: ellipsis`           | **e**[lip] e[llipsis] to[ellipsis]                           |
+ | `text-shadow: none`                 | **ts**[none] te[shnone]                                      |
+ | `text-transform: capitalize`        | **ttc**[ap]                                                  |
+ | `text-transform: full-width`        | **ttf**[ull]                                                 |
+ | `text-transform: lowercase`         | **ttl**[ower]                                                |
+ | `text-transform: none`              | **ttn**[one]                                                 |
+ | `text-transform: uppercase`         | **tt**[upper] u[ppercase]                                    |
+ | `vertical-align: baseline`          | **vabl**[ine] vaba[seline] ba[seline]                        |
+ | `vertical-align: bottom`            | **vab**[ottom]                                               |
+ | `vertical-align: middle`            | **v**[amiddle]                                               |
+ | `vertical-align: sub`               | **vas**[ub]                                                  |
+ | `vertical-align: super`             | **vasup**[er]                                                |
+ | `vertical-align: text-bottom`       | **vattb**[ottom]                                             |
+ | `vertical-align: text-top`          | **vatt**[op]                                                 |
+ | `vertical-align: top`               | **vat**[op]                                                  |
+ | `visibility: collapse`              | **vc**[ollapse] visc[ollapse] vic[ollapse]                   |
+ | `visibility: hidden`                | **vh**[idden] vish[idden] vih[idden] h[idden] h[ide]         |
+ | `visibility: visible`               | **vv**[isible] vi[sible]                                     |
+ | `white-space: nowrap`               | **now**[rap]                                                 |
+ | `width: auto`                       | **w**[auto]                                                  |
 
