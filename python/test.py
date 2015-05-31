@@ -2,13 +2,22 @@ import hyperstyle as cssx
 from definitions import definitions
 import unittest
 
-# class TestDefinitions(unittest.TestCase):
-#     def test_defs(self):
-#         for item in definitions["properties"]:
-#             short, prop, options = item
-#             if "alias" in options:
-#                 if not isinstance(options["alias"], list):
-#                     self.fail("'%s' has weird aliases" % prop)
+class TestDoc(unittest.TestCase):
+    def test_defs(self):
+        """Ensure that documentation is up to date"""
+        import reference
+
+        f = open('doc/hyperstyle.txt', 'r')
+        expected = f.read()
+        actual = reference.VimPrinter().to_s() + "\n"
+        f = open('doc/hyperstyle.txt.new', 'w')
+        f.write(actual)
+        if expected.strip() != actual.strip():
+            self.fail(
+                "Documentation is not up to date.\n" +
+                "  See `docs/hyperstyle.txt.new` to see what's changed.\n" +
+                "  to clear this error, you will need to regenerate documentation\n" +
+                "  (make doc), or inspect why the documentation has changed.");
 
 class TestCr(unittest.TestCase):
     def expect(self, source, expected):

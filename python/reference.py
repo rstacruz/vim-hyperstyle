@@ -11,56 +11,79 @@ index = Indexer()
 index.index(definitions)
 
 def print_reference():
-    print_top()
-    print_headline("Properties")
-    print_table(get_property_reference())
-    print_headline("Statements")
-    print_table(get_statement_reference())
-    print_foot()
+    if "--vim" in sys.argv:
+        print(VimPrinter().to_s())
+    else:
+        print(MarkdownPrinter().to_s())
 
-if "--vim" in sys.argv:
-    def print_top():
-        print "*hyperstyle*  Style much faster"
-        print ""
-    def print_foot():
-        print "vim:tw=78:ts=8:ft=help:norl:"
-    def print_headline(headline):
-        print "=" * 80
-        print "%-40s%40s" % (headline.upper(), '*hyperstyle-'+headline.lower()+'*')
-        print ""
-    def print_table(items):
+class VimPrinter:
+    def to_s(self):
+        self.lines = []
+        self.top()
+        self.headline("Properties")
+        self.table(references["properties"])
+        self.headline("Statements")
+        self.table(references["statements"])
+        self.foot()
+        return "\n".join(self.lines)
+    def l(self, line):
+        self.lines.append(line)
+    def top(self):
+        self.l("*hyperstyle*  Style much faster")
+        self.l("")
+    def foot(self):
+        self.l("vim:tw=78:ts=8:ft=help:norl:")
+    def headline(self, headline):
+        self.l("=" * 80)
+        self.l("%-40s%40s" % (headline.upper(), '*hyperstyle-'+headline.lower()+'*'))
+        self.l("")
+    def table(self, items):
         def fmt(m):
             if m.group(2): return "`%s`[%s]" % (m.group(1), m.group(2))
             else: return "`%s`" % m.group(1)
         for name, aliases in items:
             aliases = re.sub(r'([^ \[\]]+)(?:\[([^ ]+)\])?', fmt, aliases)
-            print "  %-35s %s" % ("*%s*"%name.replace(' ','* *'), aliases)
-        print ""
+            self.l("  %-35s %s" % ("*%s*"%name.replace(' ','* *'), aliases))
+        self.l("")
 
-else:
-    def print_top():
+class MarkdownPrinter(VimPrinter):
+    def top(self):
         pass
-    def print_foot():
+    def foot(self):
         pass
-    def print_headline(headline):
-        print "## " + headline
-        print ""
-
-    def print_table(items):
-        print "| %-35s | %-60s |" % ("Expansion", "Shortcuts")
-        print "| --- | --- |"
+    def headline(self, headline):
+        self.l("## " + headline)
+        self.l("")
+    def table(self, items):
+        self.l("| %-35s | %-60s |" % ("Expansion", "Shortcuts"))
+        self.l("| --- | --- |")
         def fmt(m):
             if m.group(2): return "__%s__[%s]" % (m.group(1), m.group(2))
             else: return "__%s__" % m.group(1)
         for name, aliases in items:
             aliases = re.sub(r'([^ \[\]]+)(?:\[([^ ]+)\])?', fmt, aliases)
-            print "| %-35s | %-60s |" % ("`%s`"%name, aliases)
-        print ""
+            self.l("| %-35s | %-60s |" % ("`%s`"%name, aliases))
+        self.l("")
 
 def get_property_reference():
+    """
+    Returns a reference table. This is a `list` with a tuple in each item.
+
+    >>> get_property_reference()
+    [ ('float:', 'fl[oat]'),
+      ('margin-left', 'ml[eft]'), ... ]
+    """
+
     return get_generic_reference(index.full_properties.items(), index.properties, ':')
 
 def get_statement_reference():
+    """
+    Returns a reference table. This is a `list` with a tuple in each item.
+
+    >>> get_statement_reference()
+    [ ('margin-left: 0 auto', 'moa m0a'),
+      ('float: left', 'fl[eft]'), ... ]
+    """
     return get_generic_reference(index.full_statements.items(), index.statements)
 
 def get_generic_reference(items, index, suf=''):
@@ -69,13 +92,19 @@ def get_generic_reference(items, index, suf=''):
     for prop, options in items:
         aliases = options.get('aliases')
         aliases_ref = resolve_aliases(aliases, options, index)
-        ref.append((prop + suf, aliases_ref))
+        ref.append(("%s%s" % (prop, suf), aliases_ref))
     return ref
 
 def resolve_aliases(aliases, this, index):
     """
+    Given a bunch of `aliases`, shorten them in documentation format.
+
+    Do this by looking for the "root" of each alias: that is, the shortest the
+    alias can be typed. For instance, `texalign` has the root of `tex`, because
+    `te` will evaluate to something else already.
+
     >>> resolve_aliases(['talign', 'textalign'], options, index.properties)
-    "ta[lign] tex[align]
+    "ta[lign] tex[align]"
     """
     def referencify(alias):
         root_length = 1
@@ -90,8 +119,12 @@ def resolve_aliases(aliases, this, index):
             return "%s[%s]" % (alias[0:root_length], alias[root_length:])
 
     refs = [referencify(a) for a in aliases]
-
     return " ".join(refs)
+
+references = {
+    "properties": get_property_reference(),
+    "statements": get_statement_reference()
+}
 
 if __name__ == '__main__':
     print_reference()

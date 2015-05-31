@@ -33,9 +33,9 @@ vendor/vader.vim:
 doc: REFERENCE.md doc/hyperstyle.txt
 
 REFERENCE.md: python/definitions.py
-	@python python/reference.py --md > $@
+	python python/reference.py --md > $@
 
 doc/hyperstyle.txt: python/definitions.py
-	@python python/reference.py --vim > $@
+	python python/reference.py --vim > $@
 
 .PHONY: test vendor/vimrc doc

@@ -43,10 +43,10 @@ class Indexer:
         for (prop, aliases, unit, values) in defs["properties"]:
             options = {}
             options["property"] = prop
-            options["aliases"] = aliases
+            options["aliases"] = aliases[:]
             options["unit"] = unit
             options["values"] = values
-            update_aliases(options, index_props=True)
+            update_aliases(options)
             self.full_properties[prop] = options
 
         for (prop, value, aliases) in defs["statements"]:
@@ -55,18 +55,17 @@ class Indexer:
             options["value"] = value
             options["aliases"] = aliases
             key = "%s: %s" % (options["property"], options["value"])
-            update_aliases(options, index_props=False)
             self.full_statements[key] = options
 
     def index_aliases(self, defs):
         for (prop, _, __, ___) in defs["properties"]:
             options = self.full_properties[prop]
-            index_property(self.properties, options)
+            index_item(self.properties, options)
 
         for (prop, value, __) in defs["statements"]:
             key = "%s: %s" % (prop, value)
             options = self.full_statements[key]
-            index_property(self.statements, options)
+            index_item(self.statements, options)
 
         self.remove_tags()
 
@@ -94,21 +93,20 @@ def fuzzify(str):
         for i in range(1, len(str)+1):
             yield str[0:i]
 
-def update_aliases(options, index_props=False):
-    if not "alias" in options:
-        options["alias"] = []
-
+def update_aliases(options):
+    """Updates options['aliases'] with property defaults
+    """
     prop = options.get('property')
 
-    if index_props:
-        # If the property has dashes, addd non-dashed versions
-        if '-' in prop:
-            options["aliases"].append(prop.replace('-', ''))
+    # If the property has dashes, add non-dashed versions
+    if '-' in prop:
+        options["aliases"].append(prop.replace('-', ''))
 
-        # Insert the property itself
-        options["aliases"].append(prop)
+    # Insert the property itself
+    options["aliases"].append(prop)
 
-def index_property(properties, options):
+def index_item(properties, options):
+    """Takes aliases and puts them into the properties index"""
     for alias in options["aliases"]:
         for key in fuzzify(alias):
             if not key in properties:
