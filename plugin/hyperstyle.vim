@@ -29,9 +29,13 @@ endfunction
 function! s:map_key(key, binding)
   let oldmap = maparg(a:key, 'i')
 
-  if oldmap =~# a:key.'<Plug>' || oldmap =~# '^<C-R>'
+  if oldmap =~# "<Plug>(".a:binding.")"
+    " already mapped. maybe the user was playing with `set ft`
+  elseif oldmap =~# a:key.'<Plug>' || oldmap =~# '^<C-R>'
     " vim-endwise style or ultisnips style
     exe "imap ".a:key." ".oldmap."<Plug>(".a:binding.")"
+  " elseif oldmap != ""
+  "   exe "imap ".a:key." ".oldmap."<Plug>(".a:binding.")"
   else
     exe "imap <buffer> ".a:key." ".a:key."<Plug>(".a:binding.")"
   endif
