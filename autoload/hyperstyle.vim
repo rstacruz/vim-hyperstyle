@@ -51,7 +51,7 @@ function! hyperstyle#expand_tab()
   if ! s:at_indented_line() | return "" | endif
   if ! s:at_eol() | return "" | endif
 
-  let r = s:expand_inline("property", ' ', {'expr': '^\s*\([a-z0-9]\+\)\s*$' })
+  let r = s:expand_inline("property", ' ', {'expr': '^\(\s*\)\([a-z0-9]\+\)\s*$' })
   if r != '' | return r | endif
   let r = s:expand_inline('statement', b:hyperstyle_semi, {})
   if r != '' | return r | endif
@@ -67,7 +67,7 @@ function! hyperstyle#expand_cr()
   " If it broke in the middle of a line, don't.
   if match(getline('.'), '^\s*$') == -1 | return '' | endif
 
-  let ln     = s:get_line_info(line('.')-1, '^\s*\(.\+\)\s*$')
+  let ln     = s:get_line_info(line('.')-1, '^\(\s*\)\(.\+\)\s*$')
   let result = s:expand('statement', ln.shorthand)
   if result == '' | return '' | endif
 
@@ -82,10 +82,12 @@ endfunction
 
 function! s:expand_inline(fn, append, o)
   if ! s:at_eol() | return "" | endif
-  let expr = exists('a:o.expr') ? a:o.expr : '^\s*\(.\+\).$'
-  let ln = s:get_line_info(line('.'), expr) 
-  let out = s:expand(a:fn, ln.shorthand)
-  if out == '' | return "" | endif
+
+  let expr   = exists('a:o.expr') ? a:o.expr : '^\(\s*\)\(.\+\).$'
+  let ln     = s:get_line_info(line('.'), expr) 
+  let result = s:expand(a:fn, ln.shorthand)
+  if result == '' | return "" | endif
+
   exe 'normal! 0"_C'
   return (ln.indent) . out . (a:append)
 endfunction
@@ -124,12 +126,10 @@ endtry
 "
 
 function! s:get_line_info(ln, expr)
-  let linetext = getline(a:ln)
-  let indent = matchstr(linetext, '^\s*')
-  let shorthands = matchlist(linetext, a:expr)
-  let shorthand = ""
-  if exists("shorthands[1]") | let shorthand = shorthands[1] | endif
-  return { "indent": indent, "shorthand": shorthand, "text": linetext }
+  let m = matchlist(getline(a:ln), a:expr)
+  let indent = exists("m[1]") ? m[1] : ''
+  let shorthand = exists("m[2]") ? m[2] : ''
+  return { "indent": indent, "shorthand": shorthand }
 endfunction
 
 " (internal) Checks if we're at the end of the line.
