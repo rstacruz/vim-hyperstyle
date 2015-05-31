@@ -5,3 +5,15 @@ Do (pressing enter):
 Expect (expands the statement);
   display: inline-block;
   _
+
+Given css (db inside a block):
+  a {
+    db
+  }
+Do (pressing enter):
+  jA\<Enter>_
+Expect (expands the statement):
+  a {
+    display: block;
+    _
+  }

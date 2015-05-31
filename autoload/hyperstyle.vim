@@ -71,7 +71,7 @@ function! hyperstyle#expand_cr()
   let result = s:expand('statement', ln.shorthand)
   if result == '' | return '' | endif
 
-  exe 'normal "_dd^"_C'
+  exe 'normal kJ0"_C'
   return (ln.indent) . result . (b:hyperstyle_semi."\n")
 endfunction
 
@@ -89,7 +89,7 @@ function! s:expand_inline(fn, append, o)
   if result == '' | return "" | endif
 
   exe 'normal! 0"_C'
-  return (ln.indent) . out . (a:append)
+  return (ln.indent) . result . (a:append)
 endfunction
 
 "
