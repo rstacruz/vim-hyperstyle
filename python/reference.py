@@ -11,21 +11,34 @@ index = Indexer()
 index.index(definitions)
 
 def print_reference():
+    print_top()
     print_headline("Properties")
     print_table(get_property_reference())
     print_headline("Statements")
     print_table(get_statement_reference())
+    print_foot()
 
 if "--vim" in sys.argv:
+    def print_top():
+        print "*vim-hyperstyle*  Style much faster"
+        print ""
+    def print_foot():
+        print "vim:tw=78:ts=8:ft=help:norl:"
     def print_headline(headline):
-        print headline + ":"
+        print "=" * 80
+        print "%-40s%40s" % (headline.upper(), '*hyperstyle-'+headline.lower()+'*')
         print ""
     def print_table(items):
         for name, aliases in items:
             aliases = re.sub(r'^([a-z0-9]+)', r'`\1`', aliases)
-            print "    %-35s %s" % ("*%s*"%name, aliases)
+            print "  %-35s %s" % ("*%s*"%name, aliases)
         print ""
+
 else:
+    def print_top():
+        pass
+    def print_foot():
+        pass
     def print_headline(headline):
         print "## " + headline
         print ""

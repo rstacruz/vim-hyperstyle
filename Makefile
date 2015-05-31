@@ -30,7 +30,7 @@ vendor/vader.vim:
 	@mkdir -p ./vendor
 	@git clone https://github.com/junegunn/vader.vim ./vendor/vader.vim
 
-all: REFERENCE.md doc/hyperstyle.txt
+doc: REFERENCE.md doc/hyperstyle.txt
 
 REFERENCE.md: python/definitions.py
 	@python python/reference.py --md > $@
@@ -38,4 +38,4 @@ REFERENCE.md: python/definitions.py
 doc/hyperstyle.txt: python/definitions.py
 	@python python/reference.py --vim > $@
 
-.PHONY: test vendor/vimrc
+.PHONY: test vendor/vimrc doc
