@@ -1,6 +1,10 @@
 if exists("g:hyperstyle_autoloaded") | finish | endif
 let g:hyperstyle_autoloaded=1
 
+"
+" Check if python is supported.
+"
+"
 if !has("python") && !has("python3")
   echohl WarningMsg
   echomsg "vim-hyperstyle requires vim with python support."
@@ -11,6 +15,10 @@ if !has("python") && !has("python3")
   finish
 endif
 
+"
+" Invoke python
+"
+
 let s:current_file=expand("<sfile>")
 python << EOF
 import sys, os, vim
@@ -18,6 +26,10 @@ path = os.path.dirname(vim.eval("s:current_file")) + '/../python'
 sys.path.insert(0, path)
 import hyperstyle as hyperstyle
 EOF
+
+"
+" Same-line expansions
+"
 
 " Expand spaces (fl_ => float:_)
 function! hyperstyle#expand_space()
@@ -31,8 +43,12 @@ endfunction
 
 " Expand semicolons (display: b; => display: block;)
 function! hyperstyle#expand_semicolon()
-  return s:expand_inline('expand_statement', ';')
+  return s:expand_inline('expand_statement', b:hyperstyle_semi)
 endfunction
+
+"
+" The <Tab> key combines the `:` expansion and the `;` expansion.
+"
 
 function! hyperstyle#expand_tab()
   " Only work on indented lines. This will avoid expanding
@@ -49,7 +65,11 @@ function! hyperstyle#expand_tab()
   return ''
 endfunction
 
+"
 " Expands carriage return (db => display: block;)
+" This one is different because it takes from the previous line
+"
+
 function! hyperstyle#expand_cr()
   " If it broke in the middle of a line, don't.
   if match(getline('.'), '^\s*$') == -1 | return '' | endif
@@ -64,8 +84,11 @@ function! hyperstyle#expand_cr()
   return (ln.indent) . out . b:hyperstyle_semi . "\n"
 endfunction
 
+"
 " (Internal) Gets from the current line, passes it to a python function,
 " then modifies the buffer as needed
+"
+
 function! s:expand_inline(fn, suffix, ...)
   if ! s:at_eol() | return "" | endif
   let ln = s:get_line_info(line('.'), exists('a:1') ? a:1 : '^\s*\(.\+\).$')
@@ -82,7 +105,10 @@ function! s:pyfn(fn, str)
   return s:pyeval("hyperstyle.".a:fn."(\"".escaped."\")")
 endfunction
 
+"
 " pyeval() polyfill
+"
+
 try
   call pyeval('1')
   function! s:pyeval(code)
@@ -95,6 +121,22 @@ catch /E117/ " Unknown function
   endfunction
 endtry
 
+"
+" (Internal) Splits a line to indent and shorthand
+"
+"  - indent: indentation text
+"  - shorthand: the thing matching regexps
+"
+
+function! s:get_line_info(ln, expr)
+  let linetext = getline(a:ln)
+  let indent = matchstr(linetext, '^\s*')
+  let shorthands = matchlist(linetext, a:expr)
+  let shorthand = ""
+  if exists("shorthands[1]") | let shorthand = shorthands[1] | endif
+  return { "indent": indent, "shorthand": shorthand, "text": linetext }
+endfunction
+
 " (internal) Checks if we're at the end of the line.
 function s:at_eol()
   return col('.') >= strlen(getline('.'))
@@ -105,15 +147,3 @@ function s:at_indented_line()
   return getline('.') =~ '^\s'
 endfunction
 
-" (Internal) Splits a line to indent and shorthand
-"
-"  - indent: indentation text
-"  - shorthand: the thing matching regexps
-function! s:get_line_info(ln, expr)
-  let linetext = getline(a:ln)
-  let indent = matchstr(linetext, '^\s*')
-  let shorthands = matchlist(linetext, a:expr)
-  let shorthand = ""
-  if exists("shorthands[1]") | let shorthand = shorthands[1] | endif
-  return { "indent": indent, "shorthand": shorthand, "text": linetext }
-endfunction
