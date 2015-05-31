@@ -212,15 +212,15 @@ statements_list = [
     ("f9", "font-weight", "900", { "alias": ["f900", "fw900"] }),
 
     ("b0", "border", "0", {}),
-    ("bcc", "border-collapse", "collapse", {}),
-    ("bcs", "border-collapse", "separate", {}),
+    ("bcc", "border-collapse", "collapse", { "alias": ["bccollapse"] }),
+    ("bcs", "border-collapse", "separate", { "alias": ["bcseparate"] }),
     
     ("brx", "background-repeat", "repeat-x", { "alias": [ "repeatx", "bgrx", "rx" ] }),
     ("bry", "background-repeat", "repeat-y", { "alias": [ "repeaty", "bgry", "ry" ] }),
     ("brn", "background-repeat", "no-repeat", { "alias": ["norepeat"] }),
 
-    ("cover", "background-size", "cover", {}),
-    ("contain", "background-size", "contain", {}),
+    ("cover", "background-size", "cover", { "alias": ["cover"] }),
+    ("contain", "background-size", "contain", { "alias": ["contain"] }),
 
     ("cup", "cursor", "pointer", { "alias": ["cupointer"] }),
     ("cuw", "cursor", "wait", { "alias": ["cuwait"] }),
@@ -230,8 +230,8 @@ statements_list = [
     ("vam", "vertical-align", "middle", { "alias": ["vamiddle"] }),
     ("vat", "vertical-align", "top", { "alias": ["vatop"] }),
     ("vab", "vertical-align", "bottom", { "alias": ["vabottom"] }),
-    ("vasub", "vertical-align", "sub", {}),
-    ("vasuper", "vertical-align", "super", {}),
+    ("vasub", "vertical-align", "sub", { "alias": ["vasub"] }),
+    ("vasuper", "vertical-align", "super", { "alias": ["vasuper"] }),
     ("vabl", "vertical-align", "baseline", { "alias": ["vabline", "vabaseline", "baseline"] }),
     ("vatt", "vertical-align", "text-top", { "alias": ["vattop"] }),
     ("vatb", "vertical-align", "text-bottom", { "alias": ["vattbottom"] }),
@@ -240,11 +240,11 @@ statements_list = [
     ("vh", "visibility", "hidden", { "alias": ["vishidden", "vihidden", "hidden", "hide"] }),
     ("vc", "visibility", "collapse", { "alias": ["viscollapse", "vicollapse", "vcillapse", "hide"] }),
 
-    ("cb", "clear", "both", { "alias": "cboth" }),
-    ("cr", "clear", "right", { "alias": "cright" }),
-    ("cl", "clear", "left", { "alias": "cleft" }),
+    ("cb", "clear", "both", { "alias": ["cboth"] }),
+    ("cr", "clear", "right", { "alias": ["cright"] }),
+    ("cl", "clear", "left", { "alias": ["cleft"] }),
 
-    ("cont", "content", "''", {}),
+    ("cont", "content", "''", { "alias": ["content"] }),
 
     ("ttu", "text-transform", "uppercase", { "alias": ["ttupper", "uppercase"] }),
     ("ttl", "text-transform", "lowercase", { "alias": ["ttlower"] }),
@@ -284,7 +284,7 @@ statements_list = [
     ("aistr", "align-items", "stretch", { "alias": ["aistretch"] }),
 
     ("fwrap", "flex-wrap", "wrap", { "alias": ["flexwrap"] }),
-    ("fnowrap", "flex-wrap", "nowrap", {}),
+    ("fnowrap", "flex-wrap", "nowrap", { "alias": ["fnowrap"] }),
 
     ("fdr", "flex-direction", "row", { "alias": ["fdrow"] }),
     ("fdrr", "flex-direction", "row-reverse", { "alias": ["fdrreverse"] }),

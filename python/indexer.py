@@ -29,11 +29,14 @@ class Indexer:
         """
         for (short, prop, options) in defs["properties"]:
             options["canonical"] = short
+            update_aliases(short, prop, options)
+
             self.properties[short] = (prop, options)
             self.full_properties[prop] = options
 
         for (short, prop, value, options) in defs["statements"]:
             options["canonical"] = short
+            update_aliases(short, None, options)
             self.statements[short] = (prop, value, options)
 
         for (short, prop, options) in defs["properties"]:
@@ -58,20 +61,13 @@ class Indexer:
             self.properties[tag] = None
 
 def apply_fuzzies(properties, short, prop, options):
-    """Mutates `properties` to apply fuzzy matches
+    """Propagates 'alias' into the `properties` index
     """
     def iterate(property):
         for key in fuzzify(property):
             if not key in properties:
                 properties[key] = properties[short]
 
-    # Create them for the property
-    # ("box-sizing" => "boxsizing", "boxsizi", "boxsi", "boxs", "box"...)
-    iterate(prop.replace('-', ''))
-    iterate(prop)
-
-    # Also add aliases ("bgcolor" => "bgcolo", "bgcol", "bgco", "bgc" ...)
-    # This kinda sucks, because aliases should have lowest priority.
     if options and "alias" in options:
         [iterate(alias) for alias in options["alias"]]
 
@@ -85,3 +81,21 @@ def fuzzify(str):
     if str:
         for i in range(1, len(str)+1):
             yield str[0:i]
+
+def update_aliases(short, prop, options):
+    if not "alias" in options:
+        options["alias"] = []
+
+    if prop != None:
+        # Insert the property itself
+        options["alias"].append(prop)
+
+        # If the property has dashes, addd non-dashed versions
+        if '-' in prop:
+            options["alias"].append(prop.replace('-', ''))
+
+    # Add the short, but only if there's nothing like it
+    # TODO deprecate this
+    likeit = [a for a in options["alias"] if a[0:len(short)] == short]
+    if len(likeit) == 0:
+        options["alias"].insert(0, short)

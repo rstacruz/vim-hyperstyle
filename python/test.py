@@ -1,5 +1,14 @@
 import hyperstyle as cssx
+from definitions import definitions
 import unittest
+
+class TestDefinitions(unittest.TestCase):
+    def test_defs(self):
+        for item in definitions["properties"]:
+            short, prop, options = item
+            if "alias" in options:
+                if not isinstance(options["alias"], list):
+                    self.fail("'%s' has weird aliases" % prop)
 
 class TestCr(unittest.TestCase):
     def expect(self, source, expected):
