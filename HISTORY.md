@@ -1,3 +1,10 @@
+## [v0.6.0] - May 31, 2015
+
+- Publish a reference: [REFERENCE.md](REFERENCE.md).
+- Add help docs (`:h hyperstyle`).
+- Add more shortcuts to existing properties.
+- Big internal refactor.
+
 ## [v0.5.1] - May 30, 2015
 
 - Fix compatilibity with UltiSnips.
@@ -80,3 +87,4 @@ Initial release.
 [v0.4.1]: https://github.com/rstacruz/vim-hyperstyle/compare/v0.4.0...v0.4.1
 [v0.5.0]: https://github.com/rstacruz/vim-hyperstyle/compare/v0.4.1...v0.5.0
 [v0.5.1]: https://github.com/rstacruz/vim-hyperstyle/compare/v0.5.0...v0.5.1
+[v0.6.0]: https://github.com/rstacruz/vim-hyperstyle/compare/v0.5.1...v0.6.0
