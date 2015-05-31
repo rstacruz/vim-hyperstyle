@@ -5,25 +5,25 @@
 | `align-items:`                      | __ai__[tems] __al__[items] __al__[ignitems] __al__[ign-items] |
 | `animation:`                        | __an__[imation]                                              |
 | `background:`                       | __ba__[ckground]                                             |
-| `background-color:`                 | __bg__[color] __backc__[olor] __backgroundc__[olor] __background-__[color] |
-| `background-position:`              | __bgp__[osition] __backp__[osition] __backgroundp__[osition] __background-p__[osition] |
-| `background-size:`                  | __bgs__[ize] __backs__[ize] __backgrounds__[ize] __background-s__[ize] |
+| `background-color:`                 | __bg__[color] __backc__[olor] backgroundc[olor] background-[color] |
+| `background-position:`              | __bgp__[osition] __backp__[osition] backgroundp[osition] background-p[osition] |
+| `background-size:`                  | __bgs__[ize] __backs__[ize] backgrounds[ize] background-s[ize] |
 | `border:`                           | __bo__[rder]                                                 |
-| `border-bottom:`                    | __bb__[ottom] __borb__[ottom] __borderb__[ottom] __border-b__[ottom] |
-| `border-bottom-width:`              | __bbw__[idth] __borderbottomw__[idth] __border-bottom-__[width] |
-| `border-collapse:`                  | __bcoll__[apse] __borcoll__[apse] __coll__[apse] __bordercoll__[apse] __border-coll__[apse] |
-| `border-color:`                     | __bc__[olor] __boc__[olor] __borc__[olor] __borderc__[olor] __border-c__[olor] |
-| `border-left:`                      | __bl__[eft] __borl__[eft] __borderl__[eft] __border-l__[eft] |
-| `border-left-width:`                | __blw__[idth] __borderleftw__[idth] __border-left-__[width]  |
-| `border-radius:`                    | __bra__[dius] __bora__[dius] __borderra__[dius] __border-ra__[dius] |
-| `border-right:`                     | __bri__[ght] __borr__[ight] __borderr__[ight] __border-__[right] |
-| `border-right-width:`               | __brw__[idth] __borderrightw__[idth] __border-right-__[width] |
-| `border-top:`                       | __bt__[op] __bort__[op] __bordert__[op] __border-t__[op]     |
-| `border-top-width:`                 | __btw__[idth] __bordertopw__[idth] __border-top-__[width]    |
-| `border-width:`                     | __bw__[idth] __borderw__[idth] __border-w__[idth]            |
+| `border-bottom:`                    | __bb__[ottom] __borb__[ottom] borderb[ottom] border-b[ottom] |
+| `border-bottom-width:`              | __bbw__[idth] borderbottomw[idth] border-bottom-[width]      |
+| `border-collapse:`                  | __bcoll__[apse] borcoll[apse] __coll__[apse] bordercoll[apse] border-coll[apse] |
+| `border-color:`                     | __bc__[olor] __boc__[olor] __borc__[olor] borderc[olor] border-c[olor] |
+| `border-left:`                      | __bl__[eft] __borl__[eft] borderl[eft] border-l[eft]         |
+| `border-left-width:`                | __blw__[idth] borderleftw[idth] border-left-[width]          |
+| `border-radius:`                    | __bra__[dius] __bora__[dius] borderra[dius] border-ra[dius]  |
+| `border-right:`                     | __bri__[ght] __borr__[ight] borderr[ight] border-[right]     |
+| `border-right-width:`               | __brw__[idth] borderrightw[idth] border-right-[width]        |
+| `border-top:`                       | __bt__[op] __bort__[op] bordert[op] border-t[op]             |
+| `border-top-width:`                 | __btw__[idth] bordertopw[idth] border-top-[width]            |
+| `border-width:`                     | __bw__[idth] borderw[idth] border-w[idth]                    |
 | `bottom:`                           | __bot__[tom]                                                 |
 | `box-shadow:`                       | __bs__[hadow] __bos__[hadow] __box__[shadow] __box__[-shadow] |
-| `box-sizing:`                       | __bsi__[zing] __bsi__[ze] __boxsi__[ze] __boxsi__[zing] __box-si__[zing] |
+| `box-sizing:`                       | __bsi__[zing] __bsi__[ze] __boxsi__[ze] __boxsi__[zing] box-si[zing] |
 | `clear:`                            | __cl__[ear]                                                  |
 | `color:`                            | __c__[olor]                                                  |
 | `content:`                          | __con__[tent]                                                |
@@ -31,27 +31,27 @@
 | `direction:`                        | __dir__[ection]                                              |
 | `display:`                          | __d__[isplay]                                                |
 | `flex:`                             | __fle__[x]                                                   |
-| `flex-direction:`                   | __fd__[irection] __fld__[irection] __fled__[irection] __flexd__[irection] __flex-d__[irection] |
+| `flex-direction:`                   | __fd__[irection] __fld__[irection] __fled__[irection] __flexd__[irection] flex-d[irection] |
 | `flex-grow:`                        | __fg__[row] __flg__[row] __fleg__[row] __flexg__[row] __flex-__[grow] |
-| `flex-shrink:`                      | __fsh__[rink] __fls__[hrink] __fles__[hrink] __flexs__[hrink] __flex-s__[hrink] |
-| `flex-wrap:`                        | __fwr__[ap] __flw__[rap] __flew__[rap] __flexw__[rap] __flex-w__[rap] |
+| `flex-shrink:`                      | __fsh__[rink] __fls__[hrink] __fles__[hrink] __flexs__[hrink] flex-s[hrink] |
+| `flex-wrap:`                        | __fwr__[ap] __flw__[rap] __flew__[rap] __flexw__[rap] flex-w[rap] |
 | `float:`                            | __fl__[oat]                                                  |
 | `font:`                             | __f__[ont]                                                   |
-| `font-family:`                      | __ff__[amily] __fa__[mily] __fontf__[amily] __font-f__[amily] |
+| `font-family:`                      | __ff__[amily] __fa__[mily] __fontf__[amily] font-f[amily]    |
 | `font-size:`                        | __fs__[ize] __fos__[ize] __fonts__[ize] __font-__[size]      |
-| `font-style:`                       | __fst__[yle] __fost__[yle] __fontst__[yle] __font-st__[yle]  |
-| `font-variant:`                     | __fv__[ariant] __fov__[ariant] __fontv__[ariant] __font-v__[ariant] |
-| `font-weight:`                      | __fw__[eight] __fow__[eight] __fontw__[eight] __font-w__[eight] |
+| `font-style:`                       | __fst__[yle] __fost__[yle] fontst[yle] font-st[yle]          |
+| `font-variant:`                     | __fv__[ariant] __fov__[ariant] __fontv__[ariant] font-v[ariant] |
+| `font-weight:`                      | __fw__[eight] __fow__[eight] __fontw__[eight] font-w[eight]  |
 | `height:`                           | __h__[eight]                                                 |
 | `justify-content:`                  | __j__[content] __j__[ucontent] __j__[uscontent] __j__[ustcontent] __j__[ustifycontent] __j__[ustify-content] |
 | `left:`                             | __l__[eft]                                                   |
 | `letter-spacing:`                   | __ls__[pacing] __les__[pacing] __let__[terspacing] __let__[ter-spacing] |
 | `line-height:`                      | __lh__[eight] __lih__[eight] __lin__[eheight] __lin__[e-height] |
 | `margin:`                           | __m__[argin]                                                 |
-| `margin-bottom:`                    | __mb__[ottom] __marb__[ottom] __marginb__[ottom] __margin-b__[ottom] |
-| `margin-left:`                      | __ml__[eft] __marl__[eft] __marginl__[eft] __margin-__[left] |
-| `margin-right:`                     | __mr__[ight] __marr__[ight] __marginr__[ight] __margin-r__[ight] |
-| `margin-top:`                       | __mt__[op] __mart__[op] __margint__[op] __margin-t__[op]     |
+| `margin-bottom:`                    | __mb__[ottom] __marb__[ottom] marginb[ottom] margin-b[ottom] |
+| `margin-left:`                      | __ml__[eft] __marl__[eft] marginl[eft] margin-[left]         |
+| `margin-right:`                     | __mr__[ight] __marr__[ight] marginr[ight] margin-r[ight]     |
+| `margin-top:`                       | __mt__[op] __mart__[op] margint[op] margin-t[op]             |
 | `max-height:`                       | __x__[height] __mx__[height] __max__[height] __max__[-height] |
 | `max-width:`                        | __xw__[idth] __m__[xheight] __maxw__[idth] __max-w__[idth]   |
 | `min-height:`                       | __mh__[eight] __mi__[nheight] __mi__[n-height]               |
@@ -60,31 +60,31 @@
 | `order:`                            | __or__[der]                                                  |
 | `outline:`                          | __o__[utline]                                                |
 | `overflow:`                         | __of__[low] __ov__[erflow]                                   |
-| `overflow-x:`                       | __ox__ __overflowx__ __overflow-__[x]                        |
-| `overflow-y:`                       | __oy__ __overflowy__ __overflow-y__                          |
+| `overflow-x:`                       | __ox__ overflowx overflow-[x]                                |
+| `overflow-y:`                       | __oy__ overflowy overflow-y                                  |
 | `padding:`                          | __pa__[dding]                                                |
-| `padding-bottom:`                   | __pb__[ottom] __padb__[ottom] __paddingb__[ottom] __padding-b__[ottom] |
-| `padding-left:`                     | __pl__[eft] __padl__[eft] __paddingl__[eft] __padding-__[left] |
-| `padding-right:`                    | __pr__[ight] __padr__[ight] __paddingr__[ight] __padding-r__[ight] |
-| `padding-top:`                      | __pt__[op] __padt__[op] __paddingt__[op] __padding-t__[op]   |
+| `padding-bottom:`                   | __pb__[ottom] __padb__[ottom] paddingb[ottom] padding-b[ottom] |
+| `padding-left:`                     | __pl__[eft] __padl__[eft] paddingl[eft] padding-[left]       |
+| `padding-right:`                    | __pr__[ight] __padr__[ight] paddingr[ight] padding-r[ight]   |
+| `padding-top:`                      | __pt__[op] __padt__[op] paddingt[op] padding-t[op]           |
 | `page-break-after:`                 | __pba__[fter] __pag__[ebreakafter] __pag__[e-break-after]    |
-| `page-break-before:`                | __pbb__[efore] __pagebreakb__[efore] __page-break-b__[efore] |
+| `page-break-before:`                | __pbb__[efore] pagebreakb[efore] page-break-b[efore]         |
 | `perspective:`                      | __pe__[rspective]                                            |
-| `perspective-origin:`               | __por__[igin] __perspectiveo__[rigin] __perspective-__[origin] |
+| `perspective-origin:`               | __por__[igin] perspectiveo[rigin] perspective-[origin]       |
 | `position:`                         | __po__[sition]                                               |
 | `quotes:`                           | __q__[uotes]                                                 |
 | `right:`                            | __r__[ight]                                                  |
 | `table-layout:`                     | __tl__[ayout] __tala__[yout] __tab__[lelayout] __tab__[le-layout] |
 | `text-align:`                       | __ta__[lign] __te__[xtalign] __te__[xt-align]                |
-| `text-decoration:`                  | __td__[ecoration] __textd__[ecoration] __text-d__[ecoration] |
-| `text-decoration-line:`             | __tdl__[ine] __textdecorationl__[ine] __text-decoration-__[line] |
-| `text-indent:`                      | __ti__[ndent] __texti__[ndent] __text-i__[ndent]             |
-| `text-shadow:`                      | __tsh__[adow] __tes__[hadow] __texts__[hadow] __text-s__[hadow] |
-| `text-transform:`                   | __tt__[ransform] __textt__[ransform] __text-t__[ransform]    |
+| `text-decoration:`                  | __td__[ecoration] __textd__[ecoration] text-d[ecoration]     |
+| `text-decoration-line:`             | __tdl__[ine] textdecorationl[ine] text-decoration-[line]     |
+| `text-indent:`                      | __ti__[ndent] __texti__[ndent] text-i[ndent]                 |
+| `text-shadow:`                      | __tsh__[adow] __tes__[hadow] __texts__[hadow] text-s[hadow]  |
+| `text-transform:`                   | __tt__[ransform] __textt__[ransform] text-t[ransform]        |
 | `top:`                              | __t__[op]                                                    |
-| `transform:`                        | __tf__[orm] __xf__[orm] __transf__[orm]                      |
+| `transform:`                        | __tf__[orm] __xf__[orm] transf[orm]                          |
 | `transition:`                       | __tr__[ans] __tn__ __ts__[ition] __tr__[ansition]            |
-| `transition-duration:`              | __tdu__[ration] __transitiond__[uration] __transition-__[duration] |
+| `transition-duration:`              | __tdu__[ration] transitiond[uration] transition-[duration]   |
 | `vertical-align:`                   | __v__[align] __v__[erticalalign] __v__[ertical-align]        |
 | `visibility:`                       | __vi__[sibility]                                             |
 | `white-space:`                      | __ws__[pace] __wh__[ispace] __wh__[space] __wis__[pace] __wh__[itespace] __wh__[ite-space] |
@@ -103,7 +103,7 @@
 | `align-items: stretch`              | __aistr__[etch]                                              |
 | `background-repeat: no-repeat`      | __brn__[orepeat] __n__[orepeat]                              |
 | `background-repeat: repeat-x`       | __brx__ __rx__ __bg__[rx] __re__[peatx]                      |
-| `background-repeat: repeat-y`       | __bry__ __ry__ __bgry__ __repeaty__                          |
+| `background-repeat: repeat-y`       | __bry__ __ry__ __bgry__ repeaty                              |
 | `background-size: contain`          | __con__[tain]                                                |
 | `background-size: cover`            | __co__[ver]                                                  |
 | `border-collapse: collapse`         | __bc__[collapse]                                             |
@@ -129,8 +129,8 @@
 | `display: inline-flex`              | __dif__[lex]                                                 |
 | `display: none`                     | __dn__[one]                                                  |
 | `display: table`                    | __dt__[able] __t__[able]                                     |
-| `display: table-cell`               | __dtc__[ell] __c__[ell] __tablec__[ell] __table-__[cell]     |
-| `display: table-row`                | __dtr__[ow] __r__[ow] __tabler__[ow] __table-r__[ow]         |
+| `display: table-cell`               | __dtc__[ell] __c__[ell] tablec[ell] table-[cell]             |
+| `display: table-row`                | __dtr__[ow] __r__[ow] tabler[ow] table-r[ow]                 |
 | `flex-direction: column`            | __fdc__[olumn]                                               |
 | `flex-direction: column-reverse`    | __fdcr__[everse]                                             |
 | `flex-direction: row`               | __fd__[row]                                                  |

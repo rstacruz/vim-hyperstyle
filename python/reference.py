@@ -39,8 +39,10 @@ class VimPrinter:
         self.l("")
     def table(self, items):
         def fmt(m):
-            if m.group(2): return "`%s`[%s]" % (m.group(1), m.group(2))
-            else: return "`%s`" % m.group(1)
+            left = m.group(1)
+            if len(left) <= 5: left = "`"+left+"`"
+            if m.group(2): return "%s[%s]" % (left, m.group(2))
+            else: return left
         for name, aliases in items:
             aliases = re.sub(r'([^ \[\]]+)(?:\[([^ ]+)\])?', fmt, aliases)
             self.l("  %-35s %s" % ("*%s*"%name.replace(' ','* *'), aliases))
@@ -58,8 +60,10 @@ class MarkdownPrinter(VimPrinter):
         self.l("| %-35s | %-60s |" % ("Expansion", "Shortcuts"))
         self.l("| --- | --- |")
         def fmt(m):
-            if m.group(2): return "__%s__[%s]" % (m.group(1), m.group(2))
-            else: return "__%s__" % m.group(1)
+            left = m.group(1)
+            if len(left) <= 5: left = "__"+left+"__"
+            if m.group(2): return "%s[%s]" % (left, m.group(2))
+            else: return left
         for name, aliases in items:
             aliases = re.sub(r'([^ \[\]]+)(?:\[([^ ]+)\])?', fmt, aliases)
             self.l("| %-35s | %-60s |" % ("`%s`"%name, aliases))
