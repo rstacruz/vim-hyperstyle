@@ -29,20 +29,17 @@ EOF
 
 " Expand spaces (fl_ => float:_)
 function! hyperstyle#expand_space()
-  if ! s:at_eol() | return "" | endif
-  return s:expand_inline({ 'fn': 'expand_property', 'append': ' ' })
+  return s:expand_inline('property', ' ', {})
 endfunction
 
 " Expand colons (fl: => float:)
 function! hyperstyle#expand_colon()
-  if ! s:at_eol() | return "" | endif
-  return s:expand_inline({ 'fn': 'expand_property', 'append': '' })
+  return s:expand_inline('property', '', {})
 endfunction
 
 " Expand semicolons (display: b; => display: block;)
 function! hyperstyle#expand_semicolon()
-  if ! s:at_eol() | return "" | endif
-  return s:expand_inline({ 'fn': 'expand_statement', 'append': b:hyperstyle_semi })
+  return s:expand_inline('statement', b:hyperstyle_semi, {})
 endfunction
 
 "
@@ -54,14 +51,10 @@ function! hyperstyle#expand_tab()
   if ! s:at_indented_line() | return "" | endif
   if ! s:at_eol() | return "" | endif
 
-  let r = s:expand_inline({ 'fn': "expand_property", 'append': ' ',
-    \ 'expr': '^\s*\([a-z0-9]\+\)\s*$' })
+  let r = s:expand_inline("property", ' ', {'expr': '^\s*\([a-z0-9]\+\)\s*$' })
   if r != '' | return r | endif
-
-  let r = s:expand_inline({ 'fn': "expand_statement",
-    \ 'append': b:hyperstyle_semi })
+  let r = s:expand_inline('statement', b:hyperstyle_semi, {})
   if r != '' | return r | endif
-
   return ''
 endfunction
 
@@ -74,13 +67,12 @@ function! hyperstyle#expand_cr()
   " If it broke in the middle of a line, don't.
   if match(getline('.'), '^\s*$') == -1 | return '' | endif
 
-  return s:expand_inline({
-    \ 'line': line('.')-1,
-    \ 'fn': 'expand_statement',
-    \ 'expr': '^\s*\(.\+\)\s*$',
-    \ 'clear': '"_dd^"_C',
-    \ 'append': b:hyperstyle_semi . "\n"
-    \ })
+  let ln     = s:get_line_info(line('.')-1, '^\s*\(.\+\)\s*$')
+  let result = s:expand('statement', ln.shorthand)
+  if result == '' | return '' | endif
+
+  exe 'normal "_dd^"_C'
+  return (ln.indent) . result . (b:hyperstyle_semi."\n")
 endfunction
 
 "
@@ -88,22 +80,23 @@ endfunction
 " then modifies the buffer as needed
 "
 
-function! s:expand_inline(o)
-  let linenum = exists('a:o.line') ? a:o.line : line('.')
+function! s:expand_inline(fn, append, o)
+  if ! s:at_eol() | return "" | endif
   let expr = exists('a:o.expr') ? a:o.expr : '^\s*\(.\+\).$'
-  let clear = exists('a:o.clear') ? a:o.clear : '0"_C'
-  let ln = s:get_line_info(linenum, expr) 
-  let out = s:pyfn(a:o.fn, ln.shorthand)
+  let ln = s:get_line_info(line('.'), expr) 
+  let out = s:expand(a:fn, ln.shorthand)
   if out == '' | return "" | endif
-
-  " Delete current line and replace
-  exe 'normal! '.clear
-  return (ln.indent) . out . (a:o.append)
+  exe 'normal! 0"_C'
+  return (ln.indent) . out . (a:append)
 endfunction
 
 "
 " Executes a python function with a given string as an argument
 "
+
+function s:expand(what, str)
+  return s:pyfn('expand_'.a:what, a:str)
+endfunction
 
 function! s:pyfn(fn, str)
   let escaped = substitute(a:str, '"', '\"', 'g')
