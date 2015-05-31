@@ -3,7 +3,7 @@
 
 inoremap <silent>  <SID>(hyperstyle-cr) <C-R>=hyperstyle#expand_cr()<CR>
 imap     <script> <Plug>(hyperstyle-cr) <SID>(hyperstyle-cr)
-inoremap <silent>  <SID>(hyperstyle-tab) <C-R>=hyperstyle#expand_tab()<CR><right>
+inoremap <silent>  <SID>(hyperstyle-tab) <C-R>=hyperstyle#expand_tab()<CR>
 imap     <script> <Plug>(hyperstyle-tab) <SID>(hyperstyle-tab)
 inoremap <silent>  <SID>(hyperstyle-space) <C-R>=hyperstyle#expand_space()<CR>
 imap     <script> <Plug>(hyperstyle-space) <SID>(hyperstyle-space)
@@ -22,20 +22,22 @@ function! s:enable(semi)
     \ " ":  maparg("<Space>","i")
     \ }
 
-  if maparg('<CR>','i') =~ '<CR><Plug>'
-    exe "imap <CR> ".maparg('<CR>','i')."<Plug>(hyperstyle-cr)"
-  else
-    imap <buffer> <CR> <CR><Plug>(hyperstyle-cr)
-  endif
-
-  imap <buffer> <Space> <Space><Plug>(hyperstyle-space)
+  call s:map_key("<CR>", "hyperstyle-cr")
+  call s:map_key("<Space>", "hyperstyle-space")
+  call s:map_key("<Tab>", "hyperstyle-tab")
 
   imap <buffer> ; <Plug>(hyperstyle-semi)
-  " imap <Tab> <Plug>(hyperstyle-tab)
   " exe 'inoremap <buffer> <Space> <C-R>=hyperstyle#expand_space()<CR>'
-  exe 'inoremap <buffer> <Tab> <C-R>=hyperstyle#expand_tab()<CR><Right>'
   exe 'inoremap <buffer> : <C-R>=hyperstyle#expand_colon()<CR>'
   exe 'inoremap <buffer> ; <C-R>=hyperstyle#expand_semicolon()<CR>'
+endfunction
+
+function! s:map_key(key, binding)
+  if maparg(a:key,'i') =~ a:key.'<Plug>'
+    exe "imap ".a:key." ".maparg(a:key,'i')."<Plug>(".a:binding.")"
+  else
+    exe "imap <buffer> ".a:key." ".a:key."<Plug>(".a:binding.")"
+  endif
 endfunction
 
 augroup hyperstyle

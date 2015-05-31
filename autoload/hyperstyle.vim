@@ -51,7 +51,7 @@ function! hyperstyle#expand_space()
   if out == '' | return '' | endif
 
   " Delete current line and replace
-  exe 'normal F "_C'
+  exe 'normal! F l"_C'
   return out . ' '
 endfunction
 
@@ -67,20 +67,25 @@ function! hyperstyle#expand_semicolon()
 endfunction
 
 function! hyperstyle#expand_tab()
-  if ! s:at_indented_line() | return s:fallback("\t") | endif
+  if ! s:at_indented_line() | return "" | endif
 
-  let out = s:expand_line('expand_property')
+  let linetext = getline('.') 
+  let indent = matchstr(linetext, '^\s*')
+  let shorthands = matchlist(linetext, '\([a-z0-9]\+\)\s*$')
+
+  let out = s:pyfn('expand_property', shorthands[1])
   if out != ''
-    exe 'normal 0"_C'
-    return ''.out.' '
-  endif
-  let out = s:expand_line('expand_statement')
-  if out != ''
-    exe 'normal 0"_C'
-    return '' . out . b:hyperstyle_semi
+    exec 'normal 0"_C'
+    return indent . out . ' '
   endif
 
-  return s:fallback("\t")
+  let out = s:pyfn('expand_statement', shorthands[1])
+  if out != ''
+    exec 'normal 0"_C'
+    return indent . out . b:hyperstyle_semi
+  endif
+
+  return ''
 endfunction
 
 function! s:fallback(key)
