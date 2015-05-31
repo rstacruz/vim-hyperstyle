@@ -31,11 +31,8 @@ function! s:map_key(key, binding)
 
   if oldmap =~# "<Plug>(".a:binding.")"
     " already mapped. maybe the user was playing with `set ft`
-  elseif oldmap =~# a:key.'<Plug>' || oldmap =~# '^<C-R>'
-    " vim-endwise style or ultisnips style
+  elseif oldmap != ""
     exe "imap ".a:key." ".oldmap."<Plug>(".a:binding.")"
-  " elseif oldmap != ""
-  "   exe "imap ".a:key." ".oldmap."<Plug>(".a:binding.")"
   else
     exe "imap <buffer> ".a:key." ".a:key."<Plug>(".a:binding.")"
   endif
