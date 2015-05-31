@@ -2,9 +2,9 @@ if exists("g:hyperstyle_autoloaded") | finish | endif
 let g:hyperstyle_autoloaded=1
 
 "
-" Check if python is supported.
+" Check if python is supported, and invoke the python env.
 "
-"
+
 if !has("python") && !has("python3")
   echohl WarningMsg
   echomsg "vim-hyperstyle requires vim with python support."
@@ -14,10 +14,6 @@ if !has("python") && !has("python3")
   echohl None
   finish
 endif
-
-"
-" Invoke python
-"
 
 let s:current_file=expand("<sfile>")
 python << EOF
@@ -33,33 +29,37 @@ EOF
 
 " Expand spaces (fl_ => float:_)
 function! hyperstyle#expand_space()
-  return s:expand_inline('expand_property', ' ')
+  if ! s:at_eol() | return "" | endif
+  return s:expand_inline({ 'fn': 'expand_property', 'append': ' ' })
 endfunction
 
 " Expand colons (fl: => float:)
 function! hyperstyle#expand_colon()
-  return s:expand_inline('expand_property', '')
+  if ! s:at_eol() | return "" | endif
+  return s:expand_inline({ 'fn': 'expand_property', 'append': '' })
 endfunction
 
 " Expand semicolons (display: b; => display: block;)
 function! hyperstyle#expand_semicolon()
-  return s:expand_inline('expand_statement', b:hyperstyle_semi)
+  if ! s:at_eol() | return "" | endif
+  return s:expand_inline({ 'fn': 'expand_statement', 'append': b:hyperstyle_semi })
 endfunction
 
 "
 " The <Tab> key combines the `:` expansion and the `;` expansion.
+" Also, only work on indented lines. This will avoid expanding selectors.
 "
 
 function! hyperstyle#expand_tab()
-  " Only work on indented lines. This will avoid expanding
-  " selectors
   if ! s:at_indented_line() | return "" | endif
   if ! s:at_eol() | return "" | endif
 
-  let r = s:expand_inline("expand_property", ' ', '^\s*\([a-z0-9]\+\)\s*$')
+  let r = s:expand_inline({ 'fn': "expand_property", 'append': ' ',
+    \ 'expr': '^\s*\([a-z0-9]\+\)\s*$' })
   if r != '' | return r | endif
 
-  let r = s:expand_inline("expand_statement", b:hyperstyle_semi)
+  let r = s:expand_inline({ 'fn': "expand_statement",
+    \ 'append': b:hyperstyle_semi })
   if r != '' | return r | endif
 
   return ''
@@ -89,16 +89,19 @@ endfunction
 " then modifies the buffer as needed
 "
 
-function! s:expand_inline(fn, suffix, ...)
-  if ! s:at_eol() | return "" | endif
-  let ln = s:get_line_info(line('.'), exists('a:1') ? a:1 : '^\s*\(.\+\).$')
-  let out = s:pyfn(a:fn, ln.shorthand)
+function! s:expand_inline(o)
+  let ln = s:get_line_info(line('.'), exists('a:o.expr') ? a:o.expr : '^\s*\(.\+\).$')
+  let out = s:pyfn(a:o.fn, ln.shorthand)
   if out == '' | return "" | endif
 
   " Delete current line and replace
   exe 'normal! 0"_C'
-  return (ln.indent) . out . a:suffix
+  return (ln.indent) . out . (a:o.append)
 endfunction
+
+"
+" Executes a python function with a given string as an argument
+"
 
 function! s:pyfn(fn, str)
   let escaped = substitute(a:str, '"', '\"', 'g')
@@ -146,4 +149,3 @@ endfunction
 function s:at_indented_line()
   return getline('.') =~ '^\s'
 endfunction
-
