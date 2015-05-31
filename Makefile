@@ -18,17 +18,21 @@ test-vim: vendor/vimrc
 vim: vendor/vimrc
 	@env HOME=$(shell pwd)/vendor ${vim} -Nu $< _test.css
 
-vendor/vimrc: vendor/vader.vim
+vendor/vimrc: vendor/vader.vim vendor/auto-pairs
 	@mkdir -p ./vendor
 	@echo "filetype off" > $@
-	@echo "set rtp+=$<" >> $@
+	@echo "set rtp+=vendor/vader.vim" >> $@
 	@echo "set rtp+=." >> $@
 	@echo "filetype plugin indent on" >> $@
 	@echo "syntax enable" >> $@
 
 vendor/vader.vim:
 	@mkdir -p ./vendor
-	@git clone https://github.com/junegunn/vader.vim ./vendor/vader.vim
+	@git clone https://github.com/junegunn/vader.vim.git ./vendor/vader.vim
+
+vendor/auto-pairs:
+	@mkdir -p ./vendor
+	@git clone https://github.com/jiangmiao/auto-pairs.git ./vendor/auto-pairs
 
 doc: REFERENCE.md doc/hyperstyle.txt
 

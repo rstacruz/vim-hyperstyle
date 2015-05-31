@@ -48,7 +48,7 @@ augroup hyperstyle
 augroup END
 
 " Hacky fix to make things work with auto-pairs.
-" This will take away the <Space> binding from auto-pairs.
+" This will take away the bindings from auto-pairs.
 " Yes this is a terrible thing to do.
 if globpath(&rtp, 'plugin/auto-pairs.vim') != ''
   function s:rescue_space()
@@ -57,11 +57,13 @@ if globpath(&rtp, 'plugin/auto-pairs.vim') != ''
 
     let oldmap = maparg("<space>", "i")
     if ! (oldmap =~ 'AutoPairsSpace') | return | endif
-    if (oldmap =~ 'hyperstyle#expand_space') | return | endif
+    if (oldmap =~ '(hyperstyle-space)') | return | endif
 
     let b:hyperstyle_ap_fix = 1
-    exe 'iunmap <buffer> <SPACE>'
-    exe 'inoremap <buffer> <SPACE> <C-R>=hyperstyle#expand_space()<CR>'
+    exe 'iunmap <buffer> <Space>'
+    exe 'iremap <buffer> <Space> <Space><Plug>(hyperstyle-space)'
+    exe 'iunmap <buffer> <CR>'
+    exe 'iremap <buffer> <CR> <Space><Plug>(hyperstyle-cr)'
   endfunction
   au InsertEnter * :call s:rescue_space()
 endif
