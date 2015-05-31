@@ -7,7 +7,10 @@ function! s:enable(semi)
   " Prevent double-mappings
   if maparg("<Tab>","i") =~ 'hyperstyle#' | return | endif
 
-  let b:hyperstyle_oldmap = {'tab': maparg("<Tab>","i"), 'space': maparg("<Space>","i")}
+  let b:hyperstyle_oldmap = {
+    \ "\t": maparg("<Tab>","i"),
+    \ " ":  maparg("<Space>","i")
+    \ }
 
   exe 'inoremap <buffer> <CR> <C-R>=hyperstyle#expand_cr()<CR>'
   exe 'inoremap <buffer> <Space> <C-R>=hyperstyle#expand_space()<CR>'

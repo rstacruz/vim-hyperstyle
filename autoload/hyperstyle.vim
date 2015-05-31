@@ -23,7 +23,7 @@ EOF
 
 " Expands carriage return (db => display: block;)
 function! hyperstyle#expand_cr()
-  if ! s:at_eol() | return "\n" | endif
+  if ! s:at_eol() | return s:fallback("\n") | endif
   return s:run_expand('expand_statement', "\n", "\n")
 endfunction
 
@@ -45,7 +45,7 @@ function! hyperstyle#expand_semicolon()
 endfunction
 
 function! hyperstyle#expand_tab()
-  if ! s:at_indented_line() | return s:fallback('tab', "\t") | endif
+  if ! s:at_indented_line() | return s:fallback("\t") | endif
 
   let out = s:expand_line('expand_property')
   if out != ''
@@ -58,13 +58,12 @@ function! hyperstyle#expand_tab()
     return '' . out . b:hyperstyle_semi
   endif
 
-  return s:fallback('tab', "\t")
+  return s:fallback("\t")
 endfunction
 
-function! s:fallback(key, str)
-    if empty(b:hyperstyle_oldmap[a:key]) | return a:str | endif
-    call s:run_old_mapping(b:hyperstyle_oldmap[a:key])
-    return ""
+function! s:fallback(key)
+    if empty(get(b:hyperstyle_oldmap,a:key)) | return a:key | endif
+    return s:run_old_mapping(b:hyperstyle_oldmap[a:key])
 endfunction
 
 " Expands the current line via Python bindings. It takes the current line and
@@ -79,7 +78,7 @@ endfunction
 "
 function! s:run_expand(fn, key, suffix)
   let out = s:expand_line(a:fn)
-  if out == '' | return a:key | endif
+  if out == '' | return s:fallback(a:key) | endif
   exe 'normal 0"_C'
   if a:fn == 'expand_statement'
     return out . b:hyperstyle_semi . a:suffix
@@ -128,10 +127,7 @@ endtry
 " This is usually something taken out of maparg('<Tab>','i')
 function! s:run_old_mapping(mapping)
   exe 'let obb = "'.fnameescape(a:mapping).'"'
-  if obb != ''
-    exe "normal a".obb
-    normal! l
-  endif
+  return obb
 endfunction
 
 " (internal) Checks if we're at the end of the line.
