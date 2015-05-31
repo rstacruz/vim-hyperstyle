@@ -4,10 +4,8 @@ let g:hyperstyle_autoloaded=1
 if !has("python") && !has("python3")
   echohl WarningMsg
   echomsg "vim-hyperstyle requires vim with python support."
-  if has("nvim")
-    echomsg "for Neovim, see `:help nvim-python`."
-  else
-    echomsg "you may need to rebuild vim with --with-python."
+  if has("nvim") | echomsg "for Neovim, see `:help nvim-python`."
+  else | echomsg "you may need to rebuild vim with --with-python."
   endif
   echohl None
   finish
@@ -20,6 +18,36 @@ path = os.path.dirname(vim.eval("s:current_file")) + '/../python'
 sys.path.insert(0, path)
 import hyperstyle as hyperstyle
 EOF
+
+" Expand spaces (fl_ => float:_)
+function! hyperstyle#expand_space()
+  return s:expand_inline('expand_property', ' ')
+endfunction
+
+" Expand colons (fl: => float:)
+function! hyperstyle#expand_colon()
+  return s:expand_inline('expand_property', '')
+endfunction
+
+" Expand semicolons (display: b; => display: block;)
+function! hyperstyle#expand_semicolon()
+  return s:expand_inline('expand_statement', ';')
+endfunction
+
+function! hyperstyle#expand_tab()
+  " Only work on indented lines. This will avoid expanding
+  " selectors
+  if ! s:at_indented_line() | return "" | endif
+  if ! s:at_eol() | return "" | endif
+
+  let r = s:expand_inline("expand_property", ' ', '^\s*\([a-z0-9]\+\)\s*$')
+  if r != '' | return r | endif
+
+  let r = s:expand_inline("expand_statement", b:hyperstyle_semi)
+  if r != '' | return r | endif
+
+  return ''
+endfunction
 
 " Expands carriage return (db => display: block;)
 function! hyperstyle#expand_cr()
@@ -36,76 +64,17 @@ function! hyperstyle#expand_cr()
   return (ln.indent) . out . b:hyperstyle_semi . "\n"
 endfunction
 
-" Expand spaces (fl_ => float:_)
-function! hyperstyle#expand_space()
+" (Internal) Gets from the current line, passes it to a python function,
+" then modifies the buffer as needed
+function! s:expand_inline(fn, suffix, ...)
   if ! s:at_eol() | return "" | endif
-
-  let ln = s:get_line_info(line('.'), '\([a-z0-9]\+\)\s*$')
-  let out = s:pyfn('expand_property', ln.shorthand)
-  if out == '' | return '' | endif
+  let ln = s:get_line_info(line('.'), exists('a:1') ? a:1 : '^\s*\(.\+\).$')
+  let out = s:pyfn(a:fn, ln.shorthand)
+  if out == '' | return "" | endif
 
   " Delete current line and replace
-  exe 'normal! F l"_C'
-  return (ln.indent) . out . ' '
-endfunction
-
-" Expand colons (fl: => float:)
-function! hyperstyle#expand_colon()
-  if ! s:at_eol() | return '' | endif
-  let ln = s:get_line_info(line('.'), '^\s*\(.\+\):$')
-  let out = s:pyfn('expand_property', ln.shorthand)
-  if out == '' | return '' | endif
-  exec 'normal 0"_C'
-  return (ln.indent) . out
-endfunction
-
-" Expand semicolons (display: b; => display: block;)
-function! hyperstyle#expand_semicolon()
-  if ! s:at_eol() | return ";" | endif
-  let ln = s:get_line_info(line('.'), '^\s*\(.\+\);$')
-  let out = s:pyfn('expand_statement', ln.shorthand)
-  if out == '' | return '' | endif
-  exec 'normal 0"_C'
-  return (ln.indent) . out . ';'
-endfunction
-
-function! hyperstyle#expand_tab()
-  if ! s:at_indented_line() | return "" | endif
-
-  let ln = s:get_line_info(line('.'), '^\s*\([a-z0-9]\+\)\s*$')
-  let out = s:pyfn('expand_property', ln.shorthand)
-  if out != ''
-    exec 'normal 0"_C'
-    return (ln.indent) . out . ' '
-  endif
-
-  let ln = s:get_line_info(line('.'), '^\s*\(.\+\)\s$')
-  let out = s:pyfn('expand_statement', ln.shorthand)
-  if out != ''
-    exec 'normal 0"_C'
-    return (ln.indent) . out . b:hyperstyle_semi
-  endif
-
-  return ''
-endfunction
-
-" (Internal) takes the current line and passes it onto a Python function.
-" Returns a string of the expanded version, or returns '' if it fails.
-"
-"     expand_line("expand_property", ';')
-"     # 'd' returns 'display'
-"
-"     expand_line("expand_statement", '')
-"     # 'dib' returns 'display: inline-block'
-"
-"     expand_line("expand_statement", ';')
-"     # 'dib' returns 'display: inline-block;'
-"
-"     expand_line("expand_property")
-"     # 'aoentuh' returns ''
-"
-function! s:expand_line(fn)
-  return s:pyfn(a:fn, getline('.'))
+  exe 'normal! 0"_C'
+  return (ln.indent) . out . a:suffix
 endfunction
 
 function! s:pyfn(fn, str)
@@ -125,13 +94,6 @@ catch /E117/ " Unknown function
     python if isinstance(result, str): vim.command('return ' + repr(result))
   endfunction
 endtry
-
-" (Internal) Runs an old mapping.
-" This is usually something taken out of maparg('<Tab>','i')
-function! s:run_old_mapping(mapping)
-  exe 'let obb = "'.fnameescape(a:mapping).'"'
-  return obb
-endfunction
 
 " (internal) Checks if we're at the end of the line.
 function s:at_eol()
