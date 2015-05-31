@@ -95,12 +95,9 @@ endfunction
 "
 
 function s:expand(what, str)
-  return s:pyfn('expand_'.a:what, a:str)
-endfunction
-
-function! s:pyfn(fn, str)
+  let method = 'expand_'.a:what
   let escaped = substitute(a:str, '"', '\"', 'g')
-  return s:pyeval("hyperstyle.".a:fn."(\"".escaped."\")")
+  return s:pyeval("hyperstyle.".method."(\"".escaped."\")")
 endfunction
 
 "
