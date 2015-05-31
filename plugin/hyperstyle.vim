@@ -7,6 +7,8 @@ inoremap <silent>  <SID>(hyperstyle-tab) <C-R>=hyperstyle#expand_tab()<CR>
 imap     <script> <Plug>(hyperstyle-tab) <SID>(hyperstyle-tab)
 inoremap <silent>  <SID>(hyperstyle-space) <C-R>=hyperstyle#expand_space()<CR>
 imap     <script> <Plug>(hyperstyle-space) <SID>(hyperstyle-space)
+inoremap <silent>  <SID>(hyperstyle-colon) <C-R>=hyperstyle#expand_colon()<CR>
+imap     <script> <Plug>(hyperstyle-colon) <SID>(hyperstyle-colon)
 inoremap <silent>  <SID>(hyperstyle-semi) <C-R>=hyperstyle#expand_semicolon()<CR>
 imap     <script> <Plug>(hyperstyle-semi) <SID>(hyperstyle-semi)
 
@@ -20,17 +22,14 @@ function! s:enable(semi)
   call s:map_key("<CR>", "hyperstyle-cr")
   call s:map_key("<Space>", "hyperstyle-space")
   call s:map_key("<Tab>", "hyperstyle-tab")
-
-  imap <buffer> ; <Plug>(hyperstyle-semi)
-  " exe 'inoremap <buffer> <Space> <C-R>=hyperstyle#expand_space()<CR>'
-  exe 'inoremap <buffer> : <C-R>=hyperstyle#expand_colon()<CR>'
-  exe 'inoremap <buffer> ; <C-R>=hyperstyle#expand_semicolon()<CR>'
+  call s:map_key(":", "hyperstyle-colon")
+  call s:map_key(";", "hyperstyle-semi")
 endfunction
 
 function! s:map_key(key, binding)
   let oldmap = maparg(a:key, 'i')
 
-  if oldmap =~# a:key.'<Plug>' || oldmap =~# '^<CR>'
+  if oldmap =~# a:key.'<Plug>' || oldmap =~# '^<C-R>'
     " vim-endwise style or ultisnips style
     exe "imap ".a:key." ".oldmap."<Plug>(".a:binding.")"
   else

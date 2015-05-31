@@ -1,0 +1,5 @@
+Given css:
+Do (pressing tab twice):
+  a  dis\<Tab>bl\<Tab>
+Expect (expands both the property and the value);
+  display: block;

@@ -51,35 +51,35 @@ endfunction
 
 " Expand colons (fl: => float:)
 function! hyperstyle#expand_colon()
-  if ! s:at_eol() | return ":" | endif
-  let ln = s:get_line_info(line('.'), '^\s*\(.\+\)\s*$')
+  if ! s:at_eol() | return '' | endif
+  let ln = s:get_line_info(line('.'), '^\s*\(.\+\):$')
   let out = s:pyfn('expand_property', ln.shorthand)
   if out == '' | return '' | endif
-  exec 'normal "_dd^"_C'
+  exec 'normal 0"_C'
   return (ln.indent) . out
 endfunction
 
 " Expand semicolons (display: b; => display: block;)
 function! hyperstyle#expand_semicolon()
   if ! s:at_eol() | return ";" | endif
-  let ln = s:get_line_info(line('.'), '^\s*\(.\+\)\s*$')
+  let ln = s:get_line_info(line('.'), '^\s*\(.\+\);$')
   let out = s:pyfn('expand_statement', ln.shorthand)
   if out == '' | return '' | endif
-  exec 'normal "_dd^"_C'
+  exec 'normal 0"_C'
   return (ln.indent) . out . ';'
 endfunction
 
 function! hyperstyle#expand_tab()
   if ! s:at_indented_line() | return "" | endif
 
-  let ln = s:get_line_info(line('.'), '\([a-z0-9]\+\)\s*$')
-
+  let ln = s:get_line_info(line('.'), '^\s*\([a-z0-9]\+\)\s*$')
   let out = s:pyfn('expand_property', ln.shorthand)
   if out != ''
     exec 'normal 0"_C'
     return ln.indent . out . ' '
   endif
 
+  let ln = s:get_line_info(line('.'), '^\s*\(.\+\)\s$')
   let out = s:pyfn('expand_statement', ln.shorthand)
   if out != ''
     exec 'normal 0"_C'
@@ -150,5 +150,5 @@ function! s:get_line_info(ln, expr)
   let shorthands = matchlist(linetext, a:expr)
   let shorthand = ""
   if exists("shorthands[1]") | let shorthand = shorthands[1] | endif
-  return { "indent": indent, "shorthand": shorthand }
+  return { "indent": indent, "shorthand": shorthand, "text": linetext }
 endfunction
