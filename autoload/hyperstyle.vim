@@ -74,14 +74,13 @@ function! hyperstyle#expand_cr()
   " If it broke in the middle of a line, don't.
   if match(getline('.'), '^\s*$') == -1 | return '' | endif
 
-  " Get previous line
-  let ln = s:get_line_info(line('.')-1, '^\s*\(.\+\)\s*$')
-  let out = s:pyfn('expand_statement', ln.shorthand)
-  if out == '' | return '' | endif
-
-  " Move cursor back to previous line
-  exec 'normal "_dd^"_C'
-  return (ln.indent) . out . b:hyperstyle_semi . "\n"
+  return s:expand_inline({
+    \ 'line': line('.')-1,
+    \ 'fn': 'expand_statement',
+    \ 'expr': '^\s*\(.\+\)\s*$',
+    \ 'clear': '"_dd^"_C',
+    \ 'append': b:hyperstyle_semi . "\n"
+    \ })
 endfunction
 
 "
@@ -90,12 +89,15 @@ endfunction
 "
 
 function! s:expand_inline(o)
-  let ln = s:get_line_info(line('.'), exists('a:o.expr') ? a:o.expr : '^\s*\(.\+\).$')
+  let linenum = exists('a:o.line') ? a:o.line : line('.')
+  let expr = exists('a:o.expr') ? a:o.expr : '^\s*\(.\+\).$'
+  let clear = exists('a:o.clear') ? a:o.clear : '0"_C'
+  let ln = s:get_line_info(linenum, expr) 
   let out = s:pyfn(a:o.fn, ln.shorthand)
   if out == '' | return "" | endif
 
   " Delete current line and replace
-  exe 'normal! 0"_C'
+  exe 'normal! '.clear
   return (ln.indent) . out . (a:o.append)
 endfunction
 
