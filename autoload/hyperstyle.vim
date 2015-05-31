@@ -27,27 +27,21 @@ function! hyperstyle#expand_cr()
   if match(getline('.'), '^\s*$') == -1 | return '' | endif
 
   " Get previous line
-  let ln = line('.') - 1
-  let linetext = getline(ln)
-  let indent = matchstr(linetext, '^\s*')
-  let shorthand = linetext[strlen(indent):]
-
-  let out = s:pyfn('expand_statement', shorthand)
+  let ln = s:get_line_info(line('.')-1, '^\s*\(.\+\)\s*$')
+  let out = s:pyfn('expand_statement', ln.shorthand)
   if out == '' | return '' | endif
 
   " Move cursor back to previous line
   exec 'normal "_dd^"_C'
-  return indent . out . b:hyperstyle_semi . "\n"
+  return (ln.indent) . out . b:hyperstyle_semi . "\n"
 endfunction
 
 " Expand spaces (fl_ => float:_)
 function! hyperstyle#expand_space()
   if ! s:at_eol() | return "" | endif
 
-  let linetext = getline('.') 
-  let shorthand = matchstr(linetext, '[a-z]\+\s*$')
-
-  let out = s:pyfn('expand_property', shorthand)
+  let ln = s:get_line_info(line('.'), '\([a-z0-9]\+\)\s*$')
+  let out = s:pyfn('expand_property', ln.shorthand)
   if out == '' | return '' | endif
 
   " Delete current line and replace
@@ -58,31 +52,38 @@ endfunction
 " Expand colons (fl: => float:)
 function! hyperstyle#expand_colon()
   if ! s:at_eol() | return ":" | endif
-  return s:run_expand('expand_property', ':', '')
+  let ln = s:get_line_info(line('.'), '^\s*\(.\+\)\s*$')
+  let out = s:pyfn('expand_property', ln.shorthand)
+  if out == '' | return '' | endif
+  exec 'normal "_dd^"_C'
+  return (ln.indent) . out
 endfunction
 
 " Expand semicolons (display: b; => display: block;)
 function! hyperstyle#expand_semicolon()
-  return s:run_expand('expand_statement', ';', '')
+  if ! s:at_eol() | return ";" | endif
+  let ln = s:get_line_info(line('.'), '^\s*\(.\+\)\s*$')
+  let out = s:pyfn('expand_statement', ln.shorthand)
+  if out == '' | return '' | endif
+  exec 'normal "_dd^"_C'
+  return (ln.indent) . out . ';'
 endfunction
 
 function! hyperstyle#expand_tab()
   if ! s:at_indented_line() | return "" | endif
 
-  let linetext = getline('.') 
-  let indent = matchstr(linetext, '^\s*')
-  let shorthands = matchlist(linetext, '\([a-z0-9]\+\)\s*$')
+  let ln = s:get_line_info(line('.'), '\([a-z0-9]\+\)\s*$')
 
-  let out = s:pyfn('expand_property', shorthands[1])
+  let out = s:pyfn('expand_property', ln.shorthand)
   if out != ''
     exec 'normal 0"_C'
-    return indent . out . ' '
+    return ln.indent . out . ' '
   endif
 
-  let out = s:pyfn('expand_statement', shorthands[1])
+  let out = s:pyfn('expand_statement', ln.shorthand)
   if out != ''
     exec 'normal 0"_C'
-    return indent . out . b:hyperstyle_semi
+    return ln.indent . out . b:hyperstyle_semi
   endif
 
   return ''
@@ -166,5 +167,15 @@ endfunction
 " (internal) Checks if we're at a line that's indented
 function s:at_indented_line()
   return getline('.') =~ '^\s'
+endfunction
+
+" (Internal) Yeah
+function! s:get_line_info(ln, expr)
+  let linetext = getline(a:ln)
+  let indent = matchstr(linetext, '^\s*')
+  let shorthands = matchlist(linetext, a:expr)
+  let shorthand = ""
+  if exists("shorthands[1]") | let shorthand = shorthands[1] | endif
+  return { "indent": indent, "shorthand": shorthand }
 endfunction
 
