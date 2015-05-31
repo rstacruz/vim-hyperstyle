@@ -89,32 +89,6 @@ function! hyperstyle#expand_tab()
   return ''
 endfunction
 
-function! s:fallback(key)
-    if empty(get(b:hyperstyle_oldmap,a:key)) | return a:key | endif
-    return s:run_old_mapping(b:hyperstyle_oldmap[a:key])
-endfunction
-
-" Expands the current line via Python bindings. It takes the current line and
-" passes it onto python function! `fn`.
-"
-" - key : (String) the key that was pressed. If the line is not recognized,
-"   that key will be returned.
-" - suffix : (String) what to append to the result on success. usually same as
-"   the key.
-"
-"     run_expand('expand_property', ' ', ' ')
-"
-function! s:run_expand(fn, key, suffix)
-  let out = s:pyfn(a:fn, getline('.'))
-  if out == '' | return s:fallback(a:key) | endif
-  exe 'normal 0"_C'
-  if a:fn == 'expand_statement'
-    return out . b:hyperstyle_semi . a:suffix
-  else
-    return out . a:suffix
-  endif
-endfunction
-
 " (Internal) takes the current line and passes it onto a Python function.
 " Returns a string of the expanded version, or returns '' if it fails.
 "
@@ -178,4 +152,3 @@ function! s:get_line_info(ln, expr)
   if exists("shorthands[1]") | let shorthand = shorthands[1] | endif
   return { "indent": indent, "shorthand": shorthand }
 endfunction
-

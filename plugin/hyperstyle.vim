@@ -17,11 +17,6 @@ function! s:enable(semi)
   " Prevent double-mappings
   if maparg("<Tab>","i") =~ 'hyperstyle#' | return | endif
 
-  let b:hyperstyle_oldmap = {
-    \ "\t": maparg("<Tab>","i"),
-    \ " ":  maparg("<Space>","i")
-    \ }
-
   call s:map_key("<CR>", "hyperstyle-cr")
   call s:map_key("<Space>", "hyperstyle-space")
   call s:map_key("<Tab>", "hyperstyle-tab")
