@@ -8,7 +8,8 @@ Expect (automatic semicolon insertion);
   _
 
 Do:
-  a  background: linear-gradient(\<Enter>_
+  a  background: linear-gradient(\<Del>\<Enter>_
+# Do `del` here to account for auto-pairs, just in case
 Expect (supress automatic semicolon insertion):
     background: linear-gradient(
     _

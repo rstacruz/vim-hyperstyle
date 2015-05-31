@@ -22,6 +22,7 @@ vendor/vimrc: vendor/vader.vim vendor/auto-pairs
 	@mkdir -p ./vendor
 	@echo "filetype off" > $@
 	@echo "set rtp+=vendor/vader.vim" >> $@
+	@echo "if has('\$$test_autopairs') | set rtp+=vendor/auto-pairs | endif" >> $@
 	@echo "set rtp+=." >> $@
 	@echo "filetype plugin indent on" >> $@
 	@echo "syntax enable" >> $@

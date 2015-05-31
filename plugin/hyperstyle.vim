@@ -51,7 +51,7 @@ augroup END
 " This will take away the bindings from auto-pairs.
 " Yes this is a terrible thing to do.
 if globpath(&rtp, 'plugin/auto-pairs.vim') != ''
-  function s:rescue_space()
+  function s:rescue_bindings()
     if exists('b:hyperstyle_ap_fix') | return | endif
     if ! exists('b:hyperstyle') | return | endif
 
@@ -61,9 +61,9 @@ if globpath(&rtp, 'plugin/auto-pairs.vim') != ''
 
     let b:hyperstyle_ap_fix = 1
     exe 'iunmap <buffer> <Space>'
-    exe 'iremap <buffer> <Space> <Space><Plug>(hyperstyle-space)'
+    exe 'imap <buffer> <Space> <Space><Plug>(hyperstyle-space)'
     exe 'iunmap <buffer> <CR>'
-    exe 'iremap <buffer> <CR> <Space><Plug>(hyperstyle-cr)'
+    exe 'imap <buffer> <CR> <CR><Plug>(hyperstyle-cr)'
   endfunction
-  au InsertEnter * :call s:rescue_space()
+  au InsertEnter * :call s:rescue_bindings()
 endif
