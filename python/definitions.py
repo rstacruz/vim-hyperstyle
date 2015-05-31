@@ -202,8 +202,8 @@ statements = [
     ("border-collapse", "collapse", ["bccollapse"]),
     ("border-collapse", "separate", ["bcseparate"]),
     
-    ("background-repeat", "repeat-x", [ "brx", "repeatx", "bgrx", "rx" ]),
-    ("background-repeat", "repeat-y", [ "bry", "repeaty", "bgry", "ry" ]),
+    ("background-repeat", "repeat-x", [ "brx", "rx", "bgrx", "repeatx" ]),
+    ("background-repeat", "repeat-y", [ "bry", "ry", "bgry", "repeaty" ]),
     ("background-repeat", "no-repeat", [ "brnorepeat", "norepeat"]),
 
     ("background-size", "cover", ["cover"]),

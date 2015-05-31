@@ -29,9 +29,12 @@ if "--vim" in sys.argv:
         print "%-40s%40s" % (headline.upper(), '*hyperstyle-'+headline.lower()+'*')
         print ""
     def print_table(items):
+        def fmt(m):
+            if m.group(2): return "`%s`[%s]" % (m.group(1), m.group(2))
+            else: return "`%s`" % m.group(1)
         for name, aliases in items:
-            aliases = re.sub(r'^([a-z0-9]+)', r'`\1`', aliases)
-            print "  %-35s %s" % ("*%s*"%name, aliases)
+            aliases = re.sub(r'([^ \[\]]+)(?:\[([^ ]+)\])?', fmt, aliases)
+            print "  %-35s %s" % ("*%s*"%name.replace(' ','* *'), aliases)
         print ""
 
 else:
@@ -46,24 +49,27 @@ else:
     def print_table(items):
         print "| %-35s | %-60s |" % ("Expansion", "Shortcuts")
         print "| --- | --- |"
+        def fmt(m):
+            if m.group(2): return "__%s__[%s]" % (m.group(1), m.group(2))
+            else: return "__%s__" % m.group(1)
         for name, aliases in items:
-            aliases = re.sub(r'^([a-z0-9]+)', r'**\1**', aliases)
-            print " | %-35s | %-60s |" % ("`%s`"%name, aliases)
+            aliases = re.sub(r'([^ \[\]]+)(?:\[([^ ]+)\])?', fmt, aliases)
+            print "| %-35s | %-60s |" % ("`%s`"%name, aliases)
         print ""
 
 def get_property_reference():
-    return get_generic_reference(index.full_properties.items(), index.properties)
+    return get_generic_reference(index.full_properties.items(), index.properties, ':')
 
 def get_statement_reference():
     return get_generic_reference(index.full_statements.items(), index.statements)
 
-def get_generic_reference(items, index):
+def get_generic_reference(items, index, suf=''):
     ref = []
     items = sorted(items)
     for prop, options in items:
         aliases = options.get('aliases')
         aliases_ref = resolve_aliases(aliases, options, index)
-        ref.append((prop, aliases_ref))
+        ref.append((prop + suf, aliases_ref))
     return ref
 
 def resolve_aliases(aliases, this, index):
