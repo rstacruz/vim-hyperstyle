@@ -20,7 +20,7 @@ def print_reference():
 
 if "--vim" in sys.argv:
     def print_top():
-        print "*vim-hyperstyle*  Style much faster"
+        print "*hyperstyle*  Style much faster"
         print ""
     def print_foot():
         print "vim:tw=78:ts=8:ft=help:norl:"

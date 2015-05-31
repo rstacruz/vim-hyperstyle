@@ -1,4 +1,4 @@
-*vim-hyperstyle*  Style much faster
+*hyperstyle*  Style much faster
 
 ================================================================================
 PROPERTIES                                               *hyperstyle-properties*
