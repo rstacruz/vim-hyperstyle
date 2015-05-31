@@ -28,8 +28,11 @@ function! s:enable(semi)
 endfunction
 
 function! s:map_key(key, binding)
-  if maparg(a:key,'i') =~ a:key.'<Plug>'
-    exe "imap ".a:key." ".maparg(a:key,'i')."<Plug>(".a:binding.")"
+  let oldmap = maparg(a:key, 'i')
+
+  if oldmap =~# a:key.'<Plug>' || oldmap =~# '^<CR>'
+    " vim-endwise style or ultisnips style
+    exe "imap ".a:key." ".oldmap."<Plug>(".a:binding.")"
   else
     exe "imap <buffer> ".a:key." ".a:key."<Plug>(".a:binding.")"
   endif
