@@ -23,8 +23,24 @@ EOF
 
 " Expands carriage return (db => display: block;)
 function! hyperstyle#expand_cr()
-  if ! s:at_eol() | return s:fallback("\n") | endif
-  return s:run_expand('expand_statement', "\n", "\n")
+  " If it broke a line, don't
+  if match(getline('.'), '^\s*$') == -1 | return '' | endif
+
+  let ln = line('.') - 1
+  let linetext = getline(ln)
+
+  let indent = matchstr(linetext, '^\s*')
+  let linetext = linetext[strlen(indent):]
+
+  let out = s:pyfn('expand_statement', linetext)
+  if out == '' | return '' | endif
+
+  exec "normal dd^C"
+  return indent . out . b:hyperstyle_semi . "\n"
+endfunction
+
+function! s:pyfn(fn, str)
+  return s:pyeval("hyperstyle.".a:fn."(\"" . a:str . "\")")
 endfunction
 
 " Expand spaces (fl_ => float:_)

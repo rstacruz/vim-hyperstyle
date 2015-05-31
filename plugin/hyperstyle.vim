@@ -1,5 +1,15 @@
 " Enables for the current buffer.
-" If `semi` is 1, semicolons will be added.
+" If `semi` is 1, semicolons will be advim lolded.
+
+inoremap   <SID>(hyperstyle-cr) <C-R>=hyperstyle#expand_cr()<CR>
+imap     <script> <Plug>(hyperstyle-cr) <SID>(hyperstyle-cr)
+inoremap <silent>  <SID>(hyperstyle-tab) <C-R>=hyperstyle#expand_tab()<CR><right>
+imap     <script> <Plug>(hyperstyle-tab) <SID>(hyperstyle-tab)
+inoremap <silent>  <SID>(hyperstyle-space) <C-R>=hyperstyle#expand_space()<CR>
+imap     <script> <Plug>(hyperstyle-space) <SID>(hyperstyle-space)
+inoremap <silent>  <SID>(hyperstyle-semi) <C-R>=hyperstyle#expand_semicolon()<CR>
+imap     <script> <Plug>(hyperstyle-semi) <SID>(hyperstyle-semi)
+
 function! s:enable(semi)
   let b:hyperstyle = 1
   let b:hyperstyle_semi = a:semi
@@ -12,8 +22,15 @@ function! s:enable(semi)
     \ " ":  maparg("<Space>","i")
     \ }
 
-  exe 'inoremap <buffer> <CR> <C-R>=hyperstyle#expand_cr()<CR>'
-  exe 'inoremap <buffer> <Space> <C-R>=hyperstyle#expand_space()<CR>'
+  if maparg('<CR>','i') =~ '<CR><Plug>'
+    exe "imap <CR> ".maparg('<CR>','i')."<Plug>(hyperstyle-cr)"
+  else
+    imap <buffer> <CR> <CR><Plug>(hyperstyle-cr)
+  endif
+  imap <buffer> <Space> <Plug>(hyperstyle-space)
+  imap <buffer> ; <Plug>(hyperstyle-semi)
+  " imap <Tab> <Plug>(hyperstyle-tab)
+  " exe 'inoremap <buffer> <Space> <C-R>=hyperstyle#expand_space()<CR>'
   exe 'inoremap <buffer> <Tab> <C-R>=hyperstyle#expand_tab()<CR><Right>'
   exe 'inoremap <buffer> : <C-R>=hyperstyle#expand_colon()<CR>'
   exe 'inoremap <buffer> ; <C-R>=hyperstyle#expand_semicolon()<CR>'
