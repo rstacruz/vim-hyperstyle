@@ -39,10 +39,6 @@ function! hyperstyle#expand_cr()
   return indent . out . b:hyperstyle_semi . "\n"
 endfunction
 
-function! s:pyfn(fn, str)
-  return s:pyeval("hyperstyle.".a:fn."(\"" . a:str . "\")")
-endfunction
-
 " Expand spaces (fl_ => float:_)
 function! hyperstyle#expand_space()
   if ! s:at_eol() | return " " | endif
@@ -119,11 +115,12 @@ endfunction
 "     # 'aoentuh' returns ''
 "
 function! s:expand_line(fn)
-  return s:expand(a:fn, "getline('.')")
+  return s:pyfn(a:fn, getline('.'))
 endfunction
 
-function! s:expand(fn, expr)
-  return s:pyeval("hyperstyle.".a:fn."(vim.eval(\"" . fnameescape(a:expr) . "\"))")
+function! s:pyfn(fn, str)
+  let escaped = substitute(a:str, '"', '\"', 'g')
+  return s:pyeval("hyperstyle.".a:fn."(\"".escaped."\")")
 endfunction
 
 " pyeval() polyfill
