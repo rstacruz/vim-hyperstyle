@@ -116,10 +116,10 @@
 | `clear: left`                       | __cl__[eft]                                                  |
 | `clear: right`                      | __cr__[ight]                                                 |
 | `content: ''`                       | __conte__[nt]                                                |
-| `cursor: busy`                      | __cub__[usy]                                                 |
-| `cursor: pointer`                   | __cu__[pointer]                                              |
-| `cursor: text`                      | __cut__[ext]                                                 |
-| `cursor: wait`                      | __cuw__[ait]                                                 |
+| `cursor: busy`                      | __cub__[usy] __curb__[usy]                                   |
+| `cursor: pointer`                   | __cu__[pointer] __cu__[rpointer]                             |
+| `cursor: text`                      | __cut__[ext] __curt__[ext]                                   |
+| `cursor: wait`                      | __cuw__[ait] __curw__[ait]                                   |
 | `direction: ltr`                    | __l__[tr] __dir__[ltr]                                       |
 | `direction: rtl`                    | __rt__[l] __dirr__[tl]                                       |
 | `display: block`                    | __d__[block]                                                 |

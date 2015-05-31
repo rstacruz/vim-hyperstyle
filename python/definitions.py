@@ -209,10 +209,10 @@ statements = [
     ("background-size", "cover", ["cover"]),
     ("background-size", "contain", ["contain"]),
 
-    ("cursor", "pointer", ["cupointer"]),
-    ("cursor", "wait", ["cuwait"]),
-    ("cursor", "busy", ["cubusy"]),
-    ("cursor", "text", ["cutext"]),
+    ("cursor", "pointer", ["cupointer", "curpointer"]),
+    ("cursor", "wait", ["cuwait", "curwait"]),
+    ("cursor", "busy", ["cubusy", "curbusy"]),
+    ("cursor", "text", ["cutext", "curtext"]),
 
     ("vertical-align", "middle", ["vamiddle"]),
     ("vertical-align", "top", ["vatop"]),
