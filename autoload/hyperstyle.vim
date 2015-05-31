@@ -46,7 +46,7 @@ function! hyperstyle#expand_space()
 
   " Delete current line and replace
   exe 'normal! F l"_C'
-  return out . ' '
+  return (ln.indent) . out . ' '
 endfunction
 
 " Expand colons (fl: => float:)
@@ -76,14 +76,14 @@ function! hyperstyle#expand_tab()
   let out = s:pyfn('expand_property', ln.shorthand)
   if out != ''
     exec 'normal 0"_C'
-    return ln.indent . out . ' '
+    return (ln.indent) . out . ' '
   endif
 
   let ln = s:get_line_info(line('.'), '^\s*\(.\+\)\s$')
   let out = s:pyfn('expand_statement', ln.shorthand)
   if out != ''
     exec 'normal 0"_C'
-    return ln.indent . out . b:hyperstyle_semi
+    return (ln.indent) . out . b:hyperstyle_semi
   endif
 
   return ''
@@ -143,7 +143,10 @@ function s:at_indented_line()
   return getline('.') =~ '^\s'
 endfunction
 
-" (Internal) Yeah
+" (Internal) Splits a line to indent and shorthand
+"
+"  - indent: indentation text
+"  - shorthand: the thing matching regexps
 function! s:get_line_info(ln, expr)
   let linetext = getline(a:ln)
   let indent = matchstr(linetext, '^\s*')
