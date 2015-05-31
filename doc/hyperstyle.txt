@@ -3,7 +3,7 @@
 ================================================================================
 PROPERTIES                                               *hyperstyle-properties*
 
-  *align-items:*                      `ai`[tems] `al`[items] `al`[ignitems] `al`[ign-items]
+  *align-items:*                      `ai`[tems] `al`[items] alignitems align-items
   *animation:*                        `an`[imation]
   *background:*                       `ba`[ckground]
   *background-color:*                 `bg`[color] `backc`[olor] backgroundc[olor] background-[color]
@@ -23,8 +23,8 @@ PROPERTIES                                               *hyperstyle-properties*
   *border-top-width:*                 `btw`[idth] bordertopw[idth] border-top-[width]
   *border-width:*                     `bw`[idth] borderw[idth] border-w[idth]
   *bottom:*                           `bot`[tom]
-  *box-shadow:*                       `bs`[hadow] `bos`[hadow] `box`[shadow] `box`[-shadow]
-  *box-sizing:*                       `bsi`[zing] `bsi`[ze] `boxsi`[ze] `boxsi`[zing] box-si[zing]
+  *box-shadow:*                       `bs`[hadow] `bos`[hadow] `box`[shadow] box-shadow
+  *box-sizing:*                       `bsi`[zing] `bsize` `boxsi`[ze] boxsizing box-si[zing]
   *clear:*                            `cl`[ear]
   *color:*                            `c`[olor]
   *content:*                          `con`[tent]
@@ -44,18 +44,18 @@ PROPERTIES                                               *hyperstyle-properties*
   *font-variant:*                     `fv`[ariant] `fov`[ariant] `fontv`[ariant] font-v[ariant]
   *font-weight:*                      `fw`[eight] `fow`[eight] `fontw`[eight] font-w[eight]
   *height:*                           `h`[eight]
-  *justify-content:*                  `j`[content] `j`[ucontent] `j`[uscontent] `j`[ustcontent] `j`[ustifycontent] `j`[ustify-content]
+  *justify-content:*                  `j`[content] jucontent juscontent justcontent justifycontent justify-content
   *left:*                             `l`[eft]
-  *letter-spacing:*                   `ls`[pacing] `les`[pacing] `let`[terspacing] `let`[ter-spacing]
-  *line-height:*                      `lh`[eight] `lih`[eight] `lin`[eheight] `lin`[e-height]
+  *letter-spacing:*                   `ls`[pacing] `les`[pacing] `let`[terspacing] letter-spacing
+  *line-height:*                      `lh`[eight] `lih`[eight] `lin`[eheight] line-height
   *margin:*                           `m`[argin]
   *margin-bottom:*                    `mb`[ottom] `marb`[ottom] marginb[ottom] margin-b[ottom]
   *margin-left:*                      `ml`[eft] `marl`[eft] marginl[eft] margin-[left]
   *margin-right:*                     `mr`[ight] `marr`[ight] marginr[ight] margin-r[ight]
   *margin-top:*                       `mt`[op] `mart`[op] margint[op] margin-t[op]
-  *max-height:*                       `x`[height] `mx`[height] `max`[height] `max`[-height]
+  *max-height:*                       `x`[height] `mx`[height] `max`[height] max-height
   *max-width:*                        `xw`[idth] `m`[xheight] `maxw`[idth] `max-w`[idth]
-  *min-height:*                       `mh`[eight] `mi`[nheight] `mi`[n-height]
+  *min-height:*                       `mh`[eight] `mi`[nheight] min-height
   *min-width:*                        `mw`[idth] `minw`[idth] `min-w`[idth]
   *opacity:*                          `op`[acity]
   *order:*                            `or`[der]
@@ -68,15 +68,15 @@ PROPERTIES                                               *hyperstyle-properties*
   *padding-left:*                     `pl`[eft] `padl`[eft] paddingl[eft] padding-[left]
   *padding-right:*                    `pr`[ight] `padr`[ight] paddingr[ight] padding-r[ight]
   *padding-top:*                      `pt`[op] `padt`[op] paddingt[op] padding-t[op]
-  *page-break-after:*                 `pba`[fter] `pag`[ebreakafter] `pag`[e-break-after]
+  *page-break-after:*                 `pba`[fter] `pag`[ebreakafter] page-break-after
   *page-break-before:*                `pbb`[efore] pagebreakb[efore] page-break-b[efore]
   *perspective:*                      `pe`[rspective]
   *perspective-origin:*               `por`[igin] perspectiveo[rigin] perspective-[origin]
   *position:*                         `po`[sition]
   *quotes:*                           `q`[uotes]
   *right:*                            `r`[ight]
-  *table-layout:*                     `tl`[ayout] `tala`[yout] `tab`[lelayout] `tab`[le-layout]
-  *text-align:*                       `ta`[lign] `te`[xtalign] `te`[xt-align]
+  *table-layout:*                     `tl`[ayout] `tala`[yout] `tab`[lelayout] table-layout
+  *text-align:*                       `ta`[lign] `te`[xtalign] text-align
   *text-decoration:*                  `td`[ecoration] `textd`[ecoration] text-d[ecoration]
   *text-decoration-line:*             `tdl`[ine] textdecorationl[ine] text-decoration-[line]
   *text-indent:*                      `ti`[ndent] `texti`[ndent] text-i[ndent]
@@ -84,14 +84,14 @@ PROPERTIES                                               *hyperstyle-properties*
   *text-transform:*                   `tt`[ransform] `textt`[ransform] text-t[ransform]
   *top:*                              `t`[op]
   *transform:*                        `tf`[orm] `xf`[orm] transf[orm]
-  *transition:*                       `tr`[ans] `tn` `ts`[ition] `tr`[ansition]
+  *transition:*                       `tr`[ans] `tn` `ts`[ition] transition
   *transition-duration:*              `tdu`[ration] transitiond[uration] transition-[duration]
-  *vertical-align:*                   `v`[align] `v`[erticalalign] `v`[ertical-align]
+  *vertical-align:*                   `v`[align] verticalalign vertical-align
   *visibility:*                       `vi`[sibility]
-  *white-space:*                      `ws`[pace] `wh`[ispace] `wh`[space] `wis`[pace] `wh`[itespace] `wh`[ite-space]
+  *white-space:*                      `ws`[pace] `wh`[ispace] whspace `wis`[pace] whitespace white-space
   *width:*                            `w`[idth]
-  *word-break:*                       `wb`[reak] `wo`[rdbreak] `wo`[rd-break]
-  *z-index:*                          `z`[index] `z`[-index]
+  *word-break:*                       `wb`[reak] `wo`[rdbreak] word-break
+  *z-index:*                          `z`[index] z-index
   *zoom:*                             `zo`[om]
 
 ================================================================================
@@ -117,7 +117,7 @@ STATEMENTS                                               *hyperstyle-statements*
   *clear:* *right*                    `cr`[ight]
   *content:* *''*                     `conte`[nt]
   *cursor:* *busy*                    `cub`[usy] `curb`[usy]
-  *cursor:* *pointer*                 `cu`[pointer] `cu`[rpointer]
+  *cursor:* *pointer*                 `cu`[pointer] curpointer
   *cursor:* *text*                    `cut`[ext] `curt`[ext]
   *cursor:* *wait*                    `cuw`[ait] `curw`[ait]
   *direction:* *ltr*                  `l`[tr] `dir`[ltr]
@@ -138,7 +138,7 @@ STATEMENTS                                               *hyperstyle-statements*
   *flex-wrap:* *nowrap*               `fnow`[rap]
   *flex-wrap:* *wrap*                 `fwr`[ap] `flexw`[rap]
   *flex:* *auto*                      `fla`[uto]
-  *float:* *left*                     `f`[left] `f`[lleft] `f`[loleft]
+  *float:* *left*                     `f`[left] flleft floleft
   *float:* *none*                     `fn`[one] `fln`[one] `flon`[one]
   *float:* *right*                    `fr`[ight] `flr`[ight] `flor`[ight]
   *font-style:* *italic*              `fs`[italic] `it`[alic]
@@ -160,7 +160,7 @@ STATEMENTS                                               *hyperstyle-statements*
   *justify-content:* *flex-start*     `jcs`[tart]
   *margin-left:* *auto*               `ml`[auto]
   *margin-right:* *auto*              `mr`[auto]
-  *margin:* *0*                       `m`[0] `m`[o]
+  *margin:* *0*                       `m`[0] `mo`
   *margin:* *0* *auto*                `m0a` `moa`
   *margin:* *auto*                    `ma`[uto]
   *overflow-x:* *auto*                `oxa`[uto]
@@ -188,7 +188,7 @@ STATEMENTS                                               *hyperstyle-statements*
   *text-align:* *right*               `tar`[ight]
   *text-decoration:* *none*           `tdn`[one]
   *text-decoration:* *underline*      `td`[underline] `un`[derline]
-  *text-overflow:* *ellipsis*         `e`[lip] `e`[llipsis] `to`[ellipsis]
+  *text-overflow:* *ellipsis*         `e`[lip] ellipsis `to`[ellipsis]
   *text-shadow:* *none*               `ts`[none] `te`[shnone]
   *text-transform:* *capitalize*      `ttc`[ap]
   *text-transform:* *full-width*      `ttf`[ull]
@@ -204,7 +204,7 @@ STATEMENTS                                               *hyperstyle-statements*
   *vertical-align:* *text-top*        `vatt`[op]
   *vertical-align:* *top*             `vat`[op]
   *visibility:* *collapse*            `vc`[ollapse] `visc`[ollapse] `vic`[ollapse]
-  *visibility:* *hidden*              `vh`[idden] `vish`[idden] `vih`[idden] `h`[idden] `h`[ide]
+  *visibility:* *hidden*              `vh`[idden] `vish`[idden] `vih`[idden] `h`[idden] `hide`
   *visibility:* *visible*             `vv`[isible] `vi`[sible]
   *white-space:* *nowrap*             `now`[rap]
   *width:* *auto*                     `w`[auto]

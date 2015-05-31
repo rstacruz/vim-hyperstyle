@@ -67,7 +67,7 @@ class MarkdownPrinter(VimPrinter):
             else: return left
         for name, aliases in items:
             aliases = re.sub(r'([^ \[\]]+)(?:\[([^ ]+)\])?', fmt, aliases)
-            self.l("| %-35s | %-60s |" % (name, aliases))
+            self.l("| %-35s | %-60s |" % ("**%s**"%name, aliases))
         self.l("")
 
 def get_property_reference():
@@ -111,6 +111,8 @@ def resolve_aliases(aliases, this, index):
     >>> resolve_aliases(['talign', 'textalign'], options, index.properties)
     "ta[lign] tex[align]"
     """
+    taken = {}
+
     def referencify(alias):
         root_length = 1
         for i in range(len(alias), 0, -1):
@@ -121,7 +123,12 @@ def resolve_aliases(aliases, this, index):
         if len(alias) == root_length:
             return alias
         else:
-            return "%s[%s]" % (alias[0:root_length], alias[root_length:])
+            root = alias[0:root_length]
+            if root in taken:
+                return alias
+            else:
+                taken[root] = True
+                return "%s[%s]" % (root, alias[root_length:])
 
     refs = [referencify(a) for a in aliases]
     return " ".join(refs)
