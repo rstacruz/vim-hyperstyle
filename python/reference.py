@@ -61,12 +61,13 @@ class MarkdownPrinter(VimPrinter):
         self.l("| --- | --- |")
         def fmt(m):
             left = m.group(1)
-            if len(left) <= 5: left = "__"+left+"__"
-            if m.group(2): return "%s[%s]" % (left, m.group(2))
+            if len(left) <= 5: left = "<kbd>"+left+"</kbd>"
+            else: left = "<u>"+left+"</u>"
+            if m.group(2): return "%s%s" % (left, m.group(2))
             else: return left
         for name, aliases in items:
             aliases = re.sub(r'([^ \[\]]+)(?:\[([^ ]+)\])?', fmt, aliases)
-            self.l("| %-35s | %-60s |" % ("`%s`"%name, aliases))
+            self.l("| %-35s | %-60s |" % (name, aliases))
         self.l("")
 
 def get_property_reference():

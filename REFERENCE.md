@@ -2,210 +2,210 @@
 
 | Expansion                           | Shortcuts                                                    |
 | --- | --- |
-| `align-items:`                      | __ai__[tems] __al__[items] __al__[ignitems] __al__[ign-items] |
-| `animation:`                        | __an__[imation]                                              |
-| `background:`                       | __ba__[ckground]                                             |
-| `background-color:`                 | __bg__[color] __backc__[olor] backgroundc[olor] background-[color] |
-| `background-position:`              | __bgp__[osition] __backp__[osition] backgroundp[osition] background-p[osition] |
-| `background-size:`                  | __bgs__[ize] __backs__[ize] backgrounds[ize] background-s[ize] |
-| `border:`                           | __bo__[rder]                                                 |
-| `border-bottom:`                    | __bb__[ottom] __borb__[ottom] borderb[ottom] border-b[ottom] |
-| `border-bottom-width:`              | __bbw__[idth] borderbottomw[idth] border-bottom-[width]      |
-| `border-collapse:`                  | __bcoll__[apse] borcoll[apse] __coll__[apse] bordercoll[apse] border-coll[apse] |
-| `border-color:`                     | __bc__[olor] __boc__[olor] __borc__[olor] borderc[olor] border-c[olor] |
-| `border-left:`                      | __bl__[eft] __borl__[eft] borderl[eft] border-l[eft]         |
-| `border-left-width:`                | __blw__[idth] borderleftw[idth] border-left-[width]          |
-| `border-radius:`                    | __bra__[dius] __bora__[dius] borderra[dius] border-ra[dius]  |
-| `border-right:`                     | __bri__[ght] __borr__[ight] borderr[ight] border-[right]     |
-| `border-right-width:`               | __brw__[idth] borderrightw[idth] border-right-[width]        |
-| `border-top:`                       | __bt__[op] __bort__[op] bordert[op] border-t[op]             |
-| `border-top-width:`                 | __btw__[idth] bordertopw[idth] border-top-[width]            |
-| `border-width:`                     | __bw__[idth] borderw[idth] border-w[idth]                    |
-| `bottom:`                           | __bot__[tom]                                                 |
-| `box-shadow:`                       | __bs__[hadow] __bos__[hadow] __box__[shadow] __box__[-shadow] |
-| `box-sizing:`                       | __bsi__[zing] __bsi__[ze] __boxsi__[ze] __boxsi__[zing] box-si[zing] |
-| `clear:`                            | __cl__[ear]                                                  |
-| `color:`                            | __c__[olor]                                                  |
-| `content:`                          | __con__[tent]                                                |
-| `cursor:`                           | __cu__[rsor]                                                 |
-| `direction:`                        | __dir__[ection]                                              |
-| `display:`                          | __d__[isplay]                                                |
-| `flex:`                             | __fle__[x]                                                   |
-| `flex-direction:`                   | __fd__[irection] __fld__[irection] __fled__[irection] __flexd__[irection] flex-d[irection] |
-| `flex-grow:`                        | __fg__[row] __flg__[row] __fleg__[row] __flexg__[row] __flex-__[grow] |
-| `flex-shrink:`                      | __fsh__[rink] __fls__[hrink] __fles__[hrink] __flexs__[hrink] flex-s[hrink] |
-| `flex-wrap:`                        | __fwr__[ap] __flw__[rap] __flew__[rap] __flexw__[rap] flex-w[rap] |
-| `float:`                            | __fl__[oat]                                                  |
-| `font:`                             | __f__[ont]                                                   |
-| `font-family:`                      | __ff__[amily] __fa__[mily] __fontf__[amily] font-f[amily]    |
-| `font-size:`                        | __fs__[ize] __fos__[ize] __fonts__[ize] __font-__[size]      |
-| `font-style:`                       | __fst__[yle] __fost__[yle] fontst[yle] font-st[yle]          |
-| `font-variant:`                     | __fv__[ariant] __fov__[ariant] __fontv__[ariant] font-v[ariant] |
-| `font-weight:`                      | __fw__[eight] __fow__[eight] __fontw__[eight] font-w[eight]  |
-| `height:`                           | __h__[eight]                                                 |
-| `justify-content:`                  | __j__[content] __j__[ucontent] __j__[uscontent] __j__[ustcontent] __j__[ustifycontent] __j__[ustify-content] |
-| `left:`                             | __l__[eft]                                                   |
-| `letter-spacing:`                   | __ls__[pacing] __les__[pacing] __let__[terspacing] __let__[ter-spacing] |
-| `line-height:`                      | __lh__[eight] __lih__[eight] __lin__[eheight] __lin__[e-height] |
-| `margin:`                           | __m__[argin]                                                 |
-| `margin-bottom:`                    | __mb__[ottom] __marb__[ottom] marginb[ottom] margin-b[ottom] |
-| `margin-left:`                      | __ml__[eft] __marl__[eft] marginl[eft] margin-[left]         |
-| `margin-right:`                     | __mr__[ight] __marr__[ight] marginr[ight] margin-r[ight]     |
-| `margin-top:`                       | __mt__[op] __mart__[op] margint[op] margin-t[op]             |
-| `max-height:`                       | __x__[height] __mx__[height] __max__[height] __max__[-height] |
-| `max-width:`                        | __xw__[idth] __m__[xheight] __maxw__[idth] __max-w__[idth]   |
-| `min-height:`                       | __mh__[eight] __mi__[nheight] __mi__[n-height]               |
-| `min-width:`                        | __mw__[idth] __minw__[idth] __min-w__[idth]                  |
-| `opacity:`                          | __op__[acity]                                                |
-| `order:`                            | __or__[der]                                                  |
-| `outline:`                          | __o__[utline]                                                |
-| `overflow:`                         | __of__[low] __ov__[erflow]                                   |
-| `overflow-x:`                       | __ox__ overflowx overflow-[x]                                |
-| `overflow-y:`                       | __oy__ overflowy overflow-y                                  |
-| `padding:`                          | __pa__[dding]                                                |
-| `padding-bottom:`                   | __pb__[ottom] __padb__[ottom] paddingb[ottom] padding-b[ottom] |
-| `padding-left:`                     | __pl__[eft] __padl__[eft] paddingl[eft] padding-[left]       |
-| `padding-right:`                    | __pr__[ight] __padr__[ight] paddingr[ight] padding-r[ight]   |
-| `padding-top:`                      | __pt__[op] __padt__[op] paddingt[op] padding-t[op]           |
-| `page-break-after:`                 | __pba__[fter] __pag__[ebreakafter] __pag__[e-break-after]    |
-| `page-break-before:`                | __pbb__[efore] pagebreakb[efore] page-break-b[efore]         |
-| `perspective:`                      | __pe__[rspective]                                            |
-| `perspective-origin:`               | __por__[igin] perspectiveo[rigin] perspective-[origin]       |
-| `position:`                         | __po__[sition]                                               |
-| `quotes:`                           | __q__[uotes]                                                 |
-| `right:`                            | __r__[ight]                                                  |
-| `table-layout:`                     | __tl__[ayout] __tala__[yout] __tab__[lelayout] __tab__[le-layout] |
-| `text-align:`                       | __ta__[lign] __te__[xtalign] __te__[xt-align]                |
-| `text-decoration:`                  | __td__[ecoration] __textd__[ecoration] text-d[ecoration]     |
-| `text-decoration-line:`             | __tdl__[ine] textdecorationl[ine] text-decoration-[line]     |
-| `text-indent:`                      | __ti__[ndent] __texti__[ndent] text-i[ndent]                 |
-| `text-shadow:`                      | __tsh__[adow] __tes__[hadow] __texts__[hadow] text-s[hadow]  |
-| `text-transform:`                   | __tt__[ransform] __textt__[ransform] text-t[ransform]        |
-| `top:`                              | __t__[op]                                                    |
-| `transform:`                        | __tf__[orm] __xf__[orm] transf[orm]                          |
-| `transition:`                       | __tr__[ans] __tn__ __ts__[ition] __tr__[ansition]            |
-| `transition-duration:`              | __tdu__[ration] transitiond[uration] transition-[duration]   |
-| `vertical-align:`                   | __v__[align] __v__[erticalalign] __v__[ertical-align]        |
-| `visibility:`                       | __vi__[sibility]                                             |
-| `white-space:`                      | __ws__[pace] __wh__[ispace] __wh__[space] __wis__[pace] __wh__[itespace] __wh__[ite-space] |
-| `width:`                            | __w__[idth]                                                  |
-| `word-break:`                       | __wb__[reak] __wo__[rdbreak] __wo__[rd-break]                |
-| `z-index:`                          | __z__[index] __z__[-index]                                   |
-| `zoom:`                             | __zo__[om]                                                   |
+| align-items:                        | <kbd>ai</kbd>tems <kbd>al</kbd>items <kbd>al</kbd>ignitems <kbd>al</kbd>ign-items |
+| animation:                          | <kbd>an</kbd>imation                                         |
+| background:                         | <kbd>ba</kbd>ckground                                        |
+| background-color:                   | <kbd>bg</kbd>color <kbd>backc</kbd>olor <u>backgroundc</u>olor <u>background-</u>color |
+| background-position:                | <kbd>bgp</kbd>osition <kbd>backp</kbd>osition <u>backgroundp</u>osition <u>background-p</u>osition |
+| background-size:                    | <kbd>bgs</kbd>ize <kbd>backs</kbd>ize <u>backgrounds</u>ize <u>background-s</u>ize |
+| border:                             | <kbd>bo</kbd>rder                                            |
+| border-bottom:                      | <kbd>bb</kbd>ottom <kbd>borb</kbd>ottom <u>borderb</u>ottom <u>border-b</u>ottom |
+| border-bottom-width:                | <kbd>bbw</kbd>idth <u>borderbottomw</u>idth <u>border-bottom-</u>width |
+| border-collapse:                    | <kbd>bcoll</kbd>apse <u>borcoll</u>apse <kbd>coll</kbd>apse <u>bordercoll</u>apse <u>border-coll</u>apse |
+| border-color:                       | <kbd>bc</kbd>olor <kbd>boc</kbd>olor <kbd>borc</kbd>olor <u>borderc</u>olor <u>border-c</u>olor |
+| border-left:                        | <kbd>bl</kbd>eft <kbd>borl</kbd>eft <u>borderl</u>eft <u>border-l</u>eft |
+| border-left-width:                  | <kbd>blw</kbd>idth <u>borderleftw</u>idth <u>border-left-</u>width |
+| border-radius:                      | <kbd>bra</kbd>dius <kbd>bora</kbd>dius <u>borderra</u>dius <u>border-ra</u>dius |
+| border-right:                       | <kbd>bri</kbd>ght <kbd>borr</kbd>ight <u>borderr</u>ight <u>border-</u>right |
+| border-right-width:                 | <kbd>brw</kbd>idth <u>borderrightw</u>idth <u>border-right-</u>width |
+| border-top:                         | <kbd>bt</kbd>op <kbd>bort</kbd>op <u>bordert</u>op <u>border-t</u>op |
+| border-top-width:                   | <kbd>btw</kbd>idth <u>bordertopw</u>idth <u>border-top-</u>width |
+| border-width:                       | <kbd>bw</kbd>idth <u>borderw</u>idth <u>border-w</u>idth     |
+| bottom:                             | <kbd>bot</kbd>tom                                            |
+| box-shadow:                         | <kbd>bs</kbd>hadow <kbd>bos</kbd>hadow <kbd>box</kbd>shadow <kbd>box</kbd>-shadow |
+| box-sizing:                         | <kbd>bsi</kbd>zing <kbd>bsi</kbd>ze <kbd>boxsi</kbd>ze <kbd>boxsi</kbd>zing <u>box-si</u>zing |
+| clear:                              | <kbd>cl</kbd>ear                                             |
+| color:                              | <kbd>c</kbd>olor                                             |
+| content:                            | <kbd>con</kbd>tent                                           |
+| cursor:                             | <kbd>cu</kbd>rsor                                            |
+| direction:                          | <kbd>dir</kbd>ection                                         |
+| display:                            | <kbd>d</kbd>isplay                                           |
+| flex:                               | <kbd>fle</kbd>x                                              |
+| flex-direction:                     | <kbd>fd</kbd>irection <kbd>fld</kbd>irection <kbd>fled</kbd>irection <kbd>flexd</kbd>irection <u>flex-d</u>irection |
+| flex-grow:                          | <kbd>fg</kbd>row <kbd>flg</kbd>row <kbd>fleg</kbd>row <kbd>flexg</kbd>row <kbd>flex-</kbd>grow |
+| flex-shrink:                        | <kbd>fsh</kbd>rink <kbd>fls</kbd>hrink <kbd>fles</kbd>hrink <kbd>flexs</kbd>hrink <u>flex-s</u>hrink |
+| flex-wrap:                          | <kbd>fwr</kbd>ap <kbd>flw</kbd>rap <kbd>flew</kbd>rap <kbd>flexw</kbd>rap <u>flex-w</u>rap |
+| float:                              | <kbd>fl</kbd>oat                                             |
+| font:                               | <kbd>f</kbd>ont                                              |
+| font-family:                        | <kbd>ff</kbd>amily <kbd>fa</kbd>mily <kbd>fontf</kbd>amily <u>font-f</u>amily |
+| font-size:                          | <kbd>fs</kbd>ize <kbd>fos</kbd>ize <kbd>fonts</kbd>ize <kbd>font-</kbd>size |
+| font-style:                         | <kbd>fst</kbd>yle <kbd>fost</kbd>yle <u>fontst</u>yle <u>font-st</u>yle |
+| font-variant:                       | <kbd>fv</kbd>ariant <kbd>fov</kbd>ariant <kbd>fontv</kbd>ariant <u>font-v</u>ariant |
+| font-weight:                        | <kbd>fw</kbd>eight <kbd>fow</kbd>eight <kbd>fontw</kbd>eight <u>font-w</u>eight |
+| height:                             | <kbd>h</kbd>eight                                            |
+| justify-content:                    | <kbd>j</kbd>content <kbd>j</kbd>ucontent <kbd>j</kbd>uscontent <kbd>j</kbd>ustcontent <kbd>j</kbd>ustifycontent <kbd>j</kbd>ustify-content |
+| left:                               | <kbd>l</kbd>eft                                              |
+| letter-spacing:                     | <kbd>ls</kbd>pacing <kbd>les</kbd>pacing <kbd>let</kbd>terspacing <kbd>let</kbd>ter-spacing |
+| line-height:                        | <kbd>lh</kbd>eight <kbd>lih</kbd>eight <kbd>lin</kbd>eheight <kbd>lin</kbd>e-height |
+| margin:                             | <kbd>m</kbd>argin                                            |
+| margin-bottom:                      | <kbd>mb</kbd>ottom <kbd>marb</kbd>ottom <u>marginb</u>ottom <u>margin-b</u>ottom |
+| margin-left:                        | <kbd>ml</kbd>eft <kbd>marl</kbd>eft <u>marginl</u>eft <u>margin-</u>left |
+| margin-right:                       | <kbd>mr</kbd>ight <kbd>marr</kbd>ight <u>marginr</u>ight <u>margin-r</u>ight |
+| margin-top:                         | <kbd>mt</kbd>op <kbd>mart</kbd>op <u>margint</u>op <u>margin-t</u>op |
+| max-height:                         | <kbd>x</kbd>height <kbd>mx</kbd>height <kbd>max</kbd>height <kbd>max</kbd>-height |
+| max-width:                          | <kbd>xw</kbd>idth <kbd>m</kbd>xheight <kbd>maxw</kbd>idth <kbd>max-w</kbd>idth |
+| min-height:                         | <kbd>mh</kbd>eight <kbd>mi</kbd>nheight <kbd>mi</kbd>n-height |
+| min-width:                          | <kbd>mw</kbd>idth <kbd>minw</kbd>idth <kbd>min-w</kbd>idth   |
+| opacity:                            | <kbd>op</kbd>acity                                           |
+| order:                              | <kbd>or</kbd>der                                             |
+| outline:                            | <kbd>o</kbd>utline                                           |
+| overflow:                           | <kbd>of</kbd>low <kbd>ov</kbd>erflow                         |
+| overflow-x:                         | <kbd>ox</kbd> <u>overflowx</u> <u>overflow-</u>x             |
+| overflow-y:                         | <kbd>oy</kbd> <u>overflowy</u> <u>overflow-y</u>             |
+| padding:                            | <kbd>pa</kbd>dding                                           |
+| padding-bottom:                     | <kbd>pb</kbd>ottom <kbd>padb</kbd>ottom <u>paddingb</u>ottom <u>padding-b</u>ottom |
+| padding-left:                       | <kbd>pl</kbd>eft <kbd>padl</kbd>eft <u>paddingl</u>eft <u>padding-</u>left |
+| padding-right:                      | <kbd>pr</kbd>ight <kbd>padr</kbd>ight <u>paddingr</u>ight <u>padding-r</u>ight |
+| padding-top:                        | <kbd>pt</kbd>op <kbd>padt</kbd>op <u>paddingt</u>op <u>padding-t</u>op |
+| page-break-after:                   | <kbd>pba</kbd>fter <kbd>pag</kbd>ebreakafter <kbd>pag</kbd>e-break-after |
+| page-break-before:                  | <kbd>pbb</kbd>efore <u>pagebreakb</u>efore <u>page-break-b</u>efore |
+| perspective:                        | <kbd>pe</kbd>rspective                                       |
+| perspective-origin:                 | <kbd>por</kbd>igin <u>perspectiveo</u>rigin <u>perspective-</u>origin |
+| position:                           | <kbd>po</kbd>sition                                          |
+| quotes:                             | <kbd>q</kbd>uotes                                            |
+| right:                              | <kbd>r</kbd>ight                                             |
+| table-layout:                       | <kbd>tl</kbd>ayout <kbd>tala</kbd>yout <kbd>tab</kbd>lelayout <kbd>tab</kbd>le-layout |
+| text-align:                         | <kbd>ta</kbd>lign <kbd>te</kbd>xtalign <kbd>te</kbd>xt-align |
+| text-decoration:                    | <kbd>td</kbd>ecoration <kbd>textd</kbd>ecoration <u>text-d</u>ecoration |
+| text-decoration-line:               | <kbd>tdl</kbd>ine <u>textdecorationl</u>ine <u>text-decoration-</u>line |
+| text-indent:                        | <kbd>ti</kbd>ndent <kbd>texti</kbd>ndent <u>text-i</u>ndent  |
+| text-shadow:                        | <kbd>tsh</kbd>adow <kbd>tes</kbd>hadow <kbd>texts</kbd>hadow <u>text-s</u>hadow |
+| text-transform:                     | <kbd>tt</kbd>ransform <kbd>textt</kbd>ransform <u>text-t</u>ransform |
+| top:                                | <kbd>t</kbd>op                                               |
+| transform:                          | <kbd>tf</kbd>orm <kbd>xf</kbd>orm <u>transf</u>orm           |
+| transition:                         | <kbd>tr</kbd>ans <kbd>tn</kbd> <kbd>ts</kbd>ition <kbd>tr</kbd>ansition |
+| transition-duration:                | <kbd>tdu</kbd>ration <u>transitiond</u>uration <u>transition-</u>duration |
+| vertical-align:                     | <kbd>v</kbd>align <kbd>v</kbd>erticalalign <kbd>v</kbd>ertical-align |
+| visibility:                         | <kbd>vi</kbd>sibility                                        |
+| white-space:                        | <kbd>ws</kbd>pace <kbd>wh</kbd>ispace <kbd>wh</kbd>space <kbd>wis</kbd>pace <kbd>wh</kbd>itespace <kbd>wh</kbd>ite-space |
+| width:                              | <kbd>w</kbd>idth                                             |
+| word-break:                         | <kbd>wb</kbd>reak <kbd>wo</kbd>rdbreak <kbd>wo</kbd>rd-break |
+| z-index:                            | <kbd>z</kbd>index <kbd>z</kbd>-index                         |
+| zoom:                               | <kbd>zo</kbd>om                                              |
 
 ## Statements
 
 | Expansion                           | Shortcuts                                                    |
 | --- | --- |
-| `align-items: center`               | __aic__[enter]                                               |
-| `align-items: flex-end`             | __aie__[nd]                                                  |
-| `align-items: flex-start`           | __ai__[start]                                                |
-| `align-items: stretch`              | __aistr__[etch]                                              |
-| `background-repeat: no-repeat`      | __brn__[orepeat] __n__[orepeat]                              |
-| `background-repeat: repeat-x`       | __brx__ __rx__ __bg__[rx] __re__[peatx]                      |
-| `background-repeat: repeat-y`       | __bry__ __ry__ __bgry__ repeaty                              |
-| `background-size: contain`          | __con__[tain]                                                |
-| `background-size: cover`            | __co__[ver]                                                  |
-| `border-collapse: collapse`         | __bc__[collapse]                                             |
-| `border-collapse: separate`         | __bcs__[eparate]                                             |
-| `border: 0`                         | __b0__                                                       |
-| `box-sizing: border-box`            | __bs__[box]                                                  |
-| `box-sizing: content-box`           | __bsc__[ontent]                                              |
-| `box-sizing: padding-box`           | __bsp__[adding]                                              |
-| `clear: both`                       | __cb__[oth]                                                  |
-| `clear: left`                       | __cl__[eft]                                                  |
-| `clear: right`                      | __cr__[ight]                                                 |
-| `content: ''`                       | __conte__[nt]                                                |
-| `cursor: busy`                      | __cub__[usy] __curb__[usy]                                   |
-| `cursor: pointer`                   | __cu__[pointer] __cu__[rpointer]                             |
-| `cursor: text`                      | __cut__[ext] __curt__[ext]                                   |
-| `cursor: wait`                      | __cuw__[ait] __curw__[ait]                                   |
-| `direction: ltr`                    | __l__[tr] __dir__[ltr]                                       |
-| `direction: rtl`                    | __rt__[l] __dirr__[tl]                                       |
-| `display: block`                    | __d__[block]                                                 |
-| `display: flex`                     | __df__[lex] __flex__                                         |
-| `display: inline`                   | __di__[nline]                                                |
-| `display: inline-block`             | __dib__[lock]                                                |
-| `display: inline-flex`              | __dif__[lex]                                                 |
-| `display: none`                     | __dn__[one]                                                  |
-| `display: table`                    | __dt__[able] __t__[able]                                     |
-| `display: table-cell`               | __dtc__[ell] __c__[ell] tablec[ell] table-[cell]             |
-| `display: table-row`                | __dtr__[ow] __r__[ow] tabler[ow] table-r[ow]                 |
-| `flex-direction: column`            | __fdc__[olumn]                                               |
-| `flex-direction: column-reverse`    | __fdcr__[everse]                                             |
-| `flex-direction: row`               | __fd__[row]                                                  |
-| `flex-direction: row-reverse`       | __fdrr__[everse]                                             |
-| `flex-wrap: nowrap`                 | __fnow__[rap]                                                |
-| `flex-wrap: wrap`                   | __fwr__[ap] __flexw__[rap]                                   |
-| `flex: auto`                        | __fla__[uto]                                                 |
-| `float: left`                       | __f__[left] __f__[lleft] __f__[loleft]                       |
-| `float: none`                       | __fn__[one] __fln__[one] __flon__[one]                       |
-| `float: right`                      | __fr__[ight] __flr__[ight] __flor__[ight]                    |
-| `font-style: italic`                | __fs__[italic] __it__[alic]                                  |
-| `font-style: normal`                | __fnor__[mal]                                                |
-| `font-weight: 100`                  | __f1__[00] __fw1__[00]                                       |
-| `font-weight: 200`                  | __f2__[00] __fw2__[00]                                       |
-| `font-weight: 300`                  | __f3__[00] __fw3__[00]                                       |
-| `font-weight: 400`                  | __f4__[00] __fw4__[00]                                       |
-| `font-weight: 500`                  | __f5__[00] __fw5__[00]                                       |
-| `font-weight: 600`                  | __f6__[00] __fw6__[00]                                       |
-| `font-weight: 700`                  | __f7__[00] __fw7__[00]                                       |
-| `font-weight: 800`                  | __f8__[00] __fw8__[00]                                       |
-| `font-weight: 900`                  | __f9__[00] __fw9__[00]                                       |
-| `font-weight: bold`                 | __fwb__[old] __bo__[ld]                                      |
-| `font-weight: normal`               | __fw__[normal]                                               |
-| `height: auto`                      | __ha__[uto]                                                  |
-| `justify-content: center`           | __jc__[center]                                               |
-| `justify-content: flex-end`         | __jce__[nd]                                                  |
-| `justify-content: flex-start`       | __jcs__[tart]                                                |
-| `margin-left: auto`                 | __ml__[auto]                                                 |
-| `margin-right: auto`                | __mr__[auto]                                                 |
-| `margin: 0`                         | __m__[0] __m__[o]                                            |
-| `margin: 0 auto`                    | __m0a__ __moa__                                              |
-| `margin: auto`                      | __ma__[uto]                                                  |
-| `overflow-x: auto`                  | __oxa__[uto]                                                 |
-| `overflow-x: hidden`                | __ox__[hidden]                                               |
-| `overflow-x: scroll`                | __oxs__[croll]                                               |
-| `overflow-x: visible`               | __oxv__[isible]                                              |
-| `overflow-y: auto`                  | __oya__[uto]                                                 |
-| `overflow-y: hidden`                | __oy__[hidden]                                               |
-| `overflow-y: scroll`                | __oys__[croll]                                               |
-| `overflow-y: visible`               | __oyv__[isible]                                              |
-| `overflow: auto`                    | __oa__[uto]                                                  |
-| `overflow: hidden`                  | __o__[hidden]                                                |
-| `overflow: scroll`                  | __os__[croll]                                                |
-| `overflow: visible`                 | __ov__[isible]                                               |
-| `padding: 0`                        | __p0__ __po__                                                |
-| `position: absolute`                | __poa__[bsolute] __pa__[bsolute] __ab__[solute]              |
-| `position: fixed`                   | __pof__[ixed] __pf__[ixed] __fi__[xed]                       |
-| `position: relative`                | __por__[elative] __pr__[elative] __rel__[ative]              |
-| `position: static`                  | __pos__[tatic] __ps__[tatic] __s__[tatic]                    |
-| `table-layout: auto`                | __tla__[uto]                                                 |
-| `table-layout: fixed`               | __tl__[fixed]                                                |
-| `text-align: center`                | __tac__[enter] __cen__[ter]                                  |
-| `text-align: justify`               | __taj__[ustify] __j__[ustify]                                |
-| `text-align: left`                  | __tal__[eft]                                                 |
-| `text-align: right`                 | __tar__[ight]                                                |
-| `text-decoration: none`             | __tdn__[one]                                                 |
-| `text-decoration: underline`        | __td__[underline] __un__[derline]                            |
-| `text-overflow: ellipsis`           | __e__[lip] __e__[llipsis] __to__[ellipsis]                   |
-| `text-shadow: none`                 | __ts__[none] __te__[shnone]                                  |
-| `text-transform: capitalize`        | __ttc__[ap]                                                  |
-| `text-transform: full-width`        | __ttf__[ull]                                                 |
-| `text-transform: lowercase`         | __ttl__[ower]                                                |
-| `text-transform: none`              | __ttn__[one]                                                 |
-| `text-transform: uppercase`         | __tt__[upper] __u__[ppercase]                                |
-| `vertical-align: baseline`          | __vabl__[ine] __vaba__[seline] __ba__[seline]                |
-| `vertical-align: bottom`            | __vab__[ottom]                                               |
-| `vertical-align: middle`            | __v__[amiddle]                                               |
-| `vertical-align: sub`               | __vas__[ub]                                                  |
-| `vertical-align: super`             | __vasup__[er]                                                |
-| `vertical-align: text-bottom`       | __vattb__[ottom]                                             |
-| `vertical-align: text-top`          | __vatt__[op]                                                 |
-| `vertical-align: top`               | __vat__[op]                                                  |
-| `visibility: collapse`              | __vc__[ollapse] __visc__[ollapse] __vic__[ollapse]           |
-| `visibility: hidden`                | __vh__[idden] __vish__[idden] __vih__[idden] __h__[idden] __h__[ide] |
-| `visibility: visible`               | __vv__[isible] __vi__[sible]                                 |
-| `white-space: nowrap`               | __now__[rap]                                                 |
-| `width: auto`                       | __w__[auto]                                                  |
+| align-items: center                 | <kbd>aic</kbd>enter                                          |
+| align-items: flex-end               | <kbd>aie</kbd>nd                                             |
+| align-items: flex-start             | <kbd>ai</kbd>start                                           |
+| align-items: stretch                | <kbd>aistr</kbd>etch                                         |
+| background-repeat: no-repeat        | <kbd>brn</kbd>orepeat <kbd>n</kbd>orepeat                    |
+| background-repeat: repeat-x         | <kbd>brx</kbd> <kbd>rx</kbd> <kbd>bg</kbd>rx <kbd>re</kbd>peatx |
+| background-repeat: repeat-y         | <kbd>bry</kbd> <kbd>ry</kbd> <kbd>bgry</kbd> <u>repeaty</u>  |
+| background-size: contain            | <kbd>con</kbd>tain                                           |
+| background-size: cover              | <kbd>co</kbd>ver                                             |
+| border-collapse: collapse           | <kbd>bc</kbd>collapse                                        |
+| border-collapse: separate           | <kbd>bcs</kbd>eparate                                        |
+| border: 0                           | <kbd>b0</kbd>                                                |
+| box-sizing: border-box              | <kbd>bs</kbd>box                                             |
+| box-sizing: content-box             | <kbd>bsc</kbd>ontent                                         |
+| box-sizing: padding-box             | <kbd>bsp</kbd>adding                                         |
+| clear: both                         | <kbd>cb</kbd>oth                                             |
+| clear: left                         | <kbd>cl</kbd>eft                                             |
+| clear: right                        | <kbd>cr</kbd>ight                                            |
+| content: ''                         | <kbd>conte</kbd>nt                                           |
+| cursor: busy                        | <kbd>cub</kbd>usy <kbd>curb</kbd>usy                         |
+| cursor: pointer                     | <kbd>cu</kbd>pointer <kbd>cu</kbd>rpointer                   |
+| cursor: text                        | <kbd>cut</kbd>ext <kbd>curt</kbd>ext                         |
+| cursor: wait                        | <kbd>cuw</kbd>ait <kbd>curw</kbd>ait                         |
+| direction: ltr                      | <kbd>l</kbd>tr <kbd>dir</kbd>ltr                             |
+| direction: rtl                      | <kbd>rt</kbd>l <kbd>dirr</kbd>tl                             |
+| display: block                      | <kbd>d</kbd>block                                            |
+| display: flex                       | <kbd>df</kbd>lex <kbd>flex</kbd>                             |
+| display: inline                     | <kbd>di</kbd>nline                                           |
+| display: inline-block               | <kbd>dib</kbd>lock                                           |
+| display: inline-flex                | <kbd>dif</kbd>lex                                            |
+| display: none                       | <kbd>dn</kbd>one                                             |
+| display: table                      | <kbd>dt</kbd>able <kbd>t</kbd>able                           |
+| display: table-cell                 | <kbd>dtc</kbd>ell <kbd>c</kbd>ell <u>tablec</u>ell <u>table-</u>cell |
+| display: table-row                  | <kbd>dtr</kbd>ow <kbd>r</kbd>ow <u>tabler</u>ow <u>table-r</u>ow |
+| flex-direction: column              | <kbd>fdc</kbd>olumn                                          |
+| flex-direction: column-reverse      | <kbd>fdcr</kbd>everse                                        |
+| flex-direction: row                 | <kbd>fd</kbd>row                                             |
+| flex-direction: row-reverse         | <kbd>fdrr</kbd>everse                                        |
+| flex-wrap: nowrap                   | <kbd>fnow</kbd>rap                                           |
+| flex-wrap: wrap                     | <kbd>fwr</kbd>ap <kbd>flexw</kbd>rap                         |
+| flex: auto                          | <kbd>fla</kbd>uto                                            |
+| float: left                         | <kbd>f</kbd>left <kbd>f</kbd>lleft <kbd>f</kbd>loleft        |
+| float: none                         | <kbd>fn</kbd>one <kbd>fln</kbd>one <kbd>flon</kbd>one        |
+| float: right                        | <kbd>fr</kbd>ight <kbd>flr</kbd>ight <kbd>flor</kbd>ight     |
+| font-style: italic                  | <kbd>fs</kbd>italic <kbd>it</kbd>alic                        |
+| font-style: normal                  | <kbd>fnor</kbd>mal                                           |
+| font-weight: 100                    | <kbd>f1</kbd>00 <kbd>fw1</kbd>00                             |
+| font-weight: 200                    | <kbd>f2</kbd>00 <kbd>fw2</kbd>00                             |
+| font-weight: 300                    | <kbd>f3</kbd>00 <kbd>fw3</kbd>00                             |
+| font-weight: 400                    | <kbd>f4</kbd>00 <kbd>fw4</kbd>00                             |
+| font-weight: 500                    | <kbd>f5</kbd>00 <kbd>fw5</kbd>00                             |
+| font-weight: 600                    | <kbd>f6</kbd>00 <kbd>fw6</kbd>00                             |
+| font-weight: 700                    | <kbd>f7</kbd>00 <kbd>fw7</kbd>00                             |
+| font-weight: 800                    | <kbd>f8</kbd>00 <kbd>fw8</kbd>00                             |
+| font-weight: 900                    | <kbd>f9</kbd>00 <kbd>fw9</kbd>00                             |
+| font-weight: bold                   | <kbd>fwb</kbd>old <kbd>bo</kbd>ld                            |
+| font-weight: normal                 | <kbd>fw</kbd>normal                                          |
+| height: auto                        | <kbd>ha</kbd>uto                                             |
+| justify-content: center             | <kbd>jc</kbd>center                                          |
+| justify-content: flex-end           | <kbd>jce</kbd>nd                                             |
+| justify-content: flex-start         | <kbd>jcs</kbd>tart                                           |
+| margin-left: auto                   | <kbd>ml</kbd>auto                                            |
+| margin-right: auto                  | <kbd>mr</kbd>auto                                            |
+| margin: 0                           | <kbd>m</kbd>0 <kbd>m</kbd>o                                  |
+| margin: 0 auto                      | <kbd>m0a</kbd> <kbd>moa</kbd>                                |
+| margin: auto                        | <kbd>ma</kbd>uto                                             |
+| overflow-x: auto                    | <kbd>oxa</kbd>uto                                            |
+| overflow-x: hidden                  | <kbd>ox</kbd>hidden                                          |
+| overflow-x: scroll                  | <kbd>oxs</kbd>croll                                          |
+| overflow-x: visible                 | <kbd>oxv</kbd>isible                                         |
+| overflow-y: auto                    | <kbd>oya</kbd>uto                                            |
+| overflow-y: hidden                  | <kbd>oy</kbd>hidden                                          |
+| overflow-y: scroll                  | <kbd>oys</kbd>croll                                          |
+| overflow-y: visible                 | <kbd>oyv</kbd>isible                                         |
+| overflow: auto                      | <kbd>oa</kbd>uto                                             |
+| overflow: hidden                    | <kbd>o</kbd>hidden                                           |
+| overflow: scroll                    | <kbd>os</kbd>croll                                           |
+| overflow: visible                   | <kbd>ov</kbd>isible                                          |
+| padding: 0                          | <kbd>p0</kbd> <kbd>po</kbd>                                  |
+| position: absolute                  | <kbd>poa</kbd>bsolute <kbd>pa</kbd>bsolute <kbd>ab</kbd>solute |
+| position: fixed                     | <kbd>pof</kbd>ixed <kbd>pf</kbd>ixed <kbd>fi</kbd>xed        |
+| position: relative                  | <kbd>por</kbd>elative <kbd>pr</kbd>elative <kbd>rel</kbd>ative |
+| position: static                    | <kbd>pos</kbd>tatic <kbd>ps</kbd>tatic <kbd>s</kbd>tatic     |
+| table-layout: auto                  | <kbd>tla</kbd>uto                                            |
+| table-layout: fixed                 | <kbd>tl</kbd>fixed                                           |
+| text-align: center                  | <kbd>tac</kbd>enter <kbd>cen</kbd>ter                        |
+| text-align: justify                 | <kbd>taj</kbd>ustify <kbd>j</kbd>ustify                      |
+| text-align: left                    | <kbd>tal</kbd>eft                                            |
+| text-align: right                   | <kbd>tar</kbd>ight                                           |
+| text-decoration: none               | <kbd>tdn</kbd>one                                            |
+| text-decoration: underline          | <kbd>td</kbd>underline <kbd>un</kbd>derline                  |
+| text-overflow: ellipsis             | <kbd>e</kbd>lip <kbd>e</kbd>llipsis <kbd>to</kbd>ellipsis    |
+| text-shadow: none                   | <kbd>ts</kbd>none <kbd>te</kbd>shnone                        |
+| text-transform: capitalize          | <kbd>ttc</kbd>ap                                             |
+| text-transform: full-width          | <kbd>ttf</kbd>ull                                            |
+| text-transform: lowercase           | <kbd>ttl</kbd>ower                                           |
+| text-transform: none                | <kbd>ttn</kbd>one                                            |
+| text-transform: uppercase           | <kbd>tt</kbd>upper <kbd>u</kbd>ppercase                      |
+| vertical-align: baseline            | <kbd>vabl</kbd>ine <kbd>vaba</kbd>seline <kbd>ba</kbd>seline |
+| vertical-align: bottom              | <kbd>vab</kbd>ottom                                          |
+| vertical-align: middle              | <kbd>v</kbd>amiddle                                          |
+| vertical-align: sub                 | <kbd>vas</kbd>ub                                             |
+| vertical-align: super               | <kbd>vasup</kbd>er                                           |
+| vertical-align: text-bottom         | <kbd>vattb</kbd>ottom                                        |
+| vertical-align: text-top            | <kbd>vatt</kbd>op                                            |
+| vertical-align: top                 | <kbd>vat</kbd>op                                             |
+| visibility: collapse                | <kbd>vc</kbd>ollapse <kbd>visc</kbd>ollapse <kbd>vic</kbd>ollapse |
+| visibility: hidden                  | <kbd>vh</kbd>idden <kbd>vish</kbd>idden <kbd>vih</kbd>idden <kbd>h</kbd>idden <kbd>h</kbd>ide |
+| visibility: visible                 | <kbd>vv</kbd>isible <kbd>vi</kbd>sible                       |
+| white-space: nowrap                 | <kbd>now</kbd>rap                                            |
+| width: auto                         | <kbd>w</kbd>auto                                             |
 
