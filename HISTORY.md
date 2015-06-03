@@ -1,3 +1,7 @@
+## [v0.7.1] - May 31, 2015
+
+- Disable Hyperstyle unless `b:hyperstyle` is on. This allows you to temporarily turn it off, and improves compatibility a bit.
+
 ## [v0.7.0] - May 31, 2015
 
 - Improve compatibility with other plugins: UltiSnips, auto-pairs, endwise, [vim-closer].
@@ -96,3 +100,4 @@ Initial release.
 [v0.5.1]: https://github.com/rstacruz/vim-hyperstyle/compare/v0.5.0...v0.5.1
 [v0.6.0]: https://github.com/rstacruz/vim-hyperstyle/compare/v0.5.1...v0.6.0
 [v0.7.0]: https://github.com/rstacruz/vim-hyperstyle/compare/v0.6.0...v0.7.0
+[v0.7.1]: https://github.com/rstacruz/vim-hyperstyle/compare/v0.7.0...v0.7.1
