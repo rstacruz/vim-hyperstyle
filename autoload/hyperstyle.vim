@@ -39,7 +39,7 @@ endfunction
 
 " Expand semicolons (display: b; => display: block;)
 function! hyperstyle#expand_semicolon()
-  return s:expand_inline('statement', b:hyperstyle_semi, {})
+  return s:expand_inline('statement', get(b:, 'hyperstyle_semi'), {})
 endfunction
 
 "
@@ -48,12 +48,13 @@ endfunction
 "
 
 function! hyperstyle#expand_tab()
-  if ! s:at_indented_line() | return "" | endif
-  if ! s:at_eol() | return "" | endif
+  if ! get(b:, 'hyperstyle') | return '' | endif
+  if ! s:at_indented_line() | return '' | endif
+  if ! s:at_eol() | return '' | endif
 
   let r = s:expand_inline("property", ' ', {'expr': '^\(\s*\)\([a-z0-9]\+\)\s*$' })
   if r != '' | return r | endif
-  let r = s:expand_inline('statement', b:hyperstyle_semi, {})
+  let r = s:expand_inline('statement', get(b:, 'hyperstyle_semi'), {})
   if r != '' | return r | endif
   return ''
 endfunction
@@ -64,6 +65,7 @@ endfunction
 "
 
 function! hyperstyle#expand_cr()
+  if ! get(b:, 'hyperstyle') | return '' | endif
   " If it broke in the middle of a line, don't.
   if match(getline('.'), '^\s*$') == -1 | return '' | endif
 
@@ -81,6 +83,7 @@ endfunction
 "
 
 function! s:expand_inline(fn, append, o)
+  if ! get(b:, 'hyperstyle') | return '' | endif
   if ! s:at_eol() | return "" | endif
 
   let expr   = exists('a:o.expr') ? a:o.expr : '^\(\s*\)\(.\+\).$'
