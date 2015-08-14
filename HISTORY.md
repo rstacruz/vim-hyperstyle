@@ -1,3 +1,8 @@
+## [v0.8.0]
+> Aug 14, 2015
+
+- Add background-repeat
+
 ## [v0.7.1] - May 31, 2015
 
 - Disable Hyperstyle unless `b:hyperstyle` is on. This allows you to temporarily turn it off, and improves compatibility a bit.
@@ -101,3 +106,4 @@ Initial release.
 [v0.6.0]: https://github.com/rstacruz/vim-hyperstyle/compare/v0.5.1...v0.6.0
 [v0.7.0]: https://github.com/rstacruz/vim-hyperstyle/compare/v0.6.0...v0.7.0
 [v0.7.1]: https://github.com/rstacruz/vim-hyperstyle/compare/v0.7.0...v0.7.1
+[v0.8.0]: https://github.com/rstacruz/vim-hyperstyle/compare/v0.7.1...v0.8.0
