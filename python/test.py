@@ -19,7 +19,7 @@ class TestDoc(unittest.TestCase):
         if expected.strip() != actual.strip():
             self.fail(
                 "Documentation is not up to date.\n" +
-                "  See `docs/hyperstyle.txt.new` to see what's changed.\n" +
+                "  See `doc/hyperstyle.txt.new` to see what's changed.\n" +
                 "  to clear this error, you will need to regenerate documentation\n" +
                 "  (make doc), or inspect why the documentation has changed.");
 

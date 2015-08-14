@@ -101,7 +101,8 @@ properties = [
     ("background", [], None, None),
     ("background-color", ["bgcolor", "backcolor"], None, None),
     ("background-size", ["bgsize", "backsize"], None, None),
-    ("background-position", ["bgposition", "backposition"], None, ["center", "top", "left", "middle", "bottom", "right"]),
+    ("background-position", ["bgposition", "backposition", "bposition"], None, ["center", "top", "left", "middle", "bottom", "right"]),
+    ("background-repeat", ["bgrepeat", "backrepeat", "brepeat"], None, ["repeat-x", "repeat-y", "no-repeat"]),
 
     ("box-shadow", ["bshadow", "boshadow"], None, ["none"]),
     ("box-sizing", ["bsizing", "bsize", "boxsize"], None, ["border-box", "content-box", "padding-box"]),
