@@ -2,15 +2,15 @@
 " If `semi` is 1, semicolons will be advim lolded.
 
 inoremap <silent>  <SID>(hyperstyle-cr) <C-R>=hyperstyle#expand_cr()<CR>
-imap     <script> <Plug>(hyperstyle-cr) <SID>(hyperstyle-cr)
+imap     <silent> <script> <Plug>(hyperstyle-cr) <SID>(hyperstyle-cr)
 inoremap <silent>  <SID>(hyperstyle-tab) <C-R>=hyperstyle#expand_tab()<CR>
-imap     <script> <Plug>(hyperstyle-tab) <SID>(hyperstyle-tab)
+imap     <silent> <script> <Plug>(hyperstyle-tab) <SID>(hyperstyle-tab)
 inoremap <silent>  <SID>(hyperstyle-space) <C-R>=hyperstyle#expand_space()<CR>
-imap     <script> <Plug>(hyperstyle-space) <SID>(hyperstyle-space)
+imap     <silent> <script> <Plug>(hyperstyle-space) <SID>(hyperstyle-space)
 inoremap <silent>  <SID>(hyperstyle-colon) <C-R>=hyperstyle#expand_colon()<CR>
-imap     <script> <Plug>(hyperstyle-colon) <SID>(hyperstyle-colon)
+imap     <silent> <script> <Plug>(hyperstyle-colon) <SID>(hyperstyle-colon)
 inoremap <silent>  <SID>(hyperstyle-semi) <C-R>=hyperstyle#expand_semicolon()<CR>
-imap     <script> <Plug>(hyperstyle-semi) <SID>(hyperstyle-semi)
+imap     <silent> <script> <Plug>(hyperstyle-semi) <SID>(hyperstyle-semi)
 
 function! s:enable(semi)
   let b:hyperstyle = 1
@@ -32,9 +32,9 @@ function! s:map_key(key, binding)
   if oldmap =~# "<Plug>(".a:binding.")"
     " already mapped. maybe the user was playing with `set ft`
   elseif oldmap != ""
-    exe "imap ".a:key." ".oldmap."<Plug>(".a:binding.")"
+    exe "imap <silent> ".a:key." ".oldmap."<Plug>(".a:binding.")"
   else
-    exe "imap <buffer> ".a:key." ".a:key."<Plug>(".a:binding.")"
+    exe "imap <silent> <buffer> ".a:key." ".a:key."<Plug>(".a:binding.")"
   endif
 endfunction
 
@@ -61,9 +61,9 @@ if globpath(&rtp, 'plugin/auto-pairs.vim') != ''
 
     let b:hyperstyle_ap_fix = 1
     exe 'iunmap <buffer> <Space>'
-    exe 'imap <buffer> <Space> <Space><Plug>(hyperstyle-space)'
+    exe 'imap <silent> <buffer> <Space> <Space><Plug>(hyperstyle-space)'
     exe 'iunmap <buffer> <CR>'
-    exe 'imap <buffer> <CR> <CR><Plug>(hyperstyle-cr)'
+    exe 'imap <silent> <buffer> <CR> <CR><Plug>(hyperstyle-cr)'
   endfunction
   au InsertEnter * :call s:rescue_bindings()
 endif
