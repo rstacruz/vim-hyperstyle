@@ -10,6 +10,11 @@ import sys
 index = Indexer()
 index.index(definitions)
 
+tags = [
+    'a', 'p', 'br', 'b', 'i', 'li', 'ul', 'div', 'em', 'sup', 'big', 'small',
+    'sub'
+]
+
 def print_reference():
     if "--vim" in sys.argv:
         print(VimPrinter().to_s())
@@ -124,7 +129,7 @@ def resolve_aliases(aliases, this, index):
             return alias
         else:
             root = alias[0:root_length]
-            if root in taken:
+            if root in taken or root in tags:
                 return alias
             else:
                 taken[root] = True
