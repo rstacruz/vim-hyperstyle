@@ -6,7 +6,8 @@ PROPERTIES                                               *hyperstyle-properties*
   *align-items:*                      `ai`[tems] `al`[items] alignitems align-items
   *animation:*                        `an`[imation]
   *background:*                       `ba`[ckground]
-  *background-color:*                 `bg`[color] `backc`[olor] backgroundc[olor] background-[color]
+  *background-color:*                 `bgc`[olor] `backc`[olor] backgroundc[olor] background-c[olor]
+  *background-image:*                 `bg`[image] `backi`[mage] backgroundi[mage] background-[image]
   *background-position:*              `bgp`[osition] `backp`[osition] `bp`[osition] backgroundp[osition] background-p[osition]
   *background-repeat:*                `bgr`[epeat] `backr`[epeat] `bre`[peat] backgroundr[epeat] background-r[epeat]
   *background-size:*                  `bgs`[ize] `backs`[ize] backgrounds[ize] background-s[ize]

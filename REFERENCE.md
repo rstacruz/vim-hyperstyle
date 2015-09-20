@@ -5,8 +5,10 @@
 | **align-items:**                    | <kbd>ai</kbd>tems <kbd>al</kbd>items <u>alignitems</u> <u>align-items</u> |
 | **animation:**                      | <kbd>an</kbd>imation                                         |
 | **background:**                     | <kbd>ba</kbd>ckground                                        |
-| **background-color:**               | <kbd>bg</kbd>color <kbd>backc</kbd>olor <u>backgroundc</u>olor <u>background-</u>color |
-| **background-position:**            | <kbd>bgp</kbd>osition <kbd>backp</kbd>osition <u>backgroundp</u>osition <u>background-p</u>osition |
+| **background-color:**               | <kbd>bgc</kbd>olor <kbd>backc</kbd>olor <u>backgroundc</u>olor <u>background-c</u>olor |
+| **background-image:**               | <kbd>bg</kbd>image <kbd>backi</kbd>mage <u>backgroundi</u>mage <u>background-</u>image |
+| **background-position:**            | <kbd>bgp</kbd>osition <kbd>backp</kbd>osition <kbd>bp</kbd>osition <u>backgroundp</u>osition <u>background-p</u>osition |
+| **background-repeat:**              | <kbd>bgr</kbd>epeat <kbd>backr</kbd>epeat <kbd>bre</kbd>peat <u>backgroundr</u>epeat <u>background-r</u>epeat |
 | **background-size:**                | <kbd>bgs</kbd>ize <kbd>backs</kbd>ize <u>backgrounds</u>ize <u>background-s</u>ize |
 | **border:**                         | <kbd>bo</kbd>rder                                            |
 | **border-bottom:**                  | <kbd>bb</kbd>ottom <kbd>borb</kbd>ottom <u>borderb</u>ottom <u>border-b</u>ottom |

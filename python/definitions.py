@@ -99,6 +99,7 @@ properties = [
     ("animation", [], None, None),
 
     ("background", [], None, None),
+    ("background-image", ["bgimage", "backimage"], None, None),
     ("background-color", ["bgcolor", "backcolor"], None, None),
     ("background-size", ["bgsize", "backsize"], None, None),
     ("background-position", ["bgposition", "backposition", "bposition"], None, ["center", "top", "left", "middle", "bottom", "right"]),
