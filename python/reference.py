@@ -72,7 +72,10 @@ class MarkdownPrinter(VimPrinter):
             else: return left
         for name, aliases in items:
             aliases = re.sub(r'([^ \[\]]+)(?:\[([^ ]+)\])?', fmt, aliases)
-            self.l("| %-35s | %-60s |" % ("**%s**"%name, aliases))
+            id = re.sub(r'[^a-zA-Z0-9]+', ' ', name).strip()
+            id = re.sub(r' ', '-', id)
+            anchor = "<a name='%s' href='#%s'>•</a>" % (id, id)
+            self.l("| %s %-35s | %-60s |" % (anchor, "**%s**"%name, aliases))
         self.l("")
 
 def get_property_reference():
