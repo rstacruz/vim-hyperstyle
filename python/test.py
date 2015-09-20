@@ -239,7 +239,6 @@ class TestSpace(unittest.TestCase):
         self.expect('mr', 'margin-right:')
 
     def test_border_shortcuts(self):
-        self.expect('bc', 'border-color:')
         self.expect('boc', 'border-color:')
         self.expect('bbo', 'border-bottom:')
         self.expect('bbot', 'border-bottom:')
