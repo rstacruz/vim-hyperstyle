@@ -91,18 +91,20 @@ properties = [
     ("border-top-width", ["btwidth"], "px", None),
     ("border-bottom-width", ["bbwidth"], "px", None),
 
-    ("border-radius", ["bradius", "boradius"], "px", None),
-    ("border-color", ["bcolor", "bocolor", "borcolor"], "px", None),
-    ("border-collapse", ["bcollapse", "borcollapse", "collapse"], None, ["collapse","auto","inherit"]),
+    ("border-image", ["borimage"], None, None),
 
     ("cursor", [], None, ["wait", "pointer", "auto", "default", "help", "progress", "cell", "crosshair", "text", "vertical-text", "alias", "copy", "move", "not-allowed", "no-drop", "all-scroll", "col-resize", "row-resize", "n-resize", "e-resize", "s-resize", "w-resize", "nw-resize", "ne-resize", "sw-resize", "se-resize", "ew-resize", "ns-resize", "zoom-in", "zoom-out", "grab", "grabbing" ]),
     ("animation", [], None, None),
 
-    ("background-image", ["bgimage", "backimage"], None, None),
-    ("background-color", ["bgcolor", "backcolor"], None, None),
+    ("background-image", ["bgimage", "backimage", "bimage"], None, None),
+    ("background-color", ["bgcolor", "backcolor", "bcolor"], None, None),
     ("background-size", ["bgsize", "backsize"], None, None),
     ("background-position", ["bgposition", "backposition", "bposition"], None, ["center", "top", "left", "middle", "bottom", "right"]),
     ("background-repeat", ["bgrepeat", "backrepeat", "brepeat"], None, ["repeat-x", "repeat-y", "no-repeat"]),
+
+    ("border-radius", ["bradius", "boradius"], "px", None),
+    ("border-color", ["bcolor", "bocolor", "borcolor"], "px", None),
+    ("border-collapse", ["bcollapse", "borcollapse", "collapse"], None, ["collapse","auto","inherit"]),
 
     ("box-shadow", ["bshadow", "boshadow"], None, ["none"]),
     ("box-sizing", ["bsizing", "bsize", "boxsize"], None, ["border-box", "content-box", "padding-box"]),

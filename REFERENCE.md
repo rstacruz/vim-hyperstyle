@@ -5,8 +5,8 @@
 | **align-items:**                    | <kbd>ai</kbd>tems <kbd>al</kbd>items <u>alignitems</u> <u>align-items</u> |
 | **animation:**                      | <kbd>an</kbd>imation                                         |
 | **background:**                     | <kbd>bg</kbd>round <kbd>ba</kbd>ckground                     |
-| **background-color:**               | <kbd>bgc</kbd>olor <kbd>backc</kbd>olor <u>backgroundc</u>olor <u>background-c</u>olor |
-| **background-image:**               | <kbd>bgi</kbd>mage <kbd>backi</kbd>mage <u>backgroundi</u>mage <u>background-</u>image |
+| **background-color:**               | <kbd>bgc</kbd>olor <kbd>backc</kbd>olor <kbd>bc</kbd>olor <u>backgroundc</u>olor <u>background-c</u>olor |
+| **background-image:**               | <kbd>bgi</kbd>mage <kbd>backi</kbd>mage <kbd>bi</kbd>mage <u>backgroundi</u>mage <u>background-</u>image |
 | **background-position:**            | <kbd>bgp</kbd>osition <kbd>backp</kbd>osition <kbd>bp</kbd>osition <u>backgroundp</u>osition <u>background-p</u>osition |
 | **background-repeat:**              | <kbd>bgre</kbd>peat <kbd>backr</kbd>epeat <kbd>bre</kbd>peat <u>backgroundr</u>epeat <u>background-r</u>epeat |
 | **background-size:**                | <kbd>bgs</kbd>ize <kbd>backs</kbd>ize <u>backgrounds</u>ize <u>background-s</u>ize |
@@ -14,7 +14,8 @@
 | **border-bottom:**                  | <kbd>bb</kbd>ottom <kbd>borb</kbd>ottom <u>borderb</u>ottom <u>border-b</u>ottom |
 | **border-bottom-width:**            | <kbd>bbw</kbd>idth <u>borderbottomw</u>idth <u>border-bottom-</u>width |
 | **border-collapse:**                | <kbd>bcoll</kbd>apse <u>borcoll</u>apse <kbd>coll</kbd>apse <u>bordercoll</u>apse <u>border-coll</u>apse |
-| **border-color:**                   | <kbd>bc</kbd>olor <kbd>boc</kbd>olor <kbd>borc</kbd>olor <u>borderc</u>olor <u>border-c</u>olor |
+| **border-color:**                   | <u>bcolor</u> <kbd>boc</kbd>olor <kbd>borc</kbd>olor <u>borderc</u>olor <u>border-c</u>olor |
+| **border-image:**                   | <kbd>bori</kbd>mage <u>borderi</u>mage <u>border-i</u>mage   |
 | **border-left:**                    | <kbd>bl</kbd>eft <kbd>borl</kbd>eft <u>borderl</u>eft <u>border-l</u>eft |
 | **border-left-width:**              | <kbd>blw</kbd>idth <u>borderleftw</u>idth <u>border-left-</u>width |
 | **border-radius:**                  | <kbd>bra</kbd>dius <kbd>bora</kbd>dius <u>borderra</u>dius <u>border-ra</u>dius |
