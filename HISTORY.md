@@ -1,3 +1,9 @@
+## [v0.9.2]
+> Sep 20, 2015
+
+- Expands `bc` to `background-color`
+- Expands `bi` to `background-image`
+
 ## [v0.9.1]
 > Sep 20, 2015
 
@@ -121,3 +127,4 @@ Initial release.
 [v0.8.0]: https://github.com/rstacruz/vim-hyperstyle/compare/v0.7.1...v0.8.0
 [v0.9.0]: https://github.com/rstacruz/vim-hyperstyle/compare/v0.8.0...v0.9.0
 [v0.9.1]: https://github.com/rstacruz/vim-hyperstyle/compare/v0.9.0...v0.9.1
+[v0.9.2]: https://github.com/rstacruz/vim-hyperstyle/compare/v0.9.1...v0.9.2
