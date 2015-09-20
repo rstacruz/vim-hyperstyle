@@ -98,7 +98,6 @@ properties = [
     ("cursor", [], None, ["wait", "pointer", "auto", "default", "help", "progress", "cell", "crosshair", "text", "vertical-text", "alias", "copy", "move", "not-allowed", "no-drop", "all-scroll", "col-resize", "row-resize", "n-resize", "e-resize", "s-resize", "w-resize", "nw-resize", "ne-resize", "sw-resize", "se-resize", "ew-resize", "ns-resize", "zoom-in", "zoom-out", "grab", "grabbing" ]),
     ("animation", [], None, None),
 
-    ("background", [], None, None),
     ("background-image", ["bgimage", "backimage"], None, None),
     ("background-color", ["bgcolor", "backcolor"], None, None),
     ("background-size", ["bgsize", "backsize"], None, None),
