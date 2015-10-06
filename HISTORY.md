@@ -1,3 +1,7 @@
+## [v0.10.0]
+
+- Add `list-style` and `list-style-type`
+
 ## [v0.9.2]
 > Sep 20, 2015
 
@@ -128,3 +132,4 @@ Initial release.
 [v0.9.0]: https://github.com/rstacruz/vim-hyperstyle/compare/v0.8.0...v0.9.0
 [v0.9.1]: https://github.com/rstacruz/vim-hyperstyle/compare/v0.9.0...v0.9.1
 [v0.9.2]: https://github.com/rstacruz/vim-hyperstyle/compare/v0.9.1...v0.9.2
+[v0.10.0]: https://github.com/rstacruz/vim-hyperstyle/compare/v0.9.2...v0.10.0
