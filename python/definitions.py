@@ -133,6 +133,8 @@ properties = [
     ("clear", [], None, ["left", "right", "both", "inherit"]),
     ("zoom", [], "_", None),
     ("direction", [], None, ["ltr", "rtl", "inherit"]),
+
+    ("list-style", ["lstyle"], None, ["none", "square", "disc", "inside", "outside", "inherit", "initial", "unset", "decimal", "georgian"]),
 ]
 
 """
@@ -296,6 +298,9 @@ statements = [
     ("text-shadow", "none", ["tsnone", "teshnone"]),
     ("table-layout", "fixed", ["tlfixed"]),
     ("table-layout", "auto", ["tlauto"]),
+
+    ("list-style", "none", ["lsnone"]),
+    ("list-style-type", "none", ["lstnone"]),
 ]
 
 definitions = { "properties": properties, "statements": statements }

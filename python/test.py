@@ -2,27 +2,6 @@ import hyperstyle as cssx
 from definitions import definitions
 import unittest
 
-class TestDoc(unittest.TestCase):
-    def test_defs(self):
-        """Ensure that documentation is up to date"""
-        import reference
-
-        f = open('doc/hyperstyle.txt', 'r')
-        expected = f.read()
-        f.close()
-
-        actual = reference.VimPrinter().to_s() + "\n"
-        ff = open('doc/hyperstyle.txt.new', 'w')
-        ff.write(actual)
-        ff.close()
-
-        if expected.strip() != actual.strip():
-            self.fail(
-                "Documentation is not up to date.\n" +
-                "  See `doc/hyperstyle.txt.new` to see what's changed.\n" +
-                "  to clear this error, you will need to regenerate documentation\n" +
-                "  (make doc), or inspect why the documentation has changed.");
-
 class TestCr(unittest.TestCase):
     def expect(self, source, expected):
         output = cssx.expand_statement(source)

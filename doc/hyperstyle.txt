@@ -51,6 +51,7 @@ PROPERTIES                                               *hyperstyle-properties*
   *left:*                             `l`[eft]
   *letter-spacing:*                   `ls`[pacing] `les`[pacing] `let`[terspacing] letter-spacing
   *line-height:*                      `lh`[eight] `lih`[eight] `lin`[eheight] line-height
+  *list-style:*                       `lst`[yle] `lis`[tstyle] list-style
   *margin:*                           `m`[argin]
   *margin-bottom:*                    `mb`[ottom] `marb`[ottom] marginb[ottom] margin-b[ottom]
   *margin-left:*                      `ml`[eft] `marl`[eft] marginl[eft] margin-[left]
@@ -161,6 +162,8 @@ STATEMENTS                                               *hyperstyle-statements*
   *justify-content:* *center*         `jc`[center]
   *justify-content:* *flex-end*       `jce`[nd]
   *justify-content:* *flex-start*     `jcs`[tart]
+  *list-style-type:* *none*           `lst`[none]
+  *list-style:* *none*                `ls`[none]
   *margin-left:* *auto*               `ml`[auto]
   *margin-right:* *auto*              `mr`[auto]
   *margin:* *0*                       `m`[0] `mo`
