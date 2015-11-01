@@ -1,3 +1,4 @@
 *.pyc
 vendor
 doc/hyperstyle.txt.new
+doc/tags
