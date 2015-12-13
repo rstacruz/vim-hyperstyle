@@ -87,7 +87,7 @@ function! s:expand_inline(fn, append, o)
   if ! s:at_eol() | return "" | endif
 
   let expr   = exists('a:o.expr') ? a:o.expr : '^\(\s*\)\(.\+\).$'
-  let ln     = s:get_line_info(line('.'), expr) 
+  let ln     = s:get_line_info(line('.'), expr)
   let result = s:expand(a:fn, ln.shorthand)
   if result == '' | return "" | endif
 
