@@ -25,7 +25,7 @@ semicolon_expr = re.compile(r';\s*$')
 selectorlike_expr = re.compile(r'.*(link|visited|before|placeholder|root|after|focus|hover|active|checked|selected).*')
 ends_in_brace_expr = re.compile(r'.*\{\s*$')
 
-def expand_statement(line, separator):
+def expand_statement(line, usecolon=True):
     """Expands a statement line. Executed when pressing <Enter>.
 
         "db"          => "display: block"
@@ -36,6 +36,8 @@ def expand_statement(line, separator):
         "margin:3px"  => "margin: 3px"
     """
     indent, snippet = split_indent(line)
+
+    separator = ':' if usecolon else ''
 
     out = \
         expand_statement_simple(snippet, separator) or \
@@ -110,7 +112,7 @@ def split_value(snippet):
     else:
         return (None, None, None)
 
-def expand_property(line, separator):
+def expand_property(line, usecolon=True):
     """Expands a property. Used to expand on `:` or ` `.
 
     >>> expand_property("m")
@@ -120,6 +122,8 @@ def expand_property(line, separator):
 
     options = index.properties.get(snippet)
     if not options: return
+
+    separator = ':' if usecolon else ''
 
     return "%s%s%s" % (indent, options["property"], separator)
 
