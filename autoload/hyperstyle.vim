@@ -105,7 +105,7 @@ endfunction
 
 function s:expand(what, str)
   let method = 'expand_'.a:what
-	let separator = g:hyperstyle_use_colon == 1 ? ':' : ''
+  let separator = g:hyperstyle_use_colon == 1 ? ':' : ''
   let escaped = substitute(a:str, '"', '\"', 'g')
   return s:pyeval("hyperstyle.".method."(\"".escaped."\", \"".separator."\")")
 endfunction
