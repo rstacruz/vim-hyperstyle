@@ -158,7 +158,7 @@ def match_keyword(value, keywords):
     None
     """
     for word in keywords:
-        if re.match('^'+value, word): return word 
+        if re.match('^'+value, word): return word
     for word in keywords:
         if re.match(value, word): return word
 
