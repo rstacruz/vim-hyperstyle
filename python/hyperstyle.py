@@ -25,7 +25,7 @@ semicolon_expr = re.compile(r';\s*$')
 selectorlike_expr = re.compile(r'.*(link|visited|before|placeholder|root|after|focus|hover|active|checked|selected).*')
 ends_in_brace_expr = re.compile(r'.*\{\s*$')
 
-def expand_statement(line):
+def expand_statement(line, separator):
     """Expands a statement line. Executed when pressing <Enter>.
 
         "db"          => "display: block"
@@ -38,13 +38,13 @@ def expand_statement(line):
     indent, snippet = split_indent(line)
 
     out = \
-        expand_statement_simple(snippet) or \
-        expand_statement_with_property(snippet) or \
-        expand_statement_value(snippet)
+        expand_statement_simple(snippet, separator) or \
+        expand_statement_with_property(snippet, separator) or \
+        expand_statement_value(snippet, separator)
 
     if out: return indent + out
 
-def expand_statement_simple(snippet):
+def expand_statement_simple(snippet, separator):
     """Check if its a simple statement. (Internal)
 
         "db"  => "display: block"
@@ -52,9 +52,9 @@ def expand_statement_simple(snippet):
     options = index.statements.get(snippet)
     if not options: return
 
-    return "%s: %s" % (options["property"], options["value"])
+    return "%s%s %s" % (options["property"], separator, options["value"])
 
-def expand_statement_with_property(snippet):
+def expand_statement_with_property(snippet, separator):
     """Expands a statement with both shorthand property and value. (Internal)
 
         "m10em"  => "margin: 10em"
@@ -65,9 +65,9 @@ def expand_statement_with_property(snippet):
     if not options: return
 
     xvalue = expand_full_value(value + unit, options["property"])
-    if xvalue: return "%s: %s" % (options["property"], xvalue)
+    if xvalue: return "%s%s %s" % (options["property"], separator, xvalue)
 
-def expand_statement_value(snippet):
+def expand_statement_value(snippet, separator):
     """Expands a statement's unit value. (Internal)
 
         "margin: 3"    => "margin: 3px"
@@ -92,7 +92,7 @@ def expand_statement_value(snippet):
     if value.count('(') != value.count(')'): return
 
     new_value = expand_full_value(value, prop)
-    return "%s: %s" % (prop, new_value or value)
+    return "%s%s %s" % (prop, separator, new_value or value)
 
 def split_value(snippet):
     """Splits a snippet into `property`, `number` and `unit`. Property and unit
@@ -110,7 +110,7 @@ def split_value(snippet):
     else:
         return (None, None, None)
 
-def expand_property(line):
+def expand_property(line, separator):
     """Expands a property. Used to expand on `:` or ` `.
 
     >>> expand_property("m")
@@ -121,7 +121,7 @@ def expand_property(line):
     options = index.properties.get(snippet)
     if not options: return
 
-    return "%s%s:" % (indent, options["property"])
+    return "%s%s%s" % (indent, options["property"], separator)
 
 def expand_full_value(val, prop):
     """Expands a value of a given property `prop`. Returns the expanded value.

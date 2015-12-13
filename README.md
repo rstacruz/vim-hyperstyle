@@ -67,9 +67,12 @@ brew install macvim --with-cscope --with-lua --override-system-vim \
 
 <br>
 
+## Options
+* To generate statements with no colons in Stylus, set `let g:hyperstyle_use_colon=0`.
+
 ## Caveats
 
-* Stylus is assumed to be in indented syntax (no braces), and the use of `: ` is enforced.
+* Stylus is assumed to be in indented syntax (no braces).
 
 <br>
 
