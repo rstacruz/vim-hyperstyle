@@ -4,7 +4,7 @@ Type faster by shorthand that will auto-expand as you type. Supports less, sass,
 
 ![](https://raw.githubusercontent.com/rstacruz/vim-hyperstyle/gh-pages/screencast.gif?2)
 
-[![Status](https://travis-ci.org/rstacruz/vim-hyperstyle.svg?branch=master)](https://travis-ci.org/rstacruz/vim-hyperstyle)  
+[![Status](https://travis-ci.org/rstacruz/vim-hyperstyle.svg?branch=master)](https://travis-ci.org/rstacruz/vim-hyperstyle)
 
 <br>
 
@@ -15,13 +15,13 @@ Expansions intelligently happen as you type. Unlike [emmet], there are no hotkey
 * Properties will be auto-completed:<br>`m:` → `margin:`
 
 * You can put numeric next to property shortcuts:<br>`z1⏎` → `z-index: 1;`
- 
+
 * Values will be auto-completed:<br>`float:l` → `float: left`
- 
+
 * Default units will be added:<br>`border-radius: 4⏎` → `border-radius: 4px;`
- 
+
 * Shortcuts for common statements are available:<br>`fl⏎` → `float: left;`
- 
+
 * Semicolons are inserted automatically so you can write CSS in one go:<br>`dib` `⏎` `m0a` `⏎`
 
 * Semicolons are omitted for `.styl` and `.sass`
@@ -67,9 +67,12 @@ brew install macvim --with-cscope --with-lua --override-system-vim \
 
 <br>
 
+## Options
+* To generate statements with no colons in Stylus, set `let g:hyperstyle_use_colon=0`.
+
 ## Caveats
 
-* Stylus is assumed to be in indented syntax (no braces), and the use of `: ` is enforced.
+* Stylus is assumed to be in indented syntax (no braces).
 
 <br>
 

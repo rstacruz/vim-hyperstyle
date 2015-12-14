@@ -1,6 +1,10 @@
 if exists("g:hyperstyle_autoloaded") | finish | endif
 let g:hyperstyle_autoloaded=1
 
+if !exists("g:hyperstyle_use_colon")
+	let g:hyperstyle_use_colon=1
+endif
+
 "
 " Check if python is supported, and invoke the python env.
 "
@@ -87,7 +91,7 @@ function! s:expand_inline(fn, append, o)
   if ! s:at_eol() | return "" | endif
 
   let expr   = exists('a:o.expr') ? a:o.expr : '^\(\s*\)\(.\+\).$'
-  let ln     = s:get_line_info(line('.'), expr) 
+  let ln     = s:get_line_info(line('.'), expr)
   let result = s:expand(a:fn, ln.shorthand)
   if result == '' | return "" | endif
 
@@ -101,8 +105,9 @@ endfunction
 
 function s:expand(what, str)
   let method = 'expand_'.a:what
+  let usecolon = g:hyperstyle_use_colon == 1 ? 'True' : 'False'
   let escaped = substitute(a:str, '"', '\"', 'g')
-  return s:pyeval("hyperstyle.".method."(\"".escaped."\")")
+  return s:pyeval("hyperstyle.".method."(\"".escaped."\", ".usecolon.")")
 endfunction
 
 "
