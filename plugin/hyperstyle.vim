@@ -1,6 +1,5 @@
-" Enables for the current buffer.
-" If `semi` is 1, semicolons will be added.
-
+" Typing `<Plug>(hyperstyle-tab)` will trigger Hyperstyle.
+" These will be mapped to actual keystrokes later on.
 inoremap <silent>  <SID>(hyperstyle-cr) <C-R>=hyperstyle#expand_cr()<CR>
 imap     <silent> <script> <Plug>(hyperstyle-cr) <SID>(hyperstyle-cr)
 inoremap <silent>  <SID>(hyperstyle-tab) <C-R>=hyperstyle#expand_tab()<CR>
@@ -12,6 +11,8 @@ imap     <silent> <script> <Plug>(hyperstyle-colon) <SID>(hyperstyle-colon)
 inoremap <silent>  <SID>(hyperstyle-semi) <C-R>=hyperstyle#expand_semicolon()<CR>
 imap     <silent> <script> <Plug>(hyperstyle-semi) <SID>(hyperstyle-semi)
 
+" Enables Hyperstyle for the current buffer.
+" If `semi` is 1, semicolons will be added.
 function! s:enable(semi)
   let b:hyperstyle = 1
   let b:hyperstyle_semi = a:semi
