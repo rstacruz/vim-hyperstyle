@@ -1,5 +1,5 @@
 " Enables for the current buffer.
-" If `semi` is 1, semicolons will be advim lolded.
+" If `semi` is 1, semicolons will be added.
 
 inoremap <silent>  <SID>(hyperstyle-cr) <C-R>=hyperstyle#expand_cr()<CR>
 imap     <silent> <script> <Plug>(hyperstyle-cr) <SID>(hyperstyle-cr)
