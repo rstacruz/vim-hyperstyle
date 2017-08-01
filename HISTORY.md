@@ -21,7 +21,6 @@
 
 [v0.9.2]: https://github.com/rstacruz/vim-hyperstyle/compare/v0.9.1...v0.9.2
 
-
 ## [v0.9.1]
 > Sep 20, 2015
 
@@ -41,48 +40,56 @@
 
 - Add background-repeat
 
-## [v0.7.1] - May 31, 2015
+## [v0.7.1]
+> May 31, 2015
 
 - Disable Hyperstyle unless `b:hyperstyle` is on. This allows you to temporarily turn it off, and improves compatibility a bit.
 
-## [v0.7.0] - May 31, 2015
+## [v0.7.0]
+> May 31, 2015
 
 - Improve compatibility with other plugins: UltiSnips, auto-pairs, endwise, [vim-closer].
 - Improve compatibility with anything else I haven't seen, really (hopefully).
 
 [vim-closer]: https://github.com/rstacruz/vim-closer
 
-## [v0.6.0] - May 31, 2015
+## [v0.6.0]
+> May 31, 2015
 
 - Publish a reference: [REFERENCE.md](REFERENCE.md).
 - Add help docs (`:h hyperstyle`).
 - Add more shortcuts to existing properties.
 - Big internal refactor.
 
-## [v0.5.1] - May 30, 2015
+## [v0.5.1]
+> May 30, 2015
 
 - Fix compatilibity with UltiSnips.
 - Improve compatibilty with plugins that remap space.
 - Fix pressing <kbd>Enter</kbd> in the middle of a line.
 - Add `max-width` and `max-height`.
 
-## [v0.5.0] - May 29, 2015
+## [v0.5.0]
+> May 29, 2015
 
 - Rename project to `vim-hyperstyle`. (previously `vim-css-shorthand`)
 - Internal changes and cleanups.
 
-## [v0.4.1] - May 29, 2015
+## [v0.4.1]
+> May 29, 2015
 
 - Fix compatibility with auto-pairs.
 - Fix compatibility with UltiSnips.
 - Internal changes.
 
-## [v0.4.0] - May 28, 2015
+## [v0.4.0]
+> May 28, 2015
 
 * Support the tab key.
 * Don't expand lines when the line is not indented.
 
-## [v0.3.0] - May 27, 2015
+## [v0.3.0]
+> May 27, 2015
 
 * Vim 7.3 support!
 * `boxs` now expands to `box-shadow` instead of box-sizing.
@@ -127,7 +134,8 @@
 * Added `abs⏎` and `rel⏎`.
 * Added `ts:` for *text-shadow*.
 
-## v0.1.0 - May 27, 2015
+## v0.1.0
+> May 27, 2015
 
 Initial release.
 
@@ -149,5 +157,6 @@ Initial release.
 [v0.9.1]: https://github.com/rstacruz/vim-hyperstyle/compare/v0.9.0...v0.9.1
 [v0.9.2]: https://github.com/rstacruz/vim-hyperstyle/compare/v0.9.1...v0.9.2
 [v0.10.0]: https://github.com/rstacruz/vim-hyperstyle/compare/v0.9.2...v0.10.0
+[#2]: https://github.com/rstacruz/vim-hyperstyle/issues/2
 [#5]: https://github.com/rstacruz/vim-hyperstyle/issues/5
 [@gabrielflorit]: https://github.com/gabrielflorit
