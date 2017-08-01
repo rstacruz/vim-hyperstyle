@@ -1,6 +1,17 @@
+## [v0.11.0]
+> Aug  1, 2017
+
+- Added `g:hyperstyle_use_colon` configuration flag ([#5], [@gabrielflorit])
+- Improved compatibility with Neovim 0.2.0 and Vim 8.0
+
+[v0.11.0]: https://github.com/rstacruz/vim-hyperstyle/compare/v0.10.0...v0.11.0
+
 ## [v0.10.0]
+> Oct  6, 2015
 
 - Add `list-style` and `list-style-type`
+
+[v0.10.0]: https://github.com/rstacruz/vim-hyperstyle/compare/v0.9.2...v0.10.0
 
 ## [v0.9.2]
 > Sep 20, 2015
@@ -8,17 +19,22 @@
 - Expands `bc` to `background-color`
 - Expands `bi` to `background-image`
 
+[v0.9.2]: https://github.com/rstacruz/vim-hyperstyle/compare/v0.9.1...v0.9.2
+
+
 ## [v0.9.1]
 > Sep 20, 2015
 
 - Expands `bg` to `background`
+
+[v0.9.1]: https://github.com/rstacruz/vim-hyperstyle/compare/v0.9.0...v0.9.1
 
 ## [v0.9.0]
 > Sep 20, 2015
 
 - [#2] - Add background-image
 
-[#2]: https://github.com/rstacruz/vim-hyperstyle/issues/2
+[v0.9.0]: https://github.com/rstacruz/vim-hyperstyle/compare/v0.8.0...v0.9.0
 
 ## [v0.8.0]
 > Aug 14, 2015
@@ -133,3 +149,5 @@ Initial release.
 [v0.9.1]: https://github.com/rstacruz/vim-hyperstyle/compare/v0.9.0...v0.9.1
 [v0.9.2]: https://github.com/rstacruz/vim-hyperstyle/compare/v0.9.1...v0.9.2
 [v0.10.0]: https://github.com/rstacruz/vim-hyperstyle/compare/v0.9.2...v0.10.0
+[#5]: https://github.com/rstacruz/vim-hyperstyle/issues/5
+[@gabrielflorit]: https://github.com/gabrielflorit
