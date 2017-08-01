@@ -2,7 +2,7 @@ if exists("g:hyperstyle_autoloaded") | finish | endif
 let g:hyperstyle_autoloaded=1
 
 if !exists("g:hyperstyle_use_colon")
-	let g:hyperstyle_use_colon=1
+  let g:hyperstyle_use_colon=1
 endif
 
 "
@@ -19,13 +19,9 @@ if !has("python") && !has("python3")
   finish
 endif
 
+let g:hyperstyle_python=has('python') ? 'python2' : 'python3'
+
 let s:current_file=expand("<sfile>")
-python << EOF
-import sys, os, vim
-path = os.path.dirname(vim.eval("s:current_file")) + '/../python'
-sys.path.insert(0, path)
-import hyperstyle as hyperstyle
-EOF
 
 "
 " Same-line expansions
@@ -112,19 +108,38 @@ endfunction
 
 "
 " pyeval() polyfill
+" We can actually use :pythonx, but it's not available in Neovim 0.2.0.
+" We can also use the built-in pyeval(), but it seems to start 'fresh' in
+" Vim 8.0 (so 'hyperstyle' isn't defined).
 "
 
-try
-  call pyeval('1')
+if g:hyperstyle_python == 'python3'
+  python3 << EOF
+import sys, os, vim
+path = os.path.dirname(vim.eval("s:current_file")) + '/../python'
+sys.path.insert(0, path)
+import hyperstyle as hyperstyle
+EOF
   function! s:pyeval(code)
-    return pyeval('(' . a:code . ') or ""')
+    python3 << EOF
+result = eval(vim.eval('a:code'))
+if isinstance(result, str): vim.command('return ' + repr(result))
+EOF
   endfunction
-catch /E117/ " Unknown function
+else
+  python << EOF
+import sys, os, vim
+path = os.path.dirname(vim.eval("s:current_file")) + '/../python'
+sys.path.insert(0, path)
+import hyperstyle as hyperstyle
+EOF
   function! s:pyeval(code)
-    python result = eval(vim.eval('a:code'))
-    python if isinstance(result, str): vim.command('return ' + repr(result))
+    python << EOF
+result = eval(vim.eval('a:code'))
+if isinstance(result, str): vim.command('return ' + repr(result))
+EOF
   endfunction
-endtry
+endif
 
 "
 " (Internal) Splits a line to indent and shorthand
