@@ -31,7 +31,7 @@ function! s:map_key(key, binding)
   let oldmap_dict = maparg(a:key, 'i', 0, 1)
   let oldmap = get(oldmap_dict, 'rhs', '')
 
-  " If there's already a mappig with <expr> then we currently *do not*
+  " If there's already a mapping with <expr> then we currently *do not*
   " override it. Future work could create our own expression mapping
   " that evals the rhs of the original mapping, but its simpler to just
   " not interfere.
